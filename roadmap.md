@@ -1,5 +1,10 @@
 # Roadmap
 
+## Sapphire marketplace homepage
+- [x] Replace only the public `/` homepage with the sapphire-control-hub homepage UI
+- [x] Keep the existing Control Panel and all other routes unchanged
+- [x] Verify desktop and mobile visual parity in the live preview
+
 ## Chat ecosystem (Connect Hub + Connect AI Assistant)
 - [x] Chat database foundation (conversations, participants, messages, handoffs, RLS)
 - [x] User-side chat app at /chat (real auth, realtime, attachments)
