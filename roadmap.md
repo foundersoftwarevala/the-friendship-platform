@@ -14,5 +14,6 @@
 - [x] Port reference AMS schema additively (41 tables, enums, RLS, grants, triggers)
 - [x] AMS ticketing + chat tables with participant-scoped policies
 - [x] is_admin() bound to existing Software Vala roles; signup hook seeds XP rows
-- [ ] Seed AMS catalogue content (achievements, badges, levels, ranks) with real data
-- [ ] End-to-end signed-in verification of AMS CRUD flows
+- [x] Seed AMS catalogue content (levels, ranks, XP sources/rules, categories, achievements, badge collections, badges, trophies, leaderboards, missions, rewards, notification templates)
+- [x] Control Panel -> AMS Manager opens the module at /ams; every AMS page returns 200
+- [ ] End-to-end signed-in verification of AMS CRUD flows — BLOCKED: the backend has zero accounts, so no session can be minted. Needs one sign-up in the preview first.
