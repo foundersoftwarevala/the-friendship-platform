@@ -10,7 +10,13 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { RouteAccessGate } from "@/components/auth/RouteAccessGate";
+import { LanguageProvider } from "@/lib/language-catalog";
+import { useRealtimeAuth } from "@/integrations/supabase/realtime-auth";
+import { ReferralCapture } from "@/components/affiliate/ReferralCapture";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { TooltipProvider } from "../components/ui/tooltip";
+import { CelebrationProvider } from "../components/ams/effects/Celebration";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +83,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Software Vala™ — The Name of Trust" },
+      { name: "description", content: "Software Vala™ — The Name of Trust. A global marketplace of ready-to-deploy software with live demos, full source code and lifetime access." },
+      { name: "author", content: "Software Vala" },
+      { property: "og:title", content: "Software Vala™ — The Name of Trust" },
+      { property: "og:description", content: "Software Vala™ — The Name of Trust. A global marketplace of ready-to-deploy software with live demos, full source code and lifetime access." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Software Vala™" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -115,12 +121,33 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
+  // Without this the realtime socket carries only the publishable key, and
+  // every row-level-secured table silently delivers nothing.
+  useRealtimeAuth();
+
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      {/*
+        The language the visitor chose. This provider was defined and never
+        mounted, so every useLanguage() in the app read the default context and
+        translate() handed the key straight back - the selector changed the
+        document direction and no text at all.
+      */}
+      <LanguageProvider>
+      <TooltipProvider>
+        <CelebrationProvider>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          {/* Operator consoles are gated centrally by path; public pages pass straight through. */}
+          {/* Notices a ?ref= arrival on any page and tells the server once. */}
+          <ReferralCapture />
+          <RouteAccessGate>
+            <Outlet />
+          </RouteAccessGate>
+        </CelebrationProvider>
+      </TooltipProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

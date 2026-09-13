@@ -10,33 +10,3776 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AffiliateManagerRouteImport } from './routes/affiliate-manager'
+import { Route as AiApiManagerRouteImport } from './routes/ai-api-manager'
+import { Route as AiCeoRouteImport } from './routes/ai-ceo'
+import { Route as AmsRouteImport } from './routes/ams'
+import { Route as AmsManagerRouteImport } from './routes/ams-manager'
+import { Route as AssistManagerRouteImport } from './routes/assist-manager'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BossRouteImport } from './routes/boss'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as ChatManagerRouteImport } from './routes/chat-manager'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ControlPanelRouteImport } from './routes/control-panel'
+import { Route as CreatorManagerRouteImport } from './routes/creator-manager'
+import { Route as DemoManagerRouteImport } from './routes/demo-manager'
+import { Route as DemoOpsRouteImport } from './routes/demo-ops'
+import { Route as DemoWorkspaceRouteImport } from './routes/demo-workspace'
+import { Route as DevManagerRouteImport } from './routes/dev-manager'
+import { Route as FinanceManagerRouteImport } from './routes/finance-manager'
+import { Route as FranchiseManagerRouteImport } from './routes/franchise-manager'
+import { Route as InfluencerManagerRouteImport } from './routes/influencer-manager'
+import { Route as InternalSupportAiRouteImport } from './routes/internal-support-ai'
+import { Route as KeywordsRouteImport } from './routes/keywords'
+import { Route as LeadManagerRouteImport } from './routes/lead-manager'
+import { Route as LegalManagerRouteImport } from './routes/legal-manager'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ManagerRouteImport } from './routes/manager'
+import { Route as MarketingRouteImport } from './routes/marketing'
+import { Route as MarketplaceRouteImport } from './routes/marketplace'
+import { Route as MarketplaceManagerRouteImport } from './routes/marketplace-manager'
+import { Route as MarketplaceRecoveryRouteImport } from './routes/marketplace-recovery'
+import { Route as PagesRouteImport } from './routes/pages'
+import { Route as ProductDemoManagerRouteImport } from './routes/product-demo-manager'
+import { Route as PromiseTrackerRouteImport } from './routes/promise-tracker'
+import { Route as ResellerManagerRouteImport } from './routes/reseller-manager'
+import { Route as SalesCrmRouteImport } from './routes/sales-crm'
+import { Route as SalesSupportManagerRouteImport } from './routes/sales-support-manager'
+import { Route as SeoManagerRouteImport } from './routes/seo-manager'
+import { Route as ServerManagerRouteImport } from './routes/server-manager'
+import { Route as SitemapCategoriesDotxmlRouteImport } from './routes/sitemap-categories[.]xml'
+import { Route as SitemapCountriesDotxmlRouteImport } from './routes/sitemap-countries[.]xml'
+import { Route as SitemapPagesDotxmlRouteImport } from './routes/sitemap-pages[.]xml'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as SupportAgentRouteImport } from './routes/support-agent'
+import { Route as SupportChatbotRouteImport } from './routes/support-chatbot'
+import { Route as SupportChatbotBlueprintRouteImport } from './routes/support-chatbot-blueprint'
+import { Route as TaskManagerRouteImport } from './routes/task-manager'
+import { Route as ValaAiRouteImport } from './routes/vala-ai'
+import { Route as ValaTvRouteImport } from './routes/vala-tv'
+import { Route as VendorManagerRouteImport } from './routes/vendor-manager'
+import { Route as AcademyIndexRouteImport } from './routes/academy.index'
+import { Route as AcademyCourseRouteImport } from './routes/academy.$course'
+import { Route as AccountPurchasesRouteImport } from './routes/account/purchases'
+import { Route as AdminImportRouteImport } from './routes/admin.import'
+import { Route as AffiliateManagerIndexRouteImport } from './routes/affiliate-manager.index'
+import { Route as AffiliateManagerAffiliateLinksRouteImport } from './routes/affiliate-manager.affiliate-links'
+import { Route as AffiliateManagerAffiliatesRouteImport } from './routes/affiliate-manager.affiliates'
+import { Route as AffiliateManagerAnalyticsRouteImport } from './routes/affiliate-manager.analytics'
+import { Route as AffiliateManagerApplicationsRouteImport } from './routes/affiliate-manager.applications'
+import { Route as AffiliateManagerAuditLogRouteImport } from './routes/affiliate-manager.audit-log'
+import { Route as AffiliateManagerBulkActionsRouteImport } from './routes/affiliate-manager.bulk-actions'
+import { Route as AffiliateManagerCampaignsRouteImport } from './routes/affiliate-manager.campaigns'
+import { Route as AffiliateManagerCommissionsRouteImport } from './routes/affiliate-manager.commissions'
+import { Route as AffiliateManagerCommunicationRouteImport } from './routes/affiliate-manager.communication'
+import { Route as AffiliateManagerComplianceRouteImport } from './routes/affiliate-manager.compliance'
+import { Route as AffiliateManagerCouponsRouteImport } from './routes/affiliate-manager.coupons'
+import { Route as AffiliateManagerCustomersRouteImport } from './routes/affiliate-manager.customers'
+import { Route as AffiliateManagerDocumentsRouteImport } from './routes/affiliate-manager.documents'
+import { Route as AffiliateManagerExportRouteImport } from './routes/affiliate-manager.export'
+import { Route as AffiliateManagerImportRouteImport } from './routes/affiliate-manager.import'
+import { Route as AffiliateManagerLeadsRouteImport } from './routes/affiliate-manager.leads'
+import { Route as AffiliateManagerMarketingRouteImport } from './routes/affiliate-manager.marketing'
+import { Route as AffiliateManagerMarketplaceRouteImport } from './routes/affiliate-manager.marketplace'
+import { Route as AffiliateManagerOrdersRouteImport } from './routes/affiliate-manager.orders'
+import { Route as AffiliateManagerPayoutsRouteImport } from './routes/affiliate-manager.payouts'
+import { Route as AffiliateManagerPerformanceRouteImport } from './routes/affiliate-manager.performance'
+import { Route as AffiliateManagerProductsRouteImport } from './routes/affiliate-manager.products'
+import { Route as AffiliateManagerRealtimeTestRouteImport } from './routes/affiliate-manager.realtime-test'
+import { Route as AffiliateManagerReferralCodesRouteImport } from './routes/affiliate-manager.referral-codes'
+import { Route as AffiliateManagerReferralNetworkRouteImport } from './routes/affiliate-manager.referral-network'
+import { Route as AffiliateManagerReportsRouteImport } from './routes/affiliate-manager.reports'
+import { Route as AffiliateManagerSalesRouteImport } from './routes/affiliate-manager.sales'
+import { Route as AffiliateManagerSearchRouteImport } from './routes/affiliate-manager.search'
+import { Route as AffiliateManagerSettingsRouteImport } from './routes/affiliate-manager.settings'
+import { Route as AffiliateManagerSupportRouteImport } from './routes/affiliate-manager.support'
+import { Route as AffiliateManagerWalletRouteImport } from './routes/affiliate-manager.wallet'
+import { Route as AiCeoIndexRouteImport } from './routes/ai-ceo.index'
+import { Route as AiCeoApprovalsRouteImport } from './routes/ai-ceo.approvals'
+import { Route as AiCeoDecisionEngineRouteImport } from './routes/ai-ceo.decision-engine'
+import { Route as AiCeoLearningRouteImport } from './routes/ai-ceo.learning'
+import { Route as AiCeoLiveMonitorRouteImport } from './routes/ai-ceo.live-monitor'
+import { Route as AiCeoPerformanceRouteImport } from './routes/ai-ceo.performance'
+import { Route as AiCeoPredictionsRouteImport } from './routes/ai-ceo.predictions'
+import { Route as AiCeoReportsRouteImport } from './routes/ai-ceo.reports'
+import { Route as AiCeoRiskRouteImport } from './routes/ai-ceo.risk'
+import { Route as AiCeoSettingsRouteImport } from './routes/ai-ceo.settings'
+import { Route as AiAssistantRouteImport } from './routes/ai.assistant'
+import { Route as AiCompareRouteImport } from './routes/ai.compare'
+import { Route as AiFinderRouteImport } from './routes/ai.finder'
+import { Route as AiRecommendRouteImport } from './routes/ai.recommend'
+import { Route as AmsIndexRouteImport } from './routes/ams.index'
+import { Route as AmsAchievementVaultRouteImport } from './routes/ams.achievement-vault'
+import { Route as AmsAchievementsRouteImport } from './routes/ams.achievements'
+import { Route as AmsAiRouteImport } from './routes/ams.ai'
+import { Route as AmsAnalyticsRouteImport } from './routes/ams.analytics'
+import { Route as AmsAuditRouteImport } from './routes/ams.audit'
+import { Route as AmsAuthorProgressionRouteImport } from './routes/ams.author-progression'
+import { Route as AmsAwardVaultRouteImport } from './routes/ams.award-vault'
+import { Route as AmsBadgeVaultRouteImport } from './routes/ams.badge-vault'
+import { Route as AmsBadgesRouteImport } from './routes/ams.badges'
+import { Route as AmsCertificateVaultRouteImport } from './routes/ams.certificate-vault'
+import { Route as AmsCertificatesRouteImport } from './routes/ams.certificates'
+import { Route as AmsChallengesRouteImport } from './routes/ams.challenges'
+import { Route as AmsChatRouteImport } from './routes/ams.chat'
+import { Route as AmsClaimsRouteImport } from './routes/ams.claims'
+import { Route as AmsCollectionsRouteImport } from './routes/ams.collections'
+import { Route as AmsDeveloperProgressionRouteImport } from './routes/ams.developer-progression'
+import { Route as AmsFounderSealVaultRouteImport } from './routes/ams.founder-seal-vault'
+import { Route as AmsHallOfFameRouteImport } from './routes/ams.hall-of-fame'
+import { Route as AmsHallOfFameVaultRouteImport } from './routes/ams.hall-of-fame-vault'
+import { Route as AmsHonorCoinVaultRouteImport } from './routes/ams.honor-coin-vault'
+import { Route as AmsIdentityRouteImport } from './routes/ams.identity'
+import { Route as AmsIdentityCardVaultRouteImport } from './routes/ams.identity-card-vault'
+import { Route as AmsLeaderboardsRouteImport } from './routes/ams.leaderboards'
+import { Route as AmsLegacyRouteImport } from './routes/ams.legacy'
+import { Route as AmsLegacyMedalVaultRouteImport } from './routes/ams.legacy-medal-vault'
+import { Route as AmsLevelsRouteImport } from './routes/ams.levels'
+import { Route as AmsLicenseCardVaultRouteImport } from './routes/ams.license-card-vault'
+import { Route as AmsMembershipVaultRouteImport } from './routes/ams.membership-vault'
+import { Route as AmsMissionsRouteImport } from './routes/ams.missions'
+import { Route as AmsNotificationsRouteImport } from './routes/ams.notifications'
+import { Route as AmsOverviewRouteImport } from './routes/ams.overview'
+import { Route as AmsPassportRouteImport } from './routes/ams.passport'
+import { Route as AmsPassportVaultRouteImport } from './routes/ams.passport-vault'
+import { Route as AmsQuestsRouteImport } from './routes/ams.quests'
+import { Route as AmsRankVaultRouteImport } from './routes/ams.rank-vault'
+import { Route as AmsRanksRouteImport } from './routes/ams.ranks'
+import { Route as AmsRecognitionCoinVaultRouteImport } from './routes/ams.recognition-coin-vault'
+import { Route as AmsReputationVaultRouteImport } from './routes/ams.reputation-vault'
+import { Route as AmsRewardChestVaultRouteImport } from './routes/ams.reward-chest-vault'
+import { Route as AmsRewardsRouteImport } from './routes/ams.rewards'
+import { Route as AmsRoleManagerRouteImport } from './routes/ams.role-manager'
+import { Route as AmsSettingsRouteImport } from './routes/ams.settings'
+import { Route as AmsTrophiesRouteImport } from './routes/ams.trophies'
+import { Route as AmsTrophyGalleryRouteImport } from './routes/ams.trophy-gallery'
+import { Route as AmsTrophyStagesRouteImport } from './routes/ams.trophy-stages'
+import { Route as AmsTrophyVaultRouteImport } from './routes/ams.trophy-vault'
+import { Route as AmsTrustSealVaultRouteImport } from './routes/ams.trust-seal-vault'
+import { Route as AmsVendorProgressionRouteImport } from './routes/ams.vendor-progression'
+import { Route as AmsVerificationVaultRouteImport } from './routes/ams.verification-vault'
+import { Route as AmsXpRouteImport } from './routes/ams.xp'
+import { Route as AmsXpCrystalVaultRouteImport } from './routes/ams.xp-crystal-vault'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApplyIndexRouteImport } from './routes/apply.index'
+import { Route as ApplyRoleRouteImport } from './routes/apply.$role'
+import { Route as DashboardRoleRouteImport } from './routes/dashboard.$role'
+import { Route as DemoRouteImport } from './routes/demo.'
+import { Route as DemoSlugRouteImport } from './routes/demo.$slug'
+import { Route as LeadManagerIndexRouteImport } from './routes/lead-manager.index'
+import { Route as ManagerIndexRouteImport } from './routes/manager/index'
+import { Route as ManagerSectionRouteImport } from './routes/manager/$section'
+import { Route as MarketingIndexRouteImport } from './routes/marketing.index'
+import { Route as MarketingAiAutomationRouteImport } from './routes/marketing.ai-automation'
+import { Route as MarketingAnalyticsRouteImport } from './routes/marketing.analytics'
+import { Route as MarketingApprovalsRouteImport } from './routes/marketing.approvals'
+import { Route as MarketingAuditRouteImport } from './routes/marketing.audit'
+import { Route as MarketingCampaignBuilderRouteImport } from './routes/marketing.campaign-builder'
+import { Route as MarketingCampaignsRouteImport } from './routes/marketing.campaigns'
+import { Route as MarketingContentRouteImport } from './routes/marketing.content'
+import { Route as MarketingCreativesRouteImport } from './routes/marketing.creatives'
+import { Route as MarketingHierarchyRouteImport } from './routes/marketing.hierarchy'
+import { Route as MarketingLeadSourcesRouteImport } from './routes/marketing.lead-sources'
+import { Route as MarketingOffersRouteImport } from './routes/marketing.offers'
+import { Route as MarketingPerformanceRouteImport } from './routes/marketing.performance'
+import { Route as MarketingReportsRouteImport } from './routes/marketing.reports'
+import { Route as MarketingSchedulesRouteImport } from './routes/marketing.schedules'
+import { Route as MarketingSeoRouteImport } from './routes/marketing.seo'
+import { Route as MarketingTargetingRouteImport } from './routes/marketing.targeting'
+import { Route as MarketplaceIndexRouteImport } from './routes/marketplace.index'
+import { Route as PaymentFailRouteImport } from './routes/payment/fail'
+import { Route as PaymentSuccessRouteImport } from './routes/payment/success'
+import { Route as PromiseTrackerIndexRouteImport } from './routes/promise-tracker.index'
+import { Route as PromiseTrackerActiveRouteImport } from './routes/promise-tracker.active'
+import { Route as PromiseTrackerAllRouteImport } from './routes/promise-tracker.all'
+import { Route as PromiseTrackerAuditLogsRouteImport } from './routes/promise-tracker.audit-logs'
+import { Route as PromiseTrackerBrokenRouteImport } from './routes/promise-tracker.broken'
+import { Route as PromiseTrackerCategoriesRouteImport } from './routes/promise-tracker.categories'
+import { Route as PromiseTrackerCreateRouteImport } from './routes/promise-tracker.create'
+import { Route as PromiseTrackerDelayedRouteImport } from './routes/promise-tracker.delayed'
+import { Route as PromiseTrackerEscalationsRouteImport } from './routes/promise-tracker.escalations'
+import { Route as PromiseTrackerFulfilledRouteImport } from './routes/promise-tracker.fulfilled'
+import { Route as PromiseTrackerInsightsRouteImport } from './routes/promise-tracker.insights'
+import { Route as PromiseTrackerRulesRouteImport } from './routes/promise-tracker.rules'
+import { Route as PromiseTrackerSettingsRouteImport } from './routes/promise-tracker.settings'
+import { Route as SCodeRouteImport } from './routes/s.$code'
+import { Route as SitemapProductsPageDotxmlRouteImport } from './routes/sitemap-products/$page[.]xml'
+import { Route as ValaAiIndexRouteImport } from './routes/vala-ai.index'
+import { Route as ValaAiCreditsRouteImport } from './routes/vala-ai.credits'
+import { Route as ValaAiErrorsRouteImport } from './routes/vala-ai.errors'
+import { Route as ValaAiLockRouteImport } from './routes/vala-ai.lock'
+import { Route as ValaAiLogsRouteImport } from './routes/vala-ai.logs'
+import { Route as ValaAiModelsRouteImport } from './routes/vala-ai.models'
+import { Route as ValaAiProjectsRouteImport } from './routes/vala-ai.projects'
+import { Route as ValaAiPromptsRouteImport } from './routes/vala-ai.prompts'
+import { Route as ValaAiRollbackRouteImport } from './routes/vala-ai.rollback'
+import { Route as ValaAiSettingsRouteImport } from './routes/vala-ai.settings'
+import { Route as VerifyCodeRouteImport } from './routes/verify.$code'
+import { Route as AffiliateManagerAffiliatesIdRouteImport } from './routes/affiliate-manager.affiliates.$id'
+import { Route as AmsAwardsIndexRouteImport } from './routes/ams.awards.index'
+import { Route as AmsAwardsIdRouteImport } from './routes/ams.awards.$id'
+import { Route as AmsAwardsAuditRouteImport } from './routes/ams.awards.audit'
+import { Route as AmsAwardsCategoriesRouteImport } from './routes/ams.awards.categories'
+import { Route as AmsAwardsEffectsRouteImport } from './routes/ams.awards.effects'
+import { Route as AmsAwardsNewRouteImport } from './routes/ams.awards.new'
+import { Route as AmsCollectionIndexRouteImport } from './routes/ams.collection.index'
+import { Route as AmsCollectionTypeRouteImport } from './routes/ams.collection.$type'
+import { Route as AmsMuseumIndexRouteImport } from './routes/ams.museum.index'
+import { Route as AmsMuseumShowcaseRouteImport } from './routes/ams.museum.$showcase'
+import { Route as AmsRoleManagerIndexRouteImport } from './routes/ams.role-manager.index'
+import { Route as AmsRoleManagerSlugRouteImport } from './routes/ams.role-manager.$slug'
+import { Route as AmsRoleShowcaseIndexRouteImport } from './routes/ams.role-showcase.index'
+import { Route as AmsRoleShowcaseSlugRouteImport } from './routes/ams.role-showcase.$slug'
+import { Route as AmsTicketsIndexRouteImport } from './routes/ams.tickets.index'
+import { Route as AmsTicketsIdRouteImport } from './routes/ams.tickets.$id'
+import { Route as AmsTicketsNewRouteImport } from './routes/ams.tickets.new'
+import { Route as ApiAccountPurchasesRouteImport } from './routes/api/account/purchases'
+import { Route as ApiActionsConfigRouteImport } from './routes/api/actions/config'
+import { Route as ApiActionsRegistryRouteImport } from './routes/api/actions/registry'
+import { Route as ApiAffiliateAccountRouteImport } from './routes/api/affiliate/account'
+import { Route as ApiAffiliateAttributeRouteImport } from './routes/api/affiliate/attribute'
+import { Route as ApiAnalyticsProductsRouteImport } from './routes/api/analytics/products'
+import { Route as ApiAuthorEarningsRouteImport } from './routes/api/author/earnings'
+import { Route as ApiAuthorProductsRouteImport } from './routes/api/author/products'
+import { Route as ApiDemoTicketRouteImport } from './routes/api/demo/ticket'
+import { Route as ApiFinanceResellerMembershipRouteImport } from './routes/api/finance/reseller-membership'
+import { Route as ApiGovernanceConsoleRouteImport } from './routes/api/governance/console'
+import { Route as ApiInternalApplyMigrationsRouteImport } from './routes/api/internal/apply-migrations'
+import { Route as ApiInternalApplyResellerSchemaRouteImport } from './routes/api/internal/apply-reseller-schema'
+import { Route as ApiInternalAuthorReviewRouteImport } from './routes/api/internal/author-review'
+import { Route as ApiInternalCredentialSetupRouteImport } from './routes/api/internal/credential-setup'
+import { Route as ApiInternalDbHealthRouteImport } from './routes/api/internal/db-health'
+import { Route as ApiInternalEmailFlushRouteImport } from './routes/api/internal/email-flush'
+import { Route as ApiInternalMarketplaceMigrationRouteImport } from './routes/api/internal/marketplace-migration'
+import { Route as ApiInternalSellerAdminRouteImport } from './routes/api/internal/seller-admin'
+import { Route as ApiInternalSeoAuditRouteImport } from './routes/api/internal/seo-audit'
+import { Route as ApiInternalSeoPageRouteImport } from './routes/api/internal/seo-page'
+import { Route as ApiInternalSettleCommissionsRouteImport } from './routes/api/internal/settle-commissions'
+import { Route as ApiLeadsConsoleRouteImport } from './routes/api/leads/console'
+import { Route as ApiManagerBulkRouteImport } from './routes/api/manager/bulk'
+import { Route as ApiManagerResourceRouteImport } from './routes/api/manager/resource'
+import { Route as ApiManagerRowActionRouteImport } from './routes/api/manager/row-action'
+import { Route as ApiMarketplaceActivityRouteImport } from './routes/api/marketplace/activity'
+import { Route as ApiMarketplaceAutomationRouteImport } from './routes/api/marketplace/automation'
+import { Route as ApiMarketplaceCatalogRouteImport } from './routes/api/marketplace/catalog'
+import { Route as ApiMarketplaceColourRouteImport } from './routes/api/marketplace/colour'
+import { Route as ApiMarketplaceCountryRouteImport } from './routes/api/marketplace/country'
+import { Route as ApiMarketplaceDeploymentRouteImport } from './routes/api/marketplace/deployment'
+import { Route as ApiMarketplaceDeveloperRouteImport } from './routes/api/marketplace/developer'
+import { Route as ApiMarketplaceIntegrationsRouteImport } from './routes/api/marketplace/integrations'
+import { Route as ApiMarketplaceIntegrityRouteImport } from './routes/api/marketplace/integrity'
+import { Route as ApiMarketplaceLeadRouteImport } from './routes/api/marketplace/lead'
+import { Route as ApiMarketplaceMediaRouteImport } from './routes/api/marketplace/media'
+import { Route as ApiMarketplaceMicroInteractionsRouteImport } from './routes/api/marketplace/micro-interactions'
+import { Route as ApiMarketplacePermissionsRouteImport } from './routes/api/marketplace/permissions'
+import { Route as ApiMarketplaceProofRouteImport } from './routes/api/marketplace/proof'
+import { Route as ApiMarketplaceRowsRouteImport } from './routes/api/marketplace/rows'
+import { Route as ApiMarketplaceSearchRouteImport } from './routes/api/marketplace/search'
+import { Route as ApiMarketplaceSecurityRouteImport } from './routes/api/marketplace/security'
+import { Route as ApiMarketplaceSupportRouteImport } from './routes/api/marketplace/support'
+import { Route as ApiMarketplaceSystemRouteImport } from './routes/api/marketplace/system'
+import { Route as ApiMarketplaceTrackRouteImport } from './routes/api/marketplace/track'
+import { Route as ApiMarketplaceTranslateRouteImport } from './routes/api/marketplace/translate'
+import { Route as ApiPartnerQuoteRouteImport } from './routes/api/partner/quote'
+import { Route as ApiPaymentInitiateRouteImport } from './routes/api/payment/initiate'
+import { Route as ApiPaymentStatusRouteImport } from './routes/api/payment/status'
+import { Route as ApiPaymentWebhookRouteImport } from './routes/api/payment/webhook'
+import { Route as ApiQrCodeRouteImport } from './routes/api/qr/$code'
+import { Route as ApiSecurityConsoleRouteImport } from './routes/api/security/console'
+import { Route as ApiSecuritySettingsRouteImport } from './routes/api/security/settings'
+import { Route as ApiSellerMetricsRouteImport } from './routes/api/seller/metrics'
+import { Route as ApiSeoConsoleRouteImport } from './routes/api/seo/console'
+import { Route as ApiTrackRefRouteImport } from './routes/api/track/ref'
+import { Route as MarketplaceCategorySlugRouteImport } from './routes/marketplace.category.$slug'
+import { Route as MarketplaceCountryCountryRouteImport } from './routes/marketplace.country.$country'
+import { Route as MarketplaceProductSlugRouteImport } from './routes/marketplace.product.$slug'
+import { Route as ProxyDemoRouteImport } from './routes/proxy.demo.'
+import { Route as AmsAwardsIdEditRouteImport } from './routes/ams.awards.$id.edit'
+import { Route as AmsAwardsLibrariesAchievementsRouteImport } from './routes/ams.awards.libraries.achievements'
+import { Route as AmsAwardsLibrariesBadgesRouteImport } from './routes/ams.awards.libraries.badges'
+import { Route as AmsAwardsLibrariesRanksRouteImport } from './routes/ams.awards.libraries.ranks'
+import { Route as AmsAwardsLibrariesTrophiesRouteImport } from './routes/ams.awards.libraries.trophies'
+import { Route as AmsAwardsRulesLevelsRouteImport } from './routes/ams.awards.rules.levels'
+import { Route as AmsAwardsRulesMilestonesRouteImport } from './routes/ams.awards.rules.milestones'
+import { Route as AmsAwardsRulesRewardsRouteImport } from './routes/ams.awards.rules.rewards'
+import { Route as AmsAwardsRulesStreaksRouteImport } from './routes/ams.awards.rules.streaks'
+import { Route as AmsAwardsRulesXpRouteImport } from './routes/ams.awards.rules.xp'
+import { Route as ApiAccountInvoiceIdRouteImport } from './routes/api/account/invoice/$id'
+import { Route as ApiOrdersIdFulfilRouteImport } from './routes/api/orders/$id/fulfil'
+import { Route as ApiProxyDemoSplatRouteImport } from './routes/api/proxy/demo.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AffiliateManagerRoute = AffiliateManagerRouteImport.update({
+  id: '/affiliate-manager',
+  path: '/affiliate-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiApiManagerRoute = AiApiManagerRouteImport.update({
+  id: '/ai-api-manager',
+  path: '/ai-api-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiCeoRoute = AiCeoRouteImport.update({
+  id: '/ai-ceo',
+  path: '/ai-ceo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmsRoute = AmsRouteImport.update({
+  id: '/ams',
+  path: '/ams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmsManagerRoute = AmsManagerRouteImport.update({
+  id: '/ams-manager',
+  path: '/ams-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistManagerRoute = AssistManagerRouteImport.update({
+  id: '/assist-manager',
+  path: '/assist-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BossRoute = BossRouteImport.update({
+  id: '/boss',
+  path: '/boss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatManagerRoute = ChatManagerRouteImport.update({
+  id: '/chat-manager',
+  path: '/chat-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlPanelRoute = ControlPanelRouteImport.update({
+  id: '/control-panel',
+  path: '/control-panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorManagerRoute = CreatorManagerRouteImport.update({
+  id: '/creator-manager',
+  path: '/creator-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoManagerRoute = DemoManagerRouteImport.update({
+  id: '/demo-manager',
+  path: '/demo-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoOpsRoute = DemoOpsRouteImport.update({
+  id: '/demo-ops',
+  path: '/demo-ops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoWorkspaceRoute = DemoWorkspaceRouteImport.update({
+  id: '/demo-workspace',
+  path: '/demo-workspace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DevManagerRoute = DevManagerRouteImport.update({
+  id: '/dev-manager',
+  path: '/dev-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceManagerRoute = FinanceManagerRouteImport.update({
+  id: '/finance-manager',
+  path: '/finance-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FranchiseManagerRoute = FranchiseManagerRouteImport.update({
+  id: '/franchise-manager',
+  path: '/franchise-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InfluencerManagerRoute = InfluencerManagerRouteImport.update({
+  id: '/influencer-manager',
+  path: '/influencer-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternalSupportAiRoute = InternalSupportAiRouteImport.update({
+  id: '/internal-support-ai',
+  path: '/internal-support-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KeywordsRoute = KeywordsRouteImport.update({
+  id: '/keywords',
+  path: '/keywords',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadManagerRoute = LeadManagerRouteImport.update({
+  id: '/lead-manager',
+  path: '/lead-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalManagerRoute = LegalManagerRouteImport.update({
+  id: '/legal-manager',
+  path: '/legal-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagerRoute = ManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketingRoute = MarketingRouteImport.update({
+  id: '/marketing',
+  path: '/marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceManagerRoute = MarketplaceManagerRouteImport.update({
+  id: '/marketplace-manager',
+  path: '/marketplace-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceRecoveryRoute = MarketplaceRecoveryRouteImport.update({
+  id: '/marketplace-recovery',
+  path: '/marketplace-recovery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesRoute = PagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductDemoManagerRoute = ProductDemoManagerRouteImport.update({
+  id: '/product-demo-manager',
+  path: '/product-demo-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromiseTrackerRoute = PromiseTrackerRouteImport.update({
+  id: '/promise-tracker',
+  path: '/promise-tracker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResellerManagerRoute = ResellerManagerRouteImport.update({
+  id: '/reseller-manager',
+  path: '/reseller-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesCrmRoute = SalesCrmRouteImport.update({
+  id: '/sales-crm',
+  path: '/sales-crm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SalesSupportManagerRoute = SalesSupportManagerRouteImport.update({
+  id: '/sales-support-manager',
+  path: '/sales-support-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoManagerRoute = SeoManagerRouteImport.update({
+  id: '/seo-manager',
+  path: '/seo-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServerManagerRoute = ServerManagerRouteImport.update({
+  id: '/server-manager',
+  path: '/server-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapCategoriesDotxmlRoute = SitemapCategoriesDotxmlRouteImport.update({
+  id: '/sitemap-categories.xml',
+  path: '/sitemap-categories.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapCountriesDotxmlRoute = SitemapCountriesDotxmlRouteImport.update({
+  id: '/sitemap-countries.xml',
+  path: '/sitemap-countries.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapPagesDotxmlRoute = SitemapPagesDotxmlRouteImport.update({
+  id: '/sitemap-pages.xml',
+  path: '/sitemap-pages.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportAgentRoute = SupportAgentRouteImport.update({
+  id: '/support-agent',
+  path: '/support-agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportChatbotRoute = SupportChatbotRouteImport.update({
+  id: '/support-chatbot',
+  path: '/support-chatbot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportChatbotBlueprintRoute = SupportChatbotBlueprintRouteImport.update({
+  id: '/support-chatbot-blueprint',
+  path: '/support-chatbot-blueprint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaskManagerRoute = TaskManagerRouteImport.update({
+  id: '/task-manager',
+  path: '/task-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValaAiRoute = ValaAiRouteImport.update({
+  id: '/vala-ai',
+  path: '/vala-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValaTvRoute = ValaTvRouteImport.update({
+  id: '/vala-tv',
+  path: '/vala-tv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorManagerRoute = VendorManagerRouteImport.update({
+  id: '/vendor-manager',
+  path: '/vendor-manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcademyIndexRoute = AcademyIndexRouteImport.update({
+  id: '/academy/',
+  path: '/academy/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcademyCourseRoute = AcademyCourseRouteImport.update({
+  id: '/academy/$course',
+  path: '/academy/$course',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountPurchasesRoute = AccountPurchasesRouteImport.update({
+  id: '/account/purchases',
+  path: '/account/purchases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminImportRoute = AdminImportRouteImport.update({
+  id: '/admin/import',
+  path: '/admin/import',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffiliateManagerIndexRoute = AffiliateManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerAffiliateLinksRoute =
+  AffiliateManagerAffiliateLinksRouteImport.update({
+    id: '/affiliate-links',
+    path: '/affiliate-links',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerAffiliatesRoute =
+  AffiliateManagerAffiliatesRouteImport.update({
+    id: '/affiliates',
+    path: '/affiliates',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerAnalyticsRoute =
+  AffiliateManagerAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerApplicationsRoute =
+  AffiliateManagerApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerAuditLogRoute =
+  AffiliateManagerAuditLogRouteImport.update({
+    id: '/audit-log',
+    path: '/audit-log',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerBulkActionsRoute =
+  AffiliateManagerBulkActionsRouteImport.update({
+    id: '/bulk-actions',
+    path: '/bulk-actions',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerCampaignsRoute =
+  AffiliateManagerCampaignsRouteImport.update({
+    id: '/campaigns',
+    path: '/campaigns',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerCommissionsRoute =
+  AffiliateManagerCommissionsRouteImport.update({
+    id: '/commissions',
+    path: '/commissions',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerCommunicationRoute =
+  AffiliateManagerCommunicationRouteImport.update({
+    id: '/communication',
+    path: '/communication',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerComplianceRoute =
+  AffiliateManagerComplianceRouteImport.update({
+    id: '/compliance',
+    path: '/compliance',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerCouponsRoute = AffiliateManagerCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerCustomersRoute =
+  AffiliateManagerCustomersRouteImport.update({
+    id: '/customers',
+    path: '/customers',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerDocumentsRoute =
+  AffiliateManagerDocumentsRouteImport.update({
+    id: '/documents',
+    path: '/documents',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerExportRoute = AffiliateManagerExportRouteImport.update({
+  id: '/export',
+  path: '/export',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerImportRoute = AffiliateManagerImportRouteImport.update({
+  id: '/import',
+  path: '/import',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerLeadsRoute = AffiliateManagerLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerMarketingRoute =
+  AffiliateManagerMarketingRouteImport.update({
+    id: '/marketing',
+    path: '/marketing',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerMarketplaceRoute =
+  AffiliateManagerMarketplaceRouteImport.update({
+    id: '/marketplace',
+    path: '/marketplace',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerOrdersRoute = AffiliateManagerOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerPayoutsRoute = AffiliateManagerPayoutsRouteImport.update({
+  id: '/payouts',
+  path: '/payouts',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerPerformanceRoute =
+  AffiliateManagerPerformanceRouteImport.update({
+    id: '/performance',
+    path: '/performance',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerProductsRoute =
+  AffiliateManagerProductsRouteImport.update({
+    id: '/products',
+    path: '/products',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerRealtimeTestRoute =
+  AffiliateManagerRealtimeTestRouteImport.update({
+    id: '/realtime-test',
+    path: '/realtime-test',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerReferralCodesRoute =
+  AffiliateManagerReferralCodesRouteImport.update({
+    id: '/referral-codes',
+    path: '/referral-codes',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerReferralNetworkRoute =
+  AffiliateManagerReferralNetworkRouteImport.update({
+    id: '/referral-network',
+    path: '/referral-network',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerReportsRoute = AffiliateManagerReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerSalesRoute = AffiliateManagerSalesRouteImport.update({
+  id: '/sales',
+  path: '/sales',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerSearchRoute = AffiliateManagerSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerSettingsRoute =
+  AffiliateManagerSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AffiliateManagerRoute,
+  } as any)
+const AffiliateManagerSupportRoute = AffiliateManagerSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AffiliateManagerWalletRoute = AffiliateManagerWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => AffiliateManagerRoute,
+} as any)
+const AiCeoIndexRoute = AiCeoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoApprovalsRoute = AiCeoApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoDecisionEngineRoute = AiCeoDecisionEngineRouteImport.update({
+  id: '/decision-engine',
+  path: '/decision-engine',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoLearningRoute = AiCeoLearningRouteImport.update({
+  id: '/learning',
+  path: '/learning',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoLiveMonitorRoute = AiCeoLiveMonitorRouteImport.update({
+  id: '/live-monitor',
+  path: '/live-monitor',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoPerformanceRoute = AiCeoPerformanceRouteImport.update({
+  id: '/performance',
+  path: '/performance',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoPredictionsRoute = AiCeoPredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoReportsRoute = AiCeoReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoRiskRoute = AiCeoRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiCeoSettingsRoute = AiCeoSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AiCeoRoute,
+} as any)
+const AiAssistantRoute = AiAssistantRouteImport.update({
+  id: '/ai/assistant',
+  path: '/ai/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiCompareRoute = AiCompareRouteImport.update({
+  id: '/ai/compare',
+  path: '/ai/compare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiFinderRoute = AiFinderRouteImport.update({
+  id: '/ai/finder',
+  path: '/ai/finder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRecommendRoute = AiRecommendRouteImport.update({
+  id: '/ai/recommend',
+  path: '/ai/recommend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmsIndexRoute = AmsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAchievementVaultRoute = AmsAchievementVaultRouteImport.update({
+  id: '/achievement-vault',
+  path: '/achievement-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAchievementsRoute = AmsAchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAiRoute = AmsAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAnalyticsRoute = AmsAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAuditRoute = AmsAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAuthorProgressionRoute = AmsAuthorProgressionRouteImport.update({
+  id: '/author-progression',
+  path: '/author-progression',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardVaultRoute = AmsAwardVaultRouteImport.update({
+  id: '/award-vault',
+  path: '/award-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsBadgeVaultRoute = AmsBadgeVaultRouteImport.update({
+  id: '/badge-vault',
+  path: '/badge-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsBadgesRoute = AmsBadgesRouteImport.update({
+  id: '/badges',
+  path: '/badges',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsCertificateVaultRoute = AmsCertificateVaultRouteImport.update({
+  id: '/certificate-vault',
+  path: '/certificate-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsCertificatesRoute = AmsCertificatesRouteImport.update({
+  id: '/certificates',
+  path: '/certificates',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsChallengesRoute = AmsChallengesRouteImport.update({
+  id: '/challenges',
+  path: '/challenges',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsChatRoute = AmsChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsClaimsRoute = AmsClaimsRouteImport.update({
+  id: '/claims',
+  path: '/claims',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsCollectionsRoute = AmsCollectionsRouteImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsDeveloperProgressionRoute = AmsDeveloperProgressionRouteImport.update({
+  id: '/developer-progression',
+  path: '/developer-progression',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsFounderSealVaultRoute = AmsFounderSealVaultRouteImport.update({
+  id: '/founder-seal-vault',
+  path: '/founder-seal-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsHallOfFameRoute = AmsHallOfFameRouteImport.update({
+  id: '/hall-of-fame',
+  path: '/hall-of-fame',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsHallOfFameVaultRoute = AmsHallOfFameVaultRouteImport.update({
+  id: '/hall-of-fame-vault',
+  path: '/hall-of-fame-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsHonorCoinVaultRoute = AmsHonorCoinVaultRouteImport.update({
+  id: '/honor-coin-vault',
+  path: '/honor-coin-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsIdentityRoute = AmsIdentityRouteImport.update({
+  id: '/identity',
+  path: '/identity',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsIdentityCardVaultRoute = AmsIdentityCardVaultRouteImport.update({
+  id: '/identity-card-vault',
+  path: '/identity-card-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsLeaderboardsRoute = AmsLeaderboardsRouteImport.update({
+  id: '/leaderboards',
+  path: '/leaderboards',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsLegacyRoute = AmsLegacyRouteImport.update({
+  id: '/legacy',
+  path: '/legacy',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsLegacyMedalVaultRoute = AmsLegacyMedalVaultRouteImport.update({
+  id: '/legacy-medal-vault',
+  path: '/legacy-medal-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsLevelsRoute = AmsLevelsRouteImport.update({
+  id: '/levels',
+  path: '/levels',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsLicenseCardVaultRoute = AmsLicenseCardVaultRouteImport.update({
+  id: '/license-card-vault',
+  path: '/license-card-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsMembershipVaultRoute = AmsMembershipVaultRouteImport.update({
+  id: '/membership-vault',
+  path: '/membership-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsMissionsRoute = AmsMissionsRouteImport.update({
+  id: '/missions',
+  path: '/missions',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsNotificationsRoute = AmsNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsOverviewRoute = AmsOverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsPassportRoute = AmsPassportRouteImport.update({
+  id: '/passport',
+  path: '/passport',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsPassportVaultRoute = AmsPassportVaultRouteImport.update({
+  id: '/passport-vault',
+  path: '/passport-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsQuestsRoute = AmsQuestsRouteImport.update({
+  id: '/quests',
+  path: '/quests',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRankVaultRoute = AmsRankVaultRouteImport.update({
+  id: '/rank-vault',
+  path: '/rank-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRanksRoute = AmsRanksRouteImport.update({
+  id: '/ranks',
+  path: '/ranks',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRecognitionCoinVaultRoute = AmsRecognitionCoinVaultRouteImport.update({
+  id: '/recognition-coin-vault',
+  path: '/recognition-coin-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsReputationVaultRoute = AmsReputationVaultRouteImport.update({
+  id: '/reputation-vault',
+  path: '/reputation-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRewardChestVaultRoute = AmsRewardChestVaultRouteImport.update({
+  id: '/reward-chest-vault',
+  path: '/reward-chest-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRewardsRoute = AmsRewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRoleManagerRoute = AmsRoleManagerRouteImport.update({
+  id: '/role-manager',
+  path: '/role-manager',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsSettingsRoute = AmsSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTrophiesRoute = AmsTrophiesRouteImport.update({
+  id: '/trophies',
+  path: '/trophies',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTrophyGalleryRoute = AmsTrophyGalleryRouteImport.update({
+  id: '/trophy-gallery',
+  path: '/trophy-gallery',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTrophyStagesRoute = AmsTrophyStagesRouteImport.update({
+  id: '/trophy-stages',
+  path: '/trophy-stages',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTrophyVaultRoute = AmsTrophyVaultRouteImport.update({
+  id: '/trophy-vault',
+  path: '/trophy-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTrustSealVaultRoute = AmsTrustSealVaultRouteImport.update({
+  id: '/trust-seal-vault',
+  path: '/trust-seal-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsVendorProgressionRoute = AmsVendorProgressionRouteImport.update({
+  id: '/vendor-progression',
+  path: '/vendor-progression',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsVerificationVaultRoute = AmsVerificationVaultRouteImport.update({
+  id: '/verification-vault',
+  path: '/verification-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsXpRoute = AmsXpRouteImport.update({
+  id: '/xp',
+  path: '/xp',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsXpCrystalVaultRoute = AmsXpCrystalVaultRouteImport.update({
+  id: '/xp-crystal-vault',
+  path: '/xp-crystal-vault',
+  getParentRoute: () => AmsRoute,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyIndexRoute = ApplyIndexRouteImport.update({
+  id: '/apply/',
+  path: '/apply/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyRoleRoute = ApplyRoleRouteImport.update({
+  id: '/apply/$role',
+  path: '/apply/$role',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoleRoute = DashboardRoleRouteImport.update({
+  id: '/dashboard/$role',
+  path: '/dashboard/$role',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo/',
+  path: '/demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoSlugRoute = DemoSlugRouteImport.update({
+  id: '/demo/$slug',
+  path: '/demo/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeadManagerIndexRoute = LeadManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LeadManagerRoute,
+} as any)
+const ManagerIndexRoute = ManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerSectionRoute = ManagerSectionRouteImport.update({
+  id: '/$section',
+  path: '/$section',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const MarketingIndexRoute = MarketingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingAiAutomationRoute = MarketingAiAutomationRouteImport.update({
+  id: '/ai-automation',
+  path: '/ai-automation',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingAnalyticsRoute = MarketingAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingApprovalsRoute = MarketingApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingAuditRoute = MarketingAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingCampaignBuilderRoute =
+  MarketingCampaignBuilderRouteImport.update({
+    id: '/campaign-builder',
+    path: '/campaign-builder',
+    getParentRoute: () => MarketingRoute,
+  } as any)
+const MarketingCampaignsRoute = MarketingCampaignsRouteImport.update({
+  id: '/campaigns',
+  path: '/campaigns',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingContentRoute = MarketingContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingCreativesRoute = MarketingCreativesRouteImport.update({
+  id: '/creatives',
+  path: '/creatives',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingHierarchyRoute = MarketingHierarchyRouteImport.update({
+  id: '/hierarchy',
+  path: '/hierarchy',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingLeadSourcesRoute = MarketingLeadSourcesRouteImport.update({
+  id: '/lead-sources',
+  path: '/lead-sources',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingOffersRoute = MarketingOffersRouteImport.update({
+  id: '/offers',
+  path: '/offers',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingPerformanceRoute = MarketingPerformanceRouteImport.update({
+  id: '/performance',
+  path: '/performance',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingReportsRoute = MarketingReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingSchedulesRoute = MarketingSchedulesRouteImport.update({
+  id: '/schedules',
+  path: '/schedules',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingSeoRoute = MarketingSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketingTargetingRoute = MarketingTargetingRouteImport.update({
+  id: '/targeting',
+  path: '/targeting',
+  getParentRoute: () => MarketingRoute,
+} as any)
+const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketplaceRoute,
+} as any)
+const PaymentFailRoute = PaymentFailRouteImport.update({
+  id: '/payment/fail',
+  path: '/payment/fail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
+  id: '/payment/success',
+  path: '/payment/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromiseTrackerIndexRoute = PromiseTrackerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerActiveRoute = PromiseTrackerActiveRouteImport.update({
+  id: '/active',
+  path: '/active',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerAllRoute = PromiseTrackerAllRouteImport.update({
+  id: '/all',
+  path: '/all',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerAuditLogsRoute = PromiseTrackerAuditLogsRouteImport.update({
+  id: '/audit-logs',
+  path: '/audit-logs',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerBrokenRoute = PromiseTrackerBrokenRouteImport.update({
+  id: '/broken',
+  path: '/broken',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerCategoriesRoute =
+  PromiseTrackerCategoriesRouteImport.update({
+    id: '/categories',
+    path: '/categories',
+    getParentRoute: () => PromiseTrackerRoute,
+  } as any)
+const PromiseTrackerCreateRoute = PromiseTrackerCreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerDelayedRoute = PromiseTrackerDelayedRouteImport.update({
+  id: '/delayed',
+  path: '/delayed',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerEscalationsRoute =
+  PromiseTrackerEscalationsRouteImport.update({
+    id: '/escalations',
+    path: '/escalations',
+    getParentRoute: () => PromiseTrackerRoute,
+  } as any)
+const PromiseTrackerFulfilledRoute = PromiseTrackerFulfilledRouteImport.update({
+  id: '/fulfilled',
+  path: '/fulfilled',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerInsightsRoute = PromiseTrackerInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerRulesRoute = PromiseTrackerRulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const PromiseTrackerSettingsRoute = PromiseTrackerSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => PromiseTrackerRoute,
+} as any)
+const SCodeRoute = SCodeRouteImport.update({
+  id: '/s/$code',
+  path: '/s/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapProductsPageDotxmlRoute =
+  SitemapProductsPageDotxmlRouteImport.update({
+    id: '/sitemap-products/$page.xml',
+    path: '/sitemap-products/$page.xml',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ValaAiIndexRoute = ValaAiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiCreditsRoute = ValaAiCreditsRouteImport.update({
+  id: '/credits',
+  path: '/credits',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiErrorsRoute = ValaAiErrorsRouteImport.update({
+  id: '/errors',
+  path: '/errors',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiLockRoute = ValaAiLockRouteImport.update({
+  id: '/lock',
+  path: '/lock',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiLogsRoute = ValaAiLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiModelsRoute = ValaAiModelsRouteImport.update({
+  id: '/models',
+  path: '/models',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiProjectsRoute = ValaAiProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiPromptsRoute = ValaAiPromptsRouteImport.update({
+  id: '/prompts',
+  path: '/prompts',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiRollbackRoute = ValaAiRollbackRouteImport.update({
+  id: '/rollback',
+  path: '/rollback',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const ValaAiSettingsRoute = ValaAiSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ValaAiRoute,
+} as any)
+const VerifyCodeRoute = VerifyCodeRouteImport.update({
+  id: '/verify/$code',
+  path: '/verify/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffiliateManagerAffiliatesIdRoute =
+  AffiliateManagerAffiliatesIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AffiliateManagerAffiliatesRoute,
+  } as any)
+const AmsAwardsIndexRoute = AmsAwardsIndexRouteImport.update({
+  id: '/awards/',
+  path: '/awards/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsIdRoute = AmsAwardsIdRouteImport.update({
+  id: '/awards/$id',
+  path: '/awards/$id',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsAuditRoute = AmsAwardsAuditRouteImport.update({
+  id: '/awards/audit',
+  path: '/awards/audit',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsCategoriesRoute = AmsAwardsCategoriesRouteImport.update({
+  id: '/awards/categories',
+  path: '/awards/categories',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsEffectsRoute = AmsAwardsEffectsRouteImport.update({
+  id: '/awards/effects',
+  path: '/awards/effects',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsNewRoute = AmsAwardsNewRouteImport.update({
+  id: '/awards/new',
+  path: '/awards/new',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsCollectionIndexRoute = AmsCollectionIndexRouteImport.update({
+  id: '/collection/',
+  path: '/collection/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsCollectionTypeRoute = AmsCollectionTypeRouteImport.update({
+  id: '/collection/$type',
+  path: '/collection/$type',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsMuseumIndexRoute = AmsMuseumIndexRouteImport.update({
+  id: '/museum/',
+  path: '/museum/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsMuseumShowcaseRoute = AmsMuseumShowcaseRouteImport.update({
+  id: '/museum/$showcase',
+  path: '/museum/$showcase',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRoleManagerIndexRoute = AmsRoleManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AmsRoleManagerRoute,
+} as any)
+const AmsRoleManagerSlugRoute = AmsRoleManagerSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AmsRoleManagerRoute,
+} as any)
+const AmsRoleShowcaseIndexRoute = AmsRoleShowcaseIndexRouteImport.update({
+  id: '/role-showcase/',
+  path: '/role-showcase/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsRoleShowcaseSlugRoute = AmsRoleShowcaseSlugRouteImport.update({
+  id: '/role-showcase/$slug',
+  path: '/role-showcase/$slug',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTicketsIndexRoute = AmsTicketsIndexRouteImport.update({
+  id: '/tickets/',
+  path: '/tickets/',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTicketsIdRoute = AmsTicketsIdRouteImport.update({
+  id: '/tickets/$id',
+  path: '/tickets/$id',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsTicketsNewRoute = AmsTicketsNewRouteImport.update({
+  id: '/tickets/new',
+  path: '/tickets/new',
+  getParentRoute: () => AmsRoute,
+} as any)
+const ApiAccountPurchasesRoute = ApiAccountPurchasesRouteImport.update({
+  id: '/api/account/purchases',
+  path: '/api/account/purchases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiActionsConfigRoute = ApiActionsConfigRouteImport.update({
+  id: '/api/actions/config',
+  path: '/api/actions/config',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiActionsRegistryRoute = ApiActionsRegistryRouteImport.update({
+  id: '/api/actions/registry',
+  path: '/api/actions/registry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAffiliateAccountRoute = ApiAffiliateAccountRouteImport.update({
+  id: '/api/affiliate/account',
+  path: '/api/affiliate/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAffiliateAttributeRoute = ApiAffiliateAttributeRouteImport.update({
+  id: '/api/affiliate/attribute',
+  path: '/api/affiliate/attribute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAnalyticsProductsRoute = ApiAnalyticsProductsRouteImport.update({
+  id: '/api/analytics/products',
+  path: '/api/analytics/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthorEarningsRoute = ApiAuthorEarningsRouteImport.update({
+  id: '/api/author/earnings',
+  path: '/api/author/earnings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthorProductsRoute = ApiAuthorProductsRouteImport.update({
+  id: '/api/author/products',
+  path: '/api/author/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDemoTicketRoute = ApiDemoTicketRouteImport.update({
+  id: '/api/demo/ticket',
+  path: '/api/demo/ticket',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiFinanceResellerMembershipRoute =
+  ApiFinanceResellerMembershipRouteImport.update({
+    id: '/api/finance/reseller-membership',
+    path: '/api/finance/reseller-membership',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiGovernanceConsoleRoute = ApiGovernanceConsoleRouteImport.update({
+  id: '/api/governance/console',
+  path: '/api/governance/console',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalApplyMigrationsRoute =
+  ApiInternalApplyMigrationsRouteImport.update({
+    id: '/api/internal/apply-migrations',
+    path: '/api/internal/apply-migrations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiInternalApplyResellerSchemaRoute =
+  ApiInternalApplyResellerSchemaRouteImport.update({
+    id: '/api/internal/apply-reseller-schema',
+    path: '/api/internal/apply-reseller-schema',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiInternalAuthorReviewRoute = ApiInternalAuthorReviewRouteImport.update({
+  id: '/api/internal/author-review',
+  path: '/api/internal/author-review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalCredentialSetupRoute =
+  ApiInternalCredentialSetupRouteImport.update({
+    id: '/api/internal/credential-setup',
+    path: '/api/internal/credential-setup',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiInternalDbHealthRoute = ApiInternalDbHealthRouteImport.update({
+  id: '/api/internal/db-health',
+  path: '/api/internal/db-health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalEmailFlushRoute = ApiInternalEmailFlushRouteImport.update({
+  id: '/api/internal/email-flush',
+  path: '/api/internal/email-flush',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalMarketplaceMigrationRoute =
+  ApiInternalMarketplaceMigrationRouteImport.update({
+    id: '/api/internal/marketplace-migration',
+    path: '/api/internal/marketplace-migration',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiInternalSellerAdminRoute = ApiInternalSellerAdminRouteImport.update({
+  id: '/api/internal/seller-admin',
+  path: '/api/internal/seller-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalSeoAuditRoute = ApiInternalSeoAuditRouteImport.update({
+  id: '/api/internal/seo-audit',
+  path: '/api/internal/seo-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalSeoPageRoute = ApiInternalSeoPageRouteImport.update({
+  id: '/api/internal/seo-page',
+  path: '/api/internal/seo-page',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiInternalSettleCommissionsRoute =
+  ApiInternalSettleCommissionsRouteImport.update({
+    id: '/api/internal/settle-commissions',
+    path: '/api/internal/settle-commissions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiLeadsConsoleRoute = ApiLeadsConsoleRouteImport.update({
+  id: '/api/leads/console',
+  path: '/api/leads/console',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiManagerBulkRoute = ApiManagerBulkRouteImport.update({
+  id: '/api/manager/bulk',
+  path: '/api/manager/bulk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiManagerResourceRoute = ApiManagerResourceRouteImport.update({
+  id: '/api/manager/resource',
+  path: '/api/manager/resource',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiManagerRowActionRoute = ApiManagerRowActionRouteImport.update({
+  id: '/api/manager/row-action',
+  path: '/api/manager/row-action',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceActivityRoute = ApiMarketplaceActivityRouteImport.update({
+  id: '/api/marketplace/activity',
+  path: '/api/marketplace/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceAutomationRoute =
+  ApiMarketplaceAutomationRouteImport.update({
+    id: '/api/marketplace/automation',
+    path: '/api/marketplace/automation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMarketplaceCatalogRoute = ApiMarketplaceCatalogRouteImport.update({
+  id: '/api/marketplace/catalog',
+  path: '/api/marketplace/catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceColourRoute = ApiMarketplaceColourRouteImport.update({
+  id: '/api/marketplace/colour',
+  path: '/api/marketplace/colour',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceCountryRoute = ApiMarketplaceCountryRouteImport.update({
+  id: '/api/marketplace/country',
+  path: '/api/marketplace/country',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceDeploymentRoute =
+  ApiMarketplaceDeploymentRouteImport.update({
+    id: '/api/marketplace/deployment',
+    path: '/api/marketplace/deployment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMarketplaceDeveloperRoute = ApiMarketplaceDeveloperRouteImport.update({
+  id: '/api/marketplace/developer',
+  path: '/api/marketplace/developer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceIntegrationsRoute =
+  ApiMarketplaceIntegrationsRouteImport.update({
+    id: '/api/marketplace/integrations',
+    path: '/api/marketplace/integrations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMarketplaceIntegrityRoute = ApiMarketplaceIntegrityRouteImport.update({
+  id: '/api/marketplace/integrity',
+  path: '/api/marketplace/integrity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceLeadRoute = ApiMarketplaceLeadRouteImport.update({
+  id: '/api/marketplace/lead',
+  path: '/api/marketplace/lead',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceMediaRoute = ApiMarketplaceMediaRouteImport.update({
+  id: '/api/marketplace/media',
+  path: '/api/marketplace/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceMicroInteractionsRoute =
+  ApiMarketplaceMicroInteractionsRouteImport.update({
+    id: '/api/marketplace/micro-interactions',
+    path: '/api/marketplace/micro-interactions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMarketplacePermissionsRoute =
+  ApiMarketplacePermissionsRouteImport.update({
+    id: '/api/marketplace/permissions',
+    path: '/api/marketplace/permissions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMarketplaceProofRoute = ApiMarketplaceProofRouteImport.update({
+  id: '/api/marketplace/proof',
+  path: '/api/marketplace/proof',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceRowsRoute = ApiMarketplaceRowsRouteImport.update({
+  id: '/api/marketplace/rows',
+  path: '/api/marketplace/rows',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceSearchRoute = ApiMarketplaceSearchRouteImport.update({
+  id: '/api/marketplace/search',
+  path: '/api/marketplace/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceSecurityRoute = ApiMarketplaceSecurityRouteImport.update({
+  id: '/api/marketplace/security',
+  path: '/api/marketplace/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceSupportRoute = ApiMarketplaceSupportRouteImport.update({
+  id: '/api/marketplace/support',
+  path: '/api/marketplace/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceSystemRoute = ApiMarketplaceSystemRouteImport.update({
+  id: '/api/marketplace/system',
+  path: '/api/marketplace/system',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceTrackRoute = ApiMarketplaceTrackRouteImport.update({
+  id: '/api/marketplace/track',
+  path: '/api/marketplace/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMarketplaceTranslateRoute = ApiMarketplaceTranslateRouteImport.update({
+  id: '/api/marketplace/translate',
+  path: '/api/marketplace/translate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPartnerQuoteRoute = ApiPartnerQuoteRouteImport.update({
+  id: '/api/partner/quote',
+  path: '/api/partner/quote',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPaymentInitiateRoute = ApiPaymentInitiateRouteImport.update({
+  id: '/api/payment/initiate',
+  path: '/api/payment/initiate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPaymentStatusRoute = ApiPaymentStatusRouteImport.update({
+  id: '/api/payment/status',
+  path: '/api/payment/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPaymentWebhookRoute = ApiPaymentWebhookRouteImport.update({
+  id: '/api/payment/webhook',
+  path: '/api/payment/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiQrCodeRoute = ApiQrCodeRouteImport.update({
+  id: '/api/qr/$code',
+  path: '/api/qr/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSecurityConsoleRoute = ApiSecurityConsoleRouteImport.update({
+  id: '/api/security/console',
+  path: '/api/security/console',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSecuritySettingsRoute = ApiSecuritySettingsRouteImport.update({
+  id: '/api/security/settings',
+  path: '/api/security/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSellerMetricsRoute = ApiSellerMetricsRouteImport.update({
+  id: '/api/seller/metrics',
+  path: '/api/seller/metrics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSeoConsoleRoute = ApiSeoConsoleRouteImport.update({
+  id: '/api/seo/console',
+  path: '/api/seo/console',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTrackRefRoute = ApiTrackRefRouteImport.update({
+  id: '/api/track/ref',
+  path: '/api/track/ref',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketplaceCategorySlugRoute = MarketplaceCategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => MarketplaceRoute,
+} as any)
+const MarketplaceCountryCountryRoute =
+  MarketplaceCountryCountryRouteImport.update({
+    id: '/country/$country',
+    path: '/country/$country',
+    getParentRoute: () => MarketplaceRoute,
+  } as any)
+const MarketplaceProductSlugRoute = MarketplaceProductSlugRouteImport.update({
+  id: '/product/$slug',
+  path: '/product/$slug',
+  getParentRoute: () => MarketplaceRoute,
+} as any)
+const ProxyDemoRoute = ProxyDemoRouteImport.update({
+  id: '/proxy/demo/',
+  path: '/proxy/demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmsAwardsIdEditRoute = AmsAwardsIdEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => AmsAwardsIdRoute,
+} as any)
+const AmsAwardsLibrariesAchievementsRoute =
+  AmsAwardsLibrariesAchievementsRouteImport.update({
+    id: '/awards/libraries/achievements',
+    path: '/awards/libraries/achievements',
+    getParentRoute: () => AmsRoute,
+  } as any)
+const AmsAwardsLibrariesBadgesRoute =
+  AmsAwardsLibrariesBadgesRouteImport.update({
+    id: '/awards/libraries/badges',
+    path: '/awards/libraries/badges',
+    getParentRoute: () => AmsRoute,
+  } as any)
+const AmsAwardsLibrariesRanksRoute = AmsAwardsLibrariesRanksRouteImport.update({
+  id: '/awards/libraries/ranks',
+  path: '/awards/libraries/ranks',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsLibrariesTrophiesRoute =
+  AmsAwardsLibrariesTrophiesRouteImport.update({
+    id: '/awards/libraries/trophies',
+    path: '/awards/libraries/trophies',
+    getParentRoute: () => AmsRoute,
+  } as any)
+const AmsAwardsRulesLevelsRoute = AmsAwardsRulesLevelsRouteImport.update({
+  id: '/awards/rules/levels',
+  path: '/awards/rules/levels',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsRulesMilestonesRoute =
+  AmsAwardsRulesMilestonesRouteImport.update({
+    id: '/awards/rules/milestones',
+    path: '/awards/rules/milestones',
+    getParentRoute: () => AmsRoute,
+  } as any)
+const AmsAwardsRulesRewardsRoute = AmsAwardsRulesRewardsRouteImport.update({
+  id: '/awards/rules/rewards',
+  path: '/awards/rules/rewards',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsRulesStreaksRoute = AmsAwardsRulesStreaksRouteImport.update({
+  id: '/awards/rules/streaks',
+  path: '/awards/rules/streaks',
+  getParentRoute: () => AmsRoute,
+} as any)
+const AmsAwardsRulesXpRoute = AmsAwardsRulesXpRouteImport.update({
+  id: '/awards/rules/xp',
+  path: '/awards/rules/xp',
+  getParentRoute: () => AmsRoute,
+} as any)
+const ApiAccountInvoiceIdRoute = ApiAccountInvoiceIdRouteImport.update({
+  id: '/api/account/invoice/$id',
+  path: '/api/account/invoice/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOrdersIdFulfilRoute = ApiOrdersIdFulfilRouteImport.update({
+  id: '/api/orders/$id/fulfil',
+  path: '/api/orders/$id/fulfil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProxyDemoSplatRoute = ApiProxyDemoSplatRouteImport.update({
+  id: '/api/proxy/demo/$',
+  path: '/api/proxy/demo/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/affiliate-manager': typeof AffiliateManagerRouteWithChildren
+  '/ai-api-manager': typeof AiApiManagerRoute
+  '/ai-ceo': typeof AiCeoRouteWithChildren
+  '/ams': typeof AmsRouteWithChildren
+  '/ams-manager': typeof AmsManagerRoute
+  '/assist-manager': typeof AssistManagerRoute
+  '/auth': typeof AuthRoute
+  '/boss': typeof BossRoute
+  '/chat': typeof ChatRoute
+  '/chat-manager': typeof ChatManagerRoute
+  '/checkout': typeof CheckoutRoute
+  '/control-panel': typeof ControlPanelRoute
+  '/creator-manager': typeof CreatorManagerRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
+  '/dev-manager': typeof DevManagerRoute
+  '/finance-manager': typeof FinanceManagerRoute
+  '/franchise-manager': typeof FranchiseManagerRoute
+  '/influencer-manager': typeof InfluencerManagerRoute
+  '/internal-support-ai': typeof InternalSupportAiRoute
+  '/keywords': typeof KeywordsRoute
+  '/lead-manager': typeof LeadManagerRouteWithChildren
+  '/legal-manager': typeof LegalManagerRoute
+  '/login': typeof LoginRoute
+  '/manager': typeof ManagerRouteWithChildren
+  '/marketing': typeof MarketingRouteWithChildren
+  '/marketplace': typeof MarketplaceRouteWithChildren
+  '/marketplace-manager': typeof MarketplaceManagerRoute
+  '/marketplace-recovery': typeof MarketplaceRecoveryRoute
+  '/pages': typeof PagesRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/promise-tracker': typeof PromiseTrackerRouteWithChildren
+  '/reseller-manager': typeof ResellerManagerRoute
+  '/sales-crm': typeof SalesCrmRoute
+  '/sales-support-manager': typeof SalesSupportManagerRoute
+  '/seo-manager': typeof SeoManagerRoute
+  '/server-manager': typeof ServerManagerRoute
+  '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
+  '/sitemap-countries.xml': typeof SitemapCountriesDotxmlRoute
+  '/sitemap-pages.xml': typeof SitemapPagesDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
+  '/support-agent': typeof SupportAgentRoute
+  '/support-chatbot': typeof SupportChatbotRoute
+  '/support-chatbot-blueprint': typeof SupportChatbotBlueprintRoute
+  '/task-manager': typeof TaskManagerRoute
+  '/vala-ai': typeof ValaAiRouteWithChildren
+  '/vala-tv': typeof ValaTvRoute
+  '/vendor-manager': typeof VendorManagerRoute
+  '/demo/': typeof DemoRoute
+  '/academy/$course': typeof AcademyCourseRoute
+  '/account/purchases': typeof AccountPurchasesRoute
+  '/admin/import': typeof AdminImportRoute
+  '/affiliate-manager/affiliate-links': typeof AffiliateManagerAffiliateLinksRoute
+  '/affiliate-manager/affiliates': typeof AffiliateManagerAffiliatesRouteWithChildren
+  '/affiliate-manager/analytics': typeof AffiliateManagerAnalyticsRoute
+  '/affiliate-manager/applications': typeof AffiliateManagerApplicationsRoute
+  '/affiliate-manager/audit-log': typeof AffiliateManagerAuditLogRoute
+  '/affiliate-manager/bulk-actions': typeof AffiliateManagerBulkActionsRoute
+  '/affiliate-manager/campaigns': typeof AffiliateManagerCampaignsRoute
+  '/affiliate-manager/commissions': typeof AffiliateManagerCommissionsRoute
+  '/affiliate-manager/communication': typeof AffiliateManagerCommunicationRoute
+  '/affiliate-manager/compliance': typeof AffiliateManagerComplianceRoute
+  '/affiliate-manager/coupons': typeof AffiliateManagerCouponsRoute
+  '/affiliate-manager/customers': typeof AffiliateManagerCustomersRoute
+  '/affiliate-manager/documents': typeof AffiliateManagerDocumentsRoute
+  '/affiliate-manager/export': typeof AffiliateManagerExportRoute
+  '/affiliate-manager/import': typeof AffiliateManagerImportRoute
+  '/affiliate-manager/leads': typeof AffiliateManagerLeadsRoute
+  '/affiliate-manager/marketing': typeof AffiliateManagerMarketingRoute
+  '/affiliate-manager/marketplace': typeof AffiliateManagerMarketplaceRoute
+  '/affiliate-manager/orders': typeof AffiliateManagerOrdersRoute
+  '/affiliate-manager/payouts': typeof AffiliateManagerPayoutsRoute
+  '/affiliate-manager/performance': typeof AffiliateManagerPerformanceRoute
+  '/affiliate-manager/products': typeof AffiliateManagerProductsRoute
+  '/affiliate-manager/realtime-test': typeof AffiliateManagerRealtimeTestRoute
+  '/affiliate-manager/referral-codes': typeof AffiliateManagerReferralCodesRoute
+  '/affiliate-manager/referral-network': typeof AffiliateManagerReferralNetworkRoute
+  '/affiliate-manager/reports': typeof AffiliateManagerReportsRoute
+  '/affiliate-manager/sales': typeof AffiliateManagerSalesRoute
+  '/affiliate-manager/search': typeof AffiliateManagerSearchRoute
+  '/affiliate-manager/settings': typeof AffiliateManagerSettingsRoute
+  '/affiliate-manager/support': typeof AffiliateManagerSupportRoute
+  '/affiliate-manager/wallet': typeof AffiliateManagerWalletRoute
+  '/ai-ceo/approvals': typeof AiCeoApprovalsRoute
+  '/ai-ceo/decision-engine': typeof AiCeoDecisionEngineRoute
+  '/ai-ceo/learning': typeof AiCeoLearningRoute
+  '/ai-ceo/live-monitor': typeof AiCeoLiveMonitorRoute
+  '/ai-ceo/performance': typeof AiCeoPerformanceRoute
+  '/ai-ceo/predictions': typeof AiCeoPredictionsRoute
+  '/ai-ceo/reports': typeof AiCeoReportsRoute
+  '/ai-ceo/risk': typeof AiCeoRiskRoute
+  '/ai-ceo/settings': typeof AiCeoSettingsRoute
+  '/ai/assistant': typeof AiAssistantRoute
+  '/ai/compare': typeof AiCompareRoute
+  '/ai/finder': typeof AiFinderRoute
+  '/ai/recommend': typeof AiRecommendRoute
+  '/ams/achievement-vault': typeof AmsAchievementVaultRoute
+  '/ams/achievements': typeof AmsAchievementsRoute
+  '/ams/ai': typeof AmsAiRoute
+  '/ams/analytics': typeof AmsAnalyticsRoute
+  '/ams/audit': typeof AmsAuditRoute
+  '/ams/author-progression': typeof AmsAuthorProgressionRoute
+  '/ams/award-vault': typeof AmsAwardVaultRoute
+  '/ams/badge-vault': typeof AmsBadgeVaultRoute
+  '/ams/badges': typeof AmsBadgesRoute
+  '/ams/certificate-vault': typeof AmsCertificateVaultRoute
+  '/ams/certificates': typeof AmsCertificatesRoute
+  '/ams/challenges': typeof AmsChallengesRoute
+  '/ams/chat': typeof AmsChatRoute
+  '/ams/claims': typeof AmsClaimsRoute
+  '/ams/collections': typeof AmsCollectionsRoute
+  '/ams/developer-progression': typeof AmsDeveloperProgressionRoute
+  '/ams/founder-seal-vault': typeof AmsFounderSealVaultRoute
+  '/ams/hall-of-fame': typeof AmsHallOfFameRoute
+  '/ams/hall-of-fame-vault': typeof AmsHallOfFameVaultRoute
+  '/ams/honor-coin-vault': typeof AmsHonorCoinVaultRoute
+  '/ams/identity': typeof AmsIdentityRoute
+  '/ams/identity-card-vault': typeof AmsIdentityCardVaultRoute
+  '/ams/leaderboards': typeof AmsLeaderboardsRoute
+  '/ams/legacy': typeof AmsLegacyRoute
+  '/ams/legacy-medal-vault': typeof AmsLegacyMedalVaultRoute
+  '/ams/levels': typeof AmsLevelsRoute
+  '/ams/license-card-vault': typeof AmsLicenseCardVaultRoute
+  '/ams/membership-vault': typeof AmsMembershipVaultRoute
+  '/ams/missions': typeof AmsMissionsRoute
+  '/ams/notifications': typeof AmsNotificationsRoute
+  '/ams/overview': typeof AmsOverviewRoute
+  '/ams/passport': typeof AmsPassportRoute
+  '/ams/passport-vault': typeof AmsPassportVaultRoute
+  '/ams/quests': typeof AmsQuestsRoute
+  '/ams/rank-vault': typeof AmsRankVaultRoute
+  '/ams/ranks': typeof AmsRanksRoute
+  '/ams/recognition-coin-vault': typeof AmsRecognitionCoinVaultRoute
+  '/ams/reputation-vault': typeof AmsReputationVaultRoute
+  '/ams/reward-chest-vault': typeof AmsRewardChestVaultRoute
+  '/ams/rewards': typeof AmsRewardsRoute
+  '/ams/role-manager': typeof AmsRoleManagerRouteWithChildren
+  '/ams/settings': typeof AmsSettingsRoute
+  '/ams/trophies': typeof AmsTrophiesRoute
+  '/ams/trophy-gallery': typeof AmsTrophyGalleryRoute
+  '/ams/trophy-stages': typeof AmsTrophyStagesRoute
+  '/ams/trophy-vault': typeof AmsTrophyVaultRoute
+  '/ams/trust-seal-vault': typeof AmsTrustSealVaultRoute
+  '/ams/vendor-progression': typeof AmsVendorProgressionRoute
+  '/ams/verification-vault': typeof AmsVerificationVaultRoute
+  '/ams/xp': typeof AmsXpRoute
+  '/ams/xp-crystal-vault': typeof AmsXpCrystalVaultRoute
+  '/api/chat': typeof ApiChatRoute
+  '/apply/$role': typeof ApplyRoleRoute
+  '/dashboard/$role': typeof DashboardRoleRoute
+  '/demo/$slug': typeof DemoSlugRoute
+  '/manager/$section': typeof ManagerSectionRoute
+  '/marketing/ai-automation': typeof MarketingAiAutomationRoute
+  '/marketing/analytics': typeof MarketingAnalyticsRoute
+  '/marketing/approvals': typeof MarketingApprovalsRoute
+  '/marketing/audit': typeof MarketingAuditRoute
+  '/marketing/campaign-builder': typeof MarketingCampaignBuilderRoute
+  '/marketing/campaigns': typeof MarketingCampaignsRoute
+  '/marketing/content': typeof MarketingContentRoute
+  '/marketing/creatives': typeof MarketingCreativesRoute
+  '/marketing/hierarchy': typeof MarketingHierarchyRoute
+  '/marketing/lead-sources': typeof MarketingLeadSourcesRoute
+  '/marketing/offers': typeof MarketingOffersRoute
+  '/marketing/performance': typeof MarketingPerformanceRoute
+  '/marketing/reports': typeof MarketingReportsRoute
+  '/marketing/schedules': typeof MarketingSchedulesRoute
+  '/marketing/seo': typeof MarketingSeoRoute
+  '/marketing/targeting': typeof MarketingTargetingRoute
+  '/payment/fail': typeof PaymentFailRoute
+  '/payment/success': typeof PaymentSuccessRoute
+  '/promise-tracker/active': typeof PromiseTrackerActiveRoute
+  '/promise-tracker/all': typeof PromiseTrackerAllRoute
+  '/promise-tracker/audit-logs': typeof PromiseTrackerAuditLogsRoute
+  '/promise-tracker/broken': typeof PromiseTrackerBrokenRoute
+  '/promise-tracker/categories': typeof PromiseTrackerCategoriesRoute
+  '/promise-tracker/create': typeof PromiseTrackerCreateRoute
+  '/promise-tracker/delayed': typeof PromiseTrackerDelayedRoute
+  '/promise-tracker/escalations': typeof PromiseTrackerEscalationsRoute
+  '/promise-tracker/fulfilled': typeof PromiseTrackerFulfilledRoute
+  '/promise-tracker/insights': typeof PromiseTrackerInsightsRoute
+  '/promise-tracker/rules': typeof PromiseTrackerRulesRoute
+  '/promise-tracker/settings': typeof PromiseTrackerSettingsRoute
+  '/s/$code': typeof SCodeRoute
+  '/sitemap-products/$page.xml': typeof SitemapProductsPageDotxmlRoute
+  '/vala-ai/credits': typeof ValaAiCreditsRoute
+  '/vala-ai/errors': typeof ValaAiErrorsRoute
+  '/vala-ai/lock': typeof ValaAiLockRoute
+  '/vala-ai/logs': typeof ValaAiLogsRoute
+  '/vala-ai/models': typeof ValaAiModelsRoute
+  '/vala-ai/projects': typeof ValaAiProjectsRoute
+  '/vala-ai/prompts': typeof ValaAiPromptsRoute
+  '/vala-ai/rollback': typeof ValaAiRollbackRoute
+  '/vala-ai/settings': typeof ValaAiSettingsRoute
+  '/verify/$code': typeof VerifyCodeRoute
+  '/academy/': typeof AcademyIndexRoute
+  '/affiliate-manager/': typeof AffiliateManagerIndexRoute
+  '/ai-ceo/': typeof AiCeoIndexRoute
+  '/ams/': typeof AmsIndexRoute
+  '/apply/': typeof ApplyIndexRoute
+  '/lead-manager/': typeof LeadManagerIndexRoute
+  '/manager/': typeof ManagerIndexRoute
+  '/marketing/': typeof MarketingIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
+  '/promise-tracker/': typeof PromiseTrackerIndexRoute
+  '/vala-ai/': typeof ValaAiIndexRoute
+  '/proxy/demo/': typeof ProxyDemoRoute
+  '/affiliate-manager/affiliates/$id': typeof AffiliateManagerAffiliatesIdRoute
+  '/ams/awards/$id': typeof AmsAwardsIdRouteWithChildren
+  '/ams/awards/audit': typeof AmsAwardsAuditRoute
+  '/ams/awards/categories': typeof AmsAwardsCategoriesRoute
+  '/ams/awards/effects': typeof AmsAwardsEffectsRoute
+  '/ams/awards/new': typeof AmsAwardsNewRoute
+  '/ams/collection/$type': typeof AmsCollectionTypeRoute
+  '/ams/museum/$showcase': typeof AmsMuseumShowcaseRoute
+  '/ams/role-manager/$slug': typeof AmsRoleManagerSlugRoute
+  '/ams/role-showcase/$slug': typeof AmsRoleShowcaseSlugRoute
+  '/ams/tickets/$id': typeof AmsTicketsIdRoute
+  '/ams/tickets/new': typeof AmsTicketsNewRoute
+  '/api/account/purchases': typeof ApiAccountPurchasesRoute
+  '/api/actions/config': typeof ApiActionsConfigRoute
+  '/api/actions/registry': typeof ApiActionsRegistryRoute
+  '/api/affiliate/account': typeof ApiAffiliateAccountRoute
+  '/api/affiliate/attribute': typeof ApiAffiliateAttributeRoute
+  '/api/analytics/products': typeof ApiAnalyticsProductsRoute
+  '/api/author/earnings': typeof ApiAuthorEarningsRoute
+  '/api/author/products': typeof ApiAuthorProductsRoute
+  '/api/demo/ticket': typeof ApiDemoTicketRoute
+  '/api/finance/reseller-membership': typeof ApiFinanceResellerMembershipRoute
+  '/api/governance/console': typeof ApiGovernanceConsoleRoute
+  '/api/internal/apply-migrations': typeof ApiInternalApplyMigrationsRoute
+  '/api/internal/apply-reseller-schema': typeof ApiInternalApplyResellerSchemaRoute
+  '/api/internal/author-review': typeof ApiInternalAuthorReviewRoute
+  '/api/internal/credential-setup': typeof ApiInternalCredentialSetupRoute
+  '/api/internal/db-health': typeof ApiInternalDbHealthRoute
+  '/api/internal/email-flush': typeof ApiInternalEmailFlushRoute
+  '/api/internal/marketplace-migration': typeof ApiInternalMarketplaceMigrationRoute
+  '/api/internal/seller-admin': typeof ApiInternalSellerAdminRoute
+  '/api/internal/seo-audit': typeof ApiInternalSeoAuditRoute
+  '/api/internal/seo-page': typeof ApiInternalSeoPageRoute
+  '/api/internal/settle-commissions': typeof ApiInternalSettleCommissionsRoute
+  '/api/leads/console': typeof ApiLeadsConsoleRoute
+  '/api/manager/bulk': typeof ApiManagerBulkRoute
+  '/api/manager/resource': typeof ApiManagerResourceRoute
+  '/api/manager/row-action': typeof ApiManagerRowActionRoute
+  '/api/marketplace/activity': typeof ApiMarketplaceActivityRoute
+  '/api/marketplace/automation': typeof ApiMarketplaceAutomationRoute
+  '/api/marketplace/catalog': typeof ApiMarketplaceCatalogRoute
+  '/api/marketplace/colour': typeof ApiMarketplaceColourRoute
+  '/api/marketplace/country': typeof ApiMarketplaceCountryRoute
+  '/api/marketplace/deployment': typeof ApiMarketplaceDeploymentRoute
+  '/api/marketplace/developer': typeof ApiMarketplaceDeveloperRoute
+  '/api/marketplace/integrations': typeof ApiMarketplaceIntegrationsRoute
+  '/api/marketplace/integrity': typeof ApiMarketplaceIntegrityRoute
+  '/api/marketplace/lead': typeof ApiMarketplaceLeadRoute
+  '/api/marketplace/media': typeof ApiMarketplaceMediaRoute
+  '/api/marketplace/micro-interactions': typeof ApiMarketplaceMicroInteractionsRoute
+  '/api/marketplace/permissions': typeof ApiMarketplacePermissionsRoute
+  '/api/marketplace/proof': typeof ApiMarketplaceProofRoute
+  '/api/marketplace/rows': typeof ApiMarketplaceRowsRoute
+  '/api/marketplace/search': typeof ApiMarketplaceSearchRoute
+  '/api/marketplace/security': typeof ApiMarketplaceSecurityRoute
+  '/api/marketplace/support': typeof ApiMarketplaceSupportRoute
+  '/api/marketplace/system': typeof ApiMarketplaceSystemRoute
+  '/api/marketplace/track': typeof ApiMarketplaceTrackRoute
+  '/api/marketplace/translate': typeof ApiMarketplaceTranslateRoute
+  '/api/partner/quote': typeof ApiPartnerQuoteRoute
+  '/api/payment/initiate': typeof ApiPaymentInitiateRoute
+  '/api/payment/status': typeof ApiPaymentStatusRoute
+  '/api/payment/webhook': typeof ApiPaymentWebhookRoute
+  '/api/qr/$code': typeof ApiQrCodeRoute
+  '/api/security/console': typeof ApiSecurityConsoleRoute
+  '/api/security/settings': typeof ApiSecuritySettingsRoute
+  '/api/seller/metrics': typeof ApiSellerMetricsRoute
+  '/api/seo/console': typeof ApiSeoConsoleRoute
+  '/api/track/ref': typeof ApiTrackRefRoute
+  '/marketplace/category/$slug': typeof MarketplaceCategorySlugRoute
+  '/marketplace/country/$country': typeof MarketplaceCountryCountryRoute
+  '/marketplace/product/$slug': typeof MarketplaceProductSlugRoute
+  '/ams/awards/': typeof AmsAwardsIndexRoute
+  '/ams/collection/': typeof AmsCollectionIndexRoute
+  '/ams/museum/': typeof AmsMuseumIndexRoute
+  '/ams/role-manager/': typeof AmsRoleManagerIndexRoute
+  '/ams/role-showcase/': typeof AmsRoleShowcaseIndexRoute
+  '/ams/tickets/': typeof AmsTicketsIndexRoute
+  '/ams/awards/$id/edit': typeof AmsAwardsIdEditRoute
+  '/ams/awards/libraries/achievements': typeof AmsAwardsLibrariesAchievementsRoute
+  '/ams/awards/libraries/badges': typeof AmsAwardsLibrariesBadgesRoute
+  '/ams/awards/libraries/ranks': typeof AmsAwardsLibrariesRanksRoute
+  '/ams/awards/libraries/trophies': typeof AmsAwardsLibrariesTrophiesRoute
+  '/ams/awards/rules/levels': typeof AmsAwardsRulesLevelsRoute
+  '/ams/awards/rules/milestones': typeof AmsAwardsRulesMilestonesRoute
+  '/ams/awards/rules/rewards': typeof AmsAwardsRulesRewardsRoute
+  '/ams/awards/rules/streaks': typeof AmsAwardsRulesStreaksRoute
+  '/ams/awards/rules/xp': typeof AmsAwardsRulesXpRoute
+  '/api/account/invoice/$id': typeof ApiAccountInvoiceIdRoute
+  '/api/orders/$id/fulfil': typeof ApiOrdersIdFulfilRoute
+  '/api/proxy/demo/$': typeof ApiProxyDemoSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-api-manager': typeof AiApiManagerRoute
+  '/ams-manager': typeof AmsManagerRoute
+  '/assist-manager': typeof AssistManagerRoute
+  '/auth': typeof AuthRoute
+  '/boss': typeof BossRoute
+  '/chat': typeof ChatRoute
+  '/chat-manager': typeof ChatManagerRoute
+  '/checkout': typeof CheckoutRoute
+  '/control-panel': typeof ControlPanelRoute
+  '/creator-manager': typeof CreatorManagerRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
+  '/dev-manager': typeof DevManagerRoute
+  '/finance-manager': typeof FinanceManagerRoute
+  '/franchise-manager': typeof FranchiseManagerRoute
+  '/influencer-manager': typeof InfluencerManagerRoute
+  '/internal-support-ai': typeof InternalSupportAiRoute
+  '/keywords': typeof KeywordsRoute
+  '/legal-manager': typeof LegalManagerRoute
+  '/login': typeof LoginRoute
+  '/marketplace-manager': typeof MarketplaceManagerRoute
+  '/marketplace-recovery': typeof MarketplaceRecoveryRoute
+  '/pages': typeof PagesRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/reseller-manager': typeof ResellerManagerRoute
+  '/sales-crm': typeof SalesCrmRoute
+  '/sales-support-manager': typeof SalesSupportManagerRoute
+  '/seo-manager': typeof SeoManagerRoute
+  '/server-manager': typeof ServerManagerRoute
+  '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
+  '/sitemap-countries.xml': typeof SitemapCountriesDotxmlRoute
+  '/sitemap-pages.xml': typeof SitemapPagesDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
+  '/support-agent': typeof SupportAgentRoute
+  '/support-chatbot': typeof SupportChatbotRoute
+  '/support-chatbot-blueprint': typeof SupportChatbotBlueprintRoute
+  '/task-manager': typeof TaskManagerRoute
+  '/vala-tv': typeof ValaTvRoute
+  '/vendor-manager': typeof VendorManagerRoute
+  '/demo': typeof DemoRoute
+  '/academy/$course': typeof AcademyCourseRoute
+  '/account/purchases': typeof AccountPurchasesRoute
+  '/admin/import': typeof AdminImportRoute
+  '/affiliate-manager/affiliate-links': typeof AffiliateManagerAffiliateLinksRoute
+  '/affiliate-manager/affiliates': typeof AffiliateManagerAffiliatesRouteWithChildren
+  '/affiliate-manager/analytics': typeof AffiliateManagerAnalyticsRoute
+  '/affiliate-manager/applications': typeof AffiliateManagerApplicationsRoute
+  '/affiliate-manager/audit-log': typeof AffiliateManagerAuditLogRoute
+  '/affiliate-manager/bulk-actions': typeof AffiliateManagerBulkActionsRoute
+  '/affiliate-manager/campaigns': typeof AffiliateManagerCampaignsRoute
+  '/affiliate-manager/commissions': typeof AffiliateManagerCommissionsRoute
+  '/affiliate-manager/communication': typeof AffiliateManagerCommunicationRoute
+  '/affiliate-manager/compliance': typeof AffiliateManagerComplianceRoute
+  '/affiliate-manager/coupons': typeof AffiliateManagerCouponsRoute
+  '/affiliate-manager/customers': typeof AffiliateManagerCustomersRoute
+  '/affiliate-manager/documents': typeof AffiliateManagerDocumentsRoute
+  '/affiliate-manager/export': typeof AffiliateManagerExportRoute
+  '/affiliate-manager/import': typeof AffiliateManagerImportRoute
+  '/affiliate-manager/leads': typeof AffiliateManagerLeadsRoute
+  '/affiliate-manager/marketing': typeof AffiliateManagerMarketingRoute
+  '/affiliate-manager/marketplace': typeof AffiliateManagerMarketplaceRoute
+  '/affiliate-manager/orders': typeof AffiliateManagerOrdersRoute
+  '/affiliate-manager/payouts': typeof AffiliateManagerPayoutsRoute
+  '/affiliate-manager/performance': typeof AffiliateManagerPerformanceRoute
+  '/affiliate-manager/products': typeof AffiliateManagerProductsRoute
+  '/affiliate-manager/realtime-test': typeof AffiliateManagerRealtimeTestRoute
+  '/affiliate-manager/referral-codes': typeof AffiliateManagerReferralCodesRoute
+  '/affiliate-manager/referral-network': typeof AffiliateManagerReferralNetworkRoute
+  '/affiliate-manager/reports': typeof AffiliateManagerReportsRoute
+  '/affiliate-manager/sales': typeof AffiliateManagerSalesRoute
+  '/affiliate-manager/search': typeof AffiliateManagerSearchRoute
+  '/affiliate-manager/settings': typeof AffiliateManagerSettingsRoute
+  '/affiliate-manager/support': typeof AffiliateManagerSupportRoute
+  '/affiliate-manager/wallet': typeof AffiliateManagerWalletRoute
+  '/ai-ceo/approvals': typeof AiCeoApprovalsRoute
+  '/ai-ceo/decision-engine': typeof AiCeoDecisionEngineRoute
+  '/ai-ceo/learning': typeof AiCeoLearningRoute
+  '/ai-ceo/live-monitor': typeof AiCeoLiveMonitorRoute
+  '/ai-ceo/performance': typeof AiCeoPerformanceRoute
+  '/ai-ceo/predictions': typeof AiCeoPredictionsRoute
+  '/ai-ceo/reports': typeof AiCeoReportsRoute
+  '/ai-ceo/risk': typeof AiCeoRiskRoute
+  '/ai-ceo/settings': typeof AiCeoSettingsRoute
+  '/ai/assistant': typeof AiAssistantRoute
+  '/ai/compare': typeof AiCompareRoute
+  '/ai/finder': typeof AiFinderRoute
+  '/ai/recommend': typeof AiRecommendRoute
+  '/ams/achievement-vault': typeof AmsAchievementVaultRoute
+  '/ams/achievements': typeof AmsAchievementsRoute
+  '/ams/ai': typeof AmsAiRoute
+  '/ams/analytics': typeof AmsAnalyticsRoute
+  '/ams/audit': typeof AmsAuditRoute
+  '/ams/author-progression': typeof AmsAuthorProgressionRoute
+  '/ams/award-vault': typeof AmsAwardVaultRoute
+  '/ams/badge-vault': typeof AmsBadgeVaultRoute
+  '/ams/badges': typeof AmsBadgesRoute
+  '/ams/certificate-vault': typeof AmsCertificateVaultRoute
+  '/ams/certificates': typeof AmsCertificatesRoute
+  '/ams/challenges': typeof AmsChallengesRoute
+  '/ams/chat': typeof AmsChatRoute
+  '/ams/claims': typeof AmsClaimsRoute
+  '/ams/collections': typeof AmsCollectionsRoute
+  '/ams/developer-progression': typeof AmsDeveloperProgressionRoute
+  '/ams/founder-seal-vault': typeof AmsFounderSealVaultRoute
+  '/ams/hall-of-fame': typeof AmsHallOfFameRoute
+  '/ams/hall-of-fame-vault': typeof AmsHallOfFameVaultRoute
+  '/ams/honor-coin-vault': typeof AmsHonorCoinVaultRoute
+  '/ams/identity': typeof AmsIdentityRoute
+  '/ams/identity-card-vault': typeof AmsIdentityCardVaultRoute
+  '/ams/leaderboards': typeof AmsLeaderboardsRoute
+  '/ams/legacy': typeof AmsLegacyRoute
+  '/ams/legacy-medal-vault': typeof AmsLegacyMedalVaultRoute
+  '/ams/levels': typeof AmsLevelsRoute
+  '/ams/license-card-vault': typeof AmsLicenseCardVaultRoute
+  '/ams/membership-vault': typeof AmsMembershipVaultRoute
+  '/ams/missions': typeof AmsMissionsRoute
+  '/ams/notifications': typeof AmsNotificationsRoute
+  '/ams/overview': typeof AmsOverviewRoute
+  '/ams/passport': typeof AmsPassportRoute
+  '/ams/passport-vault': typeof AmsPassportVaultRoute
+  '/ams/quests': typeof AmsQuestsRoute
+  '/ams/rank-vault': typeof AmsRankVaultRoute
+  '/ams/ranks': typeof AmsRanksRoute
+  '/ams/recognition-coin-vault': typeof AmsRecognitionCoinVaultRoute
+  '/ams/reputation-vault': typeof AmsReputationVaultRoute
+  '/ams/reward-chest-vault': typeof AmsRewardChestVaultRoute
+  '/ams/rewards': typeof AmsRewardsRoute
+  '/ams/settings': typeof AmsSettingsRoute
+  '/ams/trophies': typeof AmsTrophiesRoute
+  '/ams/trophy-gallery': typeof AmsTrophyGalleryRoute
+  '/ams/trophy-stages': typeof AmsTrophyStagesRoute
+  '/ams/trophy-vault': typeof AmsTrophyVaultRoute
+  '/ams/trust-seal-vault': typeof AmsTrustSealVaultRoute
+  '/ams/vendor-progression': typeof AmsVendorProgressionRoute
+  '/ams/verification-vault': typeof AmsVerificationVaultRoute
+  '/ams/xp': typeof AmsXpRoute
+  '/ams/xp-crystal-vault': typeof AmsXpCrystalVaultRoute
+  '/api/chat': typeof ApiChatRoute
+  '/apply/$role': typeof ApplyRoleRoute
+  '/dashboard/$role': typeof DashboardRoleRoute
+  '/demo/$slug': typeof DemoSlugRoute
+  '/manager/$section': typeof ManagerSectionRoute
+  '/marketing/ai-automation': typeof MarketingAiAutomationRoute
+  '/marketing/analytics': typeof MarketingAnalyticsRoute
+  '/marketing/approvals': typeof MarketingApprovalsRoute
+  '/marketing/audit': typeof MarketingAuditRoute
+  '/marketing/campaign-builder': typeof MarketingCampaignBuilderRoute
+  '/marketing/campaigns': typeof MarketingCampaignsRoute
+  '/marketing/content': typeof MarketingContentRoute
+  '/marketing/creatives': typeof MarketingCreativesRoute
+  '/marketing/hierarchy': typeof MarketingHierarchyRoute
+  '/marketing/lead-sources': typeof MarketingLeadSourcesRoute
+  '/marketing/offers': typeof MarketingOffersRoute
+  '/marketing/performance': typeof MarketingPerformanceRoute
+  '/marketing/reports': typeof MarketingReportsRoute
+  '/marketing/schedules': typeof MarketingSchedulesRoute
+  '/marketing/seo': typeof MarketingSeoRoute
+  '/marketing/targeting': typeof MarketingTargetingRoute
+  '/payment/fail': typeof PaymentFailRoute
+  '/payment/success': typeof PaymentSuccessRoute
+  '/promise-tracker/active': typeof PromiseTrackerActiveRoute
+  '/promise-tracker/all': typeof PromiseTrackerAllRoute
+  '/promise-tracker/audit-logs': typeof PromiseTrackerAuditLogsRoute
+  '/promise-tracker/broken': typeof PromiseTrackerBrokenRoute
+  '/promise-tracker/categories': typeof PromiseTrackerCategoriesRoute
+  '/promise-tracker/create': typeof PromiseTrackerCreateRoute
+  '/promise-tracker/delayed': typeof PromiseTrackerDelayedRoute
+  '/promise-tracker/escalations': typeof PromiseTrackerEscalationsRoute
+  '/promise-tracker/fulfilled': typeof PromiseTrackerFulfilledRoute
+  '/promise-tracker/insights': typeof PromiseTrackerInsightsRoute
+  '/promise-tracker/rules': typeof PromiseTrackerRulesRoute
+  '/promise-tracker/settings': typeof PromiseTrackerSettingsRoute
+  '/s/$code': typeof SCodeRoute
+  '/sitemap-products/$page.xml': typeof SitemapProductsPageDotxmlRoute
+  '/vala-ai/credits': typeof ValaAiCreditsRoute
+  '/vala-ai/errors': typeof ValaAiErrorsRoute
+  '/vala-ai/lock': typeof ValaAiLockRoute
+  '/vala-ai/logs': typeof ValaAiLogsRoute
+  '/vala-ai/models': typeof ValaAiModelsRoute
+  '/vala-ai/projects': typeof ValaAiProjectsRoute
+  '/vala-ai/prompts': typeof ValaAiPromptsRoute
+  '/vala-ai/rollback': typeof ValaAiRollbackRoute
+  '/vala-ai/settings': typeof ValaAiSettingsRoute
+  '/verify/$code': typeof VerifyCodeRoute
+  '/academy': typeof AcademyIndexRoute
+  '/affiliate-manager': typeof AffiliateManagerIndexRoute
+  '/ai-ceo': typeof AiCeoIndexRoute
+  '/ams': typeof AmsIndexRoute
+  '/apply': typeof ApplyIndexRoute
+  '/lead-manager': typeof LeadManagerIndexRoute
+  '/manager': typeof ManagerIndexRoute
+  '/marketing': typeof MarketingIndexRoute
+  '/marketplace': typeof MarketplaceIndexRoute
+  '/promise-tracker': typeof PromiseTrackerIndexRoute
+  '/vala-ai': typeof ValaAiIndexRoute
+  '/proxy/demo': typeof ProxyDemoRoute
+  '/affiliate-manager/affiliates/$id': typeof AffiliateManagerAffiliatesIdRoute
+  '/ams/awards/$id': typeof AmsAwardsIdRouteWithChildren
+  '/ams/awards/audit': typeof AmsAwardsAuditRoute
+  '/ams/awards/categories': typeof AmsAwardsCategoriesRoute
+  '/ams/awards/effects': typeof AmsAwardsEffectsRoute
+  '/ams/awards/new': typeof AmsAwardsNewRoute
+  '/ams/collection/$type': typeof AmsCollectionTypeRoute
+  '/ams/museum/$showcase': typeof AmsMuseumShowcaseRoute
+  '/ams/role-manager/$slug': typeof AmsRoleManagerSlugRoute
+  '/ams/role-showcase/$slug': typeof AmsRoleShowcaseSlugRoute
+  '/ams/tickets/$id': typeof AmsTicketsIdRoute
+  '/ams/tickets/new': typeof AmsTicketsNewRoute
+  '/api/account/purchases': typeof ApiAccountPurchasesRoute
+  '/api/actions/config': typeof ApiActionsConfigRoute
+  '/api/actions/registry': typeof ApiActionsRegistryRoute
+  '/api/affiliate/account': typeof ApiAffiliateAccountRoute
+  '/api/affiliate/attribute': typeof ApiAffiliateAttributeRoute
+  '/api/analytics/products': typeof ApiAnalyticsProductsRoute
+  '/api/author/earnings': typeof ApiAuthorEarningsRoute
+  '/api/author/products': typeof ApiAuthorProductsRoute
+  '/api/demo/ticket': typeof ApiDemoTicketRoute
+  '/api/finance/reseller-membership': typeof ApiFinanceResellerMembershipRoute
+  '/api/governance/console': typeof ApiGovernanceConsoleRoute
+  '/api/internal/apply-migrations': typeof ApiInternalApplyMigrationsRoute
+  '/api/internal/apply-reseller-schema': typeof ApiInternalApplyResellerSchemaRoute
+  '/api/internal/author-review': typeof ApiInternalAuthorReviewRoute
+  '/api/internal/credential-setup': typeof ApiInternalCredentialSetupRoute
+  '/api/internal/db-health': typeof ApiInternalDbHealthRoute
+  '/api/internal/email-flush': typeof ApiInternalEmailFlushRoute
+  '/api/internal/marketplace-migration': typeof ApiInternalMarketplaceMigrationRoute
+  '/api/internal/seller-admin': typeof ApiInternalSellerAdminRoute
+  '/api/internal/seo-audit': typeof ApiInternalSeoAuditRoute
+  '/api/internal/seo-page': typeof ApiInternalSeoPageRoute
+  '/api/internal/settle-commissions': typeof ApiInternalSettleCommissionsRoute
+  '/api/leads/console': typeof ApiLeadsConsoleRoute
+  '/api/manager/bulk': typeof ApiManagerBulkRoute
+  '/api/manager/resource': typeof ApiManagerResourceRoute
+  '/api/manager/row-action': typeof ApiManagerRowActionRoute
+  '/api/marketplace/activity': typeof ApiMarketplaceActivityRoute
+  '/api/marketplace/automation': typeof ApiMarketplaceAutomationRoute
+  '/api/marketplace/catalog': typeof ApiMarketplaceCatalogRoute
+  '/api/marketplace/colour': typeof ApiMarketplaceColourRoute
+  '/api/marketplace/country': typeof ApiMarketplaceCountryRoute
+  '/api/marketplace/deployment': typeof ApiMarketplaceDeploymentRoute
+  '/api/marketplace/developer': typeof ApiMarketplaceDeveloperRoute
+  '/api/marketplace/integrations': typeof ApiMarketplaceIntegrationsRoute
+  '/api/marketplace/integrity': typeof ApiMarketplaceIntegrityRoute
+  '/api/marketplace/lead': typeof ApiMarketplaceLeadRoute
+  '/api/marketplace/media': typeof ApiMarketplaceMediaRoute
+  '/api/marketplace/micro-interactions': typeof ApiMarketplaceMicroInteractionsRoute
+  '/api/marketplace/permissions': typeof ApiMarketplacePermissionsRoute
+  '/api/marketplace/proof': typeof ApiMarketplaceProofRoute
+  '/api/marketplace/rows': typeof ApiMarketplaceRowsRoute
+  '/api/marketplace/search': typeof ApiMarketplaceSearchRoute
+  '/api/marketplace/security': typeof ApiMarketplaceSecurityRoute
+  '/api/marketplace/support': typeof ApiMarketplaceSupportRoute
+  '/api/marketplace/system': typeof ApiMarketplaceSystemRoute
+  '/api/marketplace/track': typeof ApiMarketplaceTrackRoute
+  '/api/marketplace/translate': typeof ApiMarketplaceTranslateRoute
+  '/api/partner/quote': typeof ApiPartnerQuoteRoute
+  '/api/payment/initiate': typeof ApiPaymentInitiateRoute
+  '/api/payment/status': typeof ApiPaymentStatusRoute
+  '/api/payment/webhook': typeof ApiPaymentWebhookRoute
+  '/api/qr/$code': typeof ApiQrCodeRoute
+  '/api/security/console': typeof ApiSecurityConsoleRoute
+  '/api/security/settings': typeof ApiSecuritySettingsRoute
+  '/api/seller/metrics': typeof ApiSellerMetricsRoute
+  '/api/seo/console': typeof ApiSeoConsoleRoute
+  '/api/track/ref': typeof ApiTrackRefRoute
+  '/marketplace/category/$slug': typeof MarketplaceCategorySlugRoute
+  '/marketplace/country/$country': typeof MarketplaceCountryCountryRoute
+  '/marketplace/product/$slug': typeof MarketplaceProductSlugRoute
+  '/ams/awards': typeof AmsAwardsIndexRoute
+  '/ams/collection': typeof AmsCollectionIndexRoute
+  '/ams/museum': typeof AmsMuseumIndexRoute
+  '/ams/role-manager': typeof AmsRoleManagerIndexRoute
+  '/ams/role-showcase': typeof AmsRoleShowcaseIndexRoute
+  '/ams/tickets': typeof AmsTicketsIndexRoute
+  '/ams/awards/$id/edit': typeof AmsAwardsIdEditRoute
+  '/ams/awards/libraries/achievements': typeof AmsAwardsLibrariesAchievementsRoute
+  '/ams/awards/libraries/badges': typeof AmsAwardsLibrariesBadgesRoute
+  '/ams/awards/libraries/ranks': typeof AmsAwardsLibrariesRanksRoute
+  '/ams/awards/libraries/trophies': typeof AmsAwardsLibrariesTrophiesRoute
+  '/ams/awards/rules/levels': typeof AmsAwardsRulesLevelsRoute
+  '/ams/awards/rules/milestones': typeof AmsAwardsRulesMilestonesRoute
+  '/ams/awards/rules/rewards': typeof AmsAwardsRulesRewardsRoute
+  '/ams/awards/rules/streaks': typeof AmsAwardsRulesStreaksRoute
+  '/ams/awards/rules/xp': typeof AmsAwardsRulesXpRoute
+  '/api/account/invoice/$id': typeof ApiAccountInvoiceIdRoute
+  '/api/orders/$id/fulfil': typeof ApiOrdersIdFulfilRoute
+  '/api/proxy/demo/$': typeof ApiProxyDemoSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/affiliate-manager': typeof AffiliateManagerRouteWithChildren
+  '/ai-api-manager': typeof AiApiManagerRoute
+  '/ai-ceo': typeof AiCeoRouteWithChildren
+  '/ams': typeof AmsRouteWithChildren
+  '/ams-manager': typeof AmsManagerRoute
+  '/assist-manager': typeof AssistManagerRoute
+  '/auth': typeof AuthRoute
+  '/boss': typeof BossRoute
+  '/chat': typeof ChatRoute
+  '/chat-manager': typeof ChatManagerRoute
+  '/checkout': typeof CheckoutRoute
+  '/control-panel': typeof ControlPanelRoute
+  '/creator-manager': typeof CreatorManagerRoute
+  '/demo-manager': typeof DemoManagerRoute
+  '/demo-ops': typeof DemoOpsRoute
+  '/demo-workspace': typeof DemoWorkspaceRoute
+  '/dev-manager': typeof DevManagerRoute
+  '/finance-manager': typeof FinanceManagerRoute
+  '/franchise-manager': typeof FranchiseManagerRoute
+  '/influencer-manager': typeof InfluencerManagerRoute
+  '/internal-support-ai': typeof InternalSupportAiRoute
+  '/keywords': typeof KeywordsRoute
+  '/lead-manager': typeof LeadManagerRouteWithChildren
+  '/legal-manager': typeof LegalManagerRoute
+  '/login': typeof LoginRoute
+  '/manager': typeof ManagerRouteWithChildren
+  '/marketing': typeof MarketingRouteWithChildren
+  '/marketplace': typeof MarketplaceRouteWithChildren
+  '/marketplace-manager': typeof MarketplaceManagerRoute
+  '/marketplace-recovery': typeof MarketplaceRecoveryRoute
+  '/pages': typeof PagesRoute
+  '/product-demo-manager': typeof ProductDemoManagerRoute
+  '/promise-tracker': typeof PromiseTrackerRouteWithChildren
+  '/reseller-manager': typeof ResellerManagerRoute
+  '/sales-crm': typeof SalesCrmRoute
+  '/sales-support-manager': typeof SalesSupportManagerRoute
+  '/seo-manager': typeof SeoManagerRoute
+  '/server-manager': typeof ServerManagerRoute
+  '/sitemap-categories.xml': typeof SitemapCategoriesDotxmlRoute
+  '/sitemap-countries.xml': typeof SitemapCountriesDotxmlRoute
+  '/sitemap-pages.xml': typeof SitemapPagesDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
+  '/support-agent': typeof SupportAgentRoute
+  '/support-chatbot': typeof SupportChatbotRoute
+  '/support-chatbot-blueprint': typeof SupportChatbotBlueprintRoute
+  '/task-manager': typeof TaskManagerRoute
+  '/vala-ai': typeof ValaAiRouteWithChildren
+  '/vala-tv': typeof ValaTvRoute
+  '/vendor-manager': typeof VendorManagerRoute
+  '/demo/': typeof DemoRoute
+  '/academy/$course': typeof AcademyCourseRoute
+  '/account/purchases': typeof AccountPurchasesRoute
+  '/admin/import': typeof AdminImportRoute
+  '/affiliate-manager/affiliate-links': typeof AffiliateManagerAffiliateLinksRoute
+  '/affiliate-manager/affiliates': typeof AffiliateManagerAffiliatesRouteWithChildren
+  '/affiliate-manager/analytics': typeof AffiliateManagerAnalyticsRoute
+  '/affiliate-manager/applications': typeof AffiliateManagerApplicationsRoute
+  '/affiliate-manager/audit-log': typeof AffiliateManagerAuditLogRoute
+  '/affiliate-manager/bulk-actions': typeof AffiliateManagerBulkActionsRoute
+  '/affiliate-manager/campaigns': typeof AffiliateManagerCampaignsRoute
+  '/affiliate-manager/commissions': typeof AffiliateManagerCommissionsRoute
+  '/affiliate-manager/communication': typeof AffiliateManagerCommunicationRoute
+  '/affiliate-manager/compliance': typeof AffiliateManagerComplianceRoute
+  '/affiliate-manager/coupons': typeof AffiliateManagerCouponsRoute
+  '/affiliate-manager/customers': typeof AffiliateManagerCustomersRoute
+  '/affiliate-manager/documents': typeof AffiliateManagerDocumentsRoute
+  '/affiliate-manager/export': typeof AffiliateManagerExportRoute
+  '/affiliate-manager/import': typeof AffiliateManagerImportRoute
+  '/affiliate-manager/leads': typeof AffiliateManagerLeadsRoute
+  '/affiliate-manager/marketing': typeof AffiliateManagerMarketingRoute
+  '/affiliate-manager/marketplace': typeof AffiliateManagerMarketplaceRoute
+  '/affiliate-manager/orders': typeof AffiliateManagerOrdersRoute
+  '/affiliate-manager/payouts': typeof AffiliateManagerPayoutsRoute
+  '/affiliate-manager/performance': typeof AffiliateManagerPerformanceRoute
+  '/affiliate-manager/products': typeof AffiliateManagerProductsRoute
+  '/affiliate-manager/realtime-test': typeof AffiliateManagerRealtimeTestRoute
+  '/affiliate-manager/referral-codes': typeof AffiliateManagerReferralCodesRoute
+  '/affiliate-manager/referral-network': typeof AffiliateManagerReferralNetworkRoute
+  '/affiliate-manager/reports': typeof AffiliateManagerReportsRoute
+  '/affiliate-manager/sales': typeof AffiliateManagerSalesRoute
+  '/affiliate-manager/search': typeof AffiliateManagerSearchRoute
+  '/affiliate-manager/settings': typeof AffiliateManagerSettingsRoute
+  '/affiliate-manager/support': typeof AffiliateManagerSupportRoute
+  '/affiliate-manager/wallet': typeof AffiliateManagerWalletRoute
+  '/ai-ceo/approvals': typeof AiCeoApprovalsRoute
+  '/ai-ceo/decision-engine': typeof AiCeoDecisionEngineRoute
+  '/ai-ceo/learning': typeof AiCeoLearningRoute
+  '/ai-ceo/live-monitor': typeof AiCeoLiveMonitorRoute
+  '/ai-ceo/performance': typeof AiCeoPerformanceRoute
+  '/ai-ceo/predictions': typeof AiCeoPredictionsRoute
+  '/ai-ceo/reports': typeof AiCeoReportsRoute
+  '/ai-ceo/risk': typeof AiCeoRiskRoute
+  '/ai-ceo/settings': typeof AiCeoSettingsRoute
+  '/ai/assistant': typeof AiAssistantRoute
+  '/ai/compare': typeof AiCompareRoute
+  '/ai/finder': typeof AiFinderRoute
+  '/ai/recommend': typeof AiRecommendRoute
+  '/ams/achievement-vault': typeof AmsAchievementVaultRoute
+  '/ams/achievements': typeof AmsAchievementsRoute
+  '/ams/ai': typeof AmsAiRoute
+  '/ams/analytics': typeof AmsAnalyticsRoute
+  '/ams/audit': typeof AmsAuditRoute
+  '/ams/author-progression': typeof AmsAuthorProgressionRoute
+  '/ams/award-vault': typeof AmsAwardVaultRoute
+  '/ams/badge-vault': typeof AmsBadgeVaultRoute
+  '/ams/badges': typeof AmsBadgesRoute
+  '/ams/certificate-vault': typeof AmsCertificateVaultRoute
+  '/ams/certificates': typeof AmsCertificatesRoute
+  '/ams/challenges': typeof AmsChallengesRoute
+  '/ams/chat': typeof AmsChatRoute
+  '/ams/claims': typeof AmsClaimsRoute
+  '/ams/collections': typeof AmsCollectionsRoute
+  '/ams/developer-progression': typeof AmsDeveloperProgressionRoute
+  '/ams/founder-seal-vault': typeof AmsFounderSealVaultRoute
+  '/ams/hall-of-fame': typeof AmsHallOfFameRoute
+  '/ams/hall-of-fame-vault': typeof AmsHallOfFameVaultRoute
+  '/ams/honor-coin-vault': typeof AmsHonorCoinVaultRoute
+  '/ams/identity': typeof AmsIdentityRoute
+  '/ams/identity-card-vault': typeof AmsIdentityCardVaultRoute
+  '/ams/leaderboards': typeof AmsLeaderboardsRoute
+  '/ams/legacy': typeof AmsLegacyRoute
+  '/ams/legacy-medal-vault': typeof AmsLegacyMedalVaultRoute
+  '/ams/levels': typeof AmsLevelsRoute
+  '/ams/license-card-vault': typeof AmsLicenseCardVaultRoute
+  '/ams/membership-vault': typeof AmsMembershipVaultRoute
+  '/ams/missions': typeof AmsMissionsRoute
+  '/ams/notifications': typeof AmsNotificationsRoute
+  '/ams/overview': typeof AmsOverviewRoute
+  '/ams/passport': typeof AmsPassportRoute
+  '/ams/passport-vault': typeof AmsPassportVaultRoute
+  '/ams/quests': typeof AmsQuestsRoute
+  '/ams/rank-vault': typeof AmsRankVaultRoute
+  '/ams/ranks': typeof AmsRanksRoute
+  '/ams/recognition-coin-vault': typeof AmsRecognitionCoinVaultRoute
+  '/ams/reputation-vault': typeof AmsReputationVaultRoute
+  '/ams/reward-chest-vault': typeof AmsRewardChestVaultRoute
+  '/ams/rewards': typeof AmsRewardsRoute
+  '/ams/role-manager': typeof AmsRoleManagerRouteWithChildren
+  '/ams/settings': typeof AmsSettingsRoute
+  '/ams/trophies': typeof AmsTrophiesRoute
+  '/ams/trophy-gallery': typeof AmsTrophyGalleryRoute
+  '/ams/trophy-stages': typeof AmsTrophyStagesRoute
+  '/ams/trophy-vault': typeof AmsTrophyVaultRoute
+  '/ams/trust-seal-vault': typeof AmsTrustSealVaultRoute
+  '/ams/vendor-progression': typeof AmsVendorProgressionRoute
+  '/ams/verification-vault': typeof AmsVerificationVaultRoute
+  '/ams/xp': typeof AmsXpRoute
+  '/ams/xp-crystal-vault': typeof AmsXpCrystalVaultRoute
+  '/api/chat': typeof ApiChatRoute
+  '/apply/$role': typeof ApplyRoleRoute
+  '/dashboard/$role': typeof DashboardRoleRoute
+  '/demo/$slug': typeof DemoSlugRoute
+  '/manager/$section': typeof ManagerSectionRoute
+  '/marketing/ai-automation': typeof MarketingAiAutomationRoute
+  '/marketing/analytics': typeof MarketingAnalyticsRoute
+  '/marketing/approvals': typeof MarketingApprovalsRoute
+  '/marketing/audit': typeof MarketingAuditRoute
+  '/marketing/campaign-builder': typeof MarketingCampaignBuilderRoute
+  '/marketing/campaigns': typeof MarketingCampaignsRoute
+  '/marketing/content': typeof MarketingContentRoute
+  '/marketing/creatives': typeof MarketingCreativesRoute
+  '/marketing/hierarchy': typeof MarketingHierarchyRoute
+  '/marketing/lead-sources': typeof MarketingLeadSourcesRoute
+  '/marketing/offers': typeof MarketingOffersRoute
+  '/marketing/performance': typeof MarketingPerformanceRoute
+  '/marketing/reports': typeof MarketingReportsRoute
+  '/marketing/schedules': typeof MarketingSchedulesRoute
+  '/marketing/seo': typeof MarketingSeoRoute
+  '/marketing/targeting': typeof MarketingTargetingRoute
+  '/payment/fail': typeof PaymentFailRoute
+  '/payment/success': typeof PaymentSuccessRoute
+  '/promise-tracker/active': typeof PromiseTrackerActiveRoute
+  '/promise-tracker/all': typeof PromiseTrackerAllRoute
+  '/promise-tracker/audit-logs': typeof PromiseTrackerAuditLogsRoute
+  '/promise-tracker/broken': typeof PromiseTrackerBrokenRoute
+  '/promise-tracker/categories': typeof PromiseTrackerCategoriesRoute
+  '/promise-tracker/create': typeof PromiseTrackerCreateRoute
+  '/promise-tracker/delayed': typeof PromiseTrackerDelayedRoute
+  '/promise-tracker/escalations': typeof PromiseTrackerEscalationsRoute
+  '/promise-tracker/fulfilled': typeof PromiseTrackerFulfilledRoute
+  '/promise-tracker/insights': typeof PromiseTrackerInsightsRoute
+  '/promise-tracker/rules': typeof PromiseTrackerRulesRoute
+  '/promise-tracker/settings': typeof PromiseTrackerSettingsRoute
+  '/s/$code': typeof SCodeRoute
+  '/sitemap-products/$page.xml': typeof SitemapProductsPageDotxmlRoute
+  '/vala-ai/credits': typeof ValaAiCreditsRoute
+  '/vala-ai/errors': typeof ValaAiErrorsRoute
+  '/vala-ai/lock': typeof ValaAiLockRoute
+  '/vala-ai/logs': typeof ValaAiLogsRoute
+  '/vala-ai/models': typeof ValaAiModelsRoute
+  '/vala-ai/projects': typeof ValaAiProjectsRoute
+  '/vala-ai/prompts': typeof ValaAiPromptsRoute
+  '/vala-ai/rollback': typeof ValaAiRollbackRoute
+  '/vala-ai/settings': typeof ValaAiSettingsRoute
+  '/verify/$code': typeof VerifyCodeRoute
+  '/academy/': typeof AcademyIndexRoute
+  '/affiliate-manager/': typeof AffiliateManagerIndexRoute
+  '/ai-ceo/': typeof AiCeoIndexRoute
+  '/ams/': typeof AmsIndexRoute
+  '/apply/': typeof ApplyIndexRoute
+  '/lead-manager/': typeof LeadManagerIndexRoute
+  '/manager/': typeof ManagerIndexRoute
+  '/marketing/': typeof MarketingIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
+  '/promise-tracker/': typeof PromiseTrackerIndexRoute
+  '/vala-ai/': typeof ValaAiIndexRoute
+  '/proxy/demo/': typeof ProxyDemoRoute
+  '/affiliate-manager/affiliates/$id': typeof AffiliateManagerAffiliatesIdRoute
+  '/ams/awards/$id': typeof AmsAwardsIdRouteWithChildren
+  '/ams/awards/audit': typeof AmsAwardsAuditRoute
+  '/ams/awards/categories': typeof AmsAwardsCategoriesRoute
+  '/ams/awards/effects': typeof AmsAwardsEffectsRoute
+  '/ams/awards/new': typeof AmsAwardsNewRoute
+  '/ams/collection/$type': typeof AmsCollectionTypeRoute
+  '/ams/museum/$showcase': typeof AmsMuseumShowcaseRoute
+  '/ams/role-manager/$slug': typeof AmsRoleManagerSlugRoute
+  '/ams/role-showcase/$slug': typeof AmsRoleShowcaseSlugRoute
+  '/ams/tickets/$id': typeof AmsTicketsIdRoute
+  '/ams/tickets/new': typeof AmsTicketsNewRoute
+  '/api/account/purchases': typeof ApiAccountPurchasesRoute
+  '/api/actions/config': typeof ApiActionsConfigRoute
+  '/api/actions/registry': typeof ApiActionsRegistryRoute
+  '/api/affiliate/account': typeof ApiAffiliateAccountRoute
+  '/api/affiliate/attribute': typeof ApiAffiliateAttributeRoute
+  '/api/analytics/products': typeof ApiAnalyticsProductsRoute
+  '/api/author/earnings': typeof ApiAuthorEarningsRoute
+  '/api/author/products': typeof ApiAuthorProductsRoute
+  '/api/demo/ticket': typeof ApiDemoTicketRoute
+  '/api/finance/reseller-membership': typeof ApiFinanceResellerMembershipRoute
+  '/api/governance/console': typeof ApiGovernanceConsoleRoute
+  '/api/internal/apply-migrations': typeof ApiInternalApplyMigrationsRoute
+  '/api/internal/apply-reseller-schema': typeof ApiInternalApplyResellerSchemaRoute
+  '/api/internal/author-review': typeof ApiInternalAuthorReviewRoute
+  '/api/internal/credential-setup': typeof ApiInternalCredentialSetupRoute
+  '/api/internal/db-health': typeof ApiInternalDbHealthRoute
+  '/api/internal/email-flush': typeof ApiInternalEmailFlushRoute
+  '/api/internal/marketplace-migration': typeof ApiInternalMarketplaceMigrationRoute
+  '/api/internal/seller-admin': typeof ApiInternalSellerAdminRoute
+  '/api/internal/seo-audit': typeof ApiInternalSeoAuditRoute
+  '/api/internal/seo-page': typeof ApiInternalSeoPageRoute
+  '/api/internal/settle-commissions': typeof ApiInternalSettleCommissionsRoute
+  '/api/leads/console': typeof ApiLeadsConsoleRoute
+  '/api/manager/bulk': typeof ApiManagerBulkRoute
+  '/api/manager/resource': typeof ApiManagerResourceRoute
+  '/api/manager/row-action': typeof ApiManagerRowActionRoute
+  '/api/marketplace/activity': typeof ApiMarketplaceActivityRoute
+  '/api/marketplace/automation': typeof ApiMarketplaceAutomationRoute
+  '/api/marketplace/catalog': typeof ApiMarketplaceCatalogRoute
+  '/api/marketplace/colour': typeof ApiMarketplaceColourRoute
+  '/api/marketplace/country': typeof ApiMarketplaceCountryRoute
+  '/api/marketplace/deployment': typeof ApiMarketplaceDeploymentRoute
+  '/api/marketplace/developer': typeof ApiMarketplaceDeveloperRoute
+  '/api/marketplace/integrations': typeof ApiMarketplaceIntegrationsRoute
+  '/api/marketplace/integrity': typeof ApiMarketplaceIntegrityRoute
+  '/api/marketplace/lead': typeof ApiMarketplaceLeadRoute
+  '/api/marketplace/media': typeof ApiMarketplaceMediaRoute
+  '/api/marketplace/micro-interactions': typeof ApiMarketplaceMicroInteractionsRoute
+  '/api/marketplace/permissions': typeof ApiMarketplacePermissionsRoute
+  '/api/marketplace/proof': typeof ApiMarketplaceProofRoute
+  '/api/marketplace/rows': typeof ApiMarketplaceRowsRoute
+  '/api/marketplace/search': typeof ApiMarketplaceSearchRoute
+  '/api/marketplace/security': typeof ApiMarketplaceSecurityRoute
+  '/api/marketplace/support': typeof ApiMarketplaceSupportRoute
+  '/api/marketplace/system': typeof ApiMarketplaceSystemRoute
+  '/api/marketplace/track': typeof ApiMarketplaceTrackRoute
+  '/api/marketplace/translate': typeof ApiMarketplaceTranslateRoute
+  '/api/partner/quote': typeof ApiPartnerQuoteRoute
+  '/api/payment/initiate': typeof ApiPaymentInitiateRoute
+  '/api/payment/status': typeof ApiPaymentStatusRoute
+  '/api/payment/webhook': typeof ApiPaymentWebhookRoute
+  '/api/qr/$code': typeof ApiQrCodeRoute
+  '/api/security/console': typeof ApiSecurityConsoleRoute
+  '/api/security/settings': typeof ApiSecuritySettingsRoute
+  '/api/seller/metrics': typeof ApiSellerMetricsRoute
+  '/api/seo/console': typeof ApiSeoConsoleRoute
+  '/api/track/ref': typeof ApiTrackRefRoute
+  '/marketplace/category/$slug': typeof MarketplaceCategorySlugRoute
+  '/marketplace/country/$country': typeof MarketplaceCountryCountryRoute
+  '/marketplace/product/$slug': typeof MarketplaceProductSlugRoute
+  '/ams/awards/': typeof AmsAwardsIndexRoute
+  '/ams/collection/': typeof AmsCollectionIndexRoute
+  '/ams/museum/': typeof AmsMuseumIndexRoute
+  '/ams/role-manager/': typeof AmsRoleManagerIndexRoute
+  '/ams/role-showcase/': typeof AmsRoleShowcaseIndexRoute
+  '/ams/tickets/': typeof AmsTicketsIndexRoute
+  '/ams/awards/$id/edit': typeof AmsAwardsIdEditRoute
+  '/ams/awards/libraries/achievements': typeof AmsAwardsLibrariesAchievementsRoute
+  '/ams/awards/libraries/badges': typeof AmsAwardsLibrariesBadgesRoute
+  '/ams/awards/libraries/ranks': typeof AmsAwardsLibrariesRanksRoute
+  '/ams/awards/libraries/trophies': typeof AmsAwardsLibrariesTrophiesRoute
+  '/ams/awards/rules/levels': typeof AmsAwardsRulesLevelsRoute
+  '/ams/awards/rules/milestones': typeof AmsAwardsRulesMilestonesRoute
+  '/ams/awards/rules/rewards': typeof AmsAwardsRulesRewardsRoute
+  '/ams/awards/rules/streaks': typeof AmsAwardsRulesStreaksRoute
+  '/ams/awards/rules/xp': typeof AmsAwardsRulesXpRoute
+  '/api/account/invoice/$id': typeof ApiAccountInvoiceIdRoute
+  '/api/orders/$id/fulfil': typeof ApiOrdersIdFulfilRoute
+  '/api/proxy/demo/$': typeof ApiProxyDemoSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/affiliate-manager'
+    | '/ai-api-manager'
+    | '/ai-ceo'
+    | '/ams'
+    | '/ams-manager'
+    | '/assist-manager'
+    | '/auth'
+    | '/boss'
+    | '/chat'
+    | '/chat-manager'
+    | '/checkout'
+    | '/control-panel'
+    | '/creator-manager'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
+    | '/dev-manager'
+    | '/finance-manager'
+    | '/franchise-manager'
+    | '/influencer-manager'
+    | '/internal-support-ai'
+    | '/keywords'
+    | '/lead-manager'
+    | '/legal-manager'
+    | '/login'
+    | '/manager'
+    | '/marketing'
+    | '/marketplace'
+    | '/marketplace-manager'
+    | '/marketplace-recovery'
+    | '/pages'
+    | '/product-demo-manager'
+    | '/promise-tracker'
+    | '/reseller-manager'
+    | '/sales-crm'
+    | '/sales-support-manager'
+    | '/seo-manager'
+    | '/server-manager'
+    | '/sitemap-categories.xml'
+    | '/sitemap-countries.xml'
+    | '/sitemap-pages.xml'
+    | '/sitemap.xml'
+    | '/support'
+    | '/support-agent'
+    | '/support-chatbot'
+    | '/support-chatbot-blueprint'
+    | '/task-manager'
+    | '/vala-ai'
+    | '/vala-tv'
+    | '/vendor-manager'
+    | '/demo/'
+    | '/academy/$course'
+    | '/account/purchases'
+    | '/admin/import'
+    | '/affiliate-manager/affiliate-links'
+    | '/affiliate-manager/affiliates'
+    | '/affiliate-manager/analytics'
+    | '/affiliate-manager/applications'
+    | '/affiliate-manager/audit-log'
+    | '/affiliate-manager/bulk-actions'
+    | '/affiliate-manager/campaigns'
+    | '/affiliate-manager/commissions'
+    | '/affiliate-manager/communication'
+    | '/affiliate-manager/compliance'
+    | '/affiliate-manager/coupons'
+    | '/affiliate-manager/customers'
+    | '/affiliate-manager/documents'
+    | '/affiliate-manager/export'
+    | '/affiliate-manager/import'
+    | '/affiliate-manager/leads'
+    | '/affiliate-manager/marketing'
+    | '/affiliate-manager/marketplace'
+    | '/affiliate-manager/orders'
+    | '/affiliate-manager/payouts'
+    | '/affiliate-manager/performance'
+    | '/affiliate-manager/products'
+    | '/affiliate-manager/realtime-test'
+    | '/affiliate-manager/referral-codes'
+    | '/affiliate-manager/referral-network'
+    | '/affiliate-manager/reports'
+    | '/affiliate-manager/sales'
+    | '/affiliate-manager/search'
+    | '/affiliate-manager/settings'
+    | '/affiliate-manager/support'
+    | '/affiliate-manager/wallet'
+    | '/ai-ceo/approvals'
+    | '/ai-ceo/decision-engine'
+    | '/ai-ceo/learning'
+    | '/ai-ceo/live-monitor'
+    | '/ai-ceo/performance'
+    | '/ai-ceo/predictions'
+    | '/ai-ceo/reports'
+    | '/ai-ceo/risk'
+    | '/ai-ceo/settings'
+    | '/ai/assistant'
+    | '/ai/compare'
+    | '/ai/finder'
+    | '/ai/recommend'
+    | '/ams/achievement-vault'
+    | '/ams/achievements'
+    | '/ams/ai'
+    | '/ams/analytics'
+    | '/ams/audit'
+    | '/ams/author-progression'
+    | '/ams/award-vault'
+    | '/ams/badge-vault'
+    | '/ams/badges'
+    | '/ams/certificate-vault'
+    | '/ams/certificates'
+    | '/ams/challenges'
+    | '/ams/chat'
+    | '/ams/claims'
+    | '/ams/collections'
+    | '/ams/developer-progression'
+    | '/ams/founder-seal-vault'
+    | '/ams/hall-of-fame'
+    | '/ams/hall-of-fame-vault'
+    | '/ams/honor-coin-vault'
+    | '/ams/identity'
+    | '/ams/identity-card-vault'
+    | '/ams/leaderboards'
+    | '/ams/legacy'
+    | '/ams/legacy-medal-vault'
+    | '/ams/levels'
+    | '/ams/license-card-vault'
+    | '/ams/membership-vault'
+    | '/ams/missions'
+    | '/ams/notifications'
+    | '/ams/overview'
+    | '/ams/passport'
+    | '/ams/passport-vault'
+    | '/ams/quests'
+    | '/ams/rank-vault'
+    | '/ams/ranks'
+    | '/ams/recognition-coin-vault'
+    | '/ams/reputation-vault'
+    | '/ams/reward-chest-vault'
+    | '/ams/rewards'
+    | '/ams/role-manager'
+    | '/ams/settings'
+    | '/ams/trophies'
+    | '/ams/trophy-gallery'
+    | '/ams/trophy-stages'
+    | '/ams/trophy-vault'
+    | '/ams/trust-seal-vault'
+    | '/ams/vendor-progression'
+    | '/ams/verification-vault'
+    | '/ams/xp'
+    | '/ams/xp-crystal-vault'
+    | '/api/chat'
+    | '/apply/$role'
+    | '/dashboard/$role'
+    | '/demo/$slug'
+    | '/manager/$section'
+    | '/marketing/ai-automation'
+    | '/marketing/analytics'
+    | '/marketing/approvals'
+    | '/marketing/audit'
+    | '/marketing/campaign-builder'
+    | '/marketing/campaigns'
+    | '/marketing/content'
+    | '/marketing/creatives'
+    | '/marketing/hierarchy'
+    | '/marketing/lead-sources'
+    | '/marketing/offers'
+    | '/marketing/performance'
+    | '/marketing/reports'
+    | '/marketing/schedules'
+    | '/marketing/seo'
+    | '/marketing/targeting'
+    | '/payment/fail'
+    | '/payment/success'
+    | '/promise-tracker/active'
+    | '/promise-tracker/all'
+    | '/promise-tracker/audit-logs'
+    | '/promise-tracker/broken'
+    | '/promise-tracker/categories'
+    | '/promise-tracker/create'
+    | '/promise-tracker/delayed'
+    | '/promise-tracker/escalations'
+    | '/promise-tracker/fulfilled'
+    | '/promise-tracker/insights'
+    | '/promise-tracker/rules'
+    | '/promise-tracker/settings'
+    | '/s/$code'
+    | '/sitemap-products/$page.xml'
+    | '/vala-ai/credits'
+    | '/vala-ai/errors'
+    | '/vala-ai/lock'
+    | '/vala-ai/logs'
+    | '/vala-ai/models'
+    | '/vala-ai/projects'
+    | '/vala-ai/prompts'
+    | '/vala-ai/rollback'
+    | '/vala-ai/settings'
+    | '/verify/$code'
+    | '/academy/'
+    | '/affiliate-manager/'
+    | '/ai-ceo/'
+    | '/ams/'
+    | '/apply/'
+    | '/lead-manager/'
+    | '/manager/'
+    | '/marketing/'
+    | '/marketplace/'
+    | '/promise-tracker/'
+    | '/vala-ai/'
+    | '/proxy/demo/'
+    | '/affiliate-manager/affiliates/$id'
+    | '/ams/awards/$id'
+    | '/ams/awards/audit'
+    | '/ams/awards/categories'
+    | '/ams/awards/effects'
+    | '/ams/awards/new'
+    | '/ams/collection/$type'
+    | '/ams/museum/$showcase'
+    | '/ams/role-manager/$slug'
+    | '/ams/role-showcase/$slug'
+    | '/ams/tickets/$id'
+    | '/ams/tickets/new'
+    | '/api/account/purchases'
+    | '/api/actions/config'
+    | '/api/actions/registry'
+    | '/api/affiliate/account'
+    | '/api/affiliate/attribute'
+    | '/api/analytics/products'
+    | '/api/author/earnings'
+    | '/api/author/products'
+    | '/api/demo/ticket'
+    | '/api/finance/reseller-membership'
+    | '/api/governance/console'
+    | '/api/internal/apply-migrations'
+    | '/api/internal/apply-reseller-schema'
+    | '/api/internal/author-review'
+    | '/api/internal/credential-setup'
+    | '/api/internal/db-health'
+    | '/api/internal/email-flush'
+    | '/api/internal/marketplace-migration'
+    | '/api/internal/seller-admin'
+    | '/api/internal/seo-audit'
+    | '/api/internal/seo-page'
+    | '/api/internal/settle-commissions'
+    | '/api/leads/console'
+    | '/api/manager/bulk'
+    | '/api/manager/resource'
+    | '/api/manager/row-action'
+    | '/api/marketplace/activity'
+    | '/api/marketplace/automation'
+    | '/api/marketplace/catalog'
+    | '/api/marketplace/colour'
+    | '/api/marketplace/country'
+    | '/api/marketplace/deployment'
+    | '/api/marketplace/developer'
+    | '/api/marketplace/integrations'
+    | '/api/marketplace/integrity'
+    | '/api/marketplace/lead'
+    | '/api/marketplace/media'
+    | '/api/marketplace/micro-interactions'
+    | '/api/marketplace/permissions'
+    | '/api/marketplace/proof'
+    | '/api/marketplace/rows'
+    | '/api/marketplace/search'
+    | '/api/marketplace/security'
+    | '/api/marketplace/support'
+    | '/api/marketplace/system'
+    | '/api/marketplace/track'
+    | '/api/marketplace/translate'
+    | '/api/partner/quote'
+    | '/api/payment/initiate'
+    | '/api/payment/status'
+    | '/api/payment/webhook'
+    | '/api/qr/$code'
+    | '/api/security/console'
+    | '/api/security/settings'
+    | '/api/seller/metrics'
+    | '/api/seo/console'
+    | '/api/track/ref'
+    | '/marketplace/category/$slug'
+    | '/marketplace/country/$country'
+    | '/marketplace/product/$slug'
+    | '/ams/awards/'
+    | '/ams/collection/'
+    | '/ams/museum/'
+    | '/ams/role-manager/'
+    | '/ams/role-showcase/'
+    | '/ams/tickets/'
+    | '/ams/awards/$id/edit'
+    | '/ams/awards/libraries/achievements'
+    | '/ams/awards/libraries/badges'
+    | '/ams/awards/libraries/ranks'
+    | '/ams/awards/libraries/trophies'
+    | '/ams/awards/rules/levels'
+    | '/ams/awards/rules/milestones'
+    | '/ams/awards/rules/rewards'
+    | '/ams/awards/rules/streaks'
+    | '/ams/awards/rules/xp'
+    | '/api/account/invoice/$id'
+    | '/api/orders/$id/fulfil'
+    | '/api/proxy/demo/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-api-manager'
+    | '/ams-manager'
+    | '/assist-manager'
+    | '/auth'
+    | '/boss'
+    | '/chat'
+    | '/chat-manager'
+    | '/checkout'
+    | '/control-panel'
+    | '/creator-manager'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
+    | '/dev-manager'
+    | '/finance-manager'
+    | '/franchise-manager'
+    | '/influencer-manager'
+    | '/internal-support-ai'
+    | '/keywords'
+    | '/legal-manager'
+    | '/login'
+    | '/marketplace-manager'
+    | '/marketplace-recovery'
+    | '/pages'
+    | '/product-demo-manager'
+    | '/reseller-manager'
+    | '/sales-crm'
+    | '/sales-support-manager'
+    | '/seo-manager'
+    | '/server-manager'
+    | '/sitemap-categories.xml'
+    | '/sitemap-countries.xml'
+    | '/sitemap-pages.xml'
+    | '/sitemap.xml'
+    | '/support'
+    | '/support-agent'
+    | '/support-chatbot'
+    | '/support-chatbot-blueprint'
+    | '/task-manager'
+    | '/vala-tv'
+    | '/vendor-manager'
+    | '/demo'
+    | '/academy/$course'
+    | '/account/purchases'
+    | '/admin/import'
+    | '/affiliate-manager/affiliate-links'
+    | '/affiliate-manager/affiliates'
+    | '/affiliate-manager/analytics'
+    | '/affiliate-manager/applications'
+    | '/affiliate-manager/audit-log'
+    | '/affiliate-manager/bulk-actions'
+    | '/affiliate-manager/campaigns'
+    | '/affiliate-manager/commissions'
+    | '/affiliate-manager/communication'
+    | '/affiliate-manager/compliance'
+    | '/affiliate-manager/coupons'
+    | '/affiliate-manager/customers'
+    | '/affiliate-manager/documents'
+    | '/affiliate-manager/export'
+    | '/affiliate-manager/import'
+    | '/affiliate-manager/leads'
+    | '/affiliate-manager/marketing'
+    | '/affiliate-manager/marketplace'
+    | '/affiliate-manager/orders'
+    | '/affiliate-manager/payouts'
+    | '/affiliate-manager/performance'
+    | '/affiliate-manager/products'
+    | '/affiliate-manager/realtime-test'
+    | '/affiliate-manager/referral-codes'
+    | '/affiliate-manager/referral-network'
+    | '/affiliate-manager/reports'
+    | '/affiliate-manager/sales'
+    | '/affiliate-manager/search'
+    | '/affiliate-manager/settings'
+    | '/affiliate-manager/support'
+    | '/affiliate-manager/wallet'
+    | '/ai-ceo/approvals'
+    | '/ai-ceo/decision-engine'
+    | '/ai-ceo/learning'
+    | '/ai-ceo/live-monitor'
+    | '/ai-ceo/performance'
+    | '/ai-ceo/predictions'
+    | '/ai-ceo/reports'
+    | '/ai-ceo/risk'
+    | '/ai-ceo/settings'
+    | '/ai/assistant'
+    | '/ai/compare'
+    | '/ai/finder'
+    | '/ai/recommend'
+    | '/ams/achievement-vault'
+    | '/ams/achievements'
+    | '/ams/ai'
+    | '/ams/analytics'
+    | '/ams/audit'
+    | '/ams/author-progression'
+    | '/ams/award-vault'
+    | '/ams/badge-vault'
+    | '/ams/badges'
+    | '/ams/certificate-vault'
+    | '/ams/certificates'
+    | '/ams/challenges'
+    | '/ams/chat'
+    | '/ams/claims'
+    | '/ams/collections'
+    | '/ams/developer-progression'
+    | '/ams/founder-seal-vault'
+    | '/ams/hall-of-fame'
+    | '/ams/hall-of-fame-vault'
+    | '/ams/honor-coin-vault'
+    | '/ams/identity'
+    | '/ams/identity-card-vault'
+    | '/ams/leaderboards'
+    | '/ams/legacy'
+    | '/ams/legacy-medal-vault'
+    | '/ams/levels'
+    | '/ams/license-card-vault'
+    | '/ams/membership-vault'
+    | '/ams/missions'
+    | '/ams/notifications'
+    | '/ams/overview'
+    | '/ams/passport'
+    | '/ams/passport-vault'
+    | '/ams/quests'
+    | '/ams/rank-vault'
+    | '/ams/ranks'
+    | '/ams/recognition-coin-vault'
+    | '/ams/reputation-vault'
+    | '/ams/reward-chest-vault'
+    | '/ams/rewards'
+    | '/ams/settings'
+    | '/ams/trophies'
+    | '/ams/trophy-gallery'
+    | '/ams/trophy-stages'
+    | '/ams/trophy-vault'
+    | '/ams/trust-seal-vault'
+    | '/ams/vendor-progression'
+    | '/ams/verification-vault'
+    | '/ams/xp'
+    | '/ams/xp-crystal-vault'
+    | '/api/chat'
+    | '/apply/$role'
+    | '/dashboard/$role'
+    | '/demo/$slug'
+    | '/manager/$section'
+    | '/marketing/ai-automation'
+    | '/marketing/analytics'
+    | '/marketing/approvals'
+    | '/marketing/audit'
+    | '/marketing/campaign-builder'
+    | '/marketing/campaigns'
+    | '/marketing/content'
+    | '/marketing/creatives'
+    | '/marketing/hierarchy'
+    | '/marketing/lead-sources'
+    | '/marketing/offers'
+    | '/marketing/performance'
+    | '/marketing/reports'
+    | '/marketing/schedules'
+    | '/marketing/seo'
+    | '/marketing/targeting'
+    | '/payment/fail'
+    | '/payment/success'
+    | '/promise-tracker/active'
+    | '/promise-tracker/all'
+    | '/promise-tracker/audit-logs'
+    | '/promise-tracker/broken'
+    | '/promise-tracker/categories'
+    | '/promise-tracker/create'
+    | '/promise-tracker/delayed'
+    | '/promise-tracker/escalations'
+    | '/promise-tracker/fulfilled'
+    | '/promise-tracker/insights'
+    | '/promise-tracker/rules'
+    | '/promise-tracker/settings'
+    | '/s/$code'
+    | '/sitemap-products/$page.xml'
+    | '/vala-ai/credits'
+    | '/vala-ai/errors'
+    | '/vala-ai/lock'
+    | '/vala-ai/logs'
+    | '/vala-ai/models'
+    | '/vala-ai/projects'
+    | '/vala-ai/prompts'
+    | '/vala-ai/rollback'
+    | '/vala-ai/settings'
+    | '/verify/$code'
+    | '/academy'
+    | '/affiliate-manager'
+    | '/ai-ceo'
+    | '/ams'
+    | '/apply'
+    | '/lead-manager'
+    | '/manager'
+    | '/marketing'
+    | '/marketplace'
+    | '/promise-tracker'
+    | '/vala-ai'
+    | '/proxy/demo'
+    | '/affiliate-manager/affiliates/$id'
+    | '/ams/awards/$id'
+    | '/ams/awards/audit'
+    | '/ams/awards/categories'
+    | '/ams/awards/effects'
+    | '/ams/awards/new'
+    | '/ams/collection/$type'
+    | '/ams/museum/$showcase'
+    | '/ams/role-manager/$slug'
+    | '/ams/role-showcase/$slug'
+    | '/ams/tickets/$id'
+    | '/ams/tickets/new'
+    | '/api/account/purchases'
+    | '/api/actions/config'
+    | '/api/actions/registry'
+    | '/api/affiliate/account'
+    | '/api/affiliate/attribute'
+    | '/api/analytics/products'
+    | '/api/author/earnings'
+    | '/api/author/products'
+    | '/api/demo/ticket'
+    | '/api/finance/reseller-membership'
+    | '/api/governance/console'
+    | '/api/internal/apply-migrations'
+    | '/api/internal/apply-reseller-schema'
+    | '/api/internal/author-review'
+    | '/api/internal/credential-setup'
+    | '/api/internal/db-health'
+    | '/api/internal/email-flush'
+    | '/api/internal/marketplace-migration'
+    | '/api/internal/seller-admin'
+    | '/api/internal/seo-audit'
+    | '/api/internal/seo-page'
+    | '/api/internal/settle-commissions'
+    | '/api/leads/console'
+    | '/api/manager/bulk'
+    | '/api/manager/resource'
+    | '/api/manager/row-action'
+    | '/api/marketplace/activity'
+    | '/api/marketplace/automation'
+    | '/api/marketplace/catalog'
+    | '/api/marketplace/colour'
+    | '/api/marketplace/country'
+    | '/api/marketplace/deployment'
+    | '/api/marketplace/developer'
+    | '/api/marketplace/integrations'
+    | '/api/marketplace/integrity'
+    | '/api/marketplace/lead'
+    | '/api/marketplace/media'
+    | '/api/marketplace/micro-interactions'
+    | '/api/marketplace/permissions'
+    | '/api/marketplace/proof'
+    | '/api/marketplace/rows'
+    | '/api/marketplace/search'
+    | '/api/marketplace/security'
+    | '/api/marketplace/support'
+    | '/api/marketplace/system'
+    | '/api/marketplace/track'
+    | '/api/marketplace/translate'
+    | '/api/partner/quote'
+    | '/api/payment/initiate'
+    | '/api/payment/status'
+    | '/api/payment/webhook'
+    | '/api/qr/$code'
+    | '/api/security/console'
+    | '/api/security/settings'
+    | '/api/seller/metrics'
+    | '/api/seo/console'
+    | '/api/track/ref'
+    | '/marketplace/category/$slug'
+    | '/marketplace/country/$country'
+    | '/marketplace/product/$slug'
+    | '/ams/awards'
+    | '/ams/collection'
+    | '/ams/museum'
+    | '/ams/role-manager'
+    | '/ams/role-showcase'
+    | '/ams/tickets'
+    | '/ams/awards/$id/edit'
+    | '/ams/awards/libraries/achievements'
+    | '/ams/awards/libraries/badges'
+    | '/ams/awards/libraries/ranks'
+    | '/ams/awards/libraries/trophies'
+    | '/ams/awards/rules/levels'
+    | '/ams/awards/rules/milestones'
+    | '/ams/awards/rules/rewards'
+    | '/ams/awards/rules/streaks'
+    | '/ams/awards/rules/xp'
+    | '/api/account/invoice/$id'
+    | '/api/orders/$id/fulfil'
+    | '/api/proxy/demo/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/affiliate-manager'
+    | '/ai-api-manager'
+    | '/ai-ceo'
+    | '/ams'
+    | '/ams-manager'
+    | '/assist-manager'
+    | '/auth'
+    | '/boss'
+    | '/chat'
+    | '/chat-manager'
+    | '/checkout'
+    | '/control-panel'
+    | '/creator-manager'
+    | '/demo-manager'
+    | '/demo-ops'
+    | '/demo-workspace'
+    | '/dev-manager'
+    | '/finance-manager'
+    | '/franchise-manager'
+    | '/influencer-manager'
+    | '/internal-support-ai'
+    | '/keywords'
+    | '/lead-manager'
+    | '/legal-manager'
+    | '/login'
+    | '/manager'
+    | '/marketing'
+    | '/marketplace'
+    | '/marketplace-manager'
+    | '/marketplace-recovery'
+    | '/pages'
+    | '/product-demo-manager'
+    | '/promise-tracker'
+    | '/reseller-manager'
+    | '/sales-crm'
+    | '/sales-support-manager'
+    | '/seo-manager'
+    | '/server-manager'
+    | '/sitemap-categories.xml'
+    | '/sitemap-countries.xml'
+    | '/sitemap-pages.xml'
+    | '/sitemap.xml'
+    | '/support'
+    | '/support-agent'
+    | '/support-chatbot'
+    | '/support-chatbot-blueprint'
+    | '/task-manager'
+    | '/vala-ai'
+    | '/vala-tv'
+    | '/vendor-manager'
+    | '/demo/'
+    | '/academy/$course'
+    | '/account/purchases'
+    | '/admin/import'
+    | '/affiliate-manager/affiliate-links'
+    | '/affiliate-manager/affiliates'
+    | '/affiliate-manager/analytics'
+    | '/affiliate-manager/applications'
+    | '/affiliate-manager/audit-log'
+    | '/affiliate-manager/bulk-actions'
+    | '/affiliate-manager/campaigns'
+    | '/affiliate-manager/commissions'
+    | '/affiliate-manager/communication'
+    | '/affiliate-manager/compliance'
+    | '/affiliate-manager/coupons'
+    | '/affiliate-manager/customers'
+    | '/affiliate-manager/documents'
+    | '/affiliate-manager/export'
+    | '/affiliate-manager/import'
+    | '/affiliate-manager/leads'
+    | '/affiliate-manager/marketing'
+    | '/affiliate-manager/marketplace'
+    | '/affiliate-manager/orders'
+    | '/affiliate-manager/payouts'
+    | '/affiliate-manager/performance'
+    | '/affiliate-manager/products'
+    | '/affiliate-manager/realtime-test'
+    | '/affiliate-manager/referral-codes'
+    | '/affiliate-manager/referral-network'
+    | '/affiliate-manager/reports'
+    | '/affiliate-manager/sales'
+    | '/affiliate-manager/search'
+    | '/affiliate-manager/settings'
+    | '/affiliate-manager/support'
+    | '/affiliate-manager/wallet'
+    | '/ai-ceo/approvals'
+    | '/ai-ceo/decision-engine'
+    | '/ai-ceo/learning'
+    | '/ai-ceo/live-monitor'
+    | '/ai-ceo/performance'
+    | '/ai-ceo/predictions'
+    | '/ai-ceo/reports'
+    | '/ai-ceo/risk'
+    | '/ai-ceo/settings'
+    | '/ai/assistant'
+    | '/ai/compare'
+    | '/ai/finder'
+    | '/ai/recommend'
+    | '/ams/achievement-vault'
+    | '/ams/achievements'
+    | '/ams/ai'
+    | '/ams/analytics'
+    | '/ams/audit'
+    | '/ams/author-progression'
+    | '/ams/award-vault'
+    | '/ams/badge-vault'
+    | '/ams/badges'
+    | '/ams/certificate-vault'
+    | '/ams/certificates'
+    | '/ams/challenges'
+    | '/ams/chat'
+    | '/ams/claims'
+    | '/ams/collections'
+    | '/ams/developer-progression'
+    | '/ams/founder-seal-vault'
+    | '/ams/hall-of-fame'
+    | '/ams/hall-of-fame-vault'
+    | '/ams/honor-coin-vault'
+    | '/ams/identity'
+    | '/ams/identity-card-vault'
+    | '/ams/leaderboards'
+    | '/ams/legacy'
+    | '/ams/legacy-medal-vault'
+    | '/ams/levels'
+    | '/ams/license-card-vault'
+    | '/ams/membership-vault'
+    | '/ams/missions'
+    | '/ams/notifications'
+    | '/ams/overview'
+    | '/ams/passport'
+    | '/ams/passport-vault'
+    | '/ams/quests'
+    | '/ams/rank-vault'
+    | '/ams/ranks'
+    | '/ams/recognition-coin-vault'
+    | '/ams/reputation-vault'
+    | '/ams/reward-chest-vault'
+    | '/ams/rewards'
+    | '/ams/role-manager'
+    | '/ams/settings'
+    | '/ams/trophies'
+    | '/ams/trophy-gallery'
+    | '/ams/trophy-stages'
+    | '/ams/trophy-vault'
+    | '/ams/trust-seal-vault'
+    | '/ams/vendor-progression'
+    | '/ams/verification-vault'
+    | '/ams/xp'
+    | '/ams/xp-crystal-vault'
+    | '/api/chat'
+    | '/apply/$role'
+    | '/dashboard/$role'
+    | '/demo/$slug'
+    | '/manager/$section'
+    | '/marketing/ai-automation'
+    | '/marketing/analytics'
+    | '/marketing/approvals'
+    | '/marketing/audit'
+    | '/marketing/campaign-builder'
+    | '/marketing/campaigns'
+    | '/marketing/content'
+    | '/marketing/creatives'
+    | '/marketing/hierarchy'
+    | '/marketing/lead-sources'
+    | '/marketing/offers'
+    | '/marketing/performance'
+    | '/marketing/reports'
+    | '/marketing/schedules'
+    | '/marketing/seo'
+    | '/marketing/targeting'
+    | '/payment/fail'
+    | '/payment/success'
+    | '/promise-tracker/active'
+    | '/promise-tracker/all'
+    | '/promise-tracker/audit-logs'
+    | '/promise-tracker/broken'
+    | '/promise-tracker/categories'
+    | '/promise-tracker/create'
+    | '/promise-tracker/delayed'
+    | '/promise-tracker/escalations'
+    | '/promise-tracker/fulfilled'
+    | '/promise-tracker/insights'
+    | '/promise-tracker/rules'
+    | '/promise-tracker/settings'
+    | '/s/$code'
+    | '/sitemap-products/$page.xml'
+    | '/vala-ai/credits'
+    | '/vala-ai/errors'
+    | '/vala-ai/lock'
+    | '/vala-ai/logs'
+    | '/vala-ai/models'
+    | '/vala-ai/projects'
+    | '/vala-ai/prompts'
+    | '/vala-ai/rollback'
+    | '/vala-ai/settings'
+    | '/verify/$code'
+    | '/academy/'
+    | '/affiliate-manager/'
+    | '/ai-ceo/'
+    | '/ams/'
+    | '/apply/'
+    | '/lead-manager/'
+    | '/manager/'
+    | '/marketing/'
+    | '/marketplace/'
+    | '/promise-tracker/'
+    | '/vala-ai/'
+    | '/proxy/demo/'
+    | '/affiliate-manager/affiliates/$id'
+    | '/ams/awards/$id'
+    | '/ams/awards/audit'
+    | '/ams/awards/categories'
+    | '/ams/awards/effects'
+    | '/ams/awards/new'
+    | '/ams/collection/$type'
+    | '/ams/museum/$showcase'
+    | '/ams/role-manager/$slug'
+    | '/ams/role-showcase/$slug'
+    | '/ams/tickets/$id'
+    | '/ams/tickets/new'
+    | '/api/account/purchases'
+    | '/api/actions/config'
+    | '/api/actions/registry'
+    | '/api/affiliate/account'
+    | '/api/affiliate/attribute'
+    | '/api/analytics/products'
+    | '/api/author/earnings'
+    | '/api/author/products'
+    | '/api/demo/ticket'
+    | '/api/finance/reseller-membership'
+    | '/api/governance/console'
+    | '/api/internal/apply-migrations'
+    | '/api/internal/apply-reseller-schema'
+    | '/api/internal/author-review'
+    | '/api/internal/credential-setup'
+    | '/api/internal/db-health'
+    | '/api/internal/email-flush'
+    | '/api/internal/marketplace-migration'
+    | '/api/internal/seller-admin'
+    | '/api/internal/seo-audit'
+    | '/api/internal/seo-page'
+    | '/api/internal/settle-commissions'
+    | '/api/leads/console'
+    | '/api/manager/bulk'
+    | '/api/manager/resource'
+    | '/api/manager/row-action'
+    | '/api/marketplace/activity'
+    | '/api/marketplace/automation'
+    | '/api/marketplace/catalog'
+    | '/api/marketplace/colour'
+    | '/api/marketplace/country'
+    | '/api/marketplace/deployment'
+    | '/api/marketplace/developer'
+    | '/api/marketplace/integrations'
+    | '/api/marketplace/integrity'
+    | '/api/marketplace/lead'
+    | '/api/marketplace/media'
+    | '/api/marketplace/micro-interactions'
+    | '/api/marketplace/permissions'
+    | '/api/marketplace/proof'
+    | '/api/marketplace/rows'
+    | '/api/marketplace/search'
+    | '/api/marketplace/security'
+    | '/api/marketplace/support'
+    | '/api/marketplace/system'
+    | '/api/marketplace/track'
+    | '/api/marketplace/translate'
+    | '/api/partner/quote'
+    | '/api/payment/initiate'
+    | '/api/payment/status'
+    | '/api/payment/webhook'
+    | '/api/qr/$code'
+    | '/api/security/console'
+    | '/api/security/settings'
+    | '/api/seller/metrics'
+    | '/api/seo/console'
+    | '/api/track/ref'
+    | '/marketplace/category/$slug'
+    | '/marketplace/country/$country'
+    | '/marketplace/product/$slug'
+    | '/ams/awards/'
+    | '/ams/collection/'
+    | '/ams/museum/'
+    | '/ams/role-manager/'
+    | '/ams/role-showcase/'
+    | '/ams/tickets/'
+    | '/ams/awards/$id/edit'
+    | '/ams/awards/libraries/achievements'
+    | '/ams/awards/libraries/badges'
+    | '/ams/awards/libraries/ranks'
+    | '/ams/awards/libraries/trophies'
+    | '/ams/awards/rules/levels'
+    | '/ams/awards/rules/milestones'
+    | '/ams/awards/rules/rewards'
+    | '/ams/awards/rules/streaks'
+    | '/ams/awards/rules/xp'
+    | '/api/account/invoice/$id'
+    | '/api/orders/$id/fulfil'
+    | '/api/proxy/demo/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AffiliateManagerRoute: typeof AffiliateManagerRouteWithChildren
+  AiApiManagerRoute: typeof AiApiManagerRoute
+  AiCeoRoute: typeof AiCeoRouteWithChildren
+  AmsRoute: typeof AmsRouteWithChildren
+  AmsManagerRoute: typeof AmsManagerRoute
+  AssistManagerRoute: typeof AssistManagerRoute
+  AuthRoute: typeof AuthRoute
+  BossRoute: typeof BossRoute
+  ChatRoute: typeof ChatRoute
+  ChatManagerRoute: typeof ChatManagerRoute
+  CheckoutRoute: typeof CheckoutRoute
+  ControlPanelRoute: typeof ControlPanelRoute
+  CreatorManagerRoute: typeof CreatorManagerRoute
+  DemoManagerRoute: typeof DemoManagerRoute
+  DemoOpsRoute: typeof DemoOpsRoute
+  DemoWorkspaceRoute: typeof DemoWorkspaceRoute
+  DevManagerRoute: typeof DevManagerRoute
+  FinanceManagerRoute: typeof FinanceManagerRoute
+  FranchiseManagerRoute: typeof FranchiseManagerRoute
+  InfluencerManagerRoute: typeof InfluencerManagerRoute
+  InternalSupportAiRoute: typeof InternalSupportAiRoute
+  KeywordsRoute: typeof KeywordsRoute
+  LeadManagerRoute: typeof LeadManagerRouteWithChildren
+  LegalManagerRoute: typeof LegalManagerRoute
+  LoginRoute: typeof LoginRoute
+  ManagerRoute: typeof ManagerRouteWithChildren
+  MarketingRoute: typeof MarketingRouteWithChildren
+  MarketplaceRoute: typeof MarketplaceRouteWithChildren
+  MarketplaceManagerRoute: typeof MarketplaceManagerRoute
+  MarketplaceRecoveryRoute: typeof MarketplaceRecoveryRoute
+  PagesRoute: typeof PagesRoute
+  ProductDemoManagerRoute: typeof ProductDemoManagerRoute
+  PromiseTrackerRoute: typeof PromiseTrackerRouteWithChildren
+  ResellerManagerRoute: typeof ResellerManagerRoute
+  SalesCrmRoute: typeof SalesCrmRoute
+  SalesSupportManagerRoute: typeof SalesSupportManagerRoute
+  SeoManagerRoute: typeof SeoManagerRoute
+  ServerManagerRoute: typeof ServerManagerRoute
+  SitemapCategoriesDotxmlRoute: typeof SitemapCategoriesDotxmlRoute
+  SitemapCountriesDotxmlRoute: typeof SitemapCountriesDotxmlRoute
+  SitemapPagesDotxmlRoute: typeof SitemapPagesDotxmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SupportRoute: typeof SupportRoute
+  SupportAgentRoute: typeof SupportAgentRoute
+  SupportChatbotRoute: typeof SupportChatbotRoute
+  SupportChatbotBlueprintRoute: typeof SupportChatbotBlueprintRoute
+  TaskManagerRoute: typeof TaskManagerRoute
+  ValaAiRoute: typeof ValaAiRouteWithChildren
+  ValaTvRoute: typeof ValaTvRoute
+  VendorManagerRoute: typeof VendorManagerRoute
+  DemoRoute: typeof DemoRoute
+  AcademyCourseRoute: typeof AcademyCourseRoute
+  AccountPurchasesRoute: typeof AccountPurchasesRoute
+  AdminImportRoute: typeof AdminImportRoute
+  AiAssistantRoute: typeof AiAssistantRoute
+  AiCompareRoute: typeof AiCompareRoute
+  AiFinderRoute: typeof AiFinderRoute
+  AiRecommendRoute: typeof AiRecommendRoute
+  ApiChatRoute: typeof ApiChatRoute
+  ApplyRoleRoute: typeof ApplyRoleRoute
+  DashboardRoleRoute: typeof DashboardRoleRoute
+  DemoSlugRoute: typeof DemoSlugRoute
+  PaymentFailRoute: typeof PaymentFailRoute
+  PaymentSuccessRoute: typeof PaymentSuccessRoute
+  SCodeRoute: typeof SCodeRoute
+  SitemapProductsPageDotxmlRoute: typeof SitemapProductsPageDotxmlRoute
+  VerifyCodeRoute: typeof VerifyCodeRoute
+  AcademyIndexRoute: typeof AcademyIndexRoute
+  ApplyIndexRoute: typeof ApplyIndexRoute
+  ProxyDemoRoute: typeof ProxyDemoRoute
+  ApiAccountPurchasesRoute: typeof ApiAccountPurchasesRoute
+  ApiActionsConfigRoute: typeof ApiActionsConfigRoute
+  ApiActionsRegistryRoute: typeof ApiActionsRegistryRoute
+  ApiAffiliateAccountRoute: typeof ApiAffiliateAccountRoute
+  ApiAffiliateAttributeRoute: typeof ApiAffiliateAttributeRoute
+  ApiAnalyticsProductsRoute: typeof ApiAnalyticsProductsRoute
+  ApiAuthorEarningsRoute: typeof ApiAuthorEarningsRoute
+  ApiAuthorProductsRoute: typeof ApiAuthorProductsRoute
+  ApiDemoTicketRoute: typeof ApiDemoTicketRoute
+  ApiFinanceResellerMembershipRoute: typeof ApiFinanceResellerMembershipRoute
+  ApiGovernanceConsoleRoute: typeof ApiGovernanceConsoleRoute
+  ApiInternalApplyMigrationsRoute: typeof ApiInternalApplyMigrationsRoute
+  ApiInternalApplyResellerSchemaRoute: typeof ApiInternalApplyResellerSchemaRoute
+  ApiInternalAuthorReviewRoute: typeof ApiInternalAuthorReviewRoute
+  ApiInternalCredentialSetupRoute: typeof ApiInternalCredentialSetupRoute
+  ApiInternalDbHealthRoute: typeof ApiInternalDbHealthRoute
+  ApiInternalEmailFlushRoute: typeof ApiInternalEmailFlushRoute
+  ApiInternalMarketplaceMigrationRoute: typeof ApiInternalMarketplaceMigrationRoute
+  ApiInternalSellerAdminRoute: typeof ApiInternalSellerAdminRoute
+  ApiInternalSeoAuditRoute: typeof ApiInternalSeoAuditRoute
+  ApiInternalSeoPageRoute: typeof ApiInternalSeoPageRoute
+  ApiInternalSettleCommissionsRoute: typeof ApiInternalSettleCommissionsRoute
+  ApiLeadsConsoleRoute: typeof ApiLeadsConsoleRoute
+  ApiManagerBulkRoute: typeof ApiManagerBulkRoute
+  ApiManagerResourceRoute: typeof ApiManagerResourceRoute
+  ApiManagerRowActionRoute: typeof ApiManagerRowActionRoute
+  ApiMarketplaceActivityRoute: typeof ApiMarketplaceActivityRoute
+  ApiMarketplaceAutomationRoute: typeof ApiMarketplaceAutomationRoute
+  ApiMarketplaceCatalogRoute: typeof ApiMarketplaceCatalogRoute
+  ApiMarketplaceColourRoute: typeof ApiMarketplaceColourRoute
+  ApiMarketplaceCountryRoute: typeof ApiMarketplaceCountryRoute
+  ApiMarketplaceDeploymentRoute: typeof ApiMarketplaceDeploymentRoute
+  ApiMarketplaceDeveloperRoute: typeof ApiMarketplaceDeveloperRoute
+  ApiMarketplaceIntegrationsRoute: typeof ApiMarketplaceIntegrationsRoute
+  ApiMarketplaceIntegrityRoute: typeof ApiMarketplaceIntegrityRoute
+  ApiMarketplaceLeadRoute: typeof ApiMarketplaceLeadRoute
+  ApiMarketplaceMediaRoute: typeof ApiMarketplaceMediaRoute
+  ApiMarketplaceMicroInteractionsRoute: typeof ApiMarketplaceMicroInteractionsRoute
+  ApiMarketplacePermissionsRoute: typeof ApiMarketplacePermissionsRoute
+  ApiMarketplaceProofRoute: typeof ApiMarketplaceProofRoute
+  ApiMarketplaceRowsRoute: typeof ApiMarketplaceRowsRoute
+  ApiMarketplaceSearchRoute: typeof ApiMarketplaceSearchRoute
+  ApiMarketplaceSecurityRoute: typeof ApiMarketplaceSecurityRoute
+  ApiMarketplaceSupportRoute: typeof ApiMarketplaceSupportRoute
+  ApiMarketplaceSystemRoute: typeof ApiMarketplaceSystemRoute
+  ApiMarketplaceTrackRoute: typeof ApiMarketplaceTrackRoute
+  ApiMarketplaceTranslateRoute: typeof ApiMarketplaceTranslateRoute
+  ApiPartnerQuoteRoute: typeof ApiPartnerQuoteRoute
+  ApiPaymentInitiateRoute: typeof ApiPaymentInitiateRoute
+  ApiPaymentStatusRoute: typeof ApiPaymentStatusRoute
+  ApiPaymentWebhookRoute: typeof ApiPaymentWebhookRoute
+  ApiQrCodeRoute: typeof ApiQrCodeRoute
+  ApiSecurityConsoleRoute: typeof ApiSecurityConsoleRoute
+  ApiSecuritySettingsRoute: typeof ApiSecuritySettingsRoute
+  ApiSellerMetricsRoute: typeof ApiSellerMetricsRoute
+  ApiSeoConsoleRoute: typeof ApiSeoConsoleRoute
+  ApiTrackRefRoute: typeof ApiTrackRefRoute
+  ApiAccountInvoiceIdRoute: typeof ApiAccountInvoiceIdRoute
+  ApiOrdersIdFulfilRoute: typeof ApiOrdersIdFulfilRoute
+  ApiProxyDemoSplatRoute: typeof ApiProxyDemoSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +3791,2687 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/affiliate-manager': {
+      id: '/affiliate-manager'
+      path: '/affiliate-manager'
+      fullPath: '/affiliate-manager'
+      preLoaderRoute: typeof AffiliateManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-api-manager': {
+      id: '/ai-api-manager'
+      path: '/ai-api-manager'
+      fullPath: '/ai-api-manager'
+      preLoaderRoute: typeof AiApiManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-ceo': {
+      id: '/ai-ceo'
+      path: '/ai-ceo'
+      fullPath: '/ai-ceo'
+      preLoaderRoute: typeof AiCeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ams': {
+      id: '/ams'
+      path: '/ams'
+      fullPath: '/ams'
+      preLoaderRoute: typeof AmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ams-manager': {
+      id: '/ams-manager'
+      path: '/ams-manager'
+      fullPath: '/ams-manager'
+      preLoaderRoute: typeof AmsManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assist-manager': {
+      id: '/assist-manager'
+      path: '/assist-manager'
+      fullPath: '/assist-manager'
+      preLoaderRoute: typeof AssistManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boss': {
+      id: '/boss'
+      path: '/boss'
+      fullPath: '/boss'
+      preLoaderRoute: typeof BossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat-manager': {
+      id: '/chat-manager'
+      path: '/chat-manager'
+      fullPath: '/chat-manager'
+      preLoaderRoute: typeof ChatManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/control-panel': {
+      id: '/control-panel'
+      path: '/control-panel'
+      fullPath: '/control-panel'
+      preLoaderRoute: typeof ControlPanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator-manager': {
+      id: '/creator-manager'
+      path: '/creator-manager'
+      fullPath: '/creator-manager'
+      preLoaderRoute: typeof CreatorManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-manager': {
+      id: '/demo-manager'
+      path: '/demo-manager'
+      fullPath: '/demo-manager'
+      preLoaderRoute: typeof DemoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-ops': {
+      id: '/demo-ops'
+      path: '/demo-ops'
+      fullPath: '/demo-ops'
+      preLoaderRoute: typeof DemoOpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-workspace': {
+      id: '/demo-workspace'
+      path: '/demo-workspace'
+      fullPath: '/demo-workspace'
+      preLoaderRoute: typeof DemoWorkspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dev-manager': {
+      id: '/dev-manager'
+      path: '/dev-manager'
+      fullPath: '/dev-manager'
+      preLoaderRoute: typeof DevManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finance-manager': {
+      id: '/finance-manager'
+      path: '/finance-manager'
+      fullPath: '/finance-manager'
+      preLoaderRoute: typeof FinanceManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/franchise-manager': {
+      id: '/franchise-manager'
+      path: '/franchise-manager'
+      fullPath: '/franchise-manager'
+      preLoaderRoute: typeof FranchiseManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/influencer-manager': {
+      id: '/influencer-manager'
+      path: '/influencer-manager'
+      fullPath: '/influencer-manager'
+      preLoaderRoute: typeof InfluencerManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internal-support-ai': {
+      id: '/internal-support-ai'
+      path: '/internal-support-ai'
+      fullPath: '/internal-support-ai'
+      preLoaderRoute: typeof InternalSupportAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/keywords': {
+      id: '/keywords'
+      path: '/keywords'
+      fullPath: '/keywords'
+      preLoaderRoute: typeof KeywordsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lead-manager': {
+      id: '/lead-manager'
+      path: '/lead-manager'
+      fullPath: '/lead-manager'
+      preLoaderRoute: typeof LeadManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-manager': {
+      id: '/legal-manager'
+      path: '/legal-manager'
+      fullPath: '/legal-manager'
+      preLoaderRoute: typeof LegalManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manager': {
+      id: '/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof ManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketing': {
+      id: '/marketing'
+      path: '/marketing'
+      fullPath: '/marketing'
+      preLoaderRoute: typeof MarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace-manager': {
+      id: '/marketplace-manager'
+      path: '/marketplace-manager'
+      fullPath: '/marketplace-manager'
+      preLoaderRoute: typeof MarketplaceManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace-recovery': {
+      id: '/marketplace-recovery'
+      path: '/marketplace-recovery'
+      fullPath: '/marketplace-recovery'
+      preLoaderRoute: typeof MarketplaceRecoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages': {
+      id: '/pages'
+      path: '/pages'
+      fullPath: '/pages'
+      preLoaderRoute: typeof PagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product-demo-manager': {
+      id: '/product-demo-manager'
+      path: '/product-demo-manager'
+      fullPath: '/product-demo-manager'
+      preLoaderRoute: typeof ProductDemoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promise-tracker': {
+      id: '/promise-tracker'
+      path: '/promise-tracker'
+      fullPath: '/promise-tracker'
+      preLoaderRoute: typeof PromiseTrackerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reseller-manager': {
+      id: '/reseller-manager'
+      path: '/reseller-manager'
+      fullPath: '/reseller-manager'
+      preLoaderRoute: typeof ResellerManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales-crm': {
+      id: '/sales-crm'
+      path: '/sales-crm'
+      fullPath: '/sales-crm'
+      preLoaderRoute: typeof SalesCrmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sales-support-manager': {
+      id: '/sales-support-manager'
+      path: '/sales-support-manager'
+      fullPath: '/sales-support-manager'
+      preLoaderRoute: typeof SalesSupportManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-manager': {
+      id: '/seo-manager'
+      path: '/seo-manager'
+      fullPath: '/seo-manager'
+      preLoaderRoute: typeof SeoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/server-manager': {
+      id: '/server-manager'
+      path: '/server-manager'
+      fullPath: '/server-manager'
+      preLoaderRoute: typeof ServerManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-categories.xml': {
+      id: '/sitemap-categories.xml'
+      path: '/sitemap-categories.xml'
+      fullPath: '/sitemap-categories.xml'
+      preLoaderRoute: typeof SitemapCategoriesDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-countries.xml': {
+      id: '/sitemap-countries.xml'
+      path: '/sitemap-countries.xml'
+      fullPath: '/sitemap-countries.xml'
+      preLoaderRoute: typeof SitemapCountriesDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-pages.xml': {
+      id: '/sitemap-pages.xml'
+      path: '/sitemap-pages.xml'
+      fullPath: '/sitemap-pages.xml'
+      preLoaderRoute: typeof SitemapPagesDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support-agent': {
+      id: '/support-agent'
+      path: '/support-agent'
+      fullPath: '/support-agent'
+      preLoaderRoute: typeof SupportAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support-chatbot': {
+      id: '/support-chatbot'
+      path: '/support-chatbot'
+      fullPath: '/support-chatbot'
+      preLoaderRoute: typeof SupportChatbotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support-chatbot-blueprint': {
+      id: '/support-chatbot-blueprint'
+      path: '/support-chatbot-blueprint'
+      fullPath: '/support-chatbot-blueprint'
+      preLoaderRoute: typeof SupportChatbotBlueprintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/task-manager': {
+      id: '/task-manager'
+      path: '/task-manager'
+      fullPath: '/task-manager'
+      preLoaderRoute: typeof TaskManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vala-ai': {
+      id: '/vala-ai'
+      path: '/vala-ai'
+      fullPath: '/vala-ai'
+      preLoaderRoute: typeof ValaAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vala-tv': {
+      id: '/vala-tv'
+      path: '/vala-tv'
+      fullPath: '/vala-tv'
+      preLoaderRoute: typeof ValaTvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor-manager': {
+      id: '/vendor-manager'
+      path: '/vendor-manager'
+      fullPath: '/vendor-manager'
+      preLoaderRoute: typeof VendorManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/academy/': {
+      id: '/academy/'
+      path: '/academy'
+      fullPath: '/academy/'
+      preLoaderRoute: typeof AcademyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/academy/$course': {
+      id: '/academy/$course'
+      path: '/academy/$course'
+      fullPath: '/academy/$course'
+      preLoaderRoute: typeof AcademyCourseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/purchases': {
+      id: '/account/purchases'
+      path: '/account/purchases'
+      fullPath: '/account/purchases'
+      preLoaderRoute: typeof AccountPurchasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/import': {
+      id: '/admin/import'
+      path: '/admin/import'
+      fullPath: '/admin/import'
+      preLoaderRoute: typeof AdminImportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affiliate-manager/': {
+      id: '/affiliate-manager/'
+      path: '/'
+      fullPath: '/affiliate-manager/'
+      preLoaderRoute: typeof AffiliateManagerIndexRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/affiliate-links': {
+      id: '/affiliate-manager/affiliate-links'
+      path: '/affiliate-links'
+      fullPath: '/affiliate-manager/affiliate-links'
+      preLoaderRoute: typeof AffiliateManagerAffiliateLinksRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/affiliates': {
+      id: '/affiliate-manager/affiliates'
+      path: '/affiliates'
+      fullPath: '/affiliate-manager/affiliates'
+      preLoaderRoute: typeof AffiliateManagerAffiliatesRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/analytics': {
+      id: '/affiliate-manager/analytics'
+      path: '/analytics'
+      fullPath: '/affiliate-manager/analytics'
+      preLoaderRoute: typeof AffiliateManagerAnalyticsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/applications': {
+      id: '/affiliate-manager/applications'
+      path: '/applications'
+      fullPath: '/affiliate-manager/applications'
+      preLoaderRoute: typeof AffiliateManagerApplicationsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/audit-log': {
+      id: '/affiliate-manager/audit-log'
+      path: '/audit-log'
+      fullPath: '/affiliate-manager/audit-log'
+      preLoaderRoute: typeof AffiliateManagerAuditLogRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/bulk-actions': {
+      id: '/affiliate-manager/bulk-actions'
+      path: '/bulk-actions'
+      fullPath: '/affiliate-manager/bulk-actions'
+      preLoaderRoute: typeof AffiliateManagerBulkActionsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/campaigns': {
+      id: '/affiliate-manager/campaigns'
+      path: '/campaigns'
+      fullPath: '/affiliate-manager/campaigns'
+      preLoaderRoute: typeof AffiliateManagerCampaignsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/commissions': {
+      id: '/affiliate-manager/commissions'
+      path: '/commissions'
+      fullPath: '/affiliate-manager/commissions'
+      preLoaderRoute: typeof AffiliateManagerCommissionsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/communication': {
+      id: '/affiliate-manager/communication'
+      path: '/communication'
+      fullPath: '/affiliate-manager/communication'
+      preLoaderRoute: typeof AffiliateManagerCommunicationRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/compliance': {
+      id: '/affiliate-manager/compliance'
+      path: '/compliance'
+      fullPath: '/affiliate-manager/compliance'
+      preLoaderRoute: typeof AffiliateManagerComplianceRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/coupons': {
+      id: '/affiliate-manager/coupons'
+      path: '/coupons'
+      fullPath: '/affiliate-manager/coupons'
+      preLoaderRoute: typeof AffiliateManagerCouponsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/customers': {
+      id: '/affiliate-manager/customers'
+      path: '/customers'
+      fullPath: '/affiliate-manager/customers'
+      preLoaderRoute: typeof AffiliateManagerCustomersRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/documents': {
+      id: '/affiliate-manager/documents'
+      path: '/documents'
+      fullPath: '/affiliate-manager/documents'
+      preLoaderRoute: typeof AffiliateManagerDocumentsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/export': {
+      id: '/affiliate-manager/export'
+      path: '/export'
+      fullPath: '/affiliate-manager/export'
+      preLoaderRoute: typeof AffiliateManagerExportRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/import': {
+      id: '/affiliate-manager/import'
+      path: '/import'
+      fullPath: '/affiliate-manager/import'
+      preLoaderRoute: typeof AffiliateManagerImportRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/leads': {
+      id: '/affiliate-manager/leads'
+      path: '/leads'
+      fullPath: '/affiliate-manager/leads'
+      preLoaderRoute: typeof AffiliateManagerLeadsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/marketing': {
+      id: '/affiliate-manager/marketing'
+      path: '/marketing'
+      fullPath: '/affiliate-manager/marketing'
+      preLoaderRoute: typeof AffiliateManagerMarketingRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/marketplace': {
+      id: '/affiliate-manager/marketplace'
+      path: '/marketplace'
+      fullPath: '/affiliate-manager/marketplace'
+      preLoaderRoute: typeof AffiliateManagerMarketplaceRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/orders': {
+      id: '/affiliate-manager/orders'
+      path: '/orders'
+      fullPath: '/affiliate-manager/orders'
+      preLoaderRoute: typeof AffiliateManagerOrdersRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/payouts': {
+      id: '/affiliate-manager/payouts'
+      path: '/payouts'
+      fullPath: '/affiliate-manager/payouts'
+      preLoaderRoute: typeof AffiliateManagerPayoutsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/performance': {
+      id: '/affiliate-manager/performance'
+      path: '/performance'
+      fullPath: '/affiliate-manager/performance'
+      preLoaderRoute: typeof AffiliateManagerPerformanceRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/products': {
+      id: '/affiliate-manager/products'
+      path: '/products'
+      fullPath: '/affiliate-manager/products'
+      preLoaderRoute: typeof AffiliateManagerProductsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/realtime-test': {
+      id: '/affiliate-manager/realtime-test'
+      path: '/realtime-test'
+      fullPath: '/affiliate-manager/realtime-test'
+      preLoaderRoute: typeof AffiliateManagerRealtimeTestRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/referral-codes': {
+      id: '/affiliate-manager/referral-codes'
+      path: '/referral-codes'
+      fullPath: '/affiliate-manager/referral-codes'
+      preLoaderRoute: typeof AffiliateManagerReferralCodesRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/referral-network': {
+      id: '/affiliate-manager/referral-network'
+      path: '/referral-network'
+      fullPath: '/affiliate-manager/referral-network'
+      preLoaderRoute: typeof AffiliateManagerReferralNetworkRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/reports': {
+      id: '/affiliate-manager/reports'
+      path: '/reports'
+      fullPath: '/affiliate-manager/reports'
+      preLoaderRoute: typeof AffiliateManagerReportsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/sales': {
+      id: '/affiliate-manager/sales'
+      path: '/sales'
+      fullPath: '/affiliate-manager/sales'
+      preLoaderRoute: typeof AffiliateManagerSalesRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/search': {
+      id: '/affiliate-manager/search'
+      path: '/search'
+      fullPath: '/affiliate-manager/search'
+      preLoaderRoute: typeof AffiliateManagerSearchRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/settings': {
+      id: '/affiliate-manager/settings'
+      path: '/settings'
+      fullPath: '/affiliate-manager/settings'
+      preLoaderRoute: typeof AffiliateManagerSettingsRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/support': {
+      id: '/affiliate-manager/support'
+      path: '/support'
+      fullPath: '/affiliate-manager/support'
+      preLoaderRoute: typeof AffiliateManagerSupportRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/affiliate-manager/wallet': {
+      id: '/affiliate-manager/wallet'
+      path: '/wallet'
+      fullPath: '/affiliate-manager/wallet'
+      preLoaderRoute: typeof AffiliateManagerWalletRouteImport
+      parentRoute: typeof AffiliateManagerRoute
+    }
+    '/ai-ceo/': {
+      id: '/ai-ceo/'
+      path: '/'
+      fullPath: '/ai-ceo/'
+      preLoaderRoute: typeof AiCeoIndexRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/approvals': {
+      id: '/ai-ceo/approvals'
+      path: '/approvals'
+      fullPath: '/ai-ceo/approvals'
+      preLoaderRoute: typeof AiCeoApprovalsRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/decision-engine': {
+      id: '/ai-ceo/decision-engine'
+      path: '/decision-engine'
+      fullPath: '/ai-ceo/decision-engine'
+      preLoaderRoute: typeof AiCeoDecisionEngineRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/learning': {
+      id: '/ai-ceo/learning'
+      path: '/learning'
+      fullPath: '/ai-ceo/learning'
+      preLoaderRoute: typeof AiCeoLearningRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/live-monitor': {
+      id: '/ai-ceo/live-monitor'
+      path: '/live-monitor'
+      fullPath: '/ai-ceo/live-monitor'
+      preLoaderRoute: typeof AiCeoLiveMonitorRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/performance': {
+      id: '/ai-ceo/performance'
+      path: '/performance'
+      fullPath: '/ai-ceo/performance'
+      preLoaderRoute: typeof AiCeoPerformanceRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/predictions': {
+      id: '/ai-ceo/predictions'
+      path: '/predictions'
+      fullPath: '/ai-ceo/predictions'
+      preLoaderRoute: typeof AiCeoPredictionsRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/reports': {
+      id: '/ai-ceo/reports'
+      path: '/reports'
+      fullPath: '/ai-ceo/reports'
+      preLoaderRoute: typeof AiCeoReportsRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/risk': {
+      id: '/ai-ceo/risk'
+      path: '/risk'
+      fullPath: '/ai-ceo/risk'
+      preLoaderRoute: typeof AiCeoRiskRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai-ceo/settings': {
+      id: '/ai-ceo/settings'
+      path: '/settings'
+      fullPath: '/ai-ceo/settings'
+      preLoaderRoute: typeof AiCeoSettingsRouteImport
+      parentRoute: typeof AiCeoRoute
+    }
+    '/ai/assistant': {
+      id: '/ai/assistant'
+      path: '/ai/assistant'
+      fullPath: '/ai/assistant'
+      preLoaderRoute: typeof AiAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai/compare': {
+      id: '/ai/compare'
+      path: '/ai/compare'
+      fullPath: '/ai/compare'
+      preLoaderRoute: typeof AiCompareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai/finder': {
+      id: '/ai/finder'
+      path: '/ai/finder'
+      fullPath: '/ai/finder'
+      preLoaderRoute: typeof AiFinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai/recommend': {
+      id: '/ai/recommend'
+      path: '/ai/recommend'
+      fullPath: '/ai/recommend'
+      preLoaderRoute: typeof AiRecommendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ams/': {
+      id: '/ams/'
+      path: '/'
+      fullPath: '/ams/'
+      preLoaderRoute: typeof AmsIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/achievement-vault': {
+      id: '/ams/achievement-vault'
+      path: '/achievement-vault'
+      fullPath: '/ams/achievement-vault'
+      preLoaderRoute: typeof AmsAchievementVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/achievements': {
+      id: '/ams/achievements'
+      path: '/achievements'
+      fullPath: '/ams/achievements'
+      preLoaderRoute: typeof AmsAchievementsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/ai': {
+      id: '/ams/ai'
+      path: '/ai'
+      fullPath: '/ams/ai'
+      preLoaderRoute: typeof AmsAiRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/analytics': {
+      id: '/ams/analytics'
+      path: '/analytics'
+      fullPath: '/ams/analytics'
+      preLoaderRoute: typeof AmsAnalyticsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/audit': {
+      id: '/ams/audit'
+      path: '/audit'
+      fullPath: '/ams/audit'
+      preLoaderRoute: typeof AmsAuditRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/author-progression': {
+      id: '/ams/author-progression'
+      path: '/author-progression'
+      fullPath: '/ams/author-progression'
+      preLoaderRoute: typeof AmsAuthorProgressionRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/award-vault': {
+      id: '/ams/award-vault'
+      path: '/award-vault'
+      fullPath: '/ams/award-vault'
+      preLoaderRoute: typeof AmsAwardVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/badge-vault': {
+      id: '/ams/badge-vault'
+      path: '/badge-vault'
+      fullPath: '/ams/badge-vault'
+      preLoaderRoute: typeof AmsBadgeVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/badges': {
+      id: '/ams/badges'
+      path: '/badges'
+      fullPath: '/ams/badges'
+      preLoaderRoute: typeof AmsBadgesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/certificate-vault': {
+      id: '/ams/certificate-vault'
+      path: '/certificate-vault'
+      fullPath: '/ams/certificate-vault'
+      preLoaderRoute: typeof AmsCertificateVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/certificates': {
+      id: '/ams/certificates'
+      path: '/certificates'
+      fullPath: '/ams/certificates'
+      preLoaderRoute: typeof AmsCertificatesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/challenges': {
+      id: '/ams/challenges'
+      path: '/challenges'
+      fullPath: '/ams/challenges'
+      preLoaderRoute: typeof AmsChallengesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/chat': {
+      id: '/ams/chat'
+      path: '/chat'
+      fullPath: '/ams/chat'
+      preLoaderRoute: typeof AmsChatRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/claims': {
+      id: '/ams/claims'
+      path: '/claims'
+      fullPath: '/ams/claims'
+      preLoaderRoute: typeof AmsClaimsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/collections': {
+      id: '/ams/collections'
+      path: '/collections'
+      fullPath: '/ams/collections'
+      preLoaderRoute: typeof AmsCollectionsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/developer-progression': {
+      id: '/ams/developer-progression'
+      path: '/developer-progression'
+      fullPath: '/ams/developer-progression'
+      preLoaderRoute: typeof AmsDeveloperProgressionRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/founder-seal-vault': {
+      id: '/ams/founder-seal-vault'
+      path: '/founder-seal-vault'
+      fullPath: '/ams/founder-seal-vault'
+      preLoaderRoute: typeof AmsFounderSealVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/hall-of-fame': {
+      id: '/ams/hall-of-fame'
+      path: '/hall-of-fame'
+      fullPath: '/ams/hall-of-fame'
+      preLoaderRoute: typeof AmsHallOfFameRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/hall-of-fame-vault': {
+      id: '/ams/hall-of-fame-vault'
+      path: '/hall-of-fame-vault'
+      fullPath: '/ams/hall-of-fame-vault'
+      preLoaderRoute: typeof AmsHallOfFameVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/honor-coin-vault': {
+      id: '/ams/honor-coin-vault'
+      path: '/honor-coin-vault'
+      fullPath: '/ams/honor-coin-vault'
+      preLoaderRoute: typeof AmsHonorCoinVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/identity': {
+      id: '/ams/identity'
+      path: '/identity'
+      fullPath: '/ams/identity'
+      preLoaderRoute: typeof AmsIdentityRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/identity-card-vault': {
+      id: '/ams/identity-card-vault'
+      path: '/identity-card-vault'
+      fullPath: '/ams/identity-card-vault'
+      preLoaderRoute: typeof AmsIdentityCardVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/leaderboards': {
+      id: '/ams/leaderboards'
+      path: '/leaderboards'
+      fullPath: '/ams/leaderboards'
+      preLoaderRoute: typeof AmsLeaderboardsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/legacy': {
+      id: '/ams/legacy'
+      path: '/legacy'
+      fullPath: '/ams/legacy'
+      preLoaderRoute: typeof AmsLegacyRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/legacy-medal-vault': {
+      id: '/ams/legacy-medal-vault'
+      path: '/legacy-medal-vault'
+      fullPath: '/ams/legacy-medal-vault'
+      preLoaderRoute: typeof AmsLegacyMedalVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/levels': {
+      id: '/ams/levels'
+      path: '/levels'
+      fullPath: '/ams/levels'
+      preLoaderRoute: typeof AmsLevelsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/license-card-vault': {
+      id: '/ams/license-card-vault'
+      path: '/license-card-vault'
+      fullPath: '/ams/license-card-vault'
+      preLoaderRoute: typeof AmsLicenseCardVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/membership-vault': {
+      id: '/ams/membership-vault'
+      path: '/membership-vault'
+      fullPath: '/ams/membership-vault'
+      preLoaderRoute: typeof AmsMembershipVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/missions': {
+      id: '/ams/missions'
+      path: '/missions'
+      fullPath: '/ams/missions'
+      preLoaderRoute: typeof AmsMissionsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/notifications': {
+      id: '/ams/notifications'
+      path: '/notifications'
+      fullPath: '/ams/notifications'
+      preLoaderRoute: typeof AmsNotificationsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/overview': {
+      id: '/ams/overview'
+      path: '/overview'
+      fullPath: '/ams/overview'
+      preLoaderRoute: typeof AmsOverviewRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/passport': {
+      id: '/ams/passport'
+      path: '/passport'
+      fullPath: '/ams/passport'
+      preLoaderRoute: typeof AmsPassportRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/passport-vault': {
+      id: '/ams/passport-vault'
+      path: '/passport-vault'
+      fullPath: '/ams/passport-vault'
+      preLoaderRoute: typeof AmsPassportVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/quests': {
+      id: '/ams/quests'
+      path: '/quests'
+      fullPath: '/ams/quests'
+      preLoaderRoute: typeof AmsQuestsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/rank-vault': {
+      id: '/ams/rank-vault'
+      path: '/rank-vault'
+      fullPath: '/ams/rank-vault'
+      preLoaderRoute: typeof AmsRankVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/ranks': {
+      id: '/ams/ranks'
+      path: '/ranks'
+      fullPath: '/ams/ranks'
+      preLoaderRoute: typeof AmsRanksRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/recognition-coin-vault': {
+      id: '/ams/recognition-coin-vault'
+      path: '/recognition-coin-vault'
+      fullPath: '/ams/recognition-coin-vault'
+      preLoaderRoute: typeof AmsRecognitionCoinVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/reputation-vault': {
+      id: '/ams/reputation-vault'
+      path: '/reputation-vault'
+      fullPath: '/ams/reputation-vault'
+      preLoaderRoute: typeof AmsReputationVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/reward-chest-vault': {
+      id: '/ams/reward-chest-vault'
+      path: '/reward-chest-vault'
+      fullPath: '/ams/reward-chest-vault'
+      preLoaderRoute: typeof AmsRewardChestVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/rewards': {
+      id: '/ams/rewards'
+      path: '/rewards'
+      fullPath: '/ams/rewards'
+      preLoaderRoute: typeof AmsRewardsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/role-manager': {
+      id: '/ams/role-manager'
+      path: '/role-manager'
+      fullPath: '/ams/role-manager'
+      preLoaderRoute: typeof AmsRoleManagerRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/settings': {
+      id: '/ams/settings'
+      path: '/settings'
+      fullPath: '/ams/settings'
+      preLoaderRoute: typeof AmsSettingsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/trophies': {
+      id: '/ams/trophies'
+      path: '/trophies'
+      fullPath: '/ams/trophies'
+      preLoaderRoute: typeof AmsTrophiesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/trophy-gallery': {
+      id: '/ams/trophy-gallery'
+      path: '/trophy-gallery'
+      fullPath: '/ams/trophy-gallery'
+      preLoaderRoute: typeof AmsTrophyGalleryRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/trophy-stages': {
+      id: '/ams/trophy-stages'
+      path: '/trophy-stages'
+      fullPath: '/ams/trophy-stages'
+      preLoaderRoute: typeof AmsTrophyStagesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/trophy-vault': {
+      id: '/ams/trophy-vault'
+      path: '/trophy-vault'
+      fullPath: '/ams/trophy-vault'
+      preLoaderRoute: typeof AmsTrophyVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/trust-seal-vault': {
+      id: '/ams/trust-seal-vault'
+      path: '/trust-seal-vault'
+      fullPath: '/ams/trust-seal-vault'
+      preLoaderRoute: typeof AmsTrustSealVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/vendor-progression': {
+      id: '/ams/vendor-progression'
+      path: '/vendor-progression'
+      fullPath: '/ams/vendor-progression'
+      preLoaderRoute: typeof AmsVendorProgressionRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/verification-vault': {
+      id: '/ams/verification-vault'
+      path: '/verification-vault'
+      fullPath: '/ams/verification-vault'
+      preLoaderRoute: typeof AmsVerificationVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/xp': {
+      id: '/ams/xp'
+      path: '/xp'
+      fullPath: '/ams/xp'
+      preLoaderRoute: typeof AmsXpRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/xp-crystal-vault': {
+      id: '/ams/xp-crystal-vault'
+      path: '/xp-crystal-vault'
+      fullPath: '/ams/xp-crystal-vault'
+      preLoaderRoute: typeof AmsXpCrystalVaultRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply/': {
+      id: '/apply/'
+      path: '/apply'
+      fullPath: '/apply/'
+      preLoaderRoute: typeof ApplyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply/$role': {
+      id: '/apply/$role'
+      path: '/apply/$role'
+      fullPath: '/apply/$role'
+      preLoaderRoute: typeof ApplyRoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/$role': {
+      id: '/dashboard/$role'
+      path: '/dashboard/$role'
+      fullPath: '/dashboard/$role'
+      preLoaderRoute: typeof DashboardRoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/': {
+      id: '/demo/'
+      path: '/demo'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/$slug': {
+      id: '/demo/$slug'
+      path: '/demo/$slug'
+      fullPath: '/demo/$slug'
+      preLoaderRoute: typeof DemoSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lead-manager/': {
+      id: '/lead-manager/'
+      path: '/'
+      fullPath: '/lead-manager/'
+      preLoaderRoute: typeof LeadManagerIndexRouteImport
+      parentRoute: typeof LeadManagerRoute
+    }
+    '/manager/': {
+      id: '/manager/'
+      path: '/'
+      fullPath: '/manager/'
+      preLoaderRoute: typeof ManagerIndexRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/$section': {
+      id: '/manager/$section'
+      path: '/$section'
+      fullPath: '/manager/$section'
+      preLoaderRoute: typeof ManagerSectionRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/marketing/': {
+      id: '/marketing/'
+      path: '/'
+      fullPath: '/marketing/'
+      preLoaderRoute: typeof MarketingIndexRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/ai-automation': {
+      id: '/marketing/ai-automation'
+      path: '/ai-automation'
+      fullPath: '/marketing/ai-automation'
+      preLoaderRoute: typeof MarketingAiAutomationRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/analytics': {
+      id: '/marketing/analytics'
+      path: '/analytics'
+      fullPath: '/marketing/analytics'
+      preLoaderRoute: typeof MarketingAnalyticsRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/approvals': {
+      id: '/marketing/approvals'
+      path: '/approvals'
+      fullPath: '/marketing/approvals'
+      preLoaderRoute: typeof MarketingApprovalsRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/audit': {
+      id: '/marketing/audit'
+      path: '/audit'
+      fullPath: '/marketing/audit'
+      preLoaderRoute: typeof MarketingAuditRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/campaign-builder': {
+      id: '/marketing/campaign-builder'
+      path: '/campaign-builder'
+      fullPath: '/marketing/campaign-builder'
+      preLoaderRoute: typeof MarketingCampaignBuilderRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/campaigns': {
+      id: '/marketing/campaigns'
+      path: '/campaigns'
+      fullPath: '/marketing/campaigns'
+      preLoaderRoute: typeof MarketingCampaignsRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/content': {
+      id: '/marketing/content'
+      path: '/content'
+      fullPath: '/marketing/content'
+      preLoaderRoute: typeof MarketingContentRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/creatives': {
+      id: '/marketing/creatives'
+      path: '/creatives'
+      fullPath: '/marketing/creatives'
+      preLoaderRoute: typeof MarketingCreativesRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/hierarchy': {
+      id: '/marketing/hierarchy'
+      path: '/hierarchy'
+      fullPath: '/marketing/hierarchy'
+      preLoaderRoute: typeof MarketingHierarchyRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/lead-sources': {
+      id: '/marketing/lead-sources'
+      path: '/lead-sources'
+      fullPath: '/marketing/lead-sources'
+      preLoaderRoute: typeof MarketingLeadSourcesRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/offers': {
+      id: '/marketing/offers'
+      path: '/offers'
+      fullPath: '/marketing/offers'
+      preLoaderRoute: typeof MarketingOffersRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/performance': {
+      id: '/marketing/performance'
+      path: '/performance'
+      fullPath: '/marketing/performance'
+      preLoaderRoute: typeof MarketingPerformanceRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/reports': {
+      id: '/marketing/reports'
+      path: '/reports'
+      fullPath: '/marketing/reports'
+      preLoaderRoute: typeof MarketingReportsRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/schedules': {
+      id: '/marketing/schedules'
+      path: '/schedules'
+      fullPath: '/marketing/schedules'
+      preLoaderRoute: typeof MarketingSchedulesRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/seo': {
+      id: '/marketing/seo'
+      path: '/seo'
+      fullPath: '/marketing/seo'
+      preLoaderRoute: typeof MarketingSeoRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketing/targeting': {
+      id: '/marketing/targeting'
+      path: '/targeting'
+      fullPath: '/marketing/targeting'
+      preLoaderRoute: typeof MarketingTargetingRouteImport
+      parentRoute: typeof MarketingRoute
+    }
+    '/marketplace/': {
+      id: '/marketplace/'
+      path: '/'
+      fullPath: '/marketplace/'
+      preLoaderRoute: typeof MarketplaceIndexRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
+    '/payment/fail': {
+      id: '/payment/fail'
+      path: '/payment/fail'
+      fullPath: '/payment/fail'
+      preLoaderRoute: typeof PaymentFailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment/success': {
+      id: '/payment/success'
+      path: '/payment/success'
+      fullPath: '/payment/success'
+      preLoaderRoute: typeof PaymentSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promise-tracker/': {
+      id: '/promise-tracker/'
+      path: '/'
+      fullPath: '/promise-tracker/'
+      preLoaderRoute: typeof PromiseTrackerIndexRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/active': {
+      id: '/promise-tracker/active'
+      path: '/active'
+      fullPath: '/promise-tracker/active'
+      preLoaderRoute: typeof PromiseTrackerActiveRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/all': {
+      id: '/promise-tracker/all'
+      path: '/all'
+      fullPath: '/promise-tracker/all'
+      preLoaderRoute: typeof PromiseTrackerAllRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/audit-logs': {
+      id: '/promise-tracker/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/promise-tracker/audit-logs'
+      preLoaderRoute: typeof PromiseTrackerAuditLogsRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/broken': {
+      id: '/promise-tracker/broken'
+      path: '/broken'
+      fullPath: '/promise-tracker/broken'
+      preLoaderRoute: typeof PromiseTrackerBrokenRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/categories': {
+      id: '/promise-tracker/categories'
+      path: '/categories'
+      fullPath: '/promise-tracker/categories'
+      preLoaderRoute: typeof PromiseTrackerCategoriesRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/create': {
+      id: '/promise-tracker/create'
+      path: '/create'
+      fullPath: '/promise-tracker/create'
+      preLoaderRoute: typeof PromiseTrackerCreateRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/delayed': {
+      id: '/promise-tracker/delayed'
+      path: '/delayed'
+      fullPath: '/promise-tracker/delayed'
+      preLoaderRoute: typeof PromiseTrackerDelayedRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/escalations': {
+      id: '/promise-tracker/escalations'
+      path: '/escalations'
+      fullPath: '/promise-tracker/escalations'
+      preLoaderRoute: typeof PromiseTrackerEscalationsRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/fulfilled': {
+      id: '/promise-tracker/fulfilled'
+      path: '/fulfilled'
+      fullPath: '/promise-tracker/fulfilled'
+      preLoaderRoute: typeof PromiseTrackerFulfilledRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/insights': {
+      id: '/promise-tracker/insights'
+      path: '/insights'
+      fullPath: '/promise-tracker/insights'
+      preLoaderRoute: typeof PromiseTrackerInsightsRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/rules': {
+      id: '/promise-tracker/rules'
+      path: '/rules'
+      fullPath: '/promise-tracker/rules'
+      preLoaderRoute: typeof PromiseTrackerRulesRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/promise-tracker/settings': {
+      id: '/promise-tracker/settings'
+      path: '/settings'
+      fullPath: '/promise-tracker/settings'
+      preLoaderRoute: typeof PromiseTrackerSettingsRouteImport
+      parentRoute: typeof PromiseTrackerRoute
+    }
+    '/s/$code': {
+      id: '/s/$code'
+      path: '/s/$code'
+      fullPath: '/s/$code'
+      preLoaderRoute: typeof SCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap-products/$page.xml': {
+      id: '/sitemap-products/$page.xml'
+      path: '/sitemap-products/$page.xml'
+      fullPath: '/sitemap-products/$page.xml'
+      preLoaderRoute: typeof SitemapProductsPageDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vala-ai/': {
+      id: '/vala-ai/'
+      path: '/'
+      fullPath: '/vala-ai/'
+      preLoaderRoute: typeof ValaAiIndexRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/credits': {
+      id: '/vala-ai/credits'
+      path: '/credits'
+      fullPath: '/vala-ai/credits'
+      preLoaderRoute: typeof ValaAiCreditsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/errors': {
+      id: '/vala-ai/errors'
+      path: '/errors'
+      fullPath: '/vala-ai/errors'
+      preLoaderRoute: typeof ValaAiErrorsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/lock': {
+      id: '/vala-ai/lock'
+      path: '/lock'
+      fullPath: '/vala-ai/lock'
+      preLoaderRoute: typeof ValaAiLockRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/logs': {
+      id: '/vala-ai/logs'
+      path: '/logs'
+      fullPath: '/vala-ai/logs'
+      preLoaderRoute: typeof ValaAiLogsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/models': {
+      id: '/vala-ai/models'
+      path: '/models'
+      fullPath: '/vala-ai/models'
+      preLoaderRoute: typeof ValaAiModelsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/projects': {
+      id: '/vala-ai/projects'
+      path: '/projects'
+      fullPath: '/vala-ai/projects'
+      preLoaderRoute: typeof ValaAiProjectsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/prompts': {
+      id: '/vala-ai/prompts'
+      path: '/prompts'
+      fullPath: '/vala-ai/prompts'
+      preLoaderRoute: typeof ValaAiPromptsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/rollback': {
+      id: '/vala-ai/rollback'
+      path: '/rollback'
+      fullPath: '/vala-ai/rollback'
+      preLoaderRoute: typeof ValaAiRollbackRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/vala-ai/settings': {
+      id: '/vala-ai/settings'
+      path: '/settings'
+      fullPath: '/vala-ai/settings'
+      preLoaderRoute: typeof ValaAiSettingsRouteImport
+      parentRoute: typeof ValaAiRoute
+    }
+    '/verify/$code': {
+      id: '/verify/$code'
+      path: '/verify/$code'
+      fullPath: '/verify/$code'
+      preLoaderRoute: typeof VerifyCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affiliate-manager/affiliates/$id': {
+      id: '/affiliate-manager/affiliates/$id'
+      path: '/$id'
+      fullPath: '/affiliate-manager/affiliates/$id'
+      preLoaderRoute: typeof AffiliateManagerAffiliatesIdRouteImport
+      parentRoute: typeof AffiliateManagerAffiliatesRoute
+    }
+    '/ams/awards/': {
+      id: '/ams/awards/'
+      path: '/awards'
+      fullPath: '/ams/awards/'
+      preLoaderRoute: typeof AmsAwardsIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/$id': {
+      id: '/ams/awards/$id'
+      path: '/awards/$id'
+      fullPath: '/ams/awards/$id'
+      preLoaderRoute: typeof AmsAwardsIdRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/audit': {
+      id: '/ams/awards/audit'
+      path: '/awards/audit'
+      fullPath: '/ams/awards/audit'
+      preLoaderRoute: typeof AmsAwardsAuditRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/categories': {
+      id: '/ams/awards/categories'
+      path: '/awards/categories'
+      fullPath: '/ams/awards/categories'
+      preLoaderRoute: typeof AmsAwardsCategoriesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/effects': {
+      id: '/ams/awards/effects'
+      path: '/awards/effects'
+      fullPath: '/ams/awards/effects'
+      preLoaderRoute: typeof AmsAwardsEffectsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/new': {
+      id: '/ams/awards/new'
+      path: '/awards/new'
+      fullPath: '/ams/awards/new'
+      preLoaderRoute: typeof AmsAwardsNewRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/collection/': {
+      id: '/ams/collection/'
+      path: '/collection'
+      fullPath: '/ams/collection/'
+      preLoaderRoute: typeof AmsCollectionIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/collection/$type': {
+      id: '/ams/collection/$type'
+      path: '/collection/$type'
+      fullPath: '/ams/collection/$type'
+      preLoaderRoute: typeof AmsCollectionTypeRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/museum/': {
+      id: '/ams/museum/'
+      path: '/museum'
+      fullPath: '/ams/museum/'
+      preLoaderRoute: typeof AmsMuseumIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/museum/$showcase': {
+      id: '/ams/museum/$showcase'
+      path: '/museum/$showcase'
+      fullPath: '/ams/museum/$showcase'
+      preLoaderRoute: typeof AmsMuseumShowcaseRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/role-manager/': {
+      id: '/ams/role-manager/'
+      path: '/'
+      fullPath: '/ams/role-manager/'
+      preLoaderRoute: typeof AmsRoleManagerIndexRouteImport
+      parentRoute: typeof AmsRoleManagerRoute
+    }
+    '/ams/role-manager/$slug': {
+      id: '/ams/role-manager/$slug'
+      path: '/$slug'
+      fullPath: '/ams/role-manager/$slug'
+      preLoaderRoute: typeof AmsRoleManagerSlugRouteImport
+      parentRoute: typeof AmsRoleManagerRoute
+    }
+    '/ams/role-showcase/': {
+      id: '/ams/role-showcase/'
+      path: '/role-showcase'
+      fullPath: '/ams/role-showcase/'
+      preLoaderRoute: typeof AmsRoleShowcaseIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/role-showcase/$slug': {
+      id: '/ams/role-showcase/$slug'
+      path: '/role-showcase/$slug'
+      fullPath: '/ams/role-showcase/$slug'
+      preLoaderRoute: typeof AmsRoleShowcaseSlugRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/tickets/': {
+      id: '/ams/tickets/'
+      path: '/tickets'
+      fullPath: '/ams/tickets/'
+      preLoaderRoute: typeof AmsTicketsIndexRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/tickets/$id': {
+      id: '/ams/tickets/$id'
+      path: '/tickets/$id'
+      fullPath: '/ams/tickets/$id'
+      preLoaderRoute: typeof AmsTicketsIdRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/tickets/new': {
+      id: '/ams/tickets/new'
+      path: '/tickets/new'
+      fullPath: '/ams/tickets/new'
+      preLoaderRoute: typeof AmsTicketsNewRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/api/account/purchases': {
+      id: '/api/account/purchases'
+      path: '/api/account/purchases'
+      fullPath: '/api/account/purchases'
+      preLoaderRoute: typeof ApiAccountPurchasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/actions/config': {
+      id: '/api/actions/config'
+      path: '/api/actions/config'
+      fullPath: '/api/actions/config'
+      preLoaderRoute: typeof ApiActionsConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/actions/registry': {
+      id: '/api/actions/registry'
+      path: '/api/actions/registry'
+      fullPath: '/api/actions/registry'
+      preLoaderRoute: typeof ApiActionsRegistryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/affiliate/account': {
+      id: '/api/affiliate/account'
+      path: '/api/affiliate/account'
+      fullPath: '/api/affiliate/account'
+      preLoaderRoute: typeof ApiAffiliateAccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/affiliate/attribute': {
+      id: '/api/affiliate/attribute'
+      path: '/api/affiliate/attribute'
+      fullPath: '/api/affiliate/attribute'
+      preLoaderRoute: typeof ApiAffiliateAttributeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/analytics/products': {
+      id: '/api/analytics/products'
+      path: '/api/analytics/products'
+      fullPath: '/api/analytics/products'
+      preLoaderRoute: typeof ApiAnalyticsProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/author/earnings': {
+      id: '/api/author/earnings'
+      path: '/api/author/earnings'
+      fullPath: '/api/author/earnings'
+      preLoaderRoute: typeof ApiAuthorEarningsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/author/products': {
+      id: '/api/author/products'
+      path: '/api/author/products'
+      fullPath: '/api/author/products'
+      preLoaderRoute: typeof ApiAuthorProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/demo/ticket': {
+      id: '/api/demo/ticket'
+      path: '/api/demo/ticket'
+      fullPath: '/api/demo/ticket'
+      preLoaderRoute: typeof ApiDemoTicketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/finance/reseller-membership': {
+      id: '/api/finance/reseller-membership'
+      path: '/api/finance/reseller-membership'
+      fullPath: '/api/finance/reseller-membership'
+      preLoaderRoute: typeof ApiFinanceResellerMembershipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/governance/console': {
+      id: '/api/governance/console'
+      path: '/api/governance/console'
+      fullPath: '/api/governance/console'
+      preLoaderRoute: typeof ApiGovernanceConsoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/apply-migrations': {
+      id: '/api/internal/apply-migrations'
+      path: '/api/internal/apply-migrations'
+      fullPath: '/api/internal/apply-migrations'
+      preLoaderRoute: typeof ApiInternalApplyMigrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/apply-reseller-schema': {
+      id: '/api/internal/apply-reseller-schema'
+      path: '/api/internal/apply-reseller-schema'
+      fullPath: '/api/internal/apply-reseller-schema'
+      preLoaderRoute: typeof ApiInternalApplyResellerSchemaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/author-review': {
+      id: '/api/internal/author-review'
+      path: '/api/internal/author-review'
+      fullPath: '/api/internal/author-review'
+      preLoaderRoute: typeof ApiInternalAuthorReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/credential-setup': {
+      id: '/api/internal/credential-setup'
+      path: '/api/internal/credential-setup'
+      fullPath: '/api/internal/credential-setup'
+      preLoaderRoute: typeof ApiInternalCredentialSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/db-health': {
+      id: '/api/internal/db-health'
+      path: '/api/internal/db-health'
+      fullPath: '/api/internal/db-health'
+      preLoaderRoute: typeof ApiInternalDbHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/email-flush': {
+      id: '/api/internal/email-flush'
+      path: '/api/internal/email-flush'
+      fullPath: '/api/internal/email-flush'
+      preLoaderRoute: typeof ApiInternalEmailFlushRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/marketplace-migration': {
+      id: '/api/internal/marketplace-migration'
+      path: '/api/internal/marketplace-migration'
+      fullPath: '/api/internal/marketplace-migration'
+      preLoaderRoute: typeof ApiInternalMarketplaceMigrationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/seller-admin': {
+      id: '/api/internal/seller-admin'
+      path: '/api/internal/seller-admin'
+      fullPath: '/api/internal/seller-admin'
+      preLoaderRoute: typeof ApiInternalSellerAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/seo-audit': {
+      id: '/api/internal/seo-audit'
+      path: '/api/internal/seo-audit'
+      fullPath: '/api/internal/seo-audit'
+      preLoaderRoute: typeof ApiInternalSeoAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/seo-page': {
+      id: '/api/internal/seo-page'
+      path: '/api/internal/seo-page'
+      fullPath: '/api/internal/seo-page'
+      preLoaderRoute: typeof ApiInternalSeoPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/internal/settle-commissions': {
+      id: '/api/internal/settle-commissions'
+      path: '/api/internal/settle-commissions'
+      fullPath: '/api/internal/settle-commissions'
+      preLoaderRoute: typeof ApiInternalSettleCommissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/leads/console': {
+      id: '/api/leads/console'
+      path: '/api/leads/console'
+      fullPath: '/api/leads/console'
+      preLoaderRoute: typeof ApiLeadsConsoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/manager/bulk': {
+      id: '/api/manager/bulk'
+      path: '/api/manager/bulk'
+      fullPath: '/api/manager/bulk'
+      preLoaderRoute: typeof ApiManagerBulkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/manager/resource': {
+      id: '/api/manager/resource'
+      path: '/api/manager/resource'
+      fullPath: '/api/manager/resource'
+      preLoaderRoute: typeof ApiManagerResourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/manager/row-action': {
+      id: '/api/manager/row-action'
+      path: '/api/manager/row-action'
+      fullPath: '/api/manager/row-action'
+      preLoaderRoute: typeof ApiManagerRowActionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/activity': {
+      id: '/api/marketplace/activity'
+      path: '/api/marketplace/activity'
+      fullPath: '/api/marketplace/activity'
+      preLoaderRoute: typeof ApiMarketplaceActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/automation': {
+      id: '/api/marketplace/automation'
+      path: '/api/marketplace/automation'
+      fullPath: '/api/marketplace/automation'
+      preLoaderRoute: typeof ApiMarketplaceAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/catalog': {
+      id: '/api/marketplace/catalog'
+      path: '/api/marketplace/catalog'
+      fullPath: '/api/marketplace/catalog'
+      preLoaderRoute: typeof ApiMarketplaceCatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/colour': {
+      id: '/api/marketplace/colour'
+      path: '/api/marketplace/colour'
+      fullPath: '/api/marketplace/colour'
+      preLoaderRoute: typeof ApiMarketplaceColourRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/country': {
+      id: '/api/marketplace/country'
+      path: '/api/marketplace/country'
+      fullPath: '/api/marketplace/country'
+      preLoaderRoute: typeof ApiMarketplaceCountryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/deployment': {
+      id: '/api/marketplace/deployment'
+      path: '/api/marketplace/deployment'
+      fullPath: '/api/marketplace/deployment'
+      preLoaderRoute: typeof ApiMarketplaceDeploymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/developer': {
+      id: '/api/marketplace/developer'
+      path: '/api/marketplace/developer'
+      fullPath: '/api/marketplace/developer'
+      preLoaderRoute: typeof ApiMarketplaceDeveloperRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/integrations': {
+      id: '/api/marketplace/integrations'
+      path: '/api/marketplace/integrations'
+      fullPath: '/api/marketplace/integrations'
+      preLoaderRoute: typeof ApiMarketplaceIntegrationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/integrity': {
+      id: '/api/marketplace/integrity'
+      path: '/api/marketplace/integrity'
+      fullPath: '/api/marketplace/integrity'
+      preLoaderRoute: typeof ApiMarketplaceIntegrityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/lead': {
+      id: '/api/marketplace/lead'
+      path: '/api/marketplace/lead'
+      fullPath: '/api/marketplace/lead'
+      preLoaderRoute: typeof ApiMarketplaceLeadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/media': {
+      id: '/api/marketplace/media'
+      path: '/api/marketplace/media'
+      fullPath: '/api/marketplace/media'
+      preLoaderRoute: typeof ApiMarketplaceMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/micro-interactions': {
+      id: '/api/marketplace/micro-interactions'
+      path: '/api/marketplace/micro-interactions'
+      fullPath: '/api/marketplace/micro-interactions'
+      preLoaderRoute: typeof ApiMarketplaceMicroInteractionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/permissions': {
+      id: '/api/marketplace/permissions'
+      path: '/api/marketplace/permissions'
+      fullPath: '/api/marketplace/permissions'
+      preLoaderRoute: typeof ApiMarketplacePermissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/proof': {
+      id: '/api/marketplace/proof'
+      path: '/api/marketplace/proof'
+      fullPath: '/api/marketplace/proof'
+      preLoaderRoute: typeof ApiMarketplaceProofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/rows': {
+      id: '/api/marketplace/rows'
+      path: '/api/marketplace/rows'
+      fullPath: '/api/marketplace/rows'
+      preLoaderRoute: typeof ApiMarketplaceRowsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/search': {
+      id: '/api/marketplace/search'
+      path: '/api/marketplace/search'
+      fullPath: '/api/marketplace/search'
+      preLoaderRoute: typeof ApiMarketplaceSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/security': {
+      id: '/api/marketplace/security'
+      path: '/api/marketplace/security'
+      fullPath: '/api/marketplace/security'
+      preLoaderRoute: typeof ApiMarketplaceSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/support': {
+      id: '/api/marketplace/support'
+      path: '/api/marketplace/support'
+      fullPath: '/api/marketplace/support'
+      preLoaderRoute: typeof ApiMarketplaceSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/system': {
+      id: '/api/marketplace/system'
+      path: '/api/marketplace/system'
+      fullPath: '/api/marketplace/system'
+      preLoaderRoute: typeof ApiMarketplaceSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/track': {
+      id: '/api/marketplace/track'
+      path: '/api/marketplace/track'
+      fullPath: '/api/marketplace/track'
+      preLoaderRoute: typeof ApiMarketplaceTrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/marketplace/translate': {
+      id: '/api/marketplace/translate'
+      path: '/api/marketplace/translate'
+      fullPath: '/api/marketplace/translate'
+      preLoaderRoute: typeof ApiMarketplaceTranslateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/partner/quote': {
+      id: '/api/partner/quote'
+      path: '/api/partner/quote'
+      fullPath: '/api/partner/quote'
+      preLoaderRoute: typeof ApiPartnerQuoteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/payment/initiate': {
+      id: '/api/payment/initiate'
+      path: '/api/payment/initiate'
+      fullPath: '/api/payment/initiate'
+      preLoaderRoute: typeof ApiPaymentInitiateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/payment/status': {
+      id: '/api/payment/status'
+      path: '/api/payment/status'
+      fullPath: '/api/payment/status'
+      preLoaderRoute: typeof ApiPaymentStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/payment/webhook': {
+      id: '/api/payment/webhook'
+      path: '/api/payment/webhook'
+      fullPath: '/api/payment/webhook'
+      preLoaderRoute: typeof ApiPaymentWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/qr/$code': {
+      id: '/api/qr/$code'
+      path: '/api/qr/$code'
+      fullPath: '/api/qr/$code'
+      preLoaderRoute: typeof ApiQrCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/security/console': {
+      id: '/api/security/console'
+      path: '/api/security/console'
+      fullPath: '/api/security/console'
+      preLoaderRoute: typeof ApiSecurityConsoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/security/settings': {
+      id: '/api/security/settings'
+      path: '/api/security/settings'
+      fullPath: '/api/security/settings'
+      preLoaderRoute: typeof ApiSecuritySettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/seller/metrics': {
+      id: '/api/seller/metrics'
+      path: '/api/seller/metrics'
+      fullPath: '/api/seller/metrics'
+      preLoaderRoute: typeof ApiSellerMetricsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/seo/console': {
+      id: '/api/seo/console'
+      path: '/api/seo/console'
+      fullPath: '/api/seo/console'
+      preLoaderRoute: typeof ApiSeoConsoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/track/ref': {
+      id: '/api/track/ref'
+      path: '/api/track/ref'
+      fullPath: '/api/track/ref'
+      preLoaderRoute: typeof ApiTrackRefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketplace/category/$slug': {
+      id: '/marketplace/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/marketplace/category/$slug'
+      preLoaderRoute: typeof MarketplaceCategorySlugRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
+    '/marketplace/country/$country': {
+      id: '/marketplace/country/$country'
+      path: '/country/$country'
+      fullPath: '/marketplace/country/$country'
+      preLoaderRoute: typeof MarketplaceCountryCountryRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
+    '/marketplace/product/$slug': {
+      id: '/marketplace/product/$slug'
+      path: '/product/$slug'
+      fullPath: '/marketplace/product/$slug'
+      preLoaderRoute: typeof MarketplaceProductSlugRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
+    '/proxy/demo/': {
+      id: '/proxy/demo/'
+      path: '/proxy/demo'
+      fullPath: '/proxy/demo/'
+      preLoaderRoute: typeof ProxyDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ams/awards/$id/edit': {
+      id: '/ams/awards/$id/edit'
+      path: '/edit'
+      fullPath: '/ams/awards/$id/edit'
+      preLoaderRoute: typeof AmsAwardsIdEditRouteImport
+      parentRoute: typeof AmsAwardsIdRoute
+    }
+    '/ams/awards/libraries/achievements': {
+      id: '/ams/awards/libraries/achievements'
+      path: '/awards/libraries/achievements'
+      fullPath: '/ams/awards/libraries/achievements'
+      preLoaderRoute: typeof AmsAwardsLibrariesAchievementsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/libraries/badges': {
+      id: '/ams/awards/libraries/badges'
+      path: '/awards/libraries/badges'
+      fullPath: '/ams/awards/libraries/badges'
+      preLoaderRoute: typeof AmsAwardsLibrariesBadgesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/libraries/ranks': {
+      id: '/ams/awards/libraries/ranks'
+      path: '/awards/libraries/ranks'
+      fullPath: '/ams/awards/libraries/ranks'
+      preLoaderRoute: typeof AmsAwardsLibrariesRanksRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/libraries/trophies': {
+      id: '/ams/awards/libraries/trophies'
+      path: '/awards/libraries/trophies'
+      fullPath: '/ams/awards/libraries/trophies'
+      preLoaderRoute: typeof AmsAwardsLibrariesTrophiesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/rules/levels': {
+      id: '/ams/awards/rules/levels'
+      path: '/awards/rules/levels'
+      fullPath: '/ams/awards/rules/levels'
+      preLoaderRoute: typeof AmsAwardsRulesLevelsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/rules/milestones': {
+      id: '/ams/awards/rules/milestones'
+      path: '/awards/rules/milestones'
+      fullPath: '/ams/awards/rules/milestones'
+      preLoaderRoute: typeof AmsAwardsRulesMilestonesRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/rules/rewards': {
+      id: '/ams/awards/rules/rewards'
+      path: '/awards/rules/rewards'
+      fullPath: '/ams/awards/rules/rewards'
+      preLoaderRoute: typeof AmsAwardsRulesRewardsRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/rules/streaks': {
+      id: '/ams/awards/rules/streaks'
+      path: '/awards/rules/streaks'
+      fullPath: '/ams/awards/rules/streaks'
+      preLoaderRoute: typeof AmsAwardsRulesStreaksRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/ams/awards/rules/xp': {
+      id: '/ams/awards/rules/xp'
+      path: '/awards/rules/xp'
+      fullPath: '/ams/awards/rules/xp'
+      preLoaderRoute: typeof AmsAwardsRulesXpRouteImport
+      parentRoute: typeof AmsRoute
+    }
+    '/api/account/invoice/$id': {
+      id: '/api/account/invoice/$id'
+      path: '/api/account/invoice/$id'
+      fullPath: '/api/account/invoice/$id'
+      preLoaderRoute: typeof ApiAccountInvoiceIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/orders/$id/fulfil': {
+      id: '/api/orders/$id/fulfil'
+      path: '/api/orders/$id/fulfil'
+      fullPath: '/api/orders/$id/fulfil'
+      preLoaderRoute: typeof ApiOrdersIdFulfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/proxy/demo/$': {
+      id: '/api/proxy/demo/$'
+      path: '/api/proxy/demo/$'
+      fullPath: '/api/proxy/demo/$'
+      preLoaderRoute: typeof ApiProxyDemoSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AffiliateManagerAffiliatesRouteChildren {
+  AffiliateManagerAffiliatesIdRoute: typeof AffiliateManagerAffiliatesIdRoute
+}
+
+const AffiliateManagerAffiliatesRouteChildren: AffiliateManagerAffiliatesRouteChildren =
+  {
+    AffiliateManagerAffiliatesIdRoute: AffiliateManagerAffiliatesIdRoute,
+  }
+
+const AffiliateManagerAffiliatesRouteWithChildren =
+  AffiliateManagerAffiliatesRoute._addFileChildren(
+    AffiliateManagerAffiliatesRouteChildren,
+  )
+
+interface AffiliateManagerRouteChildren {
+  AffiliateManagerAffiliateLinksRoute: typeof AffiliateManagerAffiliateLinksRoute
+  AffiliateManagerAffiliatesRoute: typeof AffiliateManagerAffiliatesRouteWithChildren
+  AffiliateManagerAnalyticsRoute: typeof AffiliateManagerAnalyticsRoute
+  AffiliateManagerApplicationsRoute: typeof AffiliateManagerApplicationsRoute
+  AffiliateManagerAuditLogRoute: typeof AffiliateManagerAuditLogRoute
+  AffiliateManagerBulkActionsRoute: typeof AffiliateManagerBulkActionsRoute
+  AffiliateManagerCampaignsRoute: typeof AffiliateManagerCampaignsRoute
+  AffiliateManagerCommissionsRoute: typeof AffiliateManagerCommissionsRoute
+  AffiliateManagerCommunicationRoute: typeof AffiliateManagerCommunicationRoute
+  AffiliateManagerComplianceRoute: typeof AffiliateManagerComplianceRoute
+  AffiliateManagerCouponsRoute: typeof AffiliateManagerCouponsRoute
+  AffiliateManagerCustomersRoute: typeof AffiliateManagerCustomersRoute
+  AffiliateManagerDocumentsRoute: typeof AffiliateManagerDocumentsRoute
+  AffiliateManagerExportRoute: typeof AffiliateManagerExportRoute
+  AffiliateManagerImportRoute: typeof AffiliateManagerImportRoute
+  AffiliateManagerLeadsRoute: typeof AffiliateManagerLeadsRoute
+  AffiliateManagerMarketingRoute: typeof AffiliateManagerMarketingRoute
+  AffiliateManagerMarketplaceRoute: typeof AffiliateManagerMarketplaceRoute
+  AffiliateManagerOrdersRoute: typeof AffiliateManagerOrdersRoute
+  AffiliateManagerPayoutsRoute: typeof AffiliateManagerPayoutsRoute
+  AffiliateManagerPerformanceRoute: typeof AffiliateManagerPerformanceRoute
+  AffiliateManagerProductsRoute: typeof AffiliateManagerProductsRoute
+  AffiliateManagerRealtimeTestRoute: typeof AffiliateManagerRealtimeTestRoute
+  AffiliateManagerReferralCodesRoute: typeof AffiliateManagerReferralCodesRoute
+  AffiliateManagerReferralNetworkRoute: typeof AffiliateManagerReferralNetworkRoute
+  AffiliateManagerReportsRoute: typeof AffiliateManagerReportsRoute
+  AffiliateManagerSalesRoute: typeof AffiliateManagerSalesRoute
+  AffiliateManagerSearchRoute: typeof AffiliateManagerSearchRoute
+  AffiliateManagerSettingsRoute: typeof AffiliateManagerSettingsRoute
+  AffiliateManagerSupportRoute: typeof AffiliateManagerSupportRoute
+  AffiliateManagerWalletRoute: typeof AffiliateManagerWalletRoute
+  AffiliateManagerIndexRoute: typeof AffiliateManagerIndexRoute
+}
+
+const AffiliateManagerRouteChildren: AffiliateManagerRouteChildren = {
+  AffiliateManagerAffiliateLinksRoute: AffiliateManagerAffiliateLinksRoute,
+  AffiliateManagerAffiliatesRoute: AffiliateManagerAffiliatesRouteWithChildren,
+  AffiliateManagerAnalyticsRoute: AffiliateManagerAnalyticsRoute,
+  AffiliateManagerApplicationsRoute: AffiliateManagerApplicationsRoute,
+  AffiliateManagerAuditLogRoute: AffiliateManagerAuditLogRoute,
+  AffiliateManagerBulkActionsRoute: AffiliateManagerBulkActionsRoute,
+  AffiliateManagerCampaignsRoute: AffiliateManagerCampaignsRoute,
+  AffiliateManagerCommissionsRoute: AffiliateManagerCommissionsRoute,
+  AffiliateManagerCommunicationRoute: AffiliateManagerCommunicationRoute,
+  AffiliateManagerComplianceRoute: AffiliateManagerComplianceRoute,
+  AffiliateManagerCouponsRoute: AffiliateManagerCouponsRoute,
+  AffiliateManagerCustomersRoute: AffiliateManagerCustomersRoute,
+  AffiliateManagerDocumentsRoute: AffiliateManagerDocumentsRoute,
+  AffiliateManagerExportRoute: AffiliateManagerExportRoute,
+  AffiliateManagerImportRoute: AffiliateManagerImportRoute,
+  AffiliateManagerLeadsRoute: AffiliateManagerLeadsRoute,
+  AffiliateManagerMarketingRoute: AffiliateManagerMarketingRoute,
+  AffiliateManagerMarketplaceRoute: AffiliateManagerMarketplaceRoute,
+  AffiliateManagerOrdersRoute: AffiliateManagerOrdersRoute,
+  AffiliateManagerPayoutsRoute: AffiliateManagerPayoutsRoute,
+  AffiliateManagerPerformanceRoute: AffiliateManagerPerformanceRoute,
+  AffiliateManagerProductsRoute: AffiliateManagerProductsRoute,
+  AffiliateManagerRealtimeTestRoute: AffiliateManagerRealtimeTestRoute,
+  AffiliateManagerReferralCodesRoute: AffiliateManagerReferralCodesRoute,
+  AffiliateManagerReferralNetworkRoute: AffiliateManagerReferralNetworkRoute,
+  AffiliateManagerReportsRoute: AffiliateManagerReportsRoute,
+  AffiliateManagerSalesRoute: AffiliateManagerSalesRoute,
+  AffiliateManagerSearchRoute: AffiliateManagerSearchRoute,
+  AffiliateManagerSettingsRoute: AffiliateManagerSettingsRoute,
+  AffiliateManagerSupportRoute: AffiliateManagerSupportRoute,
+  AffiliateManagerWalletRoute: AffiliateManagerWalletRoute,
+  AffiliateManagerIndexRoute: AffiliateManagerIndexRoute,
+}
+
+const AffiliateManagerRouteWithChildren =
+  AffiliateManagerRoute._addFileChildren(AffiliateManagerRouteChildren)
+
+interface AiCeoRouteChildren {
+  AiCeoApprovalsRoute: typeof AiCeoApprovalsRoute
+  AiCeoDecisionEngineRoute: typeof AiCeoDecisionEngineRoute
+  AiCeoLearningRoute: typeof AiCeoLearningRoute
+  AiCeoLiveMonitorRoute: typeof AiCeoLiveMonitorRoute
+  AiCeoPerformanceRoute: typeof AiCeoPerformanceRoute
+  AiCeoPredictionsRoute: typeof AiCeoPredictionsRoute
+  AiCeoReportsRoute: typeof AiCeoReportsRoute
+  AiCeoRiskRoute: typeof AiCeoRiskRoute
+  AiCeoSettingsRoute: typeof AiCeoSettingsRoute
+  AiCeoIndexRoute: typeof AiCeoIndexRoute
+}
+
+const AiCeoRouteChildren: AiCeoRouteChildren = {
+  AiCeoApprovalsRoute: AiCeoApprovalsRoute,
+  AiCeoDecisionEngineRoute: AiCeoDecisionEngineRoute,
+  AiCeoLearningRoute: AiCeoLearningRoute,
+  AiCeoLiveMonitorRoute: AiCeoLiveMonitorRoute,
+  AiCeoPerformanceRoute: AiCeoPerformanceRoute,
+  AiCeoPredictionsRoute: AiCeoPredictionsRoute,
+  AiCeoReportsRoute: AiCeoReportsRoute,
+  AiCeoRiskRoute: AiCeoRiskRoute,
+  AiCeoSettingsRoute: AiCeoSettingsRoute,
+  AiCeoIndexRoute: AiCeoIndexRoute,
+}
+
+const AiCeoRouteWithChildren = AiCeoRoute._addFileChildren(AiCeoRouteChildren)
+
+interface AmsRoleManagerRouteChildren {
+  AmsRoleManagerSlugRoute: typeof AmsRoleManagerSlugRoute
+  AmsRoleManagerIndexRoute: typeof AmsRoleManagerIndexRoute
+}
+
+const AmsRoleManagerRouteChildren: AmsRoleManagerRouteChildren = {
+  AmsRoleManagerSlugRoute: AmsRoleManagerSlugRoute,
+  AmsRoleManagerIndexRoute: AmsRoleManagerIndexRoute,
+}
+
+const AmsRoleManagerRouteWithChildren = AmsRoleManagerRoute._addFileChildren(
+  AmsRoleManagerRouteChildren,
+)
+
+interface AmsAwardsIdRouteChildren {
+  AmsAwardsIdEditRoute: typeof AmsAwardsIdEditRoute
+}
+
+const AmsAwardsIdRouteChildren: AmsAwardsIdRouteChildren = {
+  AmsAwardsIdEditRoute: AmsAwardsIdEditRoute,
+}
+
+const AmsAwardsIdRouteWithChildren = AmsAwardsIdRoute._addFileChildren(
+  AmsAwardsIdRouteChildren,
+)
+
+interface AmsRouteChildren {
+  AmsAchievementVaultRoute: typeof AmsAchievementVaultRoute
+  AmsAchievementsRoute: typeof AmsAchievementsRoute
+  AmsAiRoute: typeof AmsAiRoute
+  AmsAnalyticsRoute: typeof AmsAnalyticsRoute
+  AmsAuditRoute: typeof AmsAuditRoute
+  AmsAuthorProgressionRoute: typeof AmsAuthorProgressionRoute
+  AmsAwardVaultRoute: typeof AmsAwardVaultRoute
+  AmsBadgeVaultRoute: typeof AmsBadgeVaultRoute
+  AmsBadgesRoute: typeof AmsBadgesRoute
+  AmsCertificateVaultRoute: typeof AmsCertificateVaultRoute
+  AmsCertificatesRoute: typeof AmsCertificatesRoute
+  AmsChallengesRoute: typeof AmsChallengesRoute
+  AmsChatRoute: typeof AmsChatRoute
+  AmsClaimsRoute: typeof AmsClaimsRoute
+  AmsCollectionsRoute: typeof AmsCollectionsRoute
+  AmsDeveloperProgressionRoute: typeof AmsDeveloperProgressionRoute
+  AmsFounderSealVaultRoute: typeof AmsFounderSealVaultRoute
+  AmsHallOfFameRoute: typeof AmsHallOfFameRoute
+  AmsHallOfFameVaultRoute: typeof AmsHallOfFameVaultRoute
+  AmsHonorCoinVaultRoute: typeof AmsHonorCoinVaultRoute
+  AmsIdentityRoute: typeof AmsIdentityRoute
+  AmsIdentityCardVaultRoute: typeof AmsIdentityCardVaultRoute
+  AmsLeaderboardsRoute: typeof AmsLeaderboardsRoute
+  AmsLegacyRoute: typeof AmsLegacyRoute
+  AmsLegacyMedalVaultRoute: typeof AmsLegacyMedalVaultRoute
+  AmsLevelsRoute: typeof AmsLevelsRoute
+  AmsLicenseCardVaultRoute: typeof AmsLicenseCardVaultRoute
+  AmsMembershipVaultRoute: typeof AmsMembershipVaultRoute
+  AmsMissionsRoute: typeof AmsMissionsRoute
+  AmsNotificationsRoute: typeof AmsNotificationsRoute
+  AmsOverviewRoute: typeof AmsOverviewRoute
+  AmsPassportRoute: typeof AmsPassportRoute
+  AmsPassportVaultRoute: typeof AmsPassportVaultRoute
+  AmsQuestsRoute: typeof AmsQuestsRoute
+  AmsRankVaultRoute: typeof AmsRankVaultRoute
+  AmsRanksRoute: typeof AmsRanksRoute
+  AmsRecognitionCoinVaultRoute: typeof AmsRecognitionCoinVaultRoute
+  AmsReputationVaultRoute: typeof AmsReputationVaultRoute
+  AmsRewardChestVaultRoute: typeof AmsRewardChestVaultRoute
+  AmsRewardsRoute: typeof AmsRewardsRoute
+  AmsRoleManagerRoute: typeof AmsRoleManagerRouteWithChildren
+  AmsSettingsRoute: typeof AmsSettingsRoute
+  AmsTrophiesRoute: typeof AmsTrophiesRoute
+  AmsTrophyGalleryRoute: typeof AmsTrophyGalleryRoute
+  AmsTrophyStagesRoute: typeof AmsTrophyStagesRoute
+  AmsTrophyVaultRoute: typeof AmsTrophyVaultRoute
+  AmsTrustSealVaultRoute: typeof AmsTrustSealVaultRoute
+  AmsVendorProgressionRoute: typeof AmsVendorProgressionRoute
+  AmsVerificationVaultRoute: typeof AmsVerificationVaultRoute
+  AmsXpRoute: typeof AmsXpRoute
+  AmsXpCrystalVaultRoute: typeof AmsXpCrystalVaultRoute
+  AmsIndexRoute: typeof AmsIndexRoute
+  AmsAwardsIdRoute: typeof AmsAwardsIdRouteWithChildren
+  AmsAwardsAuditRoute: typeof AmsAwardsAuditRoute
+  AmsAwardsCategoriesRoute: typeof AmsAwardsCategoriesRoute
+  AmsAwardsEffectsRoute: typeof AmsAwardsEffectsRoute
+  AmsAwardsNewRoute: typeof AmsAwardsNewRoute
+  AmsCollectionTypeRoute: typeof AmsCollectionTypeRoute
+  AmsMuseumShowcaseRoute: typeof AmsMuseumShowcaseRoute
+  AmsRoleShowcaseSlugRoute: typeof AmsRoleShowcaseSlugRoute
+  AmsTicketsIdRoute: typeof AmsTicketsIdRoute
+  AmsTicketsNewRoute: typeof AmsTicketsNewRoute
+  AmsAwardsIndexRoute: typeof AmsAwardsIndexRoute
+  AmsCollectionIndexRoute: typeof AmsCollectionIndexRoute
+  AmsMuseumIndexRoute: typeof AmsMuseumIndexRoute
+  AmsRoleShowcaseIndexRoute: typeof AmsRoleShowcaseIndexRoute
+  AmsTicketsIndexRoute: typeof AmsTicketsIndexRoute
+  AmsAwardsLibrariesAchievementsRoute: typeof AmsAwardsLibrariesAchievementsRoute
+  AmsAwardsLibrariesBadgesRoute: typeof AmsAwardsLibrariesBadgesRoute
+  AmsAwardsLibrariesRanksRoute: typeof AmsAwardsLibrariesRanksRoute
+  AmsAwardsLibrariesTrophiesRoute: typeof AmsAwardsLibrariesTrophiesRoute
+  AmsAwardsRulesLevelsRoute: typeof AmsAwardsRulesLevelsRoute
+  AmsAwardsRulesMilestonesRoute: typeof AmsAwardsRulesMilestonesRoute
+  AmsAwardsRulesRewardsRoute: typeof AmsAwardsRulesRewardsRoute
+  AmsAwardsRulesStreaksRoute: typeof AmsAwardsRulesStreaksRoute
+  AmsAwardsRulesXpRoute: typeof AmsAwardsRulesXpRoute
+}
+
+const AmsRouteChildren: AmsRouteChildren = {
+  AmsAchievementVaultRoute: AmsAchievementVaultRoute,
+  AmsAchievementsRoute: AmsAchievementsRoute,
+  AmsAiRoute: AmsAiRoute,
+  AmsAnalyticsRoute: AmsAnalyticsRoute,
+  AmsAuditRoute: AmsAuditRoute,
+  AmsAuthorProgressionRoute: AmsAuthorProgressionRoute,
+  AmsAwardVaultRoute: AmsAwardVaultRoute,
+  AmsBadgeVaultRoute: AmsBadgeVaultRoute,
+  AmsBadgesRoute: AmsBadgesRoute,
+  AmsCertificateVaultRoute: AmsCertificateVaultRoute,
+  AmsCertificatesRoute: AmsCertificatesRoute,
+  AmsChallengesRoute: AmsChallengesRoute,
+  AmsChatRoute: AmsChatRoute,
+  AmsClaimsRoute: AmsClaimsRoute,
+  AmsCollectionsRoute: AmsCollectionsRoute,
+  AmsDeveloperProgressionRoute: AmsDeveloperProgressionRoute,
+  AmsFounderSealVaultRoute: AmsFounderSealVaultRoute,
+  AmsHallOfFameRoute: AmsHallOfFameRoute,
+  AmsHallOfFameVaultRoute: AmsHallOfFameVaultRoute,
+  AmsHonorCoinVaultRoute: AmsHonorCoinVaultRoute,
+  AmsIdentityRoute: AmsIdentityRoute,
+  AmsIdentityCardVaultRoute: AmsIdentityCardVaultRoute,
+  AmsLeaderboardsRoute: AmsLeaderboardsRoute,
+  AmsLegacyRoute: AmsLegacyRoute,
+  AmsLegacyMedalVaultRoute: AmsLegacyMedalVaultRoute,
+  AmsLevelsRoute: AmsLevelsRoute,
+  AmsLicenseCardVaultRoute: AmsLicenseCardVaultRoute,
+  AmsMembershipVaultRoute: AmsMembershipVaultRoute,
+  AmsMissionsRoute: AmsMissionsRoute,
+  AmsNotificationsRoute: AmsNotificationsRoute,
+  AmsOverviewRoute: AmsOverviewRoute,
+  AmsPassportRoute: AmsPassportRoute,
+  AmsPassportVaultRoute: AmsPassportVaultRoute,
+  AmsQuestsRoute: AmsQuestsRoute,
+  AmsRankVaultRoute: AmsRankVaultRoute,
+  AmsRanksRoute: AmsRanksRoute,
+  AmsRecognitionCoinVaultRoute: AmsRecognitionCoinVaultRoute,
+  AmsReputationVaultRoute: AmsReputationVaultRoute,
+  AmsRewardChestVaultRoute: AmsRewardChestVaultRoute,
+  AmsRewardsRoute: AmsRewardsRoute,
+  AmsRoleManagerRoute: AmsRoleManagerRouteWithChildren,
+  AmsSettingsRoute: AmsSettingsRoute,
+  AmsTrophiesRoute: AmsTrophiesRoute,
+  AmsTrophyGalleryRoute: AmsTrophyGalleryRoute,
+  AmsTrophyStagesRoute: AmsTrophyStagesRoute,
+  AmsTrophyVaultRoute: AmsTrophyVaultRoute,
+  AmsTrustSealVaultRoute: AmsTrustSealVaultRoute,
+  AmsVendorProgressionRoute: AmsVendorProgressionRoute,
+  AmsVerificationVaultRoute: AmsVerificationVaultRoute,
+  AmsXpRoute: AmsXpRoute,
+  AmsXpCrystalVaultRoute: AmsXpCrystalVaultRoute,
+  AmsIndexRoute: AmsIndexRoute,
+  AmsAwardsIdRoute: AmsAwardsIdRouteWithChildren,
+  AmsAwardsAuditRoute: AmsAwardsAuditRoute,
+  AmsAwardsCategoriesRoute: AmsAwardsCategoriesRoute,
+  AmsAwardsEffectsRoute: AmsAwardsEffectsRoute,
+  AmsAwardsNewRoute: AmsAwardsNewRoute,
+  AmsCollectionTypeRoute: AmsCollectionTypeRoute,
+  AmsMuseumShowcaseRoute: AmsMuseumShowcaseRoute,
+  AmsRoleShowcaseSlugRoute: AmsRoleShowcaseSlugRoute,
+  AmsTicketsIdRoute: AmsTicketsIdRoute,
+  AmsTicketsNewRoute: AmsTicketsNewRoute,
+  AmsAwardsIndexRoute: AmsAwardsIndexRoute,
+  AmsCollectionIndexRoute: AmsCollectionIndexRoute,
+  AmsMuseumIndexRoute: AmsMuseumIndexRoute,
+  AmsRoleShowcaseIndexRoute: AmsRoleShowcaseIndexRoute,
+  AmsTicketsIndexRoute: AmsTicketsIndexRoute,
+  AmsAwardsLibrariesAchievementsRoute: AmsAwardsLibrariesAchievementsRoute,
+  AmsAwardsLibrariesBadgesRoute: AmsAwardsLibrariesBadgesRoute,
+  AmsAwardsLibrariesRanksRoute: AmsAwardsLibrariesRanksRoute,
+  AmsAwardsLibrariesTrophiesRoute: AmsAwardsLibrariesTrophiesRoute,
+  AmsAwardsRulesLevelsRoute: AmsAwardsRulesLevelsRoute,
+  AmsAwardsRulesMilestonesRoute: AmsAwardsRulesMilestonesRoute,
+  AmsAwardsRulesRewardsRoute: AmsAwardsRulesRewardsRoute,
+  AmsAwardsRulesStreaksRoute: AmsAwardsRulesStreaksRoute,
+  AmsAwardsRulesXpRoute: AmsAwardsRulesXpRoute,
+}
+
+const AmsRouteWithChildren = AmsRoute._addFileChildren(AmsRouteChildren)
+
+interface LeadManagerRouteChildren {
+  LeadManagerIndexRoute: typeof LeadManagerIndexRoute
+}
+
+const LeadManagerRouteChildren: LeadManagerRouteChildren = {
+  LeadManagerIndexRoute: LeadManagerIndexRoute,
+}
+
+const LeadManagerRouteWithChildren = LeadManagerRoute._addFileChildren(
+  LeadManagerRouteChildren,
+)
+
+interface ManagerRouteChildren {
+  ManagerSectionRoute: typeof ManagerSectionRoute
+  ManagerIndexRoute: typeof ManagerIndexRoute
+}
+
+const ManagerRouteChildren: ManagerRouteChildren = {
+  ManagerSectionRoute: ManagerSectionRoute,
+  ManagerIndexRoute: ManagerIndexRoute,
+}
+
+const ManagerRouteWithChildren =
+  ManagerRoute._addFileChildren(ManagerRouteChildren)
+
+interface MarketingRouteChildren {
+  MarketingAiAutomationRoute: typeof MarketingAiAutomationRoute
+  MarketingAnalyticsRoute: typeof MarketingAnalyticsRoute
+  MarketingApprovalsRoute: typeof MarketingApprovalsRoute
+  MarketingAuditRoute: typeof MarketingAuditRoute
+  MarketingCampaignBuilderRoute: typeof MarketingCampaignBuilderRoute
+  MarketingCampaignsRoute: typeof MarketingCampaignsRoute
+  MarketingContentRoute: typeof MarketingContentRoute
+  MarketingCreativesRoute: typeof MarketingCreativesRoute
+  MarketingHierarchyRoute: typeof MarketingHierarchyRoute
+  MarketingLeadSourcesRoute: typeof MarketingLeadSourcesRoute
+  MarketingOffersRoute: typeof MarketingOffersRoute
+  MarketingPerformanceRoute: typeof MarketingPerformanceRoute
+  MarketingReportsRoute: typeof MarketingReportsRoute
+  MarketingSchedulesRoute: typeof MarketingSchedulesRoute
+  MarketingSeoRoute: typeof MarketingSeoRoute
+  MarketingTargetingRoute: typeof MarketingTargetingRoute
+  MarketingIndexRoute: typeof MarketingIndexRoute
+}
+
+const MarketingRouteChildren: MarketingRouteChildren = {
+  MarketingAiAutomationRoute: MarketingAiAutomationRoute,
+  MarketingAnalyticsRoute: MarketingAnalyticsRoute,
+  MarketingApprovalsRoute: MarketingApprovalsRoute,
+  MarketingAuditRoute: MarketingAuditRoute,
+  MarketingCampaignBuilderRoute: MarketingCampaignBuilderRoute,
+  MarketingCampaignsRoute: MarketingCampaignsRoute,
+  MarketingContentRoute: MarketingContentRoute,
+  MarketingCreativesRoute: MarketingCreativesRoute,
+  MarketingHierarchyRoute: MarketingHierarchyRoute,
+  MarketingLeadSourcesRoute: MarketingLeadSourcesRoute,
+  MarketingOffersRoute: MarketingOffersRoute,
+  MarketingPerformanceRoute: MarketingPerformanceRoute,
+  MarketingReportsRoute: MarketingReportsRoute,
+  MarketingSchedulesRoute: MarketingSchedulesRoute,
+  MarketingSeoRoute: MarketingSeoRoute,
+  MarketingTargetingRoute: MarketingTargetingRoute,
+  MarketingIndexRoute: MarketingIndexRoute,
+}
+
+const MarketingRouteWithChildren = MarketingRoute._addFileChildren(
+  MarketingRouteChildren,
+)
+
+interface MarketplaceRouteChildren {
+  MarketplaceIndexRoute: typeof MarketplaceIndexRoute
+  MarketplaceCategorySlugRoute: typeof MarketplaceCategorySlugRoute
+  MarketplaceCountryCountryRoute: typeof MarketplaceCountryCountryRoute
+  MarketplaceProductSlugRoute: typeof MarketplaceProductSlugRoute
+}
+
+const MarketplaceRouteChildren: MarketplaceRouteChildren = {
+  MarketplaceIndexRoute: MarketplaceIndexRoute,
+  MarketplaceCategorySlugRoute: MarketplaceCategorySlugRoute,
+  MarketplaceCountryCountryRoute: MarketplaceCountryCountryRoute,
+  MarketplaceProductSlugRoute: MarketplaceProductSlugRoute,
+}
+
+const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
+  MarketplaceRouteChildren,
+)
+
+interface PromiseTrackerRouteChildren {
+  PromiseTrackerActiveRoute: typeof PromiseTrackerActiveRoute
+  PromiseTrackerAllRoute: typeof PromiseTrackerAllRoute
+  PromiseTrackerAuditLogsRoute: typeof PromiseTrackerAuditLogsRoute
+  PromiseTrackerBrokenRoute: typeof PromiseTrackerBrokenRoute
+  PromiseTrackerCategoriesRoute: typeof PromiseTrackerCategoriesRoute
+  PromiseTrackerCreateRoute: typeof PromiseTrackerCreateRoute
+  PromiseTrackerDelayedRoute: typeof PromiseTrackerDelayedRoute
+  PromiseTrackerEscalationsRoute: typeof PromiseTrackerEscalationsRoute
+  PromiseTrackerFulfilledRoute: typeof PromiseTrackerFulfilledRoute
+  PromiseTrackerInsightsRoute: typeof PromiseTrackerInsightsRoute
+  PromiseTrackerRulesRoute: typeof PromiseTrackerRulesRoute
+  PromiseTrackerSettingsRoute: typeof PromiseTrackerSettingsRoute
+  PromiseTrackerIndexRoute: typeof PromiseTrackerIndexRoute
+}
+
+const PromiseTrackerRouteChildren: PromiseTrackerRouteChildren = {
+  PromiseTrackerActiveRoute: PromiseTrackerActiveRoute,
+  PromiseTrackerAllRoute: PromiseTrackerAllRoute,
+  PromiseTrackerAuditLogsRoute: PromiseTrackerAuditLogsRoute,
+  PromiseTrackerBrokenRoute: PromiseTrackerBrokenRoute,
+  PromiseTrackerCategoriesRoute: PromiseTrackerCategoriesRoute,
+  PromiseTrackerCreateRoute: PromiseTrackerCreateRoute,
+  PromiseTrackerDelayedRoute: PromiseTrackerDelayedRoute,
+  PromiseTrackerEscalationsRoute: PromiseTrackerEscalationsRoute,
+  PromiseTrackerFulfilledRoute: PromiseTrackerFulfilledRoute,
+  PromiseTrackerInsightsRoute: PromiseTrackerInsightsRoute,
+  PromiseTrackerRulesRoute: PromiseTrackerRulesRoute,
+  PromiseTrackerSettingsRoute: PromiseTrackerSettingsRoute,
+  PromiseTrackerIndexRoute: PromiseTrackerIndexRoute,
+}
+
+const PromiseTrackerRouteWithChildren = PromiseTrackerRoute._addFileChildren(
+  PromiseTrackerRouteChildren,
+)
+
+interface ValaAiRouteChildren {
+  ValaAiCreditsRoute: typeof ValaAiCreditsRoute
+  ValaAiErrorsRoute: typeof ValaAiErrorsRoute
+  ValaAiLockRoute: typeof ValaAiLockRoute
+  ValaAiLogsRoute: typeof ValaAiLogsRoute
+  ValaAiModelsRoute: typeof ValaAiModelsRoute
+  ValaAiProjectsRoute: typeof ValaAiProjectsRoute
+  ValaAiPromptsRoute: typeof ValaAiPromptsRoute
+  ValaAiRollbackRoute: typeof ValaAiRollbackRoute
+  ValaAiSettingsRoute: typeof ValaAiSettingsRoute
+  ValaAiIndexRoute: typeof ValaAiIndexRoute
+}
+
+const ValaAiRouteChildren: ValaAiRouteChildren = {
+  ValaAiCreditsRoute: ValaAiCreditsRoute,
+  ValaAiErrorsRoute: ValaAiErrorsRoute,
+  ValaAiLockRoute: ValaAiLockRoute,
+  ValaAiLogsRoute: ValaAiLogsRoute,
+  ValaAiModelsRoute: ValaAiModelsRoute,
+  ValaAiProjectsRoute: ValaAiProjectsRoute,
+  ValaAiPromptsRoute: ValaAiPromptsRoute,
+  ValaAiRollbackRoute: ValaAiRollbackRoute,
+  ValaAiSettingsRoute: ValaAiSettingsRoute,
+  ValaAiIndexRoute: ValaAiIndexRoute,
+}
+
+const ValaAiRouteWithChildren =
+  ValaAiRoute._addFileChildren(ValaAiRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AffiliateManagerRoute: AffiliateManagerRouteWithChildren,
+  AiApiManagerRoute: AiApiManagerRoute,
+  AiCeoRoute: AiCeoRouteWithChildren,
+  AmsRoute: AmsRouteWithChildren,
+  AmsManagerRoute: AmsManagerRoute,
+  AssistManagerRoute: AssistManagerRoute,
+  AuthRoute: AuthRoute,
+  BossRoute: BossRoute,
+  ChatRoute: ChatRoute,
+  ChatManagerRoute: ChatManagerRoute,
+  CheckoutRoute: CheckoutRoute,
+  ControlPanelRoute: ControlPanelRoute,
+  CreatorManagerRoute: CreatorManagerRoute,
+  DemoManagerRoute: DemoManagerRoute,
+  DemoOpsRoute: DemoOpsRoute,
+  DemoWorkspaceRoute: DemoWorkspaceRoute,
+  DevManagerRoute: DevManagerRoute,
+  FinanceManagerRoute: FinanceManagerRoute,
+  FranchiseManagerRoute: FranchiseManagerRoute,
+  InfluencerManagerRoute: InfluencerManagerRoute,
+  InternalSupportAiRoute: InternalSupportAiRoute,
+  KeywordsRoute: KeywordsRoute,
+  LeadManagerRoute: LeadManagerRouteWithChildren,
+  LegalManagerRoute: LegalManagerRoute,
+  LoginRoute: LoginRoute,
+  ManagerRoute: ManagerRouteWithChildren,
+  MarketingRoute: MarketingRouteWithChildren,
+  MarketplaceRoute: MarketplaceRouteWithChildren,
+  MarketplaceManagerRoute: MarketplaceManagerRoute,
+  MarketplaceRecoveryRoute: MarketplaceRecoveryRoute,
+  PagesRoute: PagesRoute,
+  ProductDemoManagerRoute: ProductDemoManagerRoute,
+  PromiseTrackerRoute: PromiseTrackerRouteWithChildren,
+  ResellerManagerRoute: ResellerManagerRoute,
+  SalesCrmRoute: SalesCrmRoute,
+  SalesSupportManagerRoute: SalesSupportManagerRoute,
+  SeoManagerRoute: SeoManagerRoute,
+  ServerManagerRoute: ServerManagerRoute,
+  SitemapCategoriesDotxmlRoute: SitemapCategoriesDotxmlRoute,
+  SitemapCountriesDotxmlRoute: SitemapCountriesDotxmlRoute,
+  SitemapPagesDotxmlRoute: SitemapPagesDotxmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SupportRoute: SupportRoute,
+  SupportAgentRoute: SupportAgentRoute,
+  SupportChatbotRoute: SupportChatbotRoute,
+  SupportChatbotBlueprintRoute: SupportChatbotBlueprintRoute,
+  TaskManagerRoute: TaskManagerRoute,
+  ValaAiRoute: ValaAiRouteWithChildren,
+  ValaTvRoute: ValaTvRoute,
+  VendorManagerRoute: VendorManagerRoute,
+  DemoRoute: DemoRoute,
+  AcademyCourseRoute: AcademyCourseRoute,
+  AccountPurchasesRoute: AccountPurchasesRoute,
+  AdminImportRoute: AdminImportRoute,
+  AiAssistantRoute: AiAssistantRoute,
+  AiCompareRoute: AiCompareRoute,
+  AiFinderRoute: AiFinderRoute,
+  AiRecommendRoute: AiRecommendRoute,
+  ApiChatRoute: ApiChatRoute,
+  ApplyRoleRoute: ApplyRoleRoute,
+  DashboardRoleRoute: DashboardRoleRoute,
+  DemoSlugRoute: DemoSlugRoute,
+  PaymentFailRoute: PaymentFailRoute,
+  PaymentSuccessRoute: PaymentSuccessRoute,
+  SCodeRoute: SCodeRoute,
+  SitemapProductsPageDotxmlRoute: SitemapProductsPageDotxmlRoute,
+  VerifyCodeRoute: VerifyCodeRoute,
+  AcademyIndexRoute: AcademyIndexRoute,
+  ApplyIndexRoute: ApplyIndexRoute,
+  ProxyDemoRoute: ProxyDemoRoute,
+  ApiAccountPurchasesRoute: ApiAccountPurchasesRoute,
+  ApiActionsConfigRoute: ApiActionsConfigRoute,
+  ApiActionsRegistryRoute: ApiActionsRegistryRoute,
+  ApiAffiliateAccountRoute: ApiAffiliateAccountRoute,
+  ApiAffiliateAttributeRoute: ApiAffiliateAttributeRoute,
+  ApiAnalyticsProductsRoute: ApiAnalyticsProductsRoute,
+  ApiAuthorEarningsRoute: ApiAuthorEarningsRoute,
+  ApiAuthorProductsRoute: ApiAuthorProductsRoute,
+  ApiDemoTicketRoute: ApiDemoTicketRoute,
+  ApiFinanceResellerMembershipRoute: ApiFinanceResellerMembershipRoute,
+  ApiGovernanceConsoleRoute: ApiGovernanceConsoleRoute,
+  ApiInternalApplyMigrationsRoute: ApiInternalApplyMigrationsRoute,
+  ApiInternalApplyResellerSchemaRoute: ApiInternalApplyResellerSchemaRoute,
+  ApiInternalAuthorReviewRoute: ApiInternalAuthorReviewRoute,
+  ApiInternalCredentialSetupRoute: ApiInternalCredentialSetupRoute,
+  ApiInternalDbHealthRoute: ApiInternalDbHealthRoute,
+  ApiInternalEmailFlushRoute: ApiInternalEmailFlushRoute,
+  ApiInternalMarketplaceMigrationRoute: ApiInternalMarketplaceMigrationRoute,
+  ApiInternalSellerAdminRoute: ApiInternalSellerAdminRoute,
+  ApiInternalSeoAuditRoute: ApiInternalSeoAuditRoute,
+  ApiInternalSeoPageRoute: ApiInternalSeoPageRoute,
+  ApiInternalSettleCommissionsRoute: ApiInternalSettleCommissionsRoute,
+  ApiLeadsConsoleRoute: ApiLeadsConsoleRoute,
+  ApiManagerBulkRoute: ApiManagerBulkRoute,
+  ApiManagerResourceRoute: ApiManagerResourceRoute,
+  ApiManagerRowActionRoute: ApiManagerRowActionRoute,
+  ApiMarketplaceActivityRoute: ApiMarketplaceActivityRoute,
+  ApiMarketplaceAutomationRoute: ApiMarketplaceAutomationRoute,
+  ApiMarketplaceCatalogRoute: ApiMarketplaceCatalogRoute,
+  ApiMarketplaceColourRoute: ApiMarketplaceColourRoute,
+  ApiMarketplaceCountryRoute: ApiMarketplaceCountryRoute,
+  ApiMarketplaceDeploymentRoute: ApiMarketplaceDeploymentRoute,
+  ApiMarketplaceDeveloperRoute: ApiMarketplaceDeveloperRoute,
+  ApiMarketplaceIntegrationsRoute: ApiMarketplaceIntegrationsRoute,
+  ApiMarketplaceIntegrityRoute: ApiMarketplaceIntegrityRoute,
+  ApiMarketplaceLeadRoute: ApiMarketplaceLeadRoute,
+  ApiMarketplaceMediaRoute: ApiMarketplaceMediaRoute,
+  ApiMarketplaceMicroInteractionsRoute: ApiMarketplaceMicroInteractionsRoute,
+  ApiMarketplacePermissionsRoute: ApiMarketplacePermissionsRoute,
+  ApiMarketplaceProofRoute: ApiMarketplaceProofRoute,
+  ApiMarketplaceRowsRoute: ApiMarketplaceRowsRoute,
+  ApiMarketplaceSearchRoute: ApiMarketplaceSearchRoute,
+  ApiMarketplaceSecurityRoute: ApiMarketplaceSecurityRoute,
+  ApiMarketplaceSupportRoute: ApiMarketplaceSupportRoute,
+  ApiMarketplaceSystemRoute: ApiMarketplaceSystemRoute,
+  ApiMarketplaceTrackRoute: ApiMarketplaceTrackRoute,
+  ApiMarketplaceTranslateRoute: ApiMarketplaceTranslateRoute,
+  ApiPartnerQuoteRoute: ApiPartnerQuoteRoute,
+  ApiPaymentInitiateRoute: ApiPaymentInitiateRoute,
+  ApiPaymentStatusRoute: ApiPaymentStatusRoute,
+  ApiPaymentWebhookRoute: ApiPaymentWebhookRoute,
+  ApiQrCodeRoute: ApiQrCodeRoute,
+  ApiSecurityConsoleRoute: ApiSecurityConsoleRoute,
+  ApiSecuritySettingsRoute: ApiSecuritySettingsRoute,
+  ApiSellerMetricsRoute: ApiSellerMetricsRoute,
+  ApiSeoConsoleRoute: ApiSeoConsoleRoute,
+  ApiTrackRefRoute: ApiTrackRefRoute,
+  ApiAccountInvoiceIdRoute: ApiAccountInvoiceIdRoute,
+  ApiOrdersIdFulfilRoute: ApiOrdersIdFulfilRoute,
+  ApiProxyDemoSplatRoute: ApiProxyDemoSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

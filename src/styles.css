@@ -59,7 +59,28 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-primary-glow: var(--primary-glow);
+  --color-neon: var(--neon);
+  --color-neon-foreground: var(--neon-foreground);
+  --color-gold: var(--gold);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-emerald: var(--accent-emerald);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-premium: var(--premium);
+  --color-premium-foreground: var(--premium-foreground);
+  /* Dashboard (role console) tokens — values live in src/styles/dashboard.css */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-red: var(--brand-red);
+  --color-surface-2: var(--surface-2);
 }
+
 
 :root {
   --radius: 0.625rem;
@@ -98,39 +119,62 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Vala AI — electric blue executive cockpit palette */
+  --background: oklch(0.16 0.05 255);
+  --foreground: oklch(0.985 0.006 240);
+  --card: oklch(0.225 0.062 256);
+  --card-foreground: oklch(0.985 0.006 240);
+  --popover: oklch(0.21 0.058 256);
+  --popover-foreground: oklch(0.985 0.006 240);
+  --primary: oklch(0.62 0.19 253);
+  --primary-foreground: oklch(0.99 0.004 240);
+  --primary-glow: oklch(0.76 0.16 235);
+  --secondary: oklch(0.29 0.075 258);
+  --secondary-foreground: oklch(0.985 0.006 240);
+  --muted: oklch(0.28 0.06 258);
+  --muted-foreground: oklch(0.8 0.04 245);
+  --accent: oklch(0.82 0.15 210);
+  --accent-foreground: oklch(0.18 0.07 255);
+  --neon: oklch(0.82 0.19 160);
+  --neon-foreground: oklch(0.18 0.08 165);
+  --gold: oklch(0.84 0.16 82);
+  --destructive: oklch(0.63 0.23 22);
+  --destructive-foreground: oklch(0.99 0.004 240);
+  --border: oklch(0.5 0.13 250 / 60%);
+  --input: oklch(0.5 0.13 250 / 65%);
+  --ring: oklch(0.72 0.17 240);
+  --chart-1: oklch(0.62 0.19 253);
+  --chart-2: oklch(0.82 0.15 210);
+  --chart-3: oklch(0.82 0.19 160);
+  --chart-4: oklch(0.84 0.16 82);
+  --chart-5: oklch(0.68 0.2 300);
+  --sidebar: oklch(0.195 0.055 256);
+  --sidebar-foreground: oklch(0.985 0.006 240);
+  --sidebar-primary: oklch(0.62 0.19 253);
+  --sidebar-primary-foreground: oklch(0.99 0.004 240);
+  --sidebar-accent: oklch(0.33 0.1 250);
+  --sidebar-accent-foreground: oklch(0.99 0.004 240);
+  --sidebar-border: oklch(0.5 0.13 250 / 60%);
+  --sidebar-ring: oklch(0.72 0.17 240);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.62 0.19 253), oklch(0.78 0.15 220));
+  --gradient-surface: linear-gradient(160deg, oklch(0.26 0.075 256), oklch(0.19 0.055 256));
+  --gradient-neon: linear-gradient(135deg, oklch(0.82 0.15 210), oklch(0.82 0.19 165));
+  --shadow-glow: 0 18px 48px -18px color-mix(in oklab, var(--primary) 78%, transparent);
+  --shadow-card: 0 10px 34px -16px color-mix(in oklab, var(--primary) 62%, transparent),
+    inset 0 1px 0 0 color-mix(in oklab, var(--primary-glow) 24%, transparent);
 }
+
+@keyframes vala-breathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.015); }
+}
+
+@keyframes vala-talk {
+  0%, 100% { filter: brightness(1); transform: translateY(0); }
+  50% { filter: brightness(1.18); transform: translateY(-1px); }
+}
+
 
 @layer base {
   * {
@@ -141,4 +185,448 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+@utility surface-rich {
+  background-image: var(--gradient-surface);
+  box-shadow: var(--shadow-card);
+}
+
+@utility glow-primary {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ===== Living Vala AI avatar animations (GPU friendly: transform/opacity only) ===== */
+@keyframes vala-sway {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  33% { transform: translateX(-0.6%) rotate(-0.35deg); }
+  66% { transform: translateX(0.6%) rotate(0.35deg); }
+}
+@keyframes vala-bloom {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.06); }
+}
+@keyframes vala-blink {
+  0%, 92%, 100% { transform: scaleY(0); opacity: 0; }
+  94%, 96% { transform: scaleY(1); opacity: 1; }
+}
+@keyframes vala-trace {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes vala-pulse {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: -100; }
+}
+@keyframes vala-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes vala-spin-rev {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+@keyframes vala-core {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+@keyframes vala-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  70%, 100% { transform: scale(4.2); opacity: 0; }
+}
+@keyframes vala-particle {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-260px) scale(1.1); opacity: 0; }
+}
+@keyframes vala-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-state] * { animation-duration: 0.001s !important; }
+}
+
+@keyframes kpi-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes kpi-sweep {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+/* ===== Premium enterprise button + card system ===== */
+@utility btn-premium {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(140, 185, 255, 0.34);
+  background-image: linear-gradient(180deg, #2f63c4 0%, #1d4291 52%, #14306c 100%);
+  color: #f2f7ff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  padding: 0.42rem 0.8rem;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.28) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.4) inset,
+    0 8px 18px -10px rgba(10, 30, 70, 0.95);
+  transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+@utility btn-premium-hover {
+  &:hover { filter: brightness(1.09); transform: translateY(-1px); }
+  &:active { transform: translateY(1px) scale(0.99); filter: brightness(0.95); }
+  &:disabled { opacity: 0.5; filter: grayscale(0.4); transform: none; }
+}
+@utility btn-graphite {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(150, 175, 210, 0.24);
+  background-image: linear-gradient(180deg, #2a3752 0%, #1c2740 55%, #131b2e 100%);
+  color: #dce8ff;
+  font-weight: 700;
+  padding: 0.42rem 0.8rem;
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.16) inset,
+    0 8px 16px -12px rgba(0, 0, 0, 0.9);
+  transition: transform 140ms ease, filter 140ms ease;
+}
+@utility card-premium {
+  border-radius: 0.9rem;
+  border: 1px solid rgba(120, 165, 235, 0.26);
+  background-image: linear-gradient(168deg, #16294c 0%, #0e1c38 52%, #091326 100%);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.09) inset,
+    0 22px 44px -28px rgba(0, 0, 0, 0.95);
+}
+
+@keyframes exec-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes exec-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes cc-arrive {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ─────────────── CREATOR MANAGER THEME (Creator's Launchpad palette) ───────────────
+   Scoped to .creator-theme so the Boss cockpit palette stays untouched. */
+.creator-theme {
+  --radius: 1rem;
+
+  --background: oklch(0.16 0.02 285);
+  --color-background: oklch(0.16 0.02 285);
+  --foreground: oklch(0.97 0.01 280);
+  --color-foreground: oklch(0.97 0.01 280);
+
+  --surface: oklch(0.21 0.02 285);
+  --color-surface: oklch(0.21 0.02 285);
+  --surface-foreground: oklch(0.97 0.01 280);
+  --color-surface-foreground: oklch(0.97 0.01 280);
+
+  --card: oklch(0.20 0.02 285);
+  --color-card: oklch(0.20 0.02 285);
+  --card-foreground: oklch(0.97 0.01 280);
+  --color-card-foreground: oklch(0.97 0.01 280);
+
+  --popover: oklch(0.22 0.02 285);
+  --color-popover: oklch(0.22 0.02 285);
+  --popover-foreground: oklch(0.97 0.01 280);
+  --color-popover-foreground: oklch(0.97 0.01 280);
+
+  --primary: oklch(0.62 0.24 295);
+  --color-primary: oklch(0.62 0.24 295);
+  --primary-foreground: oklch(0.99 0.005 285);
+  --color-primary-foreground: oklch(0.99 0.005 285);
+  --primary-glow: oklch(0.72 0.22 305);
+  --color-primary-glow: oklch(0.72 0.22 305);
+
+  --secondary: oklch(0.28 0.03 285);
+  --color-secondary: oklch(0.28 0.03 285);
+  --secondary-foreground: oklch(0.97 0.01 280);
+  --color-secondary-foreground: oklch(0.97 0.01 280);
+
+  --muted: oklch(0.26 0.02 285);
+  --color-muted: oklch(0.26 0.02 285);
+  --muted-foreground: oklch(0.72 0.03 280);
+  --color-muted-foreground: oklch(0.72 0.03 280);
+
+  --accent: oklch(0.32 0.05 295);
+  --color-accent: oklch(0.32 0.05 295);
+  --accent-foreground: oklch(0.98 0.01 280);
+  --color-accent-foreground: oklch(0.98 0.01 280);
+
+  --accent-pink: oklch(0.78 0.16 350);
+  --color-accent-pink: oklch(0.78 0.16 350);
+  --accent-amber: oklch(0.85 0.17 85);
+  --color-accent-amber: oklch(0.85 0.17 85);
+  --accent-emerald: oklch(0.74 0.16 165);
+  --color-accent-emerald: oklch(0.74 0.16 165);
+
+  --success: oklch(0.74 0.16 165);
+  --color-success: oklch(0.74 0.16 165);
+  --success-foreground: oklch(0.18 0.02 285);
+  --color-success-foreground: oklch(0.18 0.02 285);
+  --warning: oklch(0.85 0.17 85);
+  --color-warning: oklch(0.85 0.17 85);
+  --warning-foreground: oklch(0.18 0.02 285);
+  --color-warning-foreground: oklch(0.18 0.02 285);
+  --premium: oklch(0.78 0.16 350);
+  --color-premium: oklch(0.78 0.16 350);
+  --premium-foreground: oklch(0.18 0.02 285);
+  --color-premium-foreground: oklch(0.18 0.02 285);
+
+  --destructive: oklch(0.65 0.22 25);
+  --color-destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 280);
+  --color-destructive-foreground: oklch(0.99 0.005 280);
+
+  --border: oklch(1 0 0 / 8%);
+  --color-border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --color-input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.62 0.24 295 / 60%);
+  --color-ring: oklch(0.62 0.24 295 / 60%);
+
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(60% 40% at 20% 0%, oklch(0.62 0.24 295 / 0.18), transparent 60%),
+    radial-gradient(50% 35% at 90% 10%, oklch(0.78 0.16 350 / 0.10), transparent 60%);
+  background-attachment: fixed;
+}
+
+@utility bento-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 0 0 oklch(1 0 0 / 0.04) inset, 0 20px 40px -20px oklch(0 0 0 / 0.6);
+}
+
+@utility hero-surface {
+  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-glow) 100%);
+  color: var(--color-primary-foreground);
+  border-radius: 1.25rem;
+  box-shadow: 0 30px 80px -30px oklch(0.55 0.25 295 / 0.55);
+}
+
+/* ---- Marketplace Manager compatibility scope ---- */
+.mm-scope {
+  /* ported sections use text-accent as a highlight, not a surface */
+  --accent: oklch(0.72 0.22 305);
+  --color-accent: oklch(0.72 0.22 305);
+  --accent-foreground: oklch(0.99 0.005 285);
+  --color-accent-foreground: oklch(0.99 0.005 285);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility ring-rim {
+  box-shadow: 0 0 0 1px var(--border) inset;
+}
+
+@utility scroll-row {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* ==========================================================================
+   AI CEO module — depth, motion and loading utilities
+   ==========================================================================
+   Brought in with the AI CEO module. Every colour below resolves through the
+   design tokens already defined at the top of this file — --color-primary,
+   --color-primary-glow, --color-accent-pink, --color-border, --color-muted,
+   --shadow-card — so these surfaces pick up the Software Vala theme rather
+   than carrying a palette of their own, and they follow the theme wherever it
+   changes.
+
+   Nothing here overrides an existing rule; these are seven new @utility names
+   that did not exist in the project before.
+   ========================================================================== */
+
+/* Raised card with a specular top edge and a slight tilt on hover. */
+@utility card3d {
+  position: relative;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.10) inset,
+    0 -1px 0 0 oklch(0 0 0 / 0.35) inset,
+    0 1px 1px 0 oklch(0 0 0 / 0.30),
+    0 10px 22px -12px oklch(0 0 0 / 0.60),
+    0 26px 56px -30px oklch(0 0 0 / 0.70);
+  transition:
+    transform 420ms cubic-bezier(.2,.8,.2,1),
+    box-shadow 420ms cubic-bezier(.2,.8,.2,1),
+    border-color 320ms ease;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(120% 60% at 50% -18%, oklch(1 0 0 / 0.10), transparent 62%),
+      linear-gradient(180deg, oklch(1 0 0 / 0.05), transparent 26%, oklch(0 0 0 / 0.14));
+  }
+  &:hover {
+    transform: perspective(1100px) translateY(-4px) rotateX(1.1deg);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.16) inset,
+      0 -1px 0 0 oklch(0 0 0 / 0.40) inset,
+      0 2px 2px 0 oklch(0 0 0 / 0.32),
+      0 18px 34px -14px oklch(0 0 0 / 0.66),
+      0 40px 80px -36px oklch(0 0 0 / 0.80),
+      0 0 40px -16px color-mix(in oklab, var(--color-primary) 70%, transparent);
+  }
+}
+
+/* Gradient rim that fades in on hover, drawn with a mask so it stays 1px. */
+@utility premium-halo {
+  position: relative;
+  isolation: isolate;
+  background-image:
+    linear-gradient(160deg, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 55%),
+    linear-gradient(var(--color-card), var(--color-card));
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 400ms cubic-bezier(.2,.8,.2,1), border-color 400ms ease, transform 400ms cubic-bezier(.2,.8,.2,1);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--color-primary) 60%, transparent),
+      transparent 42%,
+      color-mix(in oklab, var(--color-accent-pink) 45%, transparent)
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 380ms ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &:hover::before { opacity: 1; }
+}
+
+@utility hover-lift {
+  transition: transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+      0 30px 62px -30px oklch(0 0 0 / 0.75),
+      0 0 36px -16px color-mix(in oklab, var(--color-primary) 70%, transparent);
+  }
+}
+
+/* A light sweeps across the surface once on hover. */
+@utility shimmer-sweep {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      color-mix(in oklab, white 16%, transparent) 48%,
+      transparent 66%
+    );
+    transform: translateX(-130%);
+    transition: transform 750ms cubic-bezier(.2,.8,.2,1);
+  }
+  &:hover::after { transform: translateX(130%); }
+}
+
+@utility enter-soft {
+  animation: sv-enter-soft 420ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@utility focus-glow {
+  transition: box-shadow 250ms ease, border-color 250ms ease;
+  &:focus-visible {
+    outline: none;
+    border-color: color-mix(in oklab, var(--color-primary) 55%, var(--color-border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--color-primary-glow) 65%, transparent),
+      0 0 22px -6px color-mix(in oklab, var(--color-primary-glow) 75%, transparent);
+  }
+  &:focus-within {
+    border-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-border));
+  }
+}
+
+@utility skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in oklab, var(--color-muted) 70%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-border) 60%, transparent);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 25%,
+      color-mix(in oklab, var(--color-primary) 18%, transparent) 45%,
+      color-mix(in oklab, white 12%, transparent) 52%,
+      transparent 75%
+    );
+    transform: translateX(-100%);
+    animation: sv-skeleton-sweep 1.6s cubic-bezier(.4,0,.2,1) infinite;
+  }
+}
+
+@keyframes sv-enter-soft {
+  0%   { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sv-skeleton-sweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Someone who has asked their system for less motion gets none of it. */
+@media (prefers-reduced-motion: reduce) {
+  .enter-soft { animation: none !important; }
+  .hover-lift:hover { transform: none !important; }
+  .shimmer-sweep::after { transition: none !important; }
+  .card3d:hover { transform: none !important; }
+  .skeleton-shimmer::after { animation: none !important; }
 }
