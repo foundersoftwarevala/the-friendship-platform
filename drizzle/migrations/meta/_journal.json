@@ -15,6 +15,13 @@
       "when": 1789308166390,
       "tag": "0001_ams_core_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789308435514,
+      "tag": "0002_ams_tickets_and_chat",
+      "breakpoints": true
     }
   ]
 }
