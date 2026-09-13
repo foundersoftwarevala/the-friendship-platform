@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLanguage } from "@/lib/language-catalog";
 import { Link } from "@tanstack/react-router";
 import { listNotifications, markAllRead, subscribe as subscribeApps } from "@/lib/applications/store";
 import {
@@ -20,10 +21,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@/lib/serverFn";
-import { readSession, type DemoUser } from "@/lib/nexus-auth";
 import { supabase } from "@/integrations/supabase/client";
-import { signOut } from "@/lib/auth-bridge";
-import { roleLabel } from "@/lib/roles";
 import { toast } from "sonner";
 import {
   Bell,
@@ -36,6 +34,7 @@ import {
   Delete,
   Heart,
   LogIn,
+  LayoutDashboard,
 
   Globe2,
   Headphones,
@@ -160,7 +159,30 @@ const BAR_STRINGS = [
   "Register",
 ];
 
+/**
+ * The storefront's language, from the one provider that holds it.
+ *
+ * This bar used to run a second language system of its own: its own list, its
+ * own storage key (`sv_lang`, where the rest of the site reads
+ * `sv_lang_current_v1`), its own cache and its own call to translateTexts, for
+ * the sixteen strings in BAR_STRINGS and nothing else. So the selector on the
+ * home page changed the bar and left the page it sits on in English, and the
+ * two systems disagreed about which language was even chosen.
+ *
+ * It now reads and writes the shared LanguageProvider. Choosing a language here
+ * is choosing it for everything that asks the provider for a string, and the
+ * provider is what talks to the translation service. The old implementation is
+ * kept below as useBarTranslationLegacy rather than removed.
+ */
 function useBarTranslation() {
+  const { lang, setLanguage, translate } = useLanguage();
+  const apply = useCallback((code: string) => setLanguage(code), [setLanguage]);
+  // The picker below matches on lowercase two-letter codes; the provider holds
+  // the catalogue's uppercase code.
+  return { lang: lang.toLowerCase(), t: translate, apply, busy: false };
+}
+
+function useBarTranslationLegacy() {
   const [lang, setLang] = useState("en");
   const [dict, setDict] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
@@ -812,7 +834,7 @@ function AiChat({ t }: { t: (s: string) => string }) {
           <div className="space-y-2 p-4 text-[12.5px]">
             <p className="text-white/60">Connect with the Software Vala support team directly:</p>
             <a
-              href="https://wa.me/919999999999?text=Hi%20Software%20Vala%2C%20I%20need%20help"
+              href="https://wa.me/918348838383?text=Hi%20Software%20Vala%2C%20I%20need%20help"
               target="_blank"
               rel="noreferrer"
               className="kr-item flex items-center gap-2 rounded-xl border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 font-semibold text-emerald-200 hover:bg-emerald-400/20"
@@ -820,7 +842,7 @@ function AiChat({ t }: { t: (s: string) => string }) {
               <Headphones className="h-4 w-4" /> WhatsApp live chat
             </a>
             <a
-              href="mailto:support@softwarevala.com?subject=Support%20request"
+              href="mailto:support@softwarevala.net?subject=Support%20request"
               className="kr-item flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3 py-2 font-semibold hover:bg-white/10"
             >
               <Send className="h-4 w-4" /> Email support
@@ -976,64 +998,49 @@ function Favorites({ count }: { count: number }) {
 /* ------------------------------------------------------------------ */
 
 function LoginPill({ t }: { t: (s: string) => string }) {
-  const [user, setUser] = useState<DemoUser | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    const sync = () => setUser(readSession());
-    sync();
-    window.addEventListener("sv-auth-change", sync);
-    window.addEventListener("storage", sync);
-    return () => {
-      window.removeEventListener("sv-auth-change", sync);
-      window.removeEventListener("storage", sync);
-    };
+    supabase.auth.getSession().then(({ data }: any) => setUserEmail(data.session?.user.email ?? null));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e: any, session: any) =>
+      setUserEmail(session?.user.email ?? null),
+    );
+    return () => sub.subscription.unsubscribe();
   }, []);
+
+  // Signed out, this is a link and nothing more. The sign-in screen is /login:
+  // the owl, the real Supabase call and the role routing all live there. The
+  // form that used to sit in this panel was a second authentication path to
+  // keep correct, and it skipped the role routing entirely - it signed you in
+  // and left you standing on the home page.
+  if (!userEmail) {
+    return (
+      <Link to="/login" className={TRIGGER} aria-label={t("Login")}>
+        <LogIn className="h-3.5 w-3.5 text-emerald-300 transition-transform duration-300 group-hover:translate-x-0.5" />
+        <span className="hidden sm:inline">{t("Login")}</span>
+      </Link>
+    );
+  }
 
   return (
     <Popover>
       <PopoverTrigger className={TRIGGER}>
         <LogIn className="h-3.5 w-3.5 text-emerald-300 transition-transform duration-300 group-hover:translate-x-0.5" />
-        <span className="hidden sm:inline">{user ? user.full_name : t("Login")}</span>
+        <span className="hidden sm:inline">{userEmail.split("@")[0]}</span>
       </PopoverTrigger>
       <PopoverContent align="end" className={PANEL}>
-        <PanelHead icon={LogIn} title={t("Login")} note={user?.email ?? "Sign in to your Nexus OS workspace"} />
+        <PanelHead icon={LogIn} title={t("Login")} note={userEmail} />
         <div className="space-y-2 p-3">
-          {user ? (
-            <>
-              <Link
-                to="/dashboard/$role"
-                params={{ role: user.role }}
-                className="block w-full rounded-md bg-white/10 px-3 py-2 text-center text-[12.5px] font-medium text-white hover:bg-white/20"
-              >
-                Open {roleLabel(user.role)} Dashboard
-              </Link>
-              <Button
-                className="w-full"
-                variant="secondary"
-                onClick={async () => {
-                  await signOut();
-                  setUser(null);
-                  toast.success("Signed out");
-                }}
-              >
-                Sign out
-              </Button>
-            </>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                search={{}}
-                className="block w-full rounded-md bg-gradient-to-r from-fuchsia-500 to-amber-400 px-3 py-2 text-center text-[12.5px] font-semibold text-black hover:opacity-90"
-              >
-                Enter Nexus OS Login
-              </Link>
-              <p className="text-[11px] leading-relaxed text-white/50">
-                Demo accounts: reseller@ · franchise@ · influencer@ · affiliate@ · author@softwarevala.com — password
-                <span className="font-mono text-white/70"> demo1234</span>
-              </p>
-            </>
-          )}
+          <Button
+            className="w-full"
+            variant="secondary"
+            onClick={async () => {
+              await supabase.auth.signOut();
+              toast.success("Signed out");
+            }}
+          >
+            Sign out
+          </Button>
         </div>
       </PopoverContent>
     </Popover>
@@ -1044,6 +1051,131 @@ function LoginPill({ t }: { t: (s: string) => string }) {
 /* Bar                                                                 */
 /* ------------------------------------------------------------------ */
 
+/* Role dashboards — same names as the dashboard consoles they open. */
+const DASHBOARD_ROLES: { key: string; label: string; blurb: string }[] = [
+  { key: "author", label: "Author Dashboard", blurb: "Products, downloads & royalties" },
+  { key: "vendor", label: "Vendor Dashboard", blurb: "Catalog, orders & payouts" },
+  { key: "reseller", label: "Reseller Dashboard", blurb: "Clients, licenses & pricing" },
+  { key: "affiliate", label: "Affiliate Dashboard", blurb: "Links, clicks & commissions" },
+  { key: "influencer", label: "Influencer Dashboard", blurb: "Campaigns & creatives" },
+  { key: "franchise", label: "Franchise Dashboard", blurb: "Branches, leads & revenue" },
+  { key: "seo", label: "SEO Dashboard", blurb: "Rankings, audits & backlinks" },
+  { key: "admin", label: "Admin Dashboard", blurb: "Platform-wide control" },
+  { key: "developer", label: "Developer Dashboard", blurb: "Tasks, bugs & releases" },
+  { key: "dev-manager", label: "Developer Management", blurb: "Team, sprints & delivery" },
+  { key: "promise-tracker", label: "Promise Tracker", blurb: "Commitments & follow-through" },
+];
+
+function DashboardsMenu({ t }: { t: (s: string) => string }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className={TRIGGER}>
+        <LayoutDashboard className="h-3.5 w-3.5 text-cyan-300 transition-transform duration-300 group-hover:-translate-y-0.5" />
+        {t("Dashboards")}
+        <span className="text-[9px] opacity-70">▼</span>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="end"
+        className="kr-panel max-h-[70vh] w-72 overflow-y-auto border-white/10 bg-[#0b1a30]/95 text-white backdrop-blur-xl"
+      >
+        <DropdownMenuLabel className="text-[11px] uppercase tracking-wider text-white/50">
+          {t("Role dashboards")}
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-white/10" />
+        {DASHBOARD_ROLES.map((r, i) => (
+          <DropdownMenuItem
+            key={r.key}
+            asChild
+            className="kr-item cursor-pointer focus:bg-white/10"
+            style={{ animationDelay: `${i * 24}ms` }}
+          >
+            <Link to="/dashboard/$role" params={{ role: r.key }}>
+              <div className="flex w-full flex-col">
+                <span className="text-[12.5px] font-semibold">{r.label}</span>
+                <span className="text-[10.5px] text-white/50">{r.blurb}</span>
+              </div>
+            </Link>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+
+
+/**
+ * Tailwind classes that hide a module on the surfaces it is switched off for.
+ *
+ * Expressed as CSS so the markup is identical on server and client — measuring
+ * the viewport in JavaScript would hide the module only after hydration, which
+ * is a visible flicker on the front page.
+ *
+ * Breakpoints match the rest of this file: < md mobile, md–lg tablet, lg+ desktop.
+ */
+function deviceClass(m?: { desktop_enabled?: boolean; tablet_enabled?: boolean; mobile_enabled?: boolean }): string {
+  if (!m) return "";
+  const out: string[] = [];
+  // Hidden everywhere it is switched off; shown again at the next breakpoint up
+  // so the rules do not cascade past their own band.
+  if (m.mobile_enabled === false) out.push("hidden", "md:flex");
+  if (m.tablet_enabled === false) out.push("md:hidden", "lg:flex");
+  if (m.desktop_enabled === false) out.push("lg:hidden");
+  return out.join(" ");
+}
+
+/** The registry key each rendered module corresponds to. */
+const MODULE_KEYS: Record<string, string> = {
+  apply: "apply-now",
+  lang: "language",
+  cal: "calendar",
+  calc: "calculator",
+  login: "login",
+  dashboards: "dashboards",
+  cur: "currency",
+  notif: "notifications",
+  fav: "favorites",
+  ai: "ai-chat",
+};
+
+type TopBarModule = {
+  module_key: string;
+  status: string;
+  sort_order: number;
+  desktop_enabled?: boolean;
+  tablet_enabled?: boolean;
+  mobile_enabled?: boolean;
+};
+
+/**
+ * What Top Bar Manager says the header should show.
+ *
+ * Returns null until it knows, and null means "render everything" — the header
+ * is never held back waiting for configuration, and never blanked by a failed
+ * request. Read anonymously on purpose: the bar renders for signed-out
+ * visitors, so the policy on marketplace_topbar_modules allows anon select.
+ */
+function useTopBarConfig(): TopBarModule[] | null {
+  const [config, setConfig] = useState<TopBarModule[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { supabase } = await import("@/integrations/supabase/client");
+        const { data, error } = await supabase.rpc("mm_topbar_modules");
+        if (cancelled || error || !Array.isArray(data) || data.length === 0) return;
+        setConfig(data as TopBarModule[]);
+      } catch {
+        /* keep the default order — the header must not depend on this call */
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  return config;
+}
+
 export function TopUtilityBar({ favoritesCount = 0 }: { favoritesCount?: number }) {
   const { lang, t, apply, busy } = useBarTranslation();
   const items = useMemo(
@@ -1053,6 +1185,7 @@ export function TopUtilityBar({ favoritesCount = 0 }: { favoritesCount?: number 
       <CalendarTool key="cal" t={t} />,
       <CalculatorTool key="calc" t={t} />,
       <LoginPill key="login" t={t} />,
+      <DashboardsMenu key="dashboards" t={t} />,
       <CurrencyPicker key="cur" t={t} />,
       <Notifications key="notif" t={t} />,
       <Favorites key="fav" count={favoritesCount} />,
@@ -1061,13 +1194,53 @@ export function TopUtilityBar({ favoritesCount = 0 }: { favoritesCount?: number 
     [lang, t, apply, busy, favoritesCount],
   );
 
+  const config = useTopBarConfig();
+
+  // With no configuration loaded the header renders exactly as it always has.
+  // With configuration, a module that is not live is dropped and the rest
+  // follow the order the manager saved.
+  const visible = useMemo(() => {
+    if (!config) return items;
+    const state = new Map(config.map((m) => [m.module_key, m]));
+    return items
+      .filter((el) => {
+        const key = MODULE_KEYS[String(el.key)];
+        // A module the registry has never heard of keeps rendering; the
+        // registry can hide what it knows, not suppress what it does not.
+        if (!key) return true;
+        const m = state.get(key);
+        return m ? m.status === "live" : true;
+      })
+      .sort((a, b) => {
+        const ak = MODULE_KEYS[String(a.key)];
+        const bk = MODULE_KEYS[String(b.key)];
+        const ao = ak ? (state.get(ak)?.sort_order ?? 999) : 999;
+        const bo = bk ? (state.get(bk)?.sort_order ?? 999) : 999;
+        return ao - bo;
+      });
+  }, [items, config]);
+
+  // Looked up once so each wrapper can carry its own device rules.
+  const byKey = useMemo(() => {
+    const map = new Map<string, TopBarModule>();
+    for (const m of config ?? []) map.set(m.module_key, m);
+    return map;
+  }, [config]);
+
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
-      {items.map((el, i) => (
-        <div key={el.key} className="kr-stagger" style={{ animationDelay: `${i * 55}ms` }}>
-          {el}
-        </div>
-      ))}
+      {visible.map((el, i) => {
+        const key = MODULE_KEYS[String(el.key)];
+        return (
+          <div
+            key={el.key}
+            className={`kr-stagger flex ${key ? deviceClass(byKey.get(key)) : ""}`}
+            style={{ animationDelay: `${i * 55}ms` }}
+          >
+            {el}
+          </div>
+        );
+      })}
     </div>
   );
 }
