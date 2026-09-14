@@ -21,4 +21,6 @@
 - [x] is_admin() bound to existing Software Vala roles; signup hook seeds XP rows
 - [x] Seed AMS catalogue content (levels, ranks, XP sources/rules, categories, achievements, badge collections, badges, trophies, leaderboards, missions, rewards, notification templates)
 - [x] Control Panel -> AMS Manager opens the module at /ams; every AMS page returns 200
+- [x] AMS Manager route parity with the reference module (79/79 pages mapped, all render 200; /ams redirects to /ams/overview)
+- [x] Shared button supports the AMS sound/loading/compact-icon options — AMS module is TypeScript-clean
 - [ ] End-to-end signed-in verification of AMS CRUD flows — BLOCKED: the backend has zero accounts, so no session can be minted. Needs one sign-up in the preview first.

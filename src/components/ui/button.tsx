@@ -1,8 +1,10 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { playSound, type UiSound } from "@/lib/ams/ui-sound";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
@@ -22,6 +24,8 @@ const buttonVariants = cva(
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        // Compact icon button used across the AMS Manager toolbars.
+        "icon-sm": "h-8 w-8 p-0 rounded-md",
       },
     },
     defaultVariants: {
@@ -34,13 +38,41 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  /** Shows an inline spinner and blocks interaction while an action is in flight. */
+  loading?: boolean;
+  /** UI sound cue played on click. Pass `false` to stay silent. */
+  sound?: UiSound | false;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, loading = false, sound, onClick, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (sound !== false && sound !== undefined) playSound(sound);
+      onClick?.(event);
+    };
     return (
-      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        data-loading={loading || undefined}
+        aria-busy={loading || undefined}
+        disabled={asChild ? undefined : loading || props.disabled}
+        onClick={handleClick}
+        {...props}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+            {children}
+          </>
+        )}
+      </Comp>
     );
   },
 );
