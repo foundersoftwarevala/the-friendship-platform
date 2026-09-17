@@ -4,6 +4,7 @@
 - [x] Replace only the public `/` homepage with the sapphire-control-hub homepage UI
 - [x] Keep the existing Control Panel and all other routes unchanged
 - [x] Verify desktop and mobile visual parity in the live preview
+- [x] Connect and emphasize the homepage Login action with accessible motion
 
 ## Chat ecosystem (Connect Hub + Connect AI Assistant)
 - [x] Chat database foundation (conversations, participants, messages, handoffs, RLS)

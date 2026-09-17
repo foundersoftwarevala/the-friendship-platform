@@ -54,6 +54,10 @@
   from { opacity: 0.72; transform: translateX(36px) scale(0.985); }
   to { opacity: 1; transform: translateX(0) scale(1); }
 }
+@keyframes sv-login-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0), 0 6px 14px -8px rgba(0, 0, 0, 0.85); }
+  50% { box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.14), 0 8px 20px -8px rgba(16, 185, 129, 0.7); }
+}
 
 .hero-premium,
 .hero-premium .hero-content,
@@ -186,6 +190,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .tb-pill, .tb-pill:hover, .tb-pill:active { transform: none; transition: none; }
+  .feature-clone .tb-pill.sv-login-cta { animation: none; }
 }
 
 /* Utility strip cloned from the feature strip */
@@ -220,6 +225,25 @@
 }
 .feature-clone .tb-pill { line-height: 1.5; height: 16.5px; }
 .feature-clone .kr-stagger { display: flex; align-items: center; height: 16.5px; }
+
+/* Login is the primary utility action: visibly larger, but still part of the strip. */
+.feature-clone .tb-pill.sv-login-cta {
+  height: 28px;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(110, 231, 183, 0.72);
+  border-radius: 999px;
+  color: #ecfdf5 !important;
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.96), rgba(4, 120, 87, 0.96)) !important;
+  box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.85);
+  font-size: 12px;
+  font-weight: 800;
+  animation: sv-login-breathe 2.4s ease-in-out infinite;
+}
+.feature-clone .tb-pill.sv-login-cta:hover {
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+.feature-clone .tb-pill.sv-login-cta svg { color: #d1fae5; }
 
 /* kill dull/flat surfaces inside the homepage only */
 .mpc-home [class*="bg-gray-9"],
