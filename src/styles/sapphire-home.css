@@ -216,6 +216,16 @@
   display: none;
 }
 
+.mpc-home .sv-category-viewport {
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: auto;
+}
+
+.mpc-home .sv-category-viewport::-webkit-scrollbar {
+  display: none;
+}
+
 .mpc-home .sv-product-rail > * {
   min-width: 0;
   scroll-snap-align: start;
