@@ -6,6 +6,7 @@
 - [x] Verify desktop and mobile visual parity in the live preview
 - [x] Connect and emphasize the homepage Login action with accessible motion
 - [x] Convert every product category into a Netflix-style 80-card carousel row
+- [ ] Fill all 80-card rows with real catalogue products and open product details from category cards
 
 ## Chat ecosystem (Connect Hub + Connect AI Assistant)
 - [x] Chat database foundation (conversations, participants, messages, handoffs, RLS)

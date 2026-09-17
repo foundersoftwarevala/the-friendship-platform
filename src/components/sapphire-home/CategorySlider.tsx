@@ -35,47 +35,24 @@ const LOOP = [...CATEGORIES, ...CATEGORIES];
 
 const CategorySlider = () => {
   const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
   const draggingRef = useRef(false);
   const movedRef = useRef(false);
-  const offsetRef = useRef(0);      // current translateX (negative = moved left)
-  const velocityRef = useRef(0);    // px / second, from drag + wheel momentum
   const lastPointer = useRef({ x: 0, t: 0 });
 
-  // Single rAF loop drives autoplay, inertia and the GPU transform.
+  // Native scrolling stays reliable after hydration and keeps touch/trackpad controls fluid.
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let raf = 0;
-    let last = performance.now();
-    const AUTO = 28; // px per second
-
-    const tick = (now: number) => {
-      const dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
-      const half = track.scrollWidth / 2 || 1;
-
-      if (!draggingRef.current) {
-        if (Math.abs(velocityRef.current) > 2) {
-          offsetRef.current += velocityRef.current * dt;
-          velocityRef.current *= Math.pow(0.0025, dt); // smooth exponential decay
-        } else {
-          velocityRef.current = 0;
-          if (!pausedRef.current && !reduce) offsetRef.current -= AUTO * dt;
-        }
-      }
-
-      // seamless infinite wrap in both directions
-      if (offsetRef.current <= -half) offsetRef.current += half;
-      if (offsetRef.current > 0) offsetRef.current -= half;
-
-      track.style.transform = `translate3d(${offsetRef.current.toFixed(2)}px,0,0)`;
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    if (reduce) return;
+    const timer = window.setInterval(() => {
+      if (pausedRef.current || draggingRef.current) return;
+      const half = viewport.scrollWidth / 2;
+      if (viewport.scrollLeft >= half - 2) viewport.scrollLeft -= half;
+      viewport.scrollTo({ left: viewport.scrollLeft + 180, behavior: "auto" });
+    }, 2200);
+    return () => window.clearInterval(timer);
   }, []);
 
   // Horizontal mouse-wheel / trackpad support (non-passive so the page never scrolls with it)
@@ -83,26 +60,25 @@ const CategorySlider = () => {
     const el = viewportRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
-      const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
-      if (!dx) return;
+      const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       e.preventDefault();
       const norm = dx * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
-      offsetRef.current -= norm;
-      velocityRef.current = -norm * 6;
+      el.scrollLeft += norm;
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
   const nudge = useCallback((dir: number) => {
-    velocityRef.current = -dir * 900;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    viewport.scrollTo({ left: viewport.scrollLeft + dir * 420, behavior: "auto" });
   }, []);
 
   // Pointer drag (unified mouse + touch) with momentum handoff
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     draggingRef.current = true;
     movedRef.current = false;
-    velocityRef.current = 0;
     lastPointer.current = { x: e.clientX, t: performance.now() };
     e.currentTarget.setPointerCapture(e.pointerId);
   };
@@ -112,8 +88,8 @@ const CategorySlider = () => {
     const dx = e.clientX - lastPointer.current.x;
     const dt = Math.max((now - lastPointer.current.t) / 1000, 0.001);
     if (Math.abs(dx) > 2) movedRef.current = true;
-    offsetRef.current += dx;
-    velocityRef.current = dx / dt;
+    e.currentTarget.scrollLeft -= dx;
+    void dt;
     lastPointer.current = { x: e.clientX, t: now };
   };
   const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -144,12 +120,10 @@ const CategorySlider = () => {
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
-          className="overflow-hidden px-10 py-3 cursor-grab active:cursor-grabbing select-none touch-pan-y"
+          className="sv-category-viewport overflow-x-auto px-10 py-3 cursor-grab active:cursor-grabbing select-none touch-pan-y"
         >
           <div
-            ref={trackRef}
-            className="flex gap-3 will-change-transform"
-            style={{ transform: "translate3d(0,0,0)", backfaceVisibility: "hidden" }}
+            className="flex w-max gap-3"
           >
           {LOOP.map((cat, i) => {
             const Icon = cat.icon;
