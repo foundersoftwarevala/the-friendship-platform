@@ -221,6 +221,21 @@
   scroll-snap-align: start;
 }
 
+.mpc-home .sv-product-placeholder {
+  width: min(300px, 82vw);
+  height: 430px;
+  border: 1px solid rgb(103 232 249 / 0.14);
+  border-radius: 8px;
+  background: linear-gradient(110deg, rgb(26 45 74 / 0.72) 25%, rgb(34 211 238 / 0.12) 45%, rgb(26 45 74 / 0.72) 65%);
+  background-size: 220% 100%;
+  animation: sv-row-loading 1.6s ease-in-out infinite;
+}
+
+@keyframes sv-row-loading {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
 .mpc-home .sv-row-arrow {
   height: 2.5rem;
   width: 2.5rem;
@@ -244,6 +259,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .mpc-home .sv-product-rail { scroll-behavior: auto; }
+  .mpc-home .sv-product-placeholder { animation: none; }
 }
 
 /* Utility strip cloned from the feature strip */
