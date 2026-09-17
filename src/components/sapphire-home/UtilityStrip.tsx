@@ -7,8 +7,8 @@ import { TopUtilityBar } from "@/components/sapphire-home/TopUtilityBar";
  * Notifications · My Favorites · AI Chat
  */
 const UtilityStrip = ({ favoritesCount = 0 }: { favoritesCount?: number }) => (
-  <div className="relative z-30 border-b border-white/10 bg-black/40 backdrop-blur-md px-4 sm:px-6 lg:px-10 py-2">
-    <div className="feature-clone max-w-7xl mx-auto w-full text-[11px] text-white/80">
+  <div className="relative z-30 border-b border-white/10 bg-black/40 px-4 py-2.5 backdrop-blur-md sm:px-6 lg:px-10">
+    <div className="feature-clone mx-auto w-full max-w-7xl text-[11px] text-white/80">
       <TopUtilityBar favoritesCount={favoritesCount} />
     </div>
   </div>
