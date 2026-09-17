@@ -193,6 +193,59 @@
   .feature-clone .tb-pill.sv-login-cta { animation: none; }
 }
 
+/* Netflix-style product rails: fixed cards, touch snapping and hidden chrome. */
+.mpc-home .sv-product-row {
+  margin-bottom: 3rem;
+}
+
+.mpc-home .sv-product-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(270px, 300px);
+  gap: 1.25rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  padding: 0.25rem 0.15rem 1.1rem;
+  touch-action: pan-x pan-y;
+}
+
+.mpc-home .sv-product-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.mpc-home .sv-product-rail > * {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.mpc-home .sv-row-arrow {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-color: rgb(103 232 249 / 0.35);
+  border-radius: 999px;
+  background: rgb(8 47 73 / 0.82);
+  color: rgb(207 250 254);
+  box-shadow: 0 8px 22px -12px rgb(34 211 238 / 0.8);
+}
+
+.mpc-home .sv-row-arrow:hover {
+  border-color: rgb(103 232 249 / 0.75);
+  background: rgb(14 116 144 / 0.9);
+}
+
+@media (max-width: 639px) {
+  .mpc-home .sv-product-row { margin-bottom: 2rem; }
+  .mpc-home .sv-product-rail { grid-auto-columns: minmax(82vw, 82vw); gap: 0.9rem; }
+  .mpc-home .sv-row-arrow { height: 2.25rem; width: 2.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mpc-home .sv-product-rail { scroll-behavior: auto; }
+}
+
 /* Utility strip cloned from the feature strip */
 .feature-clone { height: 16.5px; }
 .feature-clone > div {

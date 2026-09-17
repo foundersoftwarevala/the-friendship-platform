@@ -24,6 +24,7 @@ import FestiveBanner from "@/components/sapphire-home/FestiveBanner";
 import FeatureStrip from "@/components/sapphire-home/FeatureStrip";
 import CategorySlider from "@/components/sapphire-home/CategorySlider";
 import UtilityStrip from "@/components/sapphire-home/UtilityStrip";
+import ProductCarouselRow from "@/components/sapphire-home/ProductCarouselRow";
 import {
   IndustryGrid, AIZone, SuccessStories, AwardsRow, LiveActivity,
   ValaTV, Academy as ValaAcademy, PartnerEcosystem, FaqSection, EnterpriseCTA,
@@ -3343,6 +3344,13 @@ const allDemos: Demo[] = [
 
 // Master Categories for filtering (55 rows — matches actual data values)
 const masterCategories = ["All", ...allMasterCategories55];
+const PRODUCTS_PER_ROW = 80;
+
+/** Repeat only real products from the category to create a full browsing rail. */
+const fillProductRail = (products: Demo[], target = PRODUCTS_PER_ROW) => {
+  if (products.length === 0) return [];
+  return Array.from({ length: target }, (_, index) => products[index % products.length] as Demo);
+};
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -3428,7 +3436,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Demo Cards Grid */}
+      {/* Netflix-style product rows */}
       <section className="py-8 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Group by Master Category when "All" is selected */}
@@ -3436,41 +3444,37 @@ const Index = () => {
             masterCategories.slice(1).map(masterCat => {
               const categoryDemos = filteredDemos.filter(d => d.masterCategory === masterCat);
               if (categoryDemos.length === 0) return null;
-              
+              const rowDemos = searchQuery.trim() ? categoryDemos : fillProductRail(categoryDemos);
+
               return (
-                <div key={masterCat} id={masterCat} className="mb-12 scroll-mt-32">
-                  <div className="flex items-center gap-3 mb-6">
-                    <h3 className="text-2xl font-bold text-white">{masterCat}</h3>
-                    <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
-                      {categoryDemos.length} Products
-                    </Badge>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {categoryDemos.map((demo, index) => (
+                <ProductCarouselRow key={masterCat} title={masterCat} count={rowDemos.length}>
+                    {rowDemos.map((demo, index) => (
                       <DemoCard 
-                        key={demo.id} 
+                        key={`${masterCat}-${demo.id}-${index}`} 
                         demo={demo} 
                         index={index}
                         isFavorite={favorites.includes(demo.id)}
                         onToggleFavorite={() => toggleFavorite(demo.id)}
                       />
                     ))}
-                  </div>
-                </div>
+                </ProductCarouselRow>
               );
             })
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredDemos.map((demo, index) => (
+            <ProductCarouselRow
+              title={activeCategory}
+              count={(searchQuery.trim() ? filteredDemos : fillProductRail(filteredDemos)).length}
+            >
+              {(searchQuery.trim() ? filteredDemos : fillProductRail(filteredDemos)).map((demo, index) => (
                 <DemoCard 
-                  key={demo.id} 
+                  key={`${activeCategory}-${demo.id}-${index}`} 
                   demo={demo} 
                   index={index}
                   isFavorite={favorites.includes(demo.id)}
                   onToggleFavorite={() => toggleFavorite(demo.id)}
                 />
               ))}
-            </div>
+            </ProductCarouselRow>
           )}
         </div>
       </section>
