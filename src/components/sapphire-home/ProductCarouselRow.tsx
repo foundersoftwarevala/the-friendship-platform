@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -11,8 +11,27 @@ export function ProductCarouselRow({
   count: number;
   children: ReactNode;
 }) {
+  const sectionRef = useRef<HTMLElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setIsReady(true);
+        observer.disconnect();
+      },
+      { rootMargin: "700px 0px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const move = (direction: 1 | -1) => {
     const rail = railRef.current;
@@ -24,7 +43,7 @@ export function ProductCarouselRow({
   };
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!isReady || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => {
       const rail = railRef.current;
       if (!rail || pausedRef.current) return;
@@ -35,10 +54,11 @@ export function ProductCarouselRow({
       });
     }, 4800);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [isReady]);
 
   return (
     <section
+      ref={sectionRef}
       id={title}
       className="sv-product-row scroll-mt-32"
       onMouseEnter={() => { pausedRef.current = true; }}
@@ -77,8 +97,13 @@ export function ProductCarouselRow({
         </div>
       </div>
 
-      <div ref={railRef} className="sv-product-rail" aria-label={`${title} products`}>
-        {children}
+      <div
+        ref={railRef}
+        className={`sv-product-rail ${isReady ? "is-ready" : "is-loading"}`}
+        aria-label={`${title} products`}
+        aria-busy={!isReady}
+      >
+        {isReady ? children : <div className="sv-product-placeholder" aria-hidden />}
       </div>
     </section>
   );
