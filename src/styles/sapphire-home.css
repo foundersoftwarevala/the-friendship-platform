@@ -570,7 +570,12 @@
 }
 .mpc-home .sv-card:hover .sv-card-icon { transform: translate3d(0, -2px, 0) rotate(-4deg); }
 
-.mpc-home .sv-card-quick { opacity: 0; transform: translate3d(0, 8px, 0); transition: opacity 240ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1); }
+.mpc-home .sv-card-quick {
+  z-index: 20;
+  opacity: 0;
+  transform: translate3d(0, 8px, 0);
+  transition: opacity 240ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 .mpc-home .sv-card:hover .sv-card-quick,
 .mpc-home .sv-card:focus-within .sv-card-quick { opacity: 1; transform: translate3d(0, 0, 0); }
 
