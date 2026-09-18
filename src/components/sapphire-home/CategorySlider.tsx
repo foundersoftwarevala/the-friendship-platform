@@ -1,8 +1,8 @@
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
 import {
   Sparkles, GraduationCap, Stethoscope, Utensils, Hotel, Home, Car, Plane,
   CreditCard, Factory, Users, Truck, Building, Megaphone, Wallet, Briefcase,
-  ShoppingBag, Scale, Shield, Server, Headphones, Building2, ChevronLeft, ChevronRight
+  ShoppingBag, Scale, Shield, Server, Headphones, Building2
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -67,12 +67,6 @@ const CategorySlider = () => {
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, []);
-
-  const nudge = useCallback((dir: number) => {
-    const viewport = viewportRef.current;
-    if (!viewport) return;
-    viewport.scrollTo({ left: viewport.scrollLeft + dir * 420, behavior: "auto" });
   }, []);
 
   // Pointer drag (unified mouse + touch) with momentum handoff
