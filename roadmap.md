@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Sapphire marketplace homepage
+- [ ] Refine existing product cards, 3D actions, compact metrics, and responsive row spacing without changing behavior
 - [x] Replace only the public `/` homepage with the sapphire-control-hub homepage UI
 - [x] Keep the existing Control Panel and all other routes unchanged
 - [x] Verify desktop and mobile visual parity in the live preview
