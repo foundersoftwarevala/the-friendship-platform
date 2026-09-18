@@ -107,12 +107,6 @@ const CategorySlider = () => {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="pointer-events-none absolute inset-y-0 left-4 z-10 w-16 bg-gradient-to-r from-[#0a1628] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-4 z-10 w-16 bg-gradient-to-l from-[#0a1628] to-transparent" />
-        <button data-no-3d onClick={() => nudge(-1)} aria-label="Scroll left" className="sv-icon-btn absolute left-2 top-1/2 -translate-y-1/2 z-20 !h-10 !w-10">
-          <ChevronLeft className="w-5 h-5 text-white" />
-        </button>
-        <button data-no-3d onClick={() => nudge(1)} aria-label="Scroll right" className="sv-icon-btn absolute right-2 top-1/2 -translate-y-1/2 z-20 !h-10 !w-10">
-          <ChevronRight className="w-5 h-5 text-white" />
-        </button>
 
         <div
           ref={viewportRef}
