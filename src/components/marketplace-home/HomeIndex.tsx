@@ -3880,8 +3880,8 @@ export function toDemo(card: CatalogCard, index: number): Demo {
     frontend: card.tech ?? [],
     backend: [],
     color: CARD_COLORS[index % CARD_COLORS.length]!,
-    price: card.price ?? LIFETIME_PRICE,
-    discountPrice: card.price ?? LIFETIME_PRICE,
+    price: LIFETIME_PRICE,
+    discountPrice: LIFETIME_PRICE,
     rating: card.rating,
     license: card.license,
     platform: card.platform,
@@ -4314,31 +4314,21 @@ export const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
             </div>
             )}
 
-            {/* Price, from the product record.
-                Almost every product carries the standard lifetime price, and
-                for those the was-price and the discount are shown as before.
-                The handful priced "Custom" or "Contact" were being shown $249
-                and a 75% discount that did not apply to them. */}
+            {/* One fixed lifetime price across the marketplace. */}
             {shows("metadata", "price") && (() => {
-              const price = (demo as unknown as { price?: string }).price || LIFETIME_PRICE;
-              const standard = price === LIFETIME_PRICE;
               return (
                 <div className="mb-4">
                   <div className="flex items-baseline gap-2">
-                    {standard && (
-                      <span className="text-gray-500 line-through text-[13px]">{LIFETIME_MRP}</span>
-                    )}
+                    <span className="text-gray-500 line-through text-[13px]">{LIFETIME_MRP}</span>
                     <span className="sv-price text-emerald-300 font-black text-[22px] tracking-[-0.02em]">
-                      {price}
+                      {LIFETIME_PRICE}
                     </span>
-                    {standard && (
-                      <Badge className="bg-red-500/20 text-red-300 border-red-500/30 text-[10px] font-bold">
-                        {LIFETIME_DISCOUNT}
-                      </Badge>
-                    )}
+                    <Badge className="bg-red-500/20 text-red-300 border-red-500/30 text-[10px] font-bold">
+                      {LIFETIME_DISCOUNT}
+                    </Badge>
                   </div>
                   <p className="mt-1 text-[11px] font-semibold uppercase tracking-wider text-cyan-300/80">
-                    {standard ? "One-time payment · Lifetime access" : "Pricing on request"}
+                    One-time payment · Lifetime access
                   </p>
                 </div>
               );

@@ -12,12 +12,19 @@ import {
   Clock, Calendar, Briefcase, UserCog, Fingerprint, ShoppingBag, Store, Globe,
   Headphones, MessageSquare, Scale, Shield, Lock, Server, Cpu, Database,
   Wifi, Camera, Key, AlertTriangle, HardDrive, Eye, Radio, PhoneCall,
-  Mic, MonitorPlay, FileCheck, Gavel, ScrollText, Vote, Building2, Lightbulb, Code2, Tag
+  Mic, MonitorPlay, FileCheck, Gavel, ScrollText, Vote, Building2, Lightbulb, Code2, Tag,
+  Facebook, Linkedin, MessageCircle, Copy
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import softwareValaLogo from "@/assets/software-vala-logo.jpg";
 import HeroCarousel from "@/components/sapphire-home/HeroCarousel";
 import FestiveBanner from "@/components/sapphire-home/FestiveBanner";
@@ -30,6 +37,11 @@ import {
   ValaTV, Academy as ValaAcademy, PartnerEcosystem, FaqSection, EnterpriseCTA,
 } from "@/components/sapphire-home/RefSections";
 import { extraDemos, allMasterCategories55 } from "@/data/extraDemos";
+import {
+  LIFETIME_DISCOUNT,
+  LIFETIME_MRP,
+  LIFETIME_PRICE,
+} from "@/lib/site-content/constants";
 
 interface Demo {
   id: string;
@@ -3514,6 +3526,35 @@ const stableSeed = (key: string) => {
   return Math.abs(h);
 };
 
+const getShareDetails = (demo: Demo) => {
+  const fallbackPath = `/?product=${encodeURIComponent(demo.id)}`;
+  const path = demo.url && demo.url !== "#" ? demo.url : fallbackPath;
+  const url = new URL(path, window.location.origin).toString();
+  return {
+    title: demo.name,
+    text: `${demo.name} — ${LIFETIME_PRICE} one-time lifetime access on Software Vala`,
+    url,
+  };
+};
+
+const openShareUrl = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
+const shareNatively = async (demo: Demo) => {
+  const details = getShareDetails(demo);
+  if (navigator.share) {
+    try {
+      await navigator.share(details);
+      return;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+    }
+  }
+  await navigator.clipboard.writeText(details.url);
+  toast.success("Product link copied");
+};
+
 const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
   demo: Demo; 
   index: number; 
@@ -3628,15 +3669,16 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
               </div>
             </div>
 
-            {/* Price with animation */}
+            {/* One fixed lifetime price across the marketplace. */}
             <div className="sv-card-price-row flex items-baseline gap-2 mb-4">
-              <span className="sv-card-price-old line-through text-[13px]">{demo.price}</span>
+              <span className="sv-card-price-old line-through text-[13px]">{LIFETIME_MRP}</span>
               <span className="sv-price font-black text-[22px] tracking-normal">
-                {demo.discountPrice}
+                {LIFETIME_PRICE}
               </span>
               <Badge className="sv-card-discount text-[10px] font-bold">
-                40% OFF
+                {LIFETIME_DISCOUNT}
               </Badge>
+              <span className="sv-card-lifetime">Lifetime</span>
             </div>
 
             {/* Enhanced Actions */}
@@ -3650,7 +3692,7 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
                   </a>
                   <Button 
                     className="sv-btn sv-btn-emerald flex-1"
-                    onClick={() => toast.success("🎉 Redirecting to purchase...", { description: `${demo.name} - ${demo.discountPrice}` })}
+                    onClick={() => toast.success("🎉 Redirecting to purchase...", { description: `${demo.name} - ${LIFETIME_PRICE} lifetime` })}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" /> Buy Now
                   </Button>
@@ -3658,7 +3700,7 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
               ) : (
                 <>
                   <Button 
-                    className="sv-btn sv-btn-muted flex-1"
+                    className="sv-btn sv-btn-coming flex-1"
                     disabled
                   >
                     <Clock className="h-4 w-4 mr-2" /> Coming Soon
@@ -3671,6 +3713,55 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
                   </Button>
                 </>
               )}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className="sv-btn sv-btn-share" aria-label={`Share ${demo.name}`} title="Share product">
+                    <Share2 />
+                    <span className="sv-share-label">Share</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="sv-share-menu w-48">
+                  <DropdownMenuItem onSelect={() => void shareNatively(demo)}>
+                    <Share2 /> Share anywhere
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => {
+                    const details = getShareDetails(demo);
+                    openShareUrl(`https://wa.me/?text=${encodeURIComponent(`${details.text} ${details.url}`)}`);
+                  }}>
+                    <MessageCircle /> WhatsApp
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => {
+                    const { url } = getShareDetails(demo);
+                    openShareUrl(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+                  }}>
+                    <Facebook /> Facebook
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => {
+                    const details = getShareDetails(demo);
+                    openShareUrl(`https://twitter.com/intent/tweet?text=${encodeURIComponent(details.text)}&url=${encodeURIComponent(details.url)}`);
+                  }}>
+                    <span className="sv-share-x" aria-hidden="true">X</span> X
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => {
+                    const { url } = getShareDetails(demo);
+                    openShareUrl(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`);
+                  }}>
+                    <Linkedin /> LinkedIn
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => {
+                    const details = getShareDetails(demo);
+                    window.location.href = `mailto:?subject=${encodeURIComponent(details.title)}&body=${encodeURIComponent(`${details.text}\n\n${details.url}`)}`;
+                  }}>
+                    <Mail /> Email
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={async () => {
+                    await navigator.clipboard.writeText(getShareDetails(demo).url);
+                    toast.success("Product link copied");
+                  }}>
+                    <Copy /> Copy link
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             
             {/* Quick Stats on hover */}
