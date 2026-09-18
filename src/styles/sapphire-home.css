@@ -593,6 +593,8 @@
   color: oklch(0.8 0.12 25);
 }
 .mpc-home .sv-card-actions { align-items: stretch; }
+.mpc-home .sv-card-actions .sv-btn { gap: 0.4rem; }
+.mpc-home .sv-card-actions .sv-btn svg { margin-right: 0; }
 .mpc-home .sv-card-stats {
   min-height: 53px;
   overflow: hidden;
@@ -609,14 +611,15 @@
 }
 .mpc-home .sv-card-stat + .sv-card-stat { border-left: 1px solid var(--product-divider); }
 .mpc-home .sv-card-stat-value {
-  color: var(--product-title);
+  color: var(--product-title) !important;
   font-size: 0.95rem;
+  font-weight: 750;
   line-height: 1.05;
   letter-spacing: 0;
 }
 .mpc-home .sv-card-stat-label {
   margin-top: 0.18rem;
-  color: var(--product-muted);
+  color: var(--product-copy) !important;
   font-weight: 600;
   line-height: 1;
 }
@@ -654,7 +657,7 @@
 @media (max-width: 639px) {
   .mpc-home .sv-card { min-height: 500px; }
   .mpc-home .sv-card-body { min-height: 406px; padding: 0.95rem; }
-  .mpc-home .sv-btn { min-width: 0; padding-inline: 0.65rem; font-size: 12px; }
+  .mpc-home .sv-btn { min-width: 0; padding-inline: 0.55rem; font-size: 12px; }
 }
 
 .sv-fade-swap { animation: sv-fade-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both; }
