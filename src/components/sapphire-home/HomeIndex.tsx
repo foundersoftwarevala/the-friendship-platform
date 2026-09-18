@@ -2,6 +2,8 @@ import { memo, useState } from "react";
 
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+
+import { ProductLeadDialog, type LeadAction } from "@/components/sapphire-home/ProductLeadDialog";
 import {
   Play,
   Heart,
@@ -3674,9 +3676,17 @@ const DemoCard = memo(
   }) => {
     const Icon = demo.icon;
     const [activeTab, setActiveTab] = useState<"features" | "tech">("features");
+    const [leadAction, setLeadAction] = useState<LeadAction | null>(null);
 
     return (
       <div className="sv-card-shell relative">
+        <ProductLeadDialog
+          open={leadAction !== null}
+          onOpenChange={(next) => setLeadAction(next ? leadAction : null)}
+          action={leadAction ?? "buy_intent"}
+          productName={demo.name}
+          productId={demo.id}
+        />
         <Card className="sv-card group h-full overflow-hidden border-cyan-500/20 bg-gradient-to-br from-[#1a2d4a] to-[#0d1e36]">
           <CardContent className="p-0 flex flex-col h-full">
             {/* Header with gradient */}
@@ -3810,18 +3820,21 @@ const DemoCard = memo(
               <div className="sv-card-actions flex gap-2 mt-auto">
                 {demo.status === "ACTIVE" ? (
                   <>
-                    <a href={demo.url} className="flex-1">
-                      <Button className="sv-btn sv-btn-cyan w-full">
-                        <Play className="h-4 w-4 mr-2" /> Live Demo
-                      </Button>
-                    </a>
+                    <Button
+                      className="sv-btn sv-btn-cyan flex-1"
+                      onClick={() => {
+                        if (demo.url && demo.url !== "#") {
+                          window.open(demo.url, "_blank", "noopener,noreferrer");
+                          return;
+                        }
+                        setLeadAction("request_demo");
+                      }}
+                    >
+                      <Play className="h-4 w-4 mr-2" /> Live Demo
+                    </Button>
                     <Button
                       className="sv-btn sv-btn-emerald flex-1"
-                      onClick={() =>
-                        toast.success("🎉 Redirecting to purchase...", {
-                          description: `${demo.name} - ${LIFETIME_PRICE} lifetime`,
-                        })
-                      }
+                      onClick={() => setLeadAction("buy_intent")}
                     >
                       <ShoppingCart className="h-4 w-4 mr-2" /> Buy Now
                     </Button>
@@ -3833,11 +3846,7 @@ const DemoCard = memo(
                     </Button>
                     <Button
                       className="sv-btn sv-btn-gold flex-1"
-                      onClick={() =>
-                        toast.info("📧 We'll notify you when this is available!", {
-                          description: demo.name,
-                        })
-                      }
+                      onClick={() => setLeadAction("notify_me")}
                     >
                       <Bell className="h-4 w-4 mr-2" /> Notify Me
                     </Button>
