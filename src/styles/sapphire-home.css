@@ -596,8 +596,10 @@
   --sv-btn-rim: oklch(0.72 0.11 274 / 0.58);
   --sv-btn-glow: oklch(0.64 0.15 274 / 0.48);
   flex: 0 0 auto;
-  padding-inline: 0.68rem;
+  width: 40px;
+  padding-inline: 0;
 }
+.mpc-home .sv-share-label { display: none; }
 .mpc-home .sv-btn-coming,
 .mpc-home .sv-btn-coming:disabled {
   --sv-btn-bg: linear-gradient(180deg, oklch(0.82 0.16 83), oklch(0.57 0.16 66));
@@ -680,7 +682,7 @@
 .mpc-home button:not(.tb-pill):not(.sv-btn):not([data-no-3d]):active {
   transform: translate3d(0, 0, 0) scale(0.982);
 }
-.mpc-home button[disabled] {
+.mpc-home button[disabled]:not(.sv-btn) {
   box-shadow: none;
 }
 
@@ -955,9 +957,6 @@
   .mpc-home .sv-card-actions .sv-btn {
     padding-inline: 0.48rem;
     font-size: 0.7rem;
-  }
-  .mpc-home .sv-share-label {
-    display: none;
   }
 }
 

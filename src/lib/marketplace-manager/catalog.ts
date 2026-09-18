@@ -5,6 +5,7 @@
  */
 import { createTable, slugify, uid } from "./store";
 import { authHeaders } from "@/lib/auth/operator-fetch";
+import { LIFETIME_PRICE } from "@/lib/site-content/constants";
 
 export type Category = {
   id: string; slug: string; name: string; icon: string | null; image_key: string | null;
@@ -144,7 +145,7 @@ export async function listProductsAdmin(): Promise<Product[]> {
 }
 
 export async function upsertProduct(arg: { data: Partial<Product> }): Promise<Product> {
-  const input = { ...arg.data };
+  const input = { ...arg.data, price_label: LIFETIME_PRICE, price_period: "lifetime" };
   const id = input.id;
   delete input.id;
   if (!input.slug && input.name) input.slug = slugify(input.name, "product");
