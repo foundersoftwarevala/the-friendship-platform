@@ -2,22 +2,101 @@ import { memo, useState } from "react";
 
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { 
-  Play, Heart, ShoppingCart, Filter, Search, Bell, Settings,
-  GraduationCap, Stethoscope, Utensils, Hotel, Home, Car, Plane,
-  CreditCard, Factory, Users, Truck, Building, BookOpen, FlaskConical,
-  Phone, Pill, Package, MapPin, Star, Award, CheckCircle, Wallet, Landmark,
-  FileText, Calculator, Receipt, PieChart, ClipboardCheck, Coins, Target,
-  TrendingUp, Megaphone, Share2, Mail, Zap, BarChart3, UserCheck, DollarSign,
-  Clock, Calendar, Briefcase, UserCog, Fingerprint, ShoppingBag, Store, Globe,
-  Headphones, MessageSquare, Scale, Shield, Lock, Server, Cpu, Database,
-  Wifi, Camera, Key, AlertTriangle, HardDrive, Eye, Radio, PhoneCall,
-  Mic, MonitorPlay, FileCheck, Gavel, ScrollText, Vote, Building2, Lightbulb, Code2, Tag
+import {
+  Play,
+  Heart,
+  ShoppingCart,
+  Filter,
+  Search,
+  Bell,
+  Settings,
+  GraduationCap,
+  Stethoscope,
+  Utensils,
+  Hotel,
+  Home,
+  Car,
+  Plane,
+  CreditCard,
+  Factory,
+  Users,
+  Truck,
+  Building,
+  BookOpen,
+  FlaskConical,
+  Phone,
+  Pill,
+  Package,
+  MapPin,
+  Star,
+  Award,
+  CheckCircle,
+  Wallet,
+  Landmark,
+  FileText,
+  Calculator,
+  Receipt,
+  PieChart,
+  ClipboardCheck,
+  Coins,
+  Target,
+  TrendingUp,
+  Megaphone,
+  Share2,
+  Mail,
+  Zap,
+  BarChart3,
+  UserCheck,
+  DollarSign,
+  Clock,
+  Calendar,
+  Briefcase,
+  UserCog,
+  Fingerprint,
+  ShoppingBag,
+  Store,
+  Globe,
+  Headphones,
+  MessageSquare,
+  Scale,
+  Shield,
+  Lock,
+  Server,
+  Cpu,
+  Database,
+  Wifi,
+  Camera,
+  Key,
+  AlertTriangle,
+  HardDrive,
+  Eye,
+  Radio,
+  PhoneCall,
+  Mic,
+  MonitorPlay,
+  FileCheck,
+  Gavel,
+  ScrollText,
+  Vote,
+  Building2,
+  Lightbulb,
+  Code2,
+  Tag,
+  Facebook,
+  Linkedin,
+  MessageCircle,
+  Copy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import softwareValaLogo from "@/assets/software-vala-logo.jpg";
 import HeroCarousel from "@/components/sapphire-home/HeroCarousel";
 import FestiveBanner from "@/components/sapphire-home/FestiveBanner";
@@ -26,10 +105,19 @@ import CategorySlider from "@/components/sapphire-home/CategorySlider";
 import UtilityStrip from "@/components/sapphire-home/UtilityStrip";
 import ProductCarouselRow from "@/components/sapphire-home/ProductCarouselRow";
 import {
-  IndustryGrid, AIZone, SuccessStories, AwardsRow, LiveActivity,
-  ValaTV, Academy as ValaAcademy, PartnerEcosystem, FaqSection, EnterpriseCTA,
+  IndustryGrid,
+  AIZone,
+  SuccessStories,
+  AwardsRow,
+  LiveActivity,
+  ValaTV,
+  Academy as ValaAcademy,
+  PartnerEcosystem,
+  FaqSection,
+  EnterpriseCTA,
 } from "@/components/sapphire-home/RefSections";
 import { extraDemos, allMasterCategories55 } from "@/data/extraDemos";
+import { LIFETIME_DISCOUNT, LIFETIME_MRP, LIFETIME_PRICE } from "@/lib/site-content/constants";
 
 interface Demo {
   id: string;
@@ -55,7 +143,8 @@ const allDemos: Demo[] = [
     name: "School Management Software",
     category: "School Management",
     masterCategory: "Education",
-    description: "Complete school management with student records, attendance, timetable, and parent communication.",
+    description:
+      "Complete school management with student records, attendance, timetable, and parent communication.",
     url: "/demo/school-erp",
     icon: GraduationCap,
     status: "ACTIVE",
@@ -64,14 +153,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "SMS API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "gym-fitness",
     name: "Gym & Fitness Center Management",
     category: "Gym Fitness",
     masterCategory: "Healthcare",
-    description: "Complete gym management with memberships, trainer scheduling, workout plans, and billing.",
+    description:
+      "Complete gym management with memberships, trainer scheduling, workout plans, and billing.",
     url: "/demo/gym",
     icon: Users,
     status: "ACTIVE",
@@ -80,14 +170,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment API"],
     color: "from-orange-600 to-red-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "salon-spa",
     name: "Salon & Spa Management",
     category: "Salon Spa",
     masterCategory: "Healthcare",
-    description: "Salon management with appointments, services, staff scheduling, and customer loyalty.",
+    description:
+      "Salon management with appointments, services, staff scheduling, and customer loyalty.",
     url: "/demo/salon",
     icon: Star,
     status: "ACTIVE",
@@ -96,14 +187,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Booking API"],
     color: "from-pink-600 to-rose-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "childcare-daycare",
     name: "Childcare & Daycare Management",
     category: "Childcare",
     masterCategory: "Education",
-    description: "Daycare management with child profiles, attendance, activities, and parent communication.",
+    description:
+      "Daycare management with child profiles, attendance, activities, and parent communication.",
     url: "/demo/childcare",
     icon: Users,
     status: "ACTIVE",
@@ -112,14 +204,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Notification API"],
     color: "from-purple-600 to-pink-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "petcare-veterinary",
     name: "Pet Care & Veterinary Software",
     category: "Pet Care",
     masterCategory: "Healthcare",
-    description: "Pet clinic management with patient records, appointments, prescriptions, and boarding.",
+    description:
+      "Pet clinic management with patient records, appointments, prescriptions, and boarding.",
     url: "/demo/petcare",
     icon: Star,
     status: "ACTIVE",
@@ -128,14 +221,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Medical API"],
     color: "from-green-600 to-teal-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "event-management",
     name: "Event Management Software",
     category: "Event Mgmt",
     masterCategory: "Marketing",
-    description: "Event management with planning, registrations, ticketing, and attendee management.",
+    description:
+      "Event management with planning, registrations, ticketing, and attendee management.",
     url: "/demo/event",
     icon: Calendar,
     status: "ACTIVE",
@@ -144,7 +238,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "QR API"],
     color: "from-violet-600 to-purple-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "automotive-dealership",
@@ -160,7 +254,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "DMS API"],
     color: "from-slate-600 to-gray-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
 
   // ============= 1. EDUCATION & ELEARNING (7 Sub-categories) =============
@@ -169,7 +263,8 @@ const allDemos: Demo[] = [
     name: "College / University ERP",
     category: "College ERP",
     masterCategory: "Education",
-    description: "University ERP with admission, courses, faculty, exams, and placement management.",
+    description:
+      "University ERP with admission, courses, faculty, exams, and placement management.",
     url: "#",
     icon: Building,
     status: "COMING_SOON",
@@ -178,7 +273,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-indigo-600 to-purple-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "lms",
@@ -194,14 +289,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "CDN"],
     color: "from-purple-600 to-pink-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "coaching-institute",
     name: "Coaching / Institute Management",
     category: "Coaching",
     masterCategory: "Education",
-    description: "Coaching center management with batch scheduling, test series, and performance analytics.",
+    description:
+      "Coaching center management with batch scheduling, test series, and performance analytics.",
     url: "#",
     icon: Users,
     status: "COMING_SOON",
@@ -210,14 +306,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Reports"],
     color: "from-cyan-600 to-blue-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "online-exam",
     name: "Online Examination System",
     category: "Online Exam",
     masterCategory: "Education",
-    description: "Online exam platform with question banks, proctoring, auto-grading, and result analytics.",
+    description:
+      "Online exam platform with question banks, proctoring, auto-grading, and result analytics.",
     url: "#",
     icon: FlaskConical,
     status: "COMING_SOON",
@@ -226,14 +323,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "AI Proctor"],
     color: "from-green-600 to-teal-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "student-info",
     name: "Student Information System",
     category: "Student Info",
     masterCategory: "Education",
-    description: "Centralized student database with academic records, documents, and communication.",
+    description:
+      "Centralized student database with academic records, documents, and communication.",
     url: "#",
     icon: UserCheck,
     status: "COMING_SOON",
@@ -242,14 +340,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Cloud Storage"],
     color: "from-blue-500 to-cyan-500",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "edu-fees",
     name: "Fees & Accounting for Education",
     category: "Education Fees",
     masterCategory: "Education",
-    description: "Education-focused fee collection, receipts, dues tracking, and financial reports.",
+    description:
+      "Education-focused fee collection, receipts, dues tracking, and financial reports.",
     url: "#",
     icon: Calculator,
     status: "COMING_SOON",
@@ -258,7 +357,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment Gateway"],
     color: "from-emerald-600 to-green-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
 
   // ============= 2. RETAIL & POS SYSTEMS (7 Sub-categories) =============
@@ -267,7 +366,8 @@ const allDemos: Demo[] = [
     name: "Retail POS",
     category: "Retail POS",
     masterCategory: "Retail & POS",
-    description: "Complete retail POS with barcode scanning, inventory, billing, and sales reports.",
+    description:
+      "Complete retail POS with barcode scanning, inventory, billing, and sales reports.",
     url: "#",
     icon: ShoppingCart,
     status: "COMING_SOON",
@@ -276,7 +376,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Print API"],
     color: "from-orange-600 to-red-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "restaurant-pos",
@@ -292,7 +392,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Real-time"],
     color: "from-red-600 to-orange-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "grocery-pos",
@@ -308,7 +408,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Hardware API"],
     color: "from-green-600 to-emerald-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "mobile-pos",
@@ -324,7 +424,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Sync API"],
     color: "from-blue-600 to-purple-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "multistore-pos",
@@ -340,7 +440,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Multi-tenant"],
     color: "from-purple-600 to-indigo-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "inventory-stock",
@@ -356,7 +456,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Barcode API"],
     color: "from-teal-600 to-cyan-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "billing-invoicing",
@@ -372,7 +472,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "PDF API"],
     color: "from-amber-600 to-orange-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
 
   // ============= 3. HEALTHCARE & MEDICAL SYSTEMS (7 Sub-categories) =============
@@ -390,7 +490,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "HL7 FHIR"],
     color: "from-emerald-600 to-teal-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "clinic-management",
@@ -406,14 +506,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "SMS API"],
     color: "from-teal-600 to-cyan-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "pharmacy-management",
     name: "Pharmacy Management",
     category: "Pharmacy",
     masterCategory: "Healthcare",
-    description: "Pharmacy software with drug inventory, expiry tracking, billing, and prescriptions.",
+    description:
+      "Pharmacy software with drug inventory, expiry tracking, billing, and prescriptions.",
     url: "#",
     icon: Pill,
     status: "COMING_SOON",
@@ -422,7 +523,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Drug DB"],
     color: "from-green-600 to-emerald-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "lab-management",
@@ -438,7 +539,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "HL7"],
     color: "from-purple-600 to-indigo-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "telemedicine",
@@ -454,14 +555,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "WebRTC"],
     color: "from-blue-600 to-cyan-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "appointment-booking",
     name: "Appointment Booking System",
     category: "Appointments",
     masterCategory: "Healthcare",
-    description: "Healthcare appointment system with doctor schedules, reminders, and queue management.",
+    description:
+      "Healthcare appointment system with doctor schedules, reminders, and queue management.",
     url: "#",
     icon: Calendar,
     status: "COMING_SOON",
@@ -470,7 +572,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "SMS/Email"],
     color: "from-indigo-600 to-blue-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "medical-records",
@@ -486,7 +588,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Encryption"],
     color: "from-rose-600 to-pink-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
 
   // ============= 4. LOGISTICS & TRANSPORTATION (7 Sub-categories) =============
@@ -495,7 +597,8 @@ const allDemos: Demo[] = [
     name: "Fleet Management System",
     category: "Fleet",
     masterCategory: "Logistics",
-    description: "Fleet management with vehicle tracking, maintenance, fuel, and driver management.",
+    description:
+      "Fleet management with vehicle tracking, maintenance, fuel, and driver management.",
     url: "/demo/logistics",
     icon: Truck,
     status: "ACTIVE",
@@ -504,7 +607,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GPS API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "courier-management",
@@ -520,7 +623,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Track API"],
     color: "from-orange-600 to-red-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "delivery-management",
@@ -536,7 +639,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Maps API"],
     color: "from-green-600 to-teal-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "transport-erp",
@@ -552,7 +655,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GST API"],
     color: "from-purple-600 to-indigo-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "route-trip",
@@ -568,7 +671,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Routing API"],
     color: "from-cyan-600 to-blue-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "driver-management",
@@ -584,7 +687,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Document API"],
     color: "from-amber-600 to-orange-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "gps-tracking",
@@ -600,7 +703,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GPS API"],
     color: "from-red-600 to-rose-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
 
   // ============= 5. REAL ESTATE & PROPERTY MANAGEMENT (7 Sub-categories) =============
@@ -618,7 +721,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Document API"],
     color: "from-emerald-600 to-green-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "realestate-crm",
@@ -634,14 +737,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-blue-600 to-indigo-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "society-management",
     name: "Society / Apartment Management",
     category: "Society Mgmt",
     masterCategory: "Real Estate",
-    description: "Society management with maintenance, complaints, amenities, and visitor tracking.",
+    description:
+      "Society management with maintenance, complaints, amenities, and visitor tracking.",
     url: "#",
     icon: Building,
     status: "COMING_SOON",
@@ -650,7 +754,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment API"],
     color: "from-purple-600 to-pink-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "rental-management",
@@ -666,7 +770,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "E-Sign API"],
     color: "from-teal-600 to-cyan-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "broker-agency",
@@ -682,7 +786,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payout API"],
     color: "from-orange-600 to-amber-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "maintenance-mgmt",
@@ -698,14 +802,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Notification API"],
     color: "from-gray-600 to-slate-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "visitor-parking",
     name: "Visitor & Parking Management",
     category: "Visitor Parking",
     masterCategory: "Real Estate",
-    description: "Visitor management with pre-registration, parking allocation, and access control.",
+    description:
+      "Visitor management with pre-registration, parking allocation, and access control.",
     url: "#",
     icon: Car,
     status: "COMING_SOON",
@@ -714,7 +819,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Gate API"],
     color: "from-indigo-600 to-purple-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
 
   // ============= 6. FINANCE, BANKING & FINTECH (7 Sub-categories) =============
@@ -723,7 +828,8 @@ const allDemos: Demo[] = [
     name: "Digital Wallet System",
     category: "Digital Wallet",
     masterCategory: "Finance",
-    description: "Digital wallet with P2P transfers, bill payments, QR pay, and transaction history.",
+    description:
+      "Digital wallet with P2P transfers, bill payments, QR pay, and transaction history.",
     url: "/demo/finance",
     icon: Wallet,
     status: "ACTIVE",
@@ -732,7 +838,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment API"],
     color: "from-green-600 to-emerald-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "banking-core",
@@ -748,7 +854,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Secure API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹1,49,999",
-    discountPrice: "₹89,999"
+    discountPrice: "₹89,999",
   },
   {
     id: "loan-management",
@@ -764,7 +870,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Credit API"],
     color: "from-purple-600 to-pink-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "payment-gateway",
@@ -780,7 +886,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "PCI DSS"],
     color: "from-orange-600 to-red-600",
     price: "₹1,29,999",
-    discountPrice: "₹77,999"
+    discountPrice: "₹77,999",
   },
   {
     id: "investment-mgmt",
@@ -796,7 +902,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Market API"],
     color: "from-teal-600 to-cyan-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "emi-credit",
@@ -812,7 +918,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Bureau API"],
     color: "from-amber-600 to-yellow-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "kyc-verification",
@@ -828,7 +934,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "AI Verify"],
     color: "from-rose-600 to-pink-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
 
   // ============= 7. ACCOUNTING, BILLING & TAXATION (7 Sub-categories) =============
@@ -837,7 +943,8 @@ const allDemos: Demo[] = [
     name: "Accounting Software",
     category: "Accounting",
     masterCategory: "Accounting",
-    description: "Complete accounting with ledgers, journals, trial balance, and financial statements.",
+    description:
+      "Complete accounting with ledgers, journals, trial balance, and financial statements.",
     url: "#",
     icon: Calculator,
     status: "COMING_SOON",
@@ -846,7 +953,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Reports"],
     color: "from-blue-600 to-indigo-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "billing-software",
@@ -862,7 +969,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "PDF API"],
     color: "from-green-600 to-teal-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
   {
     id: "gst-tax-software",
@@ -878,7 +985,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GST API"],
     color: "from-purple-600 to-indigo-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "expense-management",
@@ -894,7 +1001,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "OCR API"],
     color: "from-orange-600 to-amber-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "financial-reporting",
@@ -910,7 +1017,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-cyan-600 to-blue-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "audit-compliance",
@@ -926,14 +1033,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-red-600 to-rose-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "multicurrency-accounting",
     name: "Multi-Currency Accounting",
     category: "Multi-Currency",
     masterCategory: "Accounting",
-    description: "Multi-currency accounting with exchange rates, conversions, and consolidated reports.",
+    description:
+      "Multi-currency accounting with exchange rates, conversions, and consolidated reports.",
     url: "#",
     icon: Coins,
     status: "COMING_SOON",
@@ -942,7 +1050,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Forex API"],
     color: "from-emerald-600 to-green-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
 
   // ============= 8. SALES, CRM & LEAD MANAGEMENT (7 Sub-categories) =============
@@ -960,7 +1068,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-blue-600 to-purple-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "lead-management",
@@ -976,7 +1084,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Integration"],
     color: "from-green-600 to-teal-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "sales-automation",
@@ -992,7 +1100,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow Engine"],
     color: "from-orange-600 to-red-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "pipeline-deal",
@@ -1008,7 +1116,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-purple-600 to-pink-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "customer-database",
@@ -1024,7 +1132,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Bulk API"],
     color: "from-cyan-600 to-blue-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "followup-reminder",
@@ -1040,7 +1148,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Push API"],
     color: "from-amber-600 to-orange-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
   {
     id: "sales-reporting",
@@ -1056,7 +1164,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "BI Engine"],
     color: "from-indigo-600 to-purple-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
 
   // ============= 9. MARKETING & ADVERTISING TECHNOLOGY (7 Sub-categories) =============
@@ -1074,7 +1182,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-pink-600 to-rose-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "campaign-management",
@@ -1090,7 +1198,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Ad API"],
     color: "from-purple-600 to-indigo-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "social-media-mgmt",
@@ -1106,7 +1214,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Social API"],
     color: "from-blue-600 to-cyan-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "email-marketing",
@@ -1122,7 +1230,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "SMTP"],
     color: "from-green-600 to-teal-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "marketing-automation",
@@ -1138,7 +1246,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-orange-600 to-amber-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "lead-attribution",
@@ -1154,7 +1262,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-red-600 to-rose-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "marketing-analytics",
@@ -1170,7 +1278,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "BI"],
     color: "from-indigo-600 to-blue-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
 
   // ============= 10. HUMAN RESOURCE & PAYROLL SYSTEMS (7 Sub-categories) =============
@@ -1188,14 +1296,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Auth"],
     color: "from-violet-600 to-purple-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "payroll-management",
     name: "Payroll Management System",
     category: "Payroll",
     masterCategory: "HR & Payroll",
-    description: "Payroll processing with salary calculation, deductions, payslips, and compliance.",
+    description:
+      "Payroll processing with salary calculation, deductions, payslips, and compliance.",
     url: "#",
     icon: DollarSign,
     status: "COMING_SOON",
@@ -1204,7 +1313,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Tax API"],
     color: "from-green-600 to-emerald-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "attendance-biometric",
@@ -1220,14 +1329,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Device API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "leave-management",
     name: "Leave Management System",
     category: "Leave Mgmt",
     masterCategory: "HR & Payroll",
-    description: "Leave management with policies, approvals, balance tracking, and holiday calendar.",
+    description:
+      "Leave management with policies, approvals, balance tracking, and holiday calendar.",
     url: "#",
     icon: Calendar,
     status: "COMING_SOON",
@@ -1236,7 +1346,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-teal-600 to-cyan-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
   {
     id: "recruitment-hiring",
@@ -1252,7 +1362,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Email API"],
     color: "from-orange-600 to-red-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "performance-management",
@@ -1268,7 +1378,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-purple-600 to-pink-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "employee-selfservice",
@@ -1284,7 +1394,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Auth"],
     color: "from-amber-600 to-yellow-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
 
   // ============= 11. ENTERPRISE RESOURCE PLANNING (ERP) (7 Sub-categories) =============
@@ -1293,7 +1403,8 @@ const allDemos: Demo[] = [
     name: "Manufacturing ERP",
     category: "Manufacturing ERP",
     masterCategory: "ERP",
-    description: "Complete manufacturing ERP with BOM, production planning, quality, and shop floor control.",
+    description:
+      "Complete manufacturing ERP with BOM, production planning, quality, and shop floor control.",
     url: "/demo/manufacturing",
     icon: Factory,
     status: "ACTIVE",
@@ -1302,7 +1413,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "IoT Ready"],
     color: "from-slate-600 to-zinc-600",
     price: "₹1,49,999",
-    discountPrice: "₹89,999"
+    discountPrice: "₹89,999",
   },
   {
     id: "trading-erp",
@@ -1318,7 +1429,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-blue-600 to-indigo-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "distribution-erp",
@@ -1334,7 +1445,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "API Integration"],
     color: "from-green-600 to-teal-600",
     price: "₹1,19,999",
-    discountPrice: "₹71,999"
+    discountPrice: "₹71,999",
   },
   {
     id: "service-erp",
@@ -1350,14 +1461,15 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-purple-600 to-pink-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "multibranch-erp",
     name: "Multi-Branch ERP",
     category: "Multi-Branch ERP",
     masterCategory: "Enterprise Resource Planning (ERP)",
-    description: "Multi-branch ERP with centralized control, branch sync, and consolidated reports.",
+    description:
+      "Multi-branch ERP with centralized control, branch sync, and consolidated reports.",
     url: "#",
     icon: Building,
     status: "COMING_SOON",
@@ -1366,7 +1478,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Multi-tenant"],
     color: "from-orange-600 to-red-600",
     price: "₹1,29,999",
-    discountPrice: "₹77,999"
+    discountPrice: "₹77,999",
   },
   {
     id: "inventory-purchase-erp",
@@ -1382,7 +1494,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Barcode API"],
     color: "from-cyan-600 to-blue-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "finance-erp",
@@ -1398,7 +1510,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Reporting"],
     color: "from-emerald-600 to-green-600",
     price: "₹1,09,999",
-    discountPrice: "₹65,999"
+    discountPrice: "₹65,999",
   },
 
   // ============= 12. INVENTORY, WAREHOUSE & SUPPLY CHAIN (7 Sub-categories) =============
@@ -1416,7 +1528,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Barcode"],
     color: "from-teal-600 to-cyan-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "warehouse-wms",
@@ -1432,7 +1544,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "RF Devices"],
     color: "from-blue-600 to-indigo-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "supply-chain-scm",
@@ -1448,7 +1560,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "EDI"],
     color: "from-purple-600 to-pink-600",
     price: "₹1,19,999",
-    discountPrice: "₹71,999"
+    discountPrice: "₹71,999",
   },
   {
     id: "stock-forecasting",
@@ -1464,7 +1576,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "ML Engine"],
     color: "from-green-600 to-emerald-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "purchase-order",
@@ -1480,7 +1592,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-orange-600 to-amber-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "vendor-management",
@@ -1496,7 +1608,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Document API"],
     color: "from-rose-600 to-red-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "barcode-rfid",
@@ -1512,7 +1624,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Hardware API"],
     color: "from-gray-600 to-slate-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
 
   // ============= 13. E-COMMERCE & ONLINE MARKETPLACES (7 Sub-categories) =============
@@ -1530,7 +1642,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment API"],
     color: "from-purple-600 to-pink-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "multivendor-marketplace",
@@ -1546,7 +1658,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Multi-tenant"],
     color: "from-blue-600 to-indigo-600",
     price: "₹1,29,999",
-    discountPrice: "₹77,999"
+    discountPrice: "₹77,999",
   },
   {
     id: "b2b-ecommerce",
@@ -1562,7 +1674,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "ERP Integration"],
     color: "from-green-600 to-teal-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "subscription-commerce",
@@ -1578,7 +1690,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Stripe API"],
     color: "from-orange-600 to-red-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "order-management",
@@ -1594,7 +1706,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Shipping API"],
     color: "from-cyan-600 to-blue-600",
     price: "₹64,999",
-    discountPrice: "₹38,999"
+    discountPrice: "₹38,999",
   },
   {
     id: "payment-checkout",
@@ -1610,7 +1722,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "PCI DSS"],
     color: "from-emerald-600 to-green-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "seller-management",
@@ -1626,7 +1738,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "KYC API"],
     color: "from-amber-600 to-orange-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
 
   // ============= 14. HOSPITALITY (HOTEL, RESTAURANT, TRAVEL) (7 Sub-categories) =============
@@ -1635,7 +1747,8 @@ const allDemos: Demo[] = [
     name: "Hotel Management System",
     category: "Hotel HMS",
     masterCategory: "Hospitality (Hotel, Restaurant, Travel)",
-    description: "Complete HMS with reservations, front desk, housekeeping, and revenue management.",
+    description:
+      "Complete HMS with reservations, front desk, housekeeping, and revenue management.",
     url: "/demo/hotel-booking",
     icon: Hotel,
     status: "ACTIVE",
@@ -1644,7 +1757,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Channel Manager"],
     color: "from-amber-600 to-orange-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "restaurant-management",
@@ -1660,7 +1773,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Real-time"],
     color: "from-red-600 to-orange-600",
     price: "₹64,999",
-    discountPrice: "₹38,999"
+    discountPrice: "₹38,999",
   },
   {
     id: "travel-booking",
@@ -1676,7 +1789,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GDS API"],
     color: "from-sky-600 to-blue-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "resort-management",
@@ -1692,7 +1805,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Booking API"],
     color: "from-green-600 to-teal-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "room-reservation",
@@ -1708,7 +1821,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Payment API"],
     color: "from-purple-600 to-indigo-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "kitchen-order",
@@ -1724,7 +1837,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Real-time"],
     color: "from-orange-600 to-red-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "guest-experience",
@@ -1740,7 +1853,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "AI Engine"],
     color: "from-rose-600 to-pink-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
 
   // ============= 15. TELECOM, CALL CENTER & VOIP (7 Sub-categories) =============
@@ -1758,7 +1871,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Telephony API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "ivr-system",
@@ -1774,7 +1887,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Voice API"],
     color: "from-green-600 to-teal-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "voip-platform",
@@ -1790,7 +1903,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "SIP Server"],
     color: "from-purple-600 to-pink-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "call-recording",
@@ -1806,7 +1919,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Storage API"],
     color: "from-orange-600 to-red-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "callcenter-crm",
@@ -1822,7 +1935,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "CTI"],
     color: "from-cyan-600 to-blue-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "dialer-software",
@@ -1838,7 +1951,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Dialer Engine"],
     color: "from-amber-600 to-orange-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "agent-performance",
@@ -1854,7 +1967,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Analytics"],
     color: "from-emerald-600 to-green-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
 
   // ============= 16. CUSTOMER SUPPORT & HELPDESK (7 Sub-categories) =============
@@ -1872,7 +1985,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-blue-600 to-purple-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "helpdesk-software",
@@ -1888,7 +2001,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Email API"],
     color: "from-green-600 to-teal-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "live-chat",
@@ -1904,7 +2017,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "WebSocket"],
     color: "from-purple-600 to-pink-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "customer-feedback",
@@ -1920,7 +2033,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "AI Analysis"],
     color: "from-orange-600 to-amber-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
   {
     id: "sla-management",
@@ -1936,7 +2049,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Scheduler"],
     color: "from-red-600 to-rose-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "knowledge-base",
@@ -1952,7 +2065,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Full-text Search"],
     color: "from-cyan-600 to-blue-600",
     price: "₹29,999",
-    discountPrice: "₹17,999"
+    discountPrice: "₹17,999",
   },
   {
     id: "omnichannel-support",
@@ -1968,7 +2081,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Channel APIs"],
     color: "from-indigo-600 to-purple-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
 
   // ============= 17. LEGAL, COMPLIANCE & DOCUMENTATION (7 Sub-categories) =============
@@ -1986,7 +2099,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Document API"],
     color: "from-slate-600 to-zinc-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "contract-management",
@@ -2002,7 +2115,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "E-Sign API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "compliance-management",
@@ -2018,7 +2131,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-green-600 to-teal-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "document-dms",
@@ -2034,7 +2147,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Cloud Storage"],
     color: "from-purple-600 to-pink-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "esignature",
@@ -2050,7 +2163,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Crypto API"],
     color: "from-orange-600 to-red-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "policy-management",
@@ -2066,7 +2179,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-cyan-600 to-blue-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "legal-notice",
@@ -2082,7 +2195,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Email API"],
     color: "from-amber-600 to-orange-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
 
   // ============= 18. GOVERNMENT & E-GOVERNANCE SYSTEMS (7 Sub-categories) =============
@@ -2100,7 +2213,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Gov API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹1,29,999",
-    discountPrice: "₹77,999"
+    discountPrice: "₹77,999",
   },
   {
     id: "government-erp",
@@ -2116,7 +2229,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Multi-dept"],
     color: "from-green-600 to-teal-600",
     price: "₹1,99,999",
-    discountPrice: "₹1,19,999"
+    discountPrice: "₹1,19,999",
   },
   {
     id: "digital-document",
@@ -2132,7 +2245,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Blockchain"],
     color: "from-purple-600 to-pink-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "online-application",
@@ -2148,7 +2261,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-orange-600 to-red-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "grievance-management",
@@ -2164,7 +2277,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Workflow"],
     color: "from-cyan-600 to-blue-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "smart-city",
@@ -2180,7 +2293,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "IoT Platform"],
     color: "from-emerald-600 to-green-600",
     price: "₹2,49,999",
-    discountPrice: "₹1,49,999"
+    discountPrice: "₹1,49,999",
   },
   {
     id: "public-finance",
@@ -2196,7 +2309,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Integration"],
     color: "from-amber-600 to-yellow-600",
     price: "₹1,49,999",
-    discountPrice: "₹89,999"
+    discountPrice: "₹89,999",
   },
 
   // ============= 19. SECURITY, SURVEILLANCE & ACCESS CONTROL (7 Sub-categories) =============
@@ -2214,7 +2327,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Video API"],
     color: "from-slate-600 to-gray-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "access-control",
@@ -2230,7 +2343,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Hardware API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹54,999",
-    discountPrice: "₹32,999"
+    discountPrice: "₹32,999",
   },
   {
     id: "visitor-mgmt-security",
@@ -2246,7 +2359,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Print API"],
     color: "from-green-600 to-teal-600",
     price: "₹39,999",
-    discountPrice: "₹23,999"
+    discountPrice: "₹23,999",
   },
   {
     id: "biometric-attendance",
@@ -2262,7 +2375,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Device API"],
     color: "from-purple-600 to-pink-600",
     price: "₹44,999",
-    discountPrice: "₹26,999"
+    discountPrice: "₹26,999",
   },
   {
     id: "security-patrol",
@@ -2278,7 +2391,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "GPS API"],
     color: "from-orange-600 to-red-600",
     price: "₹49,999",
-    discountPrice: "₹29,999"
+    discountPrice: "₹29,999",
   },
   {
     id: "alarm-monitoring",
@@ -2294,7 +2407,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Alarm API"],
     color: "from-red-600 to-rose-600",
     price: "₹59,999",
-    discountPrice: "₹35,999"
+    discountPrice: "₹35,999",
   },
   {
     id: "incident-reporting",
@@ -2310,7 +2423,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Storage API"],
     color: "from-amber-600 to-orange-600",
     price: "₹34,999",
-    discountPrice: "₹20,999"
+    discountPrice: "₹20,999",
   },
 
   // ============= 20. CYBER SECURITY & DATA PROTECTION (7 Sub-categories) =============
@@ -2328,7 +2441,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Agent API"],
     color: "from-red-600 to-rose-600",
     price: "₹89,999",
-    discountPrice: "₹53,999"
+    discountPrice: "₹53,999",
   },
   {
     id: "firewall-management",
@@ -2344,7 +2457,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Network API"],
     color: "from-blue-600 to-indigo-600",
     price: "₹79,999",
-    discountPrice: "₹47,999"
+    discountPrice: "₹47,999",
   },
   {
     id: "siem-soc",
@@ -2360,7 +2473,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Big Data"],
     color: "from-purple-600 to-pink-600",
     price: "₹1,99,999",
-    discountPrice: "₹1,19,999"
+    discountPrice: "₹1,19,999",
   },
   {
     id: "identity-access",
@@ -2376,7 +2489,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "LDAP/SAML"],
     color: "from-green-600 to-teal-600",
     price: "₹1,29,999",
-    discountPrice: "₹77,999"
+    discountPrice: "₹77,999",
   },
   {
     id: "data-loss-prevention",
@@ -2392,7 +2505,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "ML Engine"],
     color: "from-orange-600 to-red-600",
     price: "₹1,09,999",
-    discountPrice: "₹65,999"
+    discountPrice: "₹65,999",
   },
   {
     id: "backup-recovery",
@@ -2408,7 +2521,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Storage API"],
     color: "from-cyan-600 to-blue-600",
     price: "₹69,999",
-    discountPrice: "₹41,999"
+    discountPrice: "₹41,999",
   },
   {
     id: "vulnerability-mgmt",
@@ -2424,7 +2537,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "Scanner API"],
     color: "from-amber-600 to-yellow-600",
     price: "₹99,999",
-    discountPrice: "₹59,999"
+    discountPrice: "₹59,999",
   },
   {
     id: "life-insurance-management",
@@ -2440,7 +2553,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-emerald-600 to-teal-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "general-insurance-suite",
@@ -2456,7 +2569,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-teal-600 to-cyan-600",
     price: "\u20b989,999",
-    discountPrice: "\u20b953,999"
+    discountPrice: "\u20b953,999",
   },
   {
     id: "insurance-broker-crm",
@@ -2472,7 +2585,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-cyan-600 to-blue-600",
     price: "\u20b964,999",
-    discountPrice: "\u20b938,999"
+    discountPrice: "\u20b938,999",
   },
   {
     id: "claims-processing-portal",
@@ -2488,7 +2601,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-blue-600 to-indigo-600",
     price: "\u20b974,999",
-    discountPrice: "\u20b944,999"
+    discountPrice: "\u20b944,999",
   },
   {
     id: "isp-billing-crm",
@@ -2504,7 +2617,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-sky-600 to-blue-600",
     price: "\u20b969,999",
-    discountPrice: "\u20b941,999"
+    discountPrice: "\u20b941,999",
   },
   {
     id: "telecom-oss-bss",
@@ -2520,7 +2633,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-indigo-600 to-violet-600",
     price: "\u20b91,29,999",
-    discountPrice: "\u20b979,999"
+    discountPrice: "\u20b979,999",
   },
   {
     id: "call-center-suite",
@@ -2536,7 +2649,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-violet-600 to-purple-600",
     price: "\u20b984,999",
-    discountPrice: "\u20b949,999"
+    discountPrice: "\u20b949,999",
   },
   {
     id: "warehouse-management-system",
@@ -2552,7 +2665,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-amber-600 to-orange-600",
     price: "\u20b994,999",
-    discountPrice: "\u20b956,999"
+    discountPrice: "\u20b956,999",
   },
   {
     id: "3pl-fulfillment-suite",
@@ -2568,7 +2681,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-orange-600 to-red-600",
     price: "\u20b91,09,999",
-    discountPrice: "\u20b965,999"
+    discountPrice: "\u20b965,999",
   },
   {
     id: "cold-storage-manager",
@@ -2584,7 +2697,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-cyan-600 to-teal-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "property-rental-portal",
@@ -2600,7 +2713,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-emerald-600 to-green-600",
     price: "\u20b954,999",
-    discountPrice: "\u20b932,999"
+    discountPrice: "\u20b932,999",
   },
   {
     id: "equipment-rental-software",
@@ -2616,7 +2729,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-lime-600 to-green-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "coworking-space-manager",
@@ -2632,7 +2745,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-teal-600 to-emerald-600",
     price: "\u20b959,999",
-    discountPrice: "\u20b935,999"
+    discountPrice: "\u20b935,999",
   },
   {
     id: "automobile-dealer-dms",
@@ -2648,7 +2761,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-red-600 to-rose-600",
     price: "\u20b91,19,999",
-    discountPrice: "\u20b971,999"
+    discountPrice: "\u20b971,999",
   },
   {
     id: "garage-workshop-manager",
@@ -2664,7 +2777,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-rose-600 to-pink-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "vehicle-fleet-manager",
@@ -2680,7 +2793,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-orange-600 to-amber-600",
     price: "\u20b969,999",
-    discountPrice: "\u20b941,999"
+    discountPrice: "\u20b941,999",
   },
   {
     id: "car-rental-booking",
@@ -2696,7 +2809,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-pink-600 to-red-600",
     price: "\u20b959,999",
-    discountPrice: "\u20b935,999"
+    discountPrice: "\u20b935,999",
   },
   {
     id: "temple-trust-management",
@@ -2712,7 +2825,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-yellow-600 to-orange-600",
     price: "\u20b939,999",
-    discountPrice: "\u20b923,999"
+    discountPrice: "\u20b923,999",
   },
   {
     id: "church-community-suite",
@@ -2728,7 +2841,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-orange-600 to-amber-600",
     price: "\u20b934,999",
-    discountPrice: "\u20b920,999"
+    discountPrice: "\u20b920,999",
   },
   {
     id: "water-utility-billing",
@@ -2744,7 +2857,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-cyan-600 to-blue-600",
     price: "\u20b989,999",
-    discountPrice: "\u20b953,999"
+    discountPrice: "\u20b953,999",
   },
   {
     id: "electricity-board-suite",
@@ -2760,7 +2873,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-yellow-600 to-amber-600",
     price: "\u20b91,19,999",
-    discountPrice: "\u20b971,999"
+    discountPrice: "\u20b971,999",
   },
   {
     id: "municipal-e-governance",
@@ -2776,7 +2889,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-indigo-600 to-blue-600",
     price: "\u20b91,39,999",
-    discountPrice: "\u20b983,999"
+    discountPrice: "\u20b983,999",
   },
   {
     id: "command-control-system",
@@ -2792,7 +2905,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-slate-700 to-gray-800",
     price: "\u20b92,49,999",
-    discountPrice: "\u20b91,49,999"
+    discountPrice: "\u20b91,49,999",
   },
   {
     id: "armoury-inventory",
@@ -2808,7 +2921,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-gray-700 to-slate-800",
     price: "\u20b91,49,999",
-    discountPrice: "\u20b989,999"
+    discountPrice: "\u20b989,999",
   },
   {
     id: "enterprise-admin-console",
@@ -2824,7 +2937,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-indigo-600 to-purple-600",
     price: "\u20b999,999",
-    discountPrice: "\u20b959,999"
+    discountPrice: "\u20b959,999",
   },
   {
     id: "multi-company-dashboard",
@@ -2840,7 +2953,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-purple-600 to-fuchsia-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "workflow-automation-studio",
@@ -2856,7 +2969,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-fuchsia-600 to-pink-600",
     price: "\u20b989,999",
-    discountPrice: "\u20b953,999"
+    discountPrice: "\u20b953,999",
   },
   {
     id: "veterinary-hospital-erp",
@@ -2872,7 +2985,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-emerald-600 to-teal-600",
     price: "\u20b964,999",
-    discountPrice: "\u20b938,999"
+    discountPrice: "\u20b938,999",
   },
   {
     id: "pet-grooming-boarding",
@@ -2888,7 +3001,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-pink-600 to-rose-600",
     price: "\u20b934,999",
-    discountPrice: "\u20b920,999"
+    discountPrice: "\u20b920,999",
   },
   {
     id: "dairy-plant-management",
@@ -2904,7 +3017,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-blue-600 to-cyan-600",
     price: "\u20b999,999",
-    discountPrice: "\u20b959,999"
+    discountPrice: "\u20b959,999",
   },
   {
     id: "bakery-production-suite",
@@ -2920,7 +3033,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-amber-600 to-orange-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "beverage-bottling-erp",
@@ -2936,7 +3049,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-teal-600 to-emerald-600",
     price: "\u20b91,09,999",
-    discountPrice: "\u20b965,999"
+    discountPrice: "\u20b965,999",
   },
   {
     id: "digital-agency-crm",
@@ -2952,7 +3065,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-purple-600 to-pink-600",
     price: "\u20b959,999",
-    discountPrice: "\u20b935,999"
+    discountPrice: "\u20b935,999",
   },
   {
     id: "media-asset-manager",
@@ -2968,7 +3081,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-fuchsia-600 to-purple-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "podcast-video-studio",
@@ -2984,7 +3097,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-rose-600 to-red-600",
     price: "\u20b944,999",
-    discountPrice: "\u20b926,999"
+    discountPrice: "\u20b926,999",
   },
   {
     id: "travel-agency-erp",
@@ -3000,7 +3113,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-sky-600 to-cyan-600",
     price: "\u20b969,999",
-    discountPrice: "\u20b941,999"
+    discountPrice: "\u20b941,999",
   },
   {
     id: "tour-operator-suite",
@@ -3016,7 +3129,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-emerald-600 to-teal-600",
     price: "\u20b959,999",
-    discountPrice: "\u20b935,999"
+    discountPrice: "\u20b935,999",
   },
   {
     id: "hotel-booking-engine",
@@ -3032,7 +3145,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-indigo-600 to-blue-600",
     price: "\u20b989,999",
-    discountPrice: "\u20b953,999"
+    discountPrice: "\u20b953,999",
   },
   {
     id: "coding-academy-lms",
@@ -3048,7 +3161,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-cyan-600 to-blue-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "music-arts-academy",
@@ -3064,7 +3177,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-pink-600 to-rose-600",
     price: "\u20b934,999",
-    discountPrice: "\u20b920,999"
+    discountPrice: "\u20b920,999",
   },
   {
     id: "dance-performing-arts",
@@ -3080,7 +3193,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-purple-600 to-fuchsia-600",
     price: "\u20b929,999",
-    discountPrice: "\u20b917,999"
+    discountPrice: "\u20b917,999",
   },
   {
     id: "team-docs-wiki",
@@ -3096,7 +3209,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-blue-600 to-indigo-600",
     price: "\u20b939,999",
-    discountPrice: "\u20b923,999"
+    discountPrice: "\u20b923,999",
   },
   {
     id: "project-task-manager",
@@ -3112,7 +3225,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-emerald-600 to-green-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "meeting-room-booking",
@@ -3128,7 +3241,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-teal-600 to-cyan-600",
     price: "\u20b919,999",
-    discountPrice: "\u20b911,999"
+    discountPrice: "\u20b911,999",
   },
   {
     id: "ai-chatbot-builder",
@@ -3144,7 +3257,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-violet-600 to-purple-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "ai-document-extractor",
@@ -3160,7 +3273,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-indigo-600 to-blue-600",
     price: "\u20b989,999",
-    discountPrice: "\u20b953,999"
+    discountPrice: "\u20b953,999",
   },
   {
     id: "ai-analytics-copilot",
@@ -3176,7 +3289,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-purple-600 to-fuchsia-600",
     price: "\u20b999,999",
-    discountPrice: "\u20b959,999"
+    discountPrice: "\u20b959,999",
   },
   {
     id: "event-management-suite",
@@ -3192,7 +3305,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-rose-600 to-pink-600",
     price: "\u20b964,999",
-    discountPrice: "\u20b938,999"
+    discountPrice: "\u20b938,999",
   },
   {
     id: "wedding-planner-software",
@@ -3208,7 +3321,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-pink-600 to-rose-600",
     price: "\u20b949,999",
-    discountPrice: "\u20b929,999"
+    discountPrice: "\u20b929,999",
   },
   {
     id: "ticketing-registration",
@@ -3224,7 +3337,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-orange-600 to-red-600",
     price: "\u20b939,999",
-    discountPrice: "\u20b923,999"
+    discountPrice: "\u20b923,999",
   },
   {
     id: "construction-site-erp",
@@ -3240,7 +3353,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-amber-600 to-orange-600",
     price: "\u20b91,29,999",
-    discountPrice: "\u20b979,999"
+    discountPrice: "\u20b979,999",
   },
   {
     id: "real-estate-sales-crm",
@@ -3256,7 +3369,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-orange-600 to-red-600",
     price: "\u20b999,999",
-    discountPrice: "\u20b959,999"
+    discountPrice: "\u20b959,999",
   },
   {
     id: "interior-design-studio",
@@ -3272,7 +3385,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-yellow-600 to-amber-600",
     price: "\u20b954,999",
-    discountPrice: "\u20b932,999"
+    discountPrice: "\u20b932,999",
   },
   {
     id: "farm-management-erp",
@@ -3288,7 +3401,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-green-600 to-emerald-600",
     price: "\u20b959,999",
-    discountPrice: "\u20b935,999"
+    discountPrice: "\u20b935,999",
   },
   {
     id: "agri-trading-mandi",
@@ -3304,7 +3417,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-lime-600 to-green-600",
     price: "\u20b979,999",
-    discountPrice: "\u20b947,999"
+    discountPrice: "\u20b947,999",
   },
   {
     id: "manufacturing-erp",
@@ -3320,7 +3433,7 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-slate-600 to-gray-700",
     price: "\u20b91,49,999",
-    discountPrice: "\u20b989,999"
+    discountPrice: "\u20b989,999",
   },
   {
     id: "quality-control-suite",
@@ -3336,9 +3449,8 @@ const allDemos: Demo[] = [
     backend: ["Node.js", "PostgreSQL", "REST API"],
     color: "from-gray-600 to-slate-700",
     price: "\u20b969,999",
-    discountPrice: "\u20b941,999"
-  }
-,
+    discountPrice: "\u20b941,999",
+  },
   ...extraDemos,
 ];
 
@@ -3357,22 +3469,23 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState<string[]>([]);
 
-  const filteredDemos = allDemos.filter(demo => {
+  const filteredDemos = allDemos.filter((demo) => {
     const matchesCategory = activeCategory === "All" || demo.masterCategory === activeCategory;
-    const matchesSearch = demo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          demo.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          demo.masterCategory.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      demo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      demo.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      demo.masterCategory.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   const toggleFavorite = (id: string) => {
-    setFavorites(prev => prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]);
+    setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]));
   };
 
   // Count demos per master category
   const getCategoryCount = (category: string) => {
     if (category === "All") return allDemos.length;
-    return allDemos.filter(d => d.masterCategory === category).length;
+    return allDemos.filter((d) => d.masterCategory === category).length;
   };
 
   return (
@@ -3382,7 +3495,11 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-4">
-              <img src={softwareValaLogo} alt="Software Vala" className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-lg" />
+              <img
+                src={softwareValaLogo}
+                alt="Software Vala"
+                className="h-14 w-14 rounded-full object-cover border-2 border-white shadow-lg"
+              />
               <div>
                 <h1 className="text-white font-bold text-2xl">Software Vala</h1>
                 <p className="text-white/90 text-sm">- The Name of Trust</p>
@@ -3400,21 +3517,15 @@ const Index = () => {
 
       <FeatureStrip />
 
-
-
       <HeroCarousel />
 
       {/* Industry Grid */}
-      <div className="max-w-7xl mx-auto"><IndustryGrid /></div>
-
+      <div className="max-w-7xl mx-auto">
+        <IndustryGrid />
+      </div>
 
       {/* Category Slider (auto-scroll) */}
       <CategorySlider />
-
-
-
-
-
 
       {/* Category Filter - Master Categories */}
       <div className="bg-[#0d1e36]/80 backdrop-blur-sm border-b border-cyan-500/20 py-4 px-4 sticky top-0 z-40">
@@ -3422,8 +3533,8 @@ const Index = () => {
           <div className="flex items-center gap-4 mb-4">
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-              <Input 
-                placeholder="Search software..." 
+              <Input
+                placeholder="Search software..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 bg-[#1a2d4a] border-cyan-500/30 text-white placeholder:text-gray-400"
@@ -3441,22 +3552,22 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           {/* Group by Master Category when "All" is selected */}
           {activeCategory === "All" ? (
-            masterCategories.slice(1).map(masterCat => {
-              const categoryDemos = filteredDemos.filter(d => d.masterCategory === masterCat);
+            masterCategories.slice(1).map((masterCat) => {
+              const categoryDemos = filteredDemos.filter((d) => d.masterCategory === masterCat);
               if (categoryDemos.length === 0) return null;
               const rowDemos = searchQuery.trim() ? categoryDemos : fillProductRail(categoryDemos);
 
               return (
                 <ProductCarouselRow key={masterCat} title={masterCat} count={rowDemos.length}>
-                    {rowDemos.map((demo, index) => (
-                      <DemoCard 
-                        key={`${masterCat}-${demo.id}-${index}`} 
-                        demo={demo} 
-                        index={index}
-                        isFavorite={favorites.includes(demo.id)}
-                        onToggleFavorite={() => toggleFavorite(demo.id)}
-                      />
-                    ))}
+                  {rowDemos.map((demo, index) => (
+                    <DemoCard
+                      key={`${masterCat}-${demo.id}-${index}`}
+                      demo={demo}
+                      index={index}
+                      isFavorite={favorites.includes(demo.id)}
+                      onToggleFavorite={() => toggleFavorite(demo.id)}
+                    />
+                  ))}
                 </ProductCarouselRow>
               );
             })
@@ -3465,15 +3576,17 @@ const Index = () => {
               title={activeCategory}
               count={(searchQuery.trim() ? filteredDemos : fillProductRail(filteredDemos)).length}
             >
-              {(searchQuery.trim() ? filteredDemos : fillProductRail(filteredDemos)).map((demo, index) => (
-                <DemoCard 
-                  key={`${activeCategory}-${demo.id}-${index}`} 
-                  demo={demo} 
-                  index={index}
-                  isFavorite={favorites.includes(demo.id)}
-                  onToggleFavorite={() => toggleFavorite(demo.id)}
-                />
-              ))}
+              {(searchQuery.trim() ? filteredDemos : fillProductRail(filteredDemos)).map(
+                (demo, index) => (
+                  <DemoCard
+                    key={`${activeCategory}-${demo.id}-${index}`}
+                    demo={demo}
+                    index={index}
+                    isFavorite={favorites.includes(demo.id)}
+                    onToggleFavorite={() => toggleFavorite(demo.id)}
+                  />
+                ),
+              )}
             </ProductCarouselRow>
           )}
         </div>
@@ -3495,8 +3608,12 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-[#0a1628] border-t border-cyan-500/20 py-8 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-gray-400">© 2024 Software Vala - The Name of Trust. All rights reserved.</p>
-          <p className="text-cyan-400 mt-2">55 Master Categories • {allDemos.length} Software Solutions • 20 Live Demos Ready</p>
+          <p className="text-gray-400">
+            © 2024 Software Vala - The Name of Trust. All rights reserved.
+          </p>
+          <p className="text-cyan-400 mt-2">
+            55 Master Categories • {allDemos.length} Software Solutions • 20 Live Demos Ready
+          </p>
         </div>
       </footer>
     </div>
@@ -3514,187 +3631,324 @@ const stableSeed = (key: string) => {
   return Math.abs(h);
 };
 
-const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
-  demo: Demo; 
-  index: number; 
-  isFavorite: boolean;
-  onToggleFavorite: () => void;
-}) => {
-  const Icon = demo.icon;
-  const [activeTab, setActiveTab] = useState<'features' | 'tech'>('features');
+const getShareDetails = (demo: Demo) => {
+  const fallbackPath = `/?product=${encodeURIComponent(demo.id)}`;
+  const path = demo.url && demo.url !== "#" ? demo.url : fallbackPath;
+  const url = new URL(path, window.location.origin).toString();
+  return {
+    title: demo.name,
+    text: `${demo.name} — ${LIFETIME_PRICE} one-time lifetime access on Software Vala`,
+    url,
+  };
+};
 
-  return (
-    <div className="sv-card-shell relative">
-      <Card className="sv-card group h-full overflow-hidden border-cyan-500/20 bg-gradient-to-br from-[#1a2d4a] to-[#0d1e36]">
-        <CardContent className="p-0 flex flex-col h-full">
-          {/* Header with gradient */}
-          <div className={`sv-card-head bg-gradient-to-r ${demo.color} p-4 relative overflow-hidden`}>
-            <div className="flex justify-between items-start relative z-10">
-              <div className="sv-card-icon rounded-xl bg-white/20 p-3">
-                <Icon className="h-8 w-8 text-white" />
+const openShareUrl = (url: string) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+};
+
+const shareNatively = async (demo: Demo) => {
+  const details = getShareDetails(demo);
+  if (navigator.share) {
+    try {
+      await navigator.share(details);
+      return;
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+    }
+  }
+  await navigator.clipboard.writeText(details.url);
+  toast.success("Product link copied");
+};
+
+const DemoCard = memo(
+  ({
+    demo,
+    index,
+    isFavorite,
+    onToggleFavorite,
+  }: {
+    demo: Demo;
+    index: number;
+    isFavorite: boolean;
+    onToggleFavorite: () => void;
+  }) => {
+    const Icon = demo.icon;
+    const [activeTab, setActiveTab] = useState<"features" | "tech">("features");
+
+    return (
+      <div className="sv-card-shell relative">
+        <Card className="sv-card group h-full overflow-hidden border-cyan-500/20 bg-gradient-to-br from-[#1a2d4a] to-[#0d1e36]">
+          <CardContent className="p-0 flex flex-col h-full">
+            {/* Header with gradient */}
+            <div
+              className={`sv-card-head bg-gradient-to-r ${demo.color} p-4 relative overflow-hidden`}
+            >
+              <div className="flex justify-between items-start relative z-10">
+                <div className="sv-card-icon rounded-xl bg-white/20 p-3">
+                  <Icon className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex gap-2 items-center">
+                  {demo.status === "COMING_SOON" && (
+                    <Badge className="bg-yellow-500/90 text-black font-bold text-xs animate-pulse">
+                      COMING SOON
+                    </Badge>
+                  )}
+                  {demo.status === "ACTIVE" && (
+                    <Badge className="bg-emerald-500/90 text-white font-bold text-xs flex items-center gap-1">
+                      <span className="sv-live-dot" />
+                      LIVE DEMO
+                    </Badge>
+                  )}
+                </div>
               </div>
-              <div className="flex gap-2 items-center">
-                {demo.status === "COMING_SOON" && (
-                  <Badge className="bg-yellow-500/90 text-black font-bold text-xs animate-pulse">
-                    COMING SOON
-                  </Badge>
-                )}
+
+              {/* Quick action buttons on hover */}
+              <div className="sv-card-quick absolute bottom-2 right-2 flex gap-2">
+                <button
+                  data-no-3d
+                  aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleFavorite();
+                    toast.success(isFavorite ? "Removed from favorites" : "Added to favorites!");
+                  }}
+                  className="sv-icon-btn"
+                >
+                  <Heart
+                    className={`h-4 w-4 ${isFavorite ? "fill-red-500 text-red-500" : "text-white"}`}
+                  />
+                </button>
+                <a
+                  href={demo.url}
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`Preview ${demo.name}`}
+                  className="sv-icon-btn"
+                >
+                  <Eye className="h-4 w-4 text-white" />
+                </a>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="sv-card-body p-5 flex-1 flex flex-col">
+              <div className="sv-card-title-row flex items-start justify-between mb-1">
+                <h3 className="sv-card-title text-[17px] font-extrabold tracking-normal leading-snug">
+                  {demo.name}
+                </h3>
                 {demo.status === "ACTIVE" && (
-                  <Badge className="bg-emerald-500/90 text-white font-bold text-xs flex items-center gap-1">
-                    <span className="sv-live-dot" />
-                    LIVE DEMO
-                  </Badge>
+                  <Badge className="sv-card-rank text-[10px] shrink-0 ml-2">#{index + 1}</Badge>
                 )}
               </div>
-            </div>
+              <p className="sv-card-category text-[11px] font-semibold uppercase tracking-normal mb-2 flex items-center gap-1">
+                <Award className="h-3 w-3" /> {demo.category}
+              </p>
+              <p className="sv-card-description text-[13px] leading-relaxed mb-3 line-clamp-2">
+                {demo.description}
+              </p>
 
-            {/* Quick action buttons on hover */}
-            <div className="sv-card-quick absolute bottom-2 right-2 flex gap-2">
-              <button
-                data-no-3d
-                aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleFavorite();
-                  toast.success(isFavorite ? 'Removed from favorites' : 'Added to favorites!');
-                }}
-                className="sv-icon-btn"
-              >
-                <Heart className={`h-4 w-4 ${isFavorite ? 'fill-red-500 text-red-500' : 'text-white'}`} />
-              </button>
-              <a
-                href={demo.url}
-                onClick={(e) => e.stopPropagation()}
-                aria-label={`Preview ${demo.name}`}
-                className="sv-icon-btn"
-              >
-                <Eye className="h-4 w-4 text-white" />
-              </a>
-            </div>
-          </div>
+              {/* Interactive Tabs */}
+              <div className="sv-card-details mb-3">
+                <div className="flex gap-1 mb-2">
+                  <button
+                    data-no-3d
+                    onClick={() => setActiveTab("features")}
+                    className={`sv-tab ${activeTab === "features" ? "sv-tab-on" : ""}`}
+                  >
+                    Features
+                  </button>
+                  <button
+                    data-no-3d
+                    onClick={() => setActiveTab("tech")}
+                    className={`sv-tab ${activeTab === "tech" ? "sv-tab-on sv-tab-alt" : ""}`}
+                  >
+                    Tech Stack
+                  </button>
+                </div>
 
-          {/* Content */}
-          <div className="sv-card-body p-5 flex-1 flex flex-col">
-            <div className="sv-card-title-row flex items-start justify-between mb-1">
-              <h3 className="sv-card-title text-[17px] font-extrabold tracking-normal leading-snug">{demo.name}</h3>
-              {demo.status === "ACTIVE" && (
-                <Badge className="sv-card-rank text-[10px] shrink-0 ml-2">
-                  #{index + 1}
+                <div className="min-h-[52px] sv-fade-swap" key={activeTab}>
+                  {activeTab === "features" ? (
+                    <div className="flex flex-wrap gap-1">
+                      {demo.features.map((feature) => (
+                        <Badge
+                          key={feature}
+                          variant="outline"
+                          className="sv-chip sv-chip-feature text-[10px]"
+                        >
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex flex-wrap gap-1">
+                      {[...demo.frontend, ...demo.backend].map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="outline"
+                          className="sv-chip sv-chip-tech text-[10px]"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* One fixed lifetime price across the marketplace. */}
+              <div className="sv-card-price-row flex items-baseline gap-2 mb-4">
+                <span className="sv-card-price-old line-through text-[13px]">{LIFETIME_MRP}</span>
+                <span className="sv-price font-black text-[22px] tracking-normal">
+                  {LIFETIME_PRICE}
+                </span>
+                <Badge className="sv-card-discount text-[10px] font-bold">
+                  {LIFETIME_DISCOUNT}
                 </Badge>
-              )}
-            </div>
-            <p className="sv-card-category text-[11px] font-semibold uppercase tracking-normal mb-2 flex items-center gap-1">
-              <Award className="h-3 w-3" /> {demo.category}
-            </p>
-            <p className="sv-card-description text-[13px] leading-relaxed mb-3 line-clamp-2">{demo.description}</p>
-
-            {/* Interactive Tabs */}
-            <div className="sv-card-details mb-3">
-              <div className="flex gap-1 mb-2">
-                <button
-                  data-no-3d
-                  onClick={() => setActiveTab('features')}
-                  className={`sv-tab ${activeTab === 'features' ? 'sv-tab-on' : ''}`}
-                >
-                  Features
-                </button>
-                <button
-                  data-no-3d
-                  onClick={() => setActiveTab('tech')}
-                  className={`sv-tab ${activeTab === 'tech' ? 'sv-tab-on sv-tab-alt' : ''}`}
-                >
-                  Tech Stack
-                </button>
+                <span className="sv-card-lifetime">Lifetime</span>
               </div>
 
-              <div className="min-h-[52px] sv-fade-swap" key={activeTab}>
-                {activeTab === 'features' ? (
-                  <div className="flex flex-wrap gap-1">
-                    {demo.features.map((feature) => (
-                      <Badge key={feature} variant="outline" className="sv-chip sv-chip-feature text-[10px]">
-                        {feature}
-                      </Badge>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap gap-1">
-                    {[...demo.frontend, ...demo.backend].map((tech) => (
-                      <Badge key={tech} variant="outline" className="sv-chip sv-chip-tech text-[10px]">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Price with animation */}
-            <div className="sv-card-price-row flex items-baseline gap-2 mb-4">
-              <span className="sv-card-price-old line-through text-[13px]">{demo.price}</span>
-              <span className="sv-price font-black text-[22px] tracking-normal">
-                {demo.discountPrice}
-              </span>
-              <Badge className="sv-card-discount text-[10px] font-bold">
-                40% OFF
-              </Badge>
-            </div>
-
-            {/* Enhanced Actions */}
-            <div className="sv-card-actions flex gap-2 mt-auto">
-              {demo.status === "ACTIVE" ? (
-                <>
-                  <a href={demo.url} className="flex-1">
-                    <Button className="sv-btn sv-btn-cyan w-full">
-                      <Play className="h-4 w-4 mr-2" /> Live Demo
+              {/* Enhanced Actions */}
+              <div className="sv-card-actions flex gap-2 mt-auto">
+                {demo.status === "ACTIVE" ? (
+                  <>
+                    <a href={demo.url} className="flex-1">
+                      <Button className="sv-btn sv-btn-cyan w-full">
+                        <Play className="h-4 w-4 mr-2" /> Live Demo
+                      </Button>
+                    </a>
+                    <Button
+                      className="sv-btn sv-btn-emerald flex-1"
+                      onClick={() =>
+                        toast.success("🎉 Redirecting to purchase...", {
+                          description: `${demo.name} - ${LIFETIME_PRICE} lifetime`,
+                        })
+                      }
+                    >
+                      <ShoppingCart className="h-4 w-4 mr-2" /> Buy Now
                     </Button>
-                  </a>
-                  <Button 
-                    className="sv-btn sv-btn-emerald flex-1"
-                    onClick={() => toast.success("🎉 Redirecting to purchase...", { description: `${demo.name} - ${demo.discountPrice}` })}
-                  >
-                    <ShoppingCart className="h-4 w-4 mr-2" /> Buy Now
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button 
-                    className="sv-btn sv-btn-muted flex-1"
-                    disabled
-                  >
-                    <Clock className="h-4 w-4 mr-2" /> Coming Soon
-                  </Button>
-                  <Button 
-                    className="sv-btn sv-btn-gold flex-1"
-                    onClick={() => toast.info("📧 We'll notify you when this is available!", { description: demo.name })}
-                  >
-                    <Bell className="h-4 w-4 mr-2" /> Notify Me
-                  </Button>
-                </>
-              )}
-            </div>
-            
-            {/* Quick Stats on hover */}
-            <div className="sv-card-stats mt-3 grid grid-cols-3">
-              <div className="sv-card-stat text-center">
-                <p className="sv-card-stat-value text-lg font-bold">{50 + (stableSeed(demo.id) % 50)}+</p>
-                <p className="sv-card-stat-label text-[10px]">Clients</p>
-              </div>
-              <div className="sv-card-stat text-center">
-                <p className="sv-card-stat-value text-lg font-bold">4.{7 + (stableSeed(demo.id + "r") % 3)}</p>
-                <p className="sv-card-stat-label text-[10px]">Rating</p>
-              </div>
-              <div className="sv-card-stat text-center">
-                <p className="sv-card-stat-value text-lg font-bold">{5 + (stableSeed(demo.id + "d") % 10)}h</p>
-                <p className="sv-card-stat-label text-[10px]">Delivery</p>
+                  </>
+                ) : (
+                  <>
+                    <Button className="sv-btn sv-btn-coming flex-1" disabled>
+                      <Clock className="h-4 w-4 mr-2" /> Coming Soon
+                    </Button>
+                    <Button
+                      className="sv-btn sv-btn-gold flex-1"
+                      onClick={() =>
+                        toast.info("📧 We'll notify you when this is available!", {
+                          description: demo.name,
+                        })
+                      }
+                    >
+                      <Bell className="h-4 w-4 mr-2" /> Notify Me
+                    </Button>
+                  </>
+                )}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      className="sv-btn sv-btn-share"
+                      aria-label={`Share ${demo.name}`}
+                      title="Share product"
+                    >
+                      <Share2 />
+                      <span className="sv-share-label">Share</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="sv-share-menu w-48">
+                    <DropdownMenuItem onSelect={() => void shareNatively(demo)}>
+                      <Share2 /> Share anywhere
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => {
+                        const details = getShareDetails(demo);
+                        openShareUrl(
+                          `https://wa.me/?text=${encodeURIComponent(`${details.text} ${details.url}`)}`,
+                        );
+                      }}
+                    >
+                      <MessageCircle /> WhatsApp
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => {
+                        const { url } = getShareDetails(demo);
+                        openShareUrl(
+                          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+                        );
+                      }}
+                    >
+                      <Facebook /> Facebook
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => {
+                        const details = getShareDetails(demo);
+                        openShareUrl(
+                          `https://twitter.com/intent/tweet?text=${encodeURIComponent(details.text)}&url=${encodeURIComponent(details.url)}`,
+                        );
+                      }}
+                    >
+                      <span className="sv-share-x" aria-hidden="true">
+                        X
+                      </span>{" "}
+                      X
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => {
+                        const { url } = getShareDetails(demo);
+                        openShareUrl(
+                          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+                        );
+                      }}
+                    >
+                      <Linkedin /> LinkedIn
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={() => {
+                        const details = getShareDetails(demo);
+                        window.location.href = `mailto:?subject=${encodeURIComponent(details.title)}&body=${encodeURIComponent(`${details.text}\n\n${details.url}`)}`;
+                      }}
+                    >
+                      <Mail /> Email
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onSelect={async () => {
+                        await navigator.clipboard.writeText(getShareDetails(demo).url);
+                        toast.success("Product link copied");
+                      }}
+                    >
+                      <Copy /> Copy link
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
+              {/* Quick Stats on hover */}
+              <div className="sv-card-stats mt-3 grid grid-cols-3">
+                <div className="sv-card-stat text-center">
+                  <p className="sv-card-stat-value text-lg font-bold">
+                    {50 + (stableSeed(demo.id) % 50)}+
+                  </p>
+                  <p className="sv-card-stat-label text-[10px]">Clients</p>
+                </div>
+                <div className="sv-card-stat text-center">
+                  <p className="sv-card-stat-value text-lg font-bold">
+                    4.{7 + (stableSeed(demo.id + "r") % 3)}
+                  </p>
+                  <p className="sv-card-stat-label text-[10px]">Rating</p>
+                </div>
+                <div className="sv-card-stat text-center">
+                  <p className="sv-card-stat-value text-lg font-bold">
+                    {5 + (stableSeed(demo.id + "d") % 10)}h
+                  </p>
+                  <p className="sv-card-stat-label text-[10px]">Delivery</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-});
+          </CardContent>
+        </Card>
+      </div>
+    );
+  },
+);
 DemoCard.displayName = "DemoCard";
 
 export default Index;

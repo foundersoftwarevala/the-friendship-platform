@@ -8,7 +8,7 @@
 - [x] Connect and emphasize the homepage Login action with accessible motion
 - [x] Convert every product category into a Netflix-style 80-card carousel row
 - [ ] Fill all 80-card rows with real catalogue products and open product details from category cards
-- [ ] Add visible Coming Soon actions, full sharing options, and fixed $249 lifetime pricing to every homepage product card
+- [x] Add visible Coming Soon actions, full sharing options, and fixed $249 lifetime pricing to every homepage product card
 
 ## Chat ecosystem (Connect Hub + Connect AI Assistant)
 - [x] Chat database foundation (conversations, participants, messages, handoffs, RLS)

@@ -12,6 +12,7 @@ import {
 } from "@/lib/marketplace-commerce.functions";
 import { useServerFn } from "@/lib/serverFn";
 import { authHeaders } from "@/lib/auth/operator-fetch";
+import { LIFETIME_LABEL, LIFETIME_PRICE } from "@/lib/site-content/constants";
 
 export const Route = createFileRoute("/checkout")({
   head: pageHead("Checkout", "Complete your purchase. One fixed price, lifetime access, full source code."),
@@ -154,9 +155,9 @@ function CheckoutPage() {
                 <div key={item.id} className="flex items-center justify-between border-b border-slate-800 pb-4">
                   <div>
                     <p className="font-semibold">{item.marketplace_products?.name ?? "Product"}</p>
-                    <p className="text-sm text-slate-400">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-slate-400">Quantity: {item.quantity} · {LIFETIME_LABEL}</p>
                   </div>
-                  <span className="text-sm text-slate-300">{item.marketplace_products?.price_label ?? "Server-priced"}</span>
+                  <span className="text-sm text-slate-300">{LIFETIME_PRICE}</span>
                 </div>
               ))}
               <Button disabled={checkoutMutation.isPending || paying} onClick={() => checkoutMutation.mutate()} className="w-full bg-cyan-500 text-slate-950 hover:bg-cyan-400">
