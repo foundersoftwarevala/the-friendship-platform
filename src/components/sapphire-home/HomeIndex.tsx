@@ -3574,22 +3574,22 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
           </div>
 
           {/* Content */}
-          <div className="p-5 flex-1 flex flex-col">
-            <div className="flex items-start justify-between mb-1">
-              <h3 className="text-[17px] font-extrabold tracking-[-0.01em] text-white leading-snug">{demo.name}</h3>
+          <div className="sv-card-body p-5 flex-1 flex flex-col">
+            <div className="sv-card-title-row flex items-start justify-between mb-1">
+              <h3 className="sv-card-title text-[17px] font-extrabold tracking-normal leading-snug">{demo.name}</h3>
               {demo.status === "ACTIVE" && (
-                <Badge className="bg-cyan-500/20 text-cyan-300 text-[10px] shrink-0 ml-2">
+                <Badge className="sv-card-rank text-[10px] shrink-0 ml-2">
                   #{index + 1}
                 </Badge>
               )}
             </div>
-            <p className="text-cyan-300/90 text-[11px] font-semibold uppercase tracking-[0.08em] mb-2 flex items-center gap-1">
+            <p className="sv-card-category text-[11px] font-semibold uppercase tracking-normal mb-2 flex items-center gap-1">
               <Award className="h-3 w-3" /> {demo.category}
             </p>
-            <p className="text-gray-400 text-[13px] leading-relaxed mb-3 line-clamp-2">{demo.description}</p>
+            <p className="sv-card-description text-[13px] leading-relaxed mb-3 line-clamp-2">{demo.description}</p>
 
             {/* Interactive Tabs */}
-            <div className="mb-3">
+            <div className="sv-card-details mb-3">
               <div className="flex gap-1 mb-2">
                 <button
                   data-no-3d
@@ -3611,7 +3611,7 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
                 {activeTab === 'features' ? (
                   <div className="flex flex-wrap gap-1">
                     {demo.features.map((feature) => (
-                      <Badge key={feature} variant="outline" className="sv-chip text-[10px] border-cyan-500/30 text-cyan-300 bg-cyan-500/10">
+                      <Badge key={feature} variant="outline" className="sv-chip sv-chip-feature text-[10px]">
                         {feature}
                       </Badge>
                     ))}
@@ -3619,7 +3619,7 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
                 ) : (
                   <div className="flex flex-wrap gap-1">
                     {[...demo.frontend, ...demo.backend].map((tech) => (
-                      <Badge key={tech} variant="outline" className="sv-chip text-[10px] border-purple-500/30 text-purple-300 bg-purple-500/10">
+                      <Badge key={tech} variant="outline" className="sv-chip sv-chip-tech text-[10px]">
                         {tech}
                       </Badge>
                     ))}
@@ -3629,18 +3629,18 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
             </div>
 
             {/* Price with animation */}
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="text-gray-500 line-through text-[13px]">{demo.price}</span>
-              <span className="sv-price text-emerald-300 font-black text-[22px] tracking-[-0.02em]">
+            <div className="sv-card-price-row flex items-baseline gap-2 mb-4">
+              <span className="sv-card-price-old line-through text-[13px]">{demo.price}</span>
+              <span className="sv-price font-black text-[22px] tracking-normal">
                 {demo.discountPrice}
               </span>
-              <Badge className="bg-red-500/20 text-red-300 border-red-500/30 text-[10px] font-bold">
+              <Badge className="sv-card-discount text-[10px] font-bold">
                 40% OFF
               </Badge>
             </div>
 
             {/* Enhanced Actions */}
-            <div className="flex gap-2 mt-auto">
+            <div className="sv-card-actions flex gap-2 mt-auto">
               {demo.status === "ACTIVE" ? (
                 <>
                   <a href={demo.url} className="flex-1">
@@ -3674,18 +3674,18 @@ const DemoCard = memo(({ demo, index, isFavorite, onToggleFavorite }: {
             </div>
             
             {/* Quick Stats on hover */}
-            <div className="sv-card-stats mt-3 pt-3 border-t border-cyan-500/10 grid grid-cols-3 gap-2">
-              <div className="text-center">
-                <p className="text-cyan-400 text-lg font-bold">{50 + (stableSeed(demo.id) % 50)}+</p>
-                <p className="text-gray-500 text-[10px]">Clients</p>
+            <div className="sv-card-stats mt-3 grid grid-cols-3">
+              <div className="sv-card-stat text-center">
+                <p className="sv-card-stat-value text-lg font-bold">{50 + (stableSeed(demo.id) % 50)}+</p>
+                <p className="sv-card-stat-label text-[10px]">Clients</p>
               </div>
-              <div className="text-center">
-                <p className="text-emerald-400 text-lg font-bold">4.{7 + (stableSeed(demo.id + "r") % 3)}</p>
-                <p className="text-gray-500 text-[10px]">Rating</p>
+              <div className="sv-card-stat text-center">
+                <p className="sv-card-stat-value text-lg font-bold">4.{7 + (stableSeed(demo.id + "r") % 3)}</p>
+                <p className="sv-card-stat-label text-[10px]">Rating</p>
               </div>
-              <div className="text-center">
-                <p className="text-purple-400 text-lg font-bold">{5 + (stableSeed(demo.id + "d") % 10)}h</p>
-                <p className="text-gray-500 text-[10px]">Delivery</p>
+              <div className="sv-card-stat text-center">
+                <p className="sv-card-stat-value text-lg font-bold">{5 + (stableSeed(demo.id + "d") % 10)}h</p>
+                <p className="sv-card-stat-label text-[10px]">Delivery</p>
               </div>
 
             </div>
