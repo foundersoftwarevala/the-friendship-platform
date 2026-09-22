@@ -10,7 +10,9 @@ import { ROLE_THEMES } from "@/lib/ams/role-themes";
 import { ROLE_ENVIRONMENT, SHOWCASES } from "@/lib/ams/museum";
 
 const ROOT = process.cwd();
-const ROUTES = join(ROOT, "src/routes/_authenticated");
+// Software Vala mounts the AMS module at /ams, so its route files are the
+// `ams.*.tsx` siblings rather than the reference app's `_authenticated` folder.
+const ROUTES = join(ROOT, "src/routes");
 const ASSETS = join(ROOT, "src/assets");
 
 /** Every 3D collectible asset directory that must contain an operator piece. */
