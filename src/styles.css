@@ -116,6 +116,21 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Light-mode values for tokens that previously existed only in .dark.
+     Without them, hero/gradient surfaces resolved to an invalid gradient and
+     rendered as a blank white block with white text. */
+  --primary-glow: oklch(0.62 0.19 253);
+  --neon: oklch(0.72 0.17 162);
+  --neon-foreground: oklch(0.18 0.08 165);
+  --gold: oklch(0.78 0.15 82);
+  --gradient-primary: linear-gradient(135deg, oklch(0.32 0.09 262), oklch(0.58 0.17 245));
+  --gradient-surface: linear-gradient(160deg, oklch(0.99 0.004 256), oklch(0.96 0.012 256));
+  --gradient-neon: linear-gradient(135deg, oklch(0.7 0.14 210), oklch(0.72 0.17 165));
+  --shadow-glow: 0 18px 48px -18px color-mix(in oklab, var(--primary) 32%, transparent);
+  --shadow-card:
+    0 10px 30px -18px color-mix(in oklab, var(--primary) 30%, transparent),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.6);
 }
 
 .dark {
