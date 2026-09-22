@@ -16,7 +16,7 @@ const references = import.meta.glob<string>("/src/assets/reference-trophies/*.jp
 function keyed(map: Record<string, string>): Record<string, string> {
   return Object.fromEntries(
     Object.entries(map).map(([path, url]) => [
-      path.slice(path.lastIndexOf("/ams/overview") + 1).replace(/\.(png|jpg)$/, ""),
+      path.slice(path.lastIndexOf("/") + 1).replace(/\.(png|jpg)$/, ""),
       url,
     ]),
   );

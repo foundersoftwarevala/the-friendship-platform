@@ -14,7 +14,7 @@ const assets = import.meta.glob<string>("/src/assets/**/*.png", {
 function collection(directory: string): AssetMap {
   const entries = Object.entries(assets)
     .filter(([path]) => path.startsWith(`/src/assets/${directory}/`))
-    .map(([path, url]) => [path.slice(path.lastIndexOf("/ams/overview") + 1, -4), url]);
+    .map(([path, url]) => [path.slice(path.lastIndexOf("/") + 1, -4), url]);
   return Object.fromEntries(entries) as AssetMap;
 }
 
