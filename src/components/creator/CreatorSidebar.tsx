@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, PanelLeftClose, PanelLeftOpen, Search, X } from "lucide-react";
+import { ArrowLeft, ChevronDown, PanelLeftClose, PanelLeftOpen, Search, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useRegisterSidebarBack } from "@/components/auth/BackToControlPanel";
 import {
   groups as defaultGroups,
   primary as defaultPrimary,
@@ -37,6 +38,7 @@ export function CreatorSidebar({
   brandMark = "SV",
 }: CreatorSidebarProps) {
   const [query, setQuery] = useState("");
+  useRegisterSidebarBack();
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
 
   const filtered = useMemo(() => {
@@ -116,6 +118,22 @@ export function CreatorSidebar({
           <PanelLeftOpen className="h-4 w-4" />
         </button>
       )}
+
+      <div className={cn("shrink-0 px-3 pt-3", collapsed && "px-0")}>
+        <Link
+          to="/control-panel"
+          onClick={onCloseMobile}
+          aria-label="Back to Control Panel"
+          title={collapsed ? "Back to Control Panel" : undefined}
+          className={cn(
+            "flex w-full items-center gap-2.5 rounded-lg border border-primary/40 bg-primary/10 px-2.5 py-2 text-xs font-semibold text-foreground shadow-sm transition-all hover:-translate-x-0.5 hover:bg-primary/20 hover:shadow-md",
+            collapsed && "justify-center px-0",
+          )}
+        >
+          <ArrowLeft className="h-4 w-4 shrink-0" />
+          {!collapsed && <span className="truncate">Back to Control Panel</span>}
+        </Link>
+      </div>
 
       {!collapsed && (
         <div className="shrink-0 px-3 pt-3">

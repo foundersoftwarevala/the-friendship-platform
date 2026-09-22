@@ -1,6 +1,7 @@
 import { useRouterState } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 
+import { SidebarBackProvider } from "@/components/auth/BackToControlPanel";
 import { RequireRole } from "@/components/auth/RequireRole";
 
 /**
@@ -90,7 +91,7 @@ export function RouteAccessGate({ children }: { children: ReactNode }) {
   if (!rule) return <>{children}</>;
   return (
     <RequireRole key={rule.prefix} role={rule.roles}>
-      {children}
+      <SidebarBackProvider>{children}</SidebarBackProvider>
     </RequireRole>
   );
 }
