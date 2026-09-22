@@ -1,6 +1,7 @@
 # Roadmap
 
 ## Sapphire marketplace homepage
+
 - [x] Refine existing product cards, 3D actions, compact metrics, and responsive row spacing without changing behavior
 - [x] Replace only the public `/` homepage with the sapphire-control-hub homepage UI
 - [x] Keep the existing Control Panel and all other routes unchanged
@@ -11,6 +12,7 @@
 - [x] Add visible Coming Soon actions, full sharing options, and fixed $249 lifetime pricing to every homepage product card
 
 ## Chat ecosystem (Connect Hub + Connect AI Assistant)
+
 - [x] Chat database foundation (conversations, participants, messages, handoffs, RLS)
 - [x] User-side chat app at /chat (real auth, realtime, attachments)
 - [x] Real AI replies + human handoff server functions
@@ -21,6 +23,7 @@
 - [ ] Full end-to-end verification: real message -> real AI reply -> manager console -> handoff -> agent reply
 
 ## AMS Manager integration
+
 - [x] Port reference AMS schema additively (41 tables, enums, RLS, grants, triggers)
 - [x] AMS ticketing + chat tables with participant-scoped policies
 - [x] is_admin() bound to existing Software Vala roles; signup hook seeds XP rows
@@ -31,6 +34,7 @@
 - [ ] End-to-end signed-in verification of AMS CRUD flows — BLOCKED: the backend has zero accounts, so no session can be minted. Needs one sign-up in the preview first.
 
 ## Module navigation + auth tests (current)
+
 - [x] Global "Back to Control Panel" chip on every gated module (RouteAccessGate)
 - [x] Back button inside CreatorSidebar, above the module search box (per user: sidebar top, not floating/top-bar); verified click → /control-panel
 - [x] Harden password login against session races and route super-admin/operator roles deterministically
