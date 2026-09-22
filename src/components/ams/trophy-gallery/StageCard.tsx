@@ -5,6 +5,8 @@ import { playUnlock } from "@/lib/ams/trophy-sounds";
 import type { DeveloperStage } from "@/lib/ams/developer-stages";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useServerFn } from "@tanstack/react-start";
+import { unlockTrophy } from "@/lib/ams/trophy-unlock.functions";
 
 const UNLOCK_TO_KIND: Record<string, CelebrateKind> = {
   starter: "achievement",
@@ -29,6 +31,8 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
   const cardRef = useRef<HTMLDivElement | null>(null);
   const reducedMotion = useReducedMotion();
   const { celebrate, soundOn } = useCelebration();
+  const unlockTrophyFn = useServerFn(unlockTrophy);
+  const [unlocking, setUnlocking] = useState(false);
 
   const sparkleCount = reducedMotion ? 0 : 14;
   const sparkles = useMemo(
@@ -55,19 +59,34 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
   }
   function onLeave() { setTilt({ x: 0, y: 0 }); }
 
-  function unlock() {
-    if (soundOn) {
-      try { playUnlock(stage.unlock); } catch { /* noop */ }
+  async function unlock() {
+    if (unlocking) return;
+    setUnlocking(true);
+    const base = stage.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    try {
+      const result = await unlockTrophyFn({ data: {
+        trophySlug: `progression-${base}`,
+        trophyName: `${stage.title} Trophy`,
+        achievementSlug: `progression-${base}-achievement`,
+        achievementName: `${stage.title} Achievement`,
+        xpReward: 100 * stage.n,
+      } });
+      if (!result.newly_unlocked) return;
+      if (soundOn) {
+        try { playUnlock(stage.unlock); } catch { /* noop */ }
+      }
+      setCelebrateOn(false);
+      requestAnimationFrame(() => setCelebrateOn(true));
+      setTimeout(() => setCelebrateOn(false), 2600);
+      celebrate({
+        kind: UNLOCK_TO_KIND[stage.unlock] ?? "achievement",
+        title: `${stage.title} Unlocked`,
+        subtitle: `${stage.material} · ${stage.theme}`,
+        xp: result.xp_awarded,
+      });
+    } finally {
+      setUnlocking(false);
     }
-    setCelebrateOn(false);
-    requestAnimationFrame(() => setCelebrateOn(true));
-    setTimeout(() => setCelebrateOn(false), 2600);
-    celebrate({
-      kind: UNLOCK_TO_KIND[stage.unlock] ?? "achievement",
-      title: `${stage.title} Unlocked`,
-      subtitle: `${stage.material} · ${stage.theme}`,
-      xp: 100 * stage.n,
-    });
   }
 
   const [rFrom, rTo] = stage.ribbon;
@@ -77,7 +96,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
       ref={cardRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative rounded-2xl border overflow-hidden group"
+      className="dashboard-card stage-3d relative overflow-hidden group"
       style={{
         background: stage.bg.gradient,
         borderColor: `${stage.bg.accent}55`,
@@ -108,7 +127,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
           <div className="text-[10px] font-mono tracking-[0.3em] uppercase" style={{ color: `${stage.bg.accent}` }}>
             {stage.code}
           </div>
-          <div className="mt-1.5 text-xl font-semibold text-white">{stage.title}</div>
+          <div className="mt-1.5 text-xl font-semibold text-foreground">{stage.title}</div>
           <div className="text-[11px] uppercase tracking-widest" style={{ color: `${stage.bg.accent}bb` }}>
             {stage.theme} · {stage.material}
           </div>
@@ -118,17 +137,18 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
             style={{ background: `${stage.bg.accent}22`, color: stage.bg.accent, border: `1px solid ${stage.bg.accent}55` }}>
             LV {String(stage.n).padStart(2, "0")}
           </span>
-          {!unlocked && <Lock className="h-4 w-4 text-white/40" />}
+          {!unlocked && <Lock className="h-4 w-4 text-foreground/40" />}
         </div>
       </div>
 
       {/* trophy stage */}
       <div className="relative z-10 h-64 flex items-center justify-center px-4">
+        <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
         {/* presentation pedestal */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 h-6 w-56 rounded-full"
           style={{ background: `radial-gradient(closest-side, ${stage.bg.glow}, transparent)`, filter: "blur(6px)" }} />
         <div
-          className="relative trophy-float"
+          className="stage-3d-object relative trophy-float"
           style={{
             transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 200ms ease-out",
@@ -141,6 +161,9 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
             id={`stage-${stage.n}`}
             className={`h-56 w-56 ${celebrateOn ? "trophy-unlock" : ""}`}
           />
+          <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+            <div className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3 bg-gradient-to-r from-transparent via-primary-foreground/30 to-transparent blur-sm" />
+          </div>
         </div>
       </div>
 
@@ -152,21 +175,21 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
         }}>
         <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rFrom}, ${rTo})` }} />
         <div className="px-4 py-2.5 flex items-center justify-between">
-          <div className="text-xs uppercase tracking-[0.24em] text-white/85">{stage.nameplate}</div>
+          <div className="text-xs uppercase tracking-[0.24em] text-foreground/85">{stage.nameplate}</div>
           <Sparkles className="h-3.5 w-3.5" style={{ color: stage.bg.accent }} />
         </div>
         <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rTo}, ${rFrom})` }} />
       </div>
 
       {/* tagline */}
-      <div className="relative z-10 px-5 pb-3 text-sm text-white/70 italic">"{stage.tagline}"</div>
+      <div className="relative z-10 px-5 pb-3 text-sm text-foreground/70 italic">"{stage.tagline}"</div>
 
       {/* rewards grid */}
       <div className="relative z-10 px-5 pb-4">
         <div className="grid grid-cols-2 gap-1.5">
           {stage.rewards.map((r) => (
             <div key={r.label}
-              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-white/85"
+              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-foreground/85"
               style={{ background: `${stage.bg.accent}12`, border: `1px solid ${stage.bg.accent}33` }}>
               <span className="text-sm leading-none">{KIND_ICON[r.kind] ?? "•"}</span>
               <span className="truncate">{r.label}</span>
@@ -179,18 +202,18 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
       <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-3 text-[10px]">
         <div>
           <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Animation</div>
-          <div className="text-white/70 space-y-0.5">{stage.animation.map((a) => <div key={a}>· {a}</div>)}</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.animation.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
         <div>
           <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Sound</div>
-          <div className="text-white/70 space-y-0.5">{stage.sound.map((a) => <div key={a}>· {a}</div>)}</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.sound.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
       </div>
 
       {/* actions */}
       <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.35)" }}>
-        <div className="text-[11px] font-mono text-white/60">
+        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.14)" }}>
+        <div className="text-[11px] font-mono text-foreground/60">
           Passport · <span style={{ color: stage.bg.accent }}>{stage.passportMotif}</span>
         </div>
         <button
@@ -203,7 +226,7 @@ export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; u
           }}
         >
           <Volume2 className="h-3.5 w-3.5" />
-          Preview unlock
+          {unlocking ? "Unlocking…" : "Unlock trophy"}
         </button>
       </div>
     </div>
