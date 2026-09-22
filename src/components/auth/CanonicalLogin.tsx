@@ -63,12 +63,6 @@ export function CanonicalLogin({ redirectTo }: Props) {
       navigate({ to: "/", replace: true });
       return;
     }
-    const { error: claimError } = await supabase.rpc("claim_influencer_profile");
-    if (claimError) {
-      toast.error(claimError.message);
-      navigate({ to: "/", replace: true });
-      return;
-    }
     const { data: roleRows } = await supabase.from("user_roles").select("role").eq("user_id", data.user.id).order("role", { ascending: true });
     const destination = ROLE_DESTINATIONS[String(roleRows?.[0]?.role ?? "").toLowerCase()];
     if (destination) window.location.assign(destination);

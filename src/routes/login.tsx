@@ -14,6 +14,21 @@ function destination(): string | undefined {
 }
 
 export const Route = createFileRoute("/login")({
-  head: () => ({ meta: [{ title: "Sign in — Software Vala™" }] }),
+  head: () => ({
+    meta: [
+      { title: "Sign in — Software Vala™" },
+      {
+        name: "description",
+        content: "Sign in securely to access your Software Vala workspace and Control Panel.",
+      },
+      { property: "og:title", content: "Sign in — Software Vala™" },
+      {
+        property: "og:description",
+        content: "Sign in securely to access your Software Vala workspace and Control Panel.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: () => <CanonicalLogin redirectTo={destination()} />,
 });
