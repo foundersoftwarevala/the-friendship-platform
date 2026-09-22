@@ -82,7 +82,6 @@
   --color-surface-2: var(--surface-2);
 }
 
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -162,20 +161,32 @@
   --gradient-surface: linear-gradient(160deg, oklch(0.26 0.075 256), oklch(0.19 0.055 256));
   --gradient-neon: linear-gradient(135deg, oklch(0.82 0.15 210), oklch(0.82 0.19 165));
   --shadow-glow: 0 18px 48px -18px color-mix(in oklab, var(--primary) 78%, transparent);
-  --shadow-card: 0 10px 34px -16px color-mix(in oklab, var(--primary) 62%, transparent),
+  --shadow-card:
+    0 10px 34px -16px color-mix(in oklab, var(--primary) 62%, transparent),
     inset 0 1px 0 0 color-mix(in oklab, var(--primary-glow) 24%, transparent);
 }
 
 @keyframes vala-breathe {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-2px) scale(1.015); }
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.015);
+  }
 }
 
 @keyframes vala-talk {
-  0%, 100% { filter: brightness(1); transform: translateY(0); }
-  50% { filter: brightness(1.18); transform: translateY(-1px); }
+  0%,
+  100% {
+    filter: brightness(1);
+    transform: translateY(0);
+  }
+  50% {
+    filter: brightness(1.18);
+    transform: translateY(-1px);
+  }
 }
-
 
 @layer base {
   * {
@@ -199,63 +210,138 @@
 
 /* ===== Living Vala AI avatar animations (GPU friendly: transform/opacity only) ===== */
 @keyframes vala-sway {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  33% { transform: translateX(-0.6%) rotate(-0.35deg); }
-  66% { transform: translateX(0.6%) rotate(0.35deg); }
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  33% {
+    transform: translateX(-0.6%) rotate(-0.35deg);
+  }
+  66% {
+    transform: translateX(0.6%) rotate(0.35deg);
+  }
 }
 @keyframes vala-bloom {
-  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.06); }
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
 }
 @keyframes vala-blink {
-  0%, 92%, 100% { transform: scaleY(0); opacity: 0; }
-  94%, 96% { transform: scaleY(1); opacity: 1; }
+  0%,
+  92%,
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  94%,
+  96% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 }
 @keyframes vala-trace {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 @keyframes vala-pulse {
-  from { stroke-dashoffset: 100; }
-  to { stroke-dashoffset: -100; }
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: -100;
+  }
 }
 @keyframes vala-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes vala-spin-rev {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 @keyframes vala-core {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.35); opacity: 1; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
 }
 @keyframes vala-ring {
-  0% { transform: scale(0.6); opacity: 0.9; }
-  70%, 100% { transform: scale(4.2); opacity: 0; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  70%,
+  100% {
+    transform: scale(4.2);
+    opacity: 0;
+  }
 }
 @keyframes vala-particle {
-  0% { transform: translateY(0) scale(0.6); opacity: 0; }
-  15% { opacity: 0.9; }
-  100% { transform: translateY(-260px) scale(1.1); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-260px) scale(1.1);
+    opacity: 0;
+  }
 }
 @keyframes vala-wave {
-  0%, 100% { transform: scaleY(0.35); }
-  50% { transform: scaleY(1); }
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-state] * { animation-duration: 0.001s !important; }
+  [data-state] * {
+    animation-duration: 0.001s !important;
+  }
 }
 
 @keyframes kpi-draw {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes kpi-sweep {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
 }
 
 /* ===== Premium enterprise button + card system ===== */
@@ -276,12 +362,25 @@
     0 1px 0 0 rgba(255, 255, 255, 0.28) inset,
     0 -1px 0 0 rgba(0, 0, 0, 0.4) inset,
     0 8px 18px -10px rgba(10, 30, 70, 0.95);
-  transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    filter 140ms ease;
 }
 @utility btn-premium-hover {
-  &:hover { filter: brightness(1.09); transform: translateY(-1px); }
-  &:active { transform: translateY(1px) scale(0.99); filter: brightness(0.95); }
-  &:disabled { opacity: 0.5; filter: grayscale(0.4); transform: none; }
+  &:hover {
+    filter: brightness(1.09);
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(1px) scale(0.99);
+    filter: brightness(0.95);
+  }
+  &:disabled {
+    opacity: 0.5;
+    filter: grayscale(0.4);
+    transform: none;
+  }
 }
 @utility btn-graphite {
   position: relative;
@@ -298,7 +397,9 @@
   box-shadow:
     0 1px 0 0 rgba(255, 255, 255, 0.16) inset,
     0 8px 16px -12px rgba(0, 0, 0, 0.9);
-  transition: transform 140ms ease, filter 140ms ease;
+  transition:
+    transform 140ms ease,
+    filter 140ms ease;
 }
 @utility card-premium {
   border-radius: 0.9rem;
@@ -310,17 +411,33 @@
 }
 
 @keyframes exec-in {
-  from { opacity: 0; transform: translateY(8px) scale(0.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 @keyframes exec-progress {
-  from { width: 0%; }
-  to { width: 100%; }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes cc-arrive {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* ─────────────── CREATOR MANAGER THEME (Creator's Launchpad palette) ───────────────
@@ -338,8 +455,8 @@
   --surface-foreground: oklch(0.97 0.01 280);
   --color-surface-foreground: oklch(0.97 0.01 280);
 
-  --card: oklch(0.20 0.02 285);
-  --color-card: oklch(0.20 0.02 285);
+  --card: oklch(0.2 0.02 285);
+  --color-card: oklch(0.2 0.02 285);
   --card-foreground: oklch(0.97 0.01 280);
   --color-card-foreground: oklch(0.97 0.01 280);
 
@@ -406,7 +523,7 @@
   background-color: var(--color-background);
   background-image:
     radial-gradient(60% 40% at 20% 0%, oklch(0.62 0.24 295 / 0.18), transparent 60%),
-    radial-gradient(50% 35% at 90% 10%, oklch(0.78 0.16 350 / 0.10), transparent 60%);
+    radial-gradient(50% 35% at 90% 10%, oklch(0.78 0.16 350 / 0.1), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -415,11 +532,17 @@
   border: 1px solid var(--color-border);
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 1px 0 0 oklch(1 0 0 / 0.04) inset, 0 20px 40px -20px oklch(0 0 0 / 0.6);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+    0 20px 40px -20px oklch(0 0 0 / 0.6);
 }
 
 @utility hero-surface {
-  background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-glow) 100%);
+  background-image: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-glow) 100%
+  );
   color: var(--color-primary-foreground);
   border-radius: 1.25rem;
   box-shadow: 0 30px 80px -30px oklch(0.55 0.25 295 / 0.55);
@@ -474,14 +597,14 @@
   isolation: isolate;
   transform-style: preserve-3d;
   box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.10) inset,
+    0 1px 0 0 oklch(1 0 0 / 0.1) inset,
     0 -1px 0 0 oklch(0 0 0 / 0.35) inset,
-    0 1px 1px 0 oklch(0 0 0 / 0.30),
-    0 10px 22px -12px oklch(0 0 0 / 0.60),
-    0 26px 56px -30px oklch(0 0 0 / 0.70);
+    0 1px 1px 0 oklch(0 0 0 / 0.3),
+    0 10px 22px -12px oklch(0 0 0 / 0.6),
+    0 26px 56px -30px oklch(0 0 0 / 0.7);
   transition:
-    transform 420ms cubic-bezier(.2,.8,.2,1),
-    box-shadow 420ms cubic-bezier(.2,.8,.2,1),
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
     border-color 320ms ease;
   &::after {
     content: "";
@@ -491,17 +614,17 @@
     pointer-events: none;
     z-index: 0;
     background:
-      radial-gradient(120% 60% at 50% -18%, oklch(1 0 0 / 0.10), transparent 62%),
+      radial-gradient(120% 60% at 50% -18%, oklch(1 0 0 / 0.1), transparent 62%),
       linear-gradient(180deg, oklch(1 0 0 / 0.05), transparent 26%, oklch(0 0 0 / 0.14));
   }
   &:hover {
     transform: perspective(1100px) translateY(-4px) rotateX(1.1deg);
     box-shadow:
       0 1px 0 0 oklch(1 0 0 / 0.16) inset,
-      0 -1px 0 0 oklch(0 0 0 / 0.40) inset,
+      0 -1px 0 0 oklch(0 0 0 / 0.4) inset,
       0 2px 2px 0 oklch(0 0 0 / 0.32),
       0 18px 34px -14px oklch(0 0 0 / 0.66),
-      0 40px 80px -36px oklch(0 0 0 / 0.80),
+      0 40px 80px -36px oklch(0 0 0 / 0.8),
       0 0 40px -16px color-mix(in oklab, var(--color-primary) 70%, transparent);
   }
 }
@@ -511,11 +634,18 @@
   position: relative;
   isolation: isolate;
   background-image:
-    linear-gradient(160deg, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 55%),
+    linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--color-primary) 8%, transparent),
+      transparent 55%
+    ),
     linear-gradient(var(--color-card), var(--color-card));
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-card);
-  transition: box-shadow 400ms cubic-bezier(.2,.8,.2,1), border-color 400ms ease, transform 400ms cubic-bezier(.2,.8,.2,1);
+  transition:
+    box-shadow 400ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 400ms ease,
+    transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
   &::before {
     content: "";
     position: absolute;
@@ -528,8 +658,12 @@
       transparent 42%,
       color-mix(in oklab, var(--color-accent-pink) 45%, transparent)
     );
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
@@ -537,11 +671,15 @@
     pointer-events: none;
     z-index: 1;
   }
-  &:hover::before { opacity: 1; }
+  &:hover::before {
+    opacity: 1;
+  }
 }
 
 @utility hover-lift {
-  transition: transform 350ms cubic-bezier(.2,.8,.2,1), box-shadow 350ms ease;
+  transition:
+    transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 350ms ease;
   &:hover {
     transform: translateY(-3px);
     box-shadow:
@@ -569,17 +707,21 @@
       transparent 66%
     );
     transform: translateX(-130%);
-    transition: transform 750ms cubic-bezier(.2,.8,.2,1);
+    transition: transform 750ms cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  &:hover::after { transform: translateX(130%); }
+  &:hover::after {
+    transform: translateX(130%);
+  }
 }
 
 @utility enter-soft {
-  animation: sv-enter-soft 420ms cubic-bezier(.2,.8,.2,1) both;
+  animation: sv-enter-soft 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 @utility focus-glow {
-  transition: box-shadow 250ms ease, border-color 250ms ease;
+  transition:
+    box-shadow 250ms ease,
+    border-color 250ms ease;
   &:focus-visible {
     outline: none;
     border-color: color-mix(in oklab, var(--color-primary) 55%, var(--color-border));
@@ -609,25 +751,45 @@
       transparent 75%
     );
     transform: translateX(-100%);
-    animation: sv-skeleton-sweep 1.6s cubic-bezier(.4,0,.2,1) infinite;
+    animation: sv-skeleton-sweep 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
 }
 
 @keyframes sv-enter-soft {
-  0%   { opacity: 0; transform: translateY(8px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes sv-skeleton-sweep {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Someone who has asked their system for less motion gets none of it. */
 @media (prefers-reduced-motion: reduce) {
-  .enter-soft { animation: none !important; }
-  .hover-lift:hover { transform: none !important; }
-  .shimmer-sweep::after { transition: none !important; }
-  .card3d:hover { transform: none !important; }
-  .skeleton-shimmer::after { animation: none !important; }
+  .enter-soft {
+    animation: none !important;
+  }
+  .hover-lift:hover {
+    transform: none !important;
+  }
+  .shimmer-sweep::after {
+    transition: none !important;
+  }
+  .card3d:hover {
+    transform: none !important;
+  }
+  .skeleton-shimmer::after {
+    animation: none !important;
+  }
 }
