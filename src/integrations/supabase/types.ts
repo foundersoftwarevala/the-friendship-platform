@@ -825,6 +825,98 @@ export type Database = {
         }
         Relationships: []
       }
+      ams_recognition_mappings: {
+        Row: {
+          achievement_id: string
+          active: boolean
+          asset_slug: string | null
+          created_at: string
+          id: string
+          recognition_type: string
+          role: string
+        }
+        Insert: {
+          achievement_id: string
+          active?: boolean
+          asset_slug?: string | null
+          created_at?: string
+          id?: string
+          recognition_type: string
+          role: string
+        }
+        Update: {
+          achievement_id?: string
+          active?: boolean
+          asset_slug?: string | null
+          created_at?: string
+          id?: string
+          recognition_type?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_recognition_mappings_achievement_id_fkey"
+            columns: ["achievement_id"]
+            isOneToOne: false
+            referencedRelation: "achievements"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ams_role_passports: {
+        Row: {
+          expires_at: string | null
+          id: string
+          issued_at: string
+          level: number
+          passport_no: string
+          rank: number
+          reputation: number
+          revoked_at: string | null
+          role: string
+          stage: number
+          total_xp: number
+          updated_at: string
+          user_id: string
+          verification: string
+          verification_code: string
+        }
+        Insert: {
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          level?: number
+          passport_no: string
+          rank?: number
+          reputation?: number
+          revoked_at?: string | null
+          role: string
+          stage?: number
+          total_xp?: number
+          updated_at?: string
+          user_id: string
+          verification?: string
+          verification_code: string
+        }
+        Update: {
+          expires_at?: string | null
+          id?: string
+          issued_at?: string
+          level?: number
+          passport_no?: string
+          rank?: number
+          reputation?: number
+          revoked_at?: string | null
+          role?: string
+          stage?: number
+          total_xp?: number
+          updated_at?: string
+          user_id?: string
+          verification?: string
+          verification_code?: string
+        }
+        Relationships: []
+      }
       ams_role_progress: {
         Row: {
           current_level: number

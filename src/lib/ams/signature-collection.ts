@@ -211,7 +211,6 @@ export type RarityCollection = (typeof RARITY_COLLECTIONS)[number];
 
 const ROLE_FAMILY: Record<RoleSlug, RarityCollection> = {
   developer: "Developer Collection",
-  operator: "Innovation Collection",
   reseller: "Sales Collection",
   franchise: "Leadership Collection",
   author: "Creator Collection",
@@ -222,9 +221,6 @@ const ROLE_FAMILY: Record<RoleSlug, RarityCollection> = {
   seo: "Innovation Collection",
   support: "Legacy Collection",
   user: "Legacy Collection",
-  manager: "Leadership Collection",
-  administrator: "Leadership Collection",
-  founder: "Founder Collection",
 };
 
 export function roleFamily(slug: RoleSlug): RarityCollection {

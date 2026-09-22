@@ -43,6 +43,13 @@
       "when": 1790099013430,
       "tag": "0005_ams_exact_eleven_role_flow",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1790101118226,
+      "tag": "0006_ams_role_credentials_and_recognition_mapping",
+      "breakpoints": true
     }
   ]
 }
