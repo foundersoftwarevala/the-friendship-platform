@@ -34,6 +34,8 @@
 - [x] End-to-end signed-in verification of AMS pages (12 key screens load signed-in, zero console errors)
 - [x] Full reference port: components/ams, lib/ams (Role DNA engine, museum, showcases, effects, sound), hooks, vault/showcase/progression routes
 - [x] AMS unit + e2e suites pass (72/72 via vitest)
+- [x] Full-repo parity sweep: components/ams + lib/ams byte-identical to reference (only /ams path prefixes differ), 78/78 reference routes mapped, nav parity, all reference DB objects present
+- [x] Public QR credential verification page (/verify/$code) ported in full — passports and certificates, live-verified
 
 ## Module navigation + auth tests (current)
 
