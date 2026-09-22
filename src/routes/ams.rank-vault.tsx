@@ -9,13 +9,21 @@ import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 
-export const Route = createFileRoute("/ams/tickets/rank-vault")({
+export const Route = createFileRoute("/ams/rank-vault")({
   head: () => ({
     meta: [
       { title: "Rank Vault — Premium 3D Rank Emblems" },
-      { name: "description", content: "Museum-quality 3D rank emblems, one per role — unique profession identity, 3D rotation, animated lighting and PNG export." },
+      {
+        name: "description",
+        content:
+          "Museum-quality 3D rank emblems, one per role — unique profession identity, 3D rotation, animated lighting and PNG export.",
+      },
       { property: "og:title", content: "Rank Vault — Premium 3D Rank Emblems" },
-      { property: "og:description", content: "11 handcrafted role rank emblems with unique silhouettes, materials and engraved profession cues." },
+      {
+        property: "og:description",
+        content:
+          "11 handcrafted role rank emblems with unique silhouettes, materials and engraved profession cues.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -34,7 +42,6 @@ function Page() {
     [visible],
   );
 
-
   return (
     <div className="space-y-6">
       <PageHeader
@@ -43,9 +50,11 @@ function Page() {
         description="Every role earns a distinct prestige emblem — custom silhouette, engraved profession motif, luxury materials and collectible-grade finish. Rotate, inspect and export each one as PNG."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Crown className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} emblems · {visible.length} shown</span>
-        </div>
+            <Crown className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} emblems · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -58,10 +67,7 @@ function Page() {
         {visible.map((role) => {
           const img = ROLE_RANK[role.slug];
           return (
-            <article
-              key={role.slug}
-              className="dashboard-card overflow-hidden"
-            >
+            <article key={role.slug} className="dashboard-card overflow-hidden">
               <MuseumStage
                 src={img}
                 filename={`${role.slug}-rank-emblem.png`}
@@ -77,7 +83,10 @@ function Page() {
               />
               <div className="border-t border-border/60 bg-surface/45 p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${role.accent}bb` }}
+                >
                   {role.archetype} · Rank Emblem
                 </div>
                 <p className="mt-2 text-xs text-foreground/70 italic">&quot;{role.motto}&quot;</p>

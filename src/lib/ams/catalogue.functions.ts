@@ -83,14 +83,10 @@ const EMPTY: AmsCatalogue = {
 };
 
 function clientFor(token: string) {
-  return createClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    {
-      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    },
-  );
+  return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
 }
 
 /** How many people hold each id, counted from the join table. */
@@ -122,18 +118,28 @@ export const getAmsCatalogue = createServerFn({ method: "GET" }).handler(
       }
     };
 
-    const [trophies, levels, ranks, achievements, badges,
-           heldTrophies, heldBadges, heldAchievements, xp] = await Promise.all([
-      supabase.from("trophies")
-        .select("id,slug,name,description,tier,status,conditions").order("slug"),
-      supabase.from("levels")
-        .select("id,level_number,name,xp_required,status").order("level_number"),
-      supabase.from("ranks")
-        .select("id,rank_number,name,min_xp,status").order("rank_number"),
-      supabase.from("achievements")
-        .select("id,slug,name,description,rarity,status").order("name"),
-      supabase.from("badges")
-        .select("id,slug,name,description,rarity,status").order("name"),
+    const [
+      trophies,
+      levels,
+      ranks,
+      achievements,
+      badges,
+      heldTrophies,
+      heldBadges,
+      heldAchievements,
+      xp,
+    ] = await Promise.all([
+      supabase
+        .from("trophies")
+        .select("id,slug,name,description,tier,status,conditions")
+        .order("slug"),
+      supabase
+        .from("levels")
+        .select("id,level_number,name,xp_required,status")
+        .order("level_number"),
+      supabase.from("ranks").select("id,rank_number,name,min_xp,status").order("rank_number"),
+      supabase.from("achievements").select("id,slug,name,description,rarity,status").order("name"),
+      supabase.from("badges").select("id,slug,name,description,rarity,status").order("name"),
       supabase.from("user_trophies").select("trophy_id"),
       supabase.from("user_badges").select("badge_id"),
       supabase.from("user_achievements").select("achievement_id"),

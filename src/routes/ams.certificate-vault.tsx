@@ -11,13 +11,21 @@ import { ROLE_CERTIFICATE } from "@/lib/ams/role-assets";
 import { certificateIdentity } from "@/lib/ams/certificate-id";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/tickets/certificate-vault")({
+export const Route = createFileRoute("/ams/certificate-vault")({
   head: () => ({
     meta: [
       { title: "Certificate Vault — Premium 3D Certificates" },
-      { name: "description", content: "Foil-embossed 3D role certificates with certificate numbers, scannable QR verification, rotation and PNG export." },
+      {
+        name: "description",
+        content:
+          "Foil-embossed 3D role certificates with certificate numbers, scannable QR verification, rotation and PNG export.",
+      },
       { property: "og:title", content: "Certificate Vault — Premium 3D Certificates" },
-      { property: "og:description", content: "Role certificates with gold foil borders, wax seals, guilloché detail and registry-verified QR codes." },
+      {
+        property: "og:description",
+        content:
+          "Role certificates with gold foil borders, wax seals, guilloché detail and registry-verified QR codes.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -32,7 +40,11 @@ function Page() {
     [filter],
   );
   const exportItems = useMemo(
-    () => visible.map((role) => ({ src: ROLE_CERTIFICATE[role.slug], filename: `${role.slug}-certificate.png` })),
+    () =>
+      visible.map((role) => ({
+        src: ROLE_CERTIFICATE[role.slug],
+        filename: `${role.slug}-certificate.png`,
+      })),
     [visible],
   );
 
@@ -44,9 +56,11 @@ function Page() {
         description="Foil-embossed certificates with guilloché borders, wax seals and role-specific crests. Every certificate carries its own registry number and scannable QR verification."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <ScrollText className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} certificates · {visible.length} shown</span>
-        </div>
+            <ScrollText className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} certificates · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -76,7 +90,10 @@ function Page() {
               <div className="border-t border-border/60 bg-surface/45 p-4 space-y-3">
                 <div>
                   <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                  <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                  <div
+                    className="text-[11px] uppercase tracking-widest"
+                    style={{ color: `${role.accent}bb` }}
+                  >
                     {identity.title}
                   </div>
                   <p className="mt-2 text-xs text-foreground/60 font-mono">

@@ -15,10 +15,26 @@ const ASSETS = join(ROOT, "src/assets");
 
 /** Every 3D collectible asset directory that must contain an operator piece. */
 const ASSET_DIRS = [
-  "badges", "passports", "certificates", "membership", "ranks", "shields",
-  "awards", "achievements", "reputation-medals", "trust-seals", "recognition-coins",
-  "xp-crystals", "reward-chests", "honor-coins", "legacy-medals", "identity-cards",
-  "license-cards", "founder-seals", "hall-of-fame", "trophies",
+  "badges",
+  "passports",
+  "certificates",
+  "membership",
+  "ranks",
+  "shields",
+  "awards",
+  "achievements",
+  "reputation-medals",
+  "trust-seals",
+  "recognition-coins",
+  "xp-crystals",
+  "reward-chests",
+  "honor-coins",
+  "legacy-medals",
+  "identity-cards",
+  "license-cards",
+  "founder-seals",
+  "hall-of-fame",
+  "trophies",
 ];
 
 const OPERATOR: RoleSlug = "operator";
@@ -45,7 +61,10 @@ describe("Operator role — selectors", () => {
     // RoleFilter builds its options as ["all", ...ROLES]; assert the derived list.
     const options = ["all", ...ROLES.map((r) => r.slug)];
     expect(options).toContain(OPERATOR);
-    const source = readFileSync(join(ROOT, "src/components/ams/collectible/RoleFilter.tsx"), "utf8");
+    const source = readFileSync(
+      join(ROOT, "src/components/ams/collectible/RoleFilter.tsx"),
+      "utf8",
+    );
     expect(source).toMatch(/ROLES\.map/);
   });
 
@@ -89,7 +108,8 @@ describe("Operator role — collection displays", () => {
 
 describe("Operator role — museum showcases", () => {
   it.each(SHOWCASES.map((s) => [s.slug, s] as const))(
-    "%s resolves an Operator collectible", (_slug, showcase) => {
+    "%s resolves an Operator collectible",
+    (_slug, showcase) => {
       const url = showcase.assets[OPERATOR];
       expect(url, `${showcase.slug} has no operator asset`).toBeTruthy();
       expect(url).toMatch(/operator\.png/);

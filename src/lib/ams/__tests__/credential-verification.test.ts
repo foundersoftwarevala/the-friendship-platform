@@ -2,11 +2,7 @@ import { describe, expect, it } from "vitest";
 import QRCode from "qrcode";
 import jsQR from "jsqr";
 import { ROLES } from "@/lib/ams/roles";
-import {
-  findPassportByCode,
-  passportIdentity,
-  passportVerifyPath,
-} from "@/lib/ams/passport-id";
+import { findPassportByCode, passportIdentity, passportVerifyPath } from "@/lib/ams/passport-id";
 import {
   certificateIdentity,
   certificateVerifyPath,

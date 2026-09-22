@@ -13,15 +13,36 @@ type SalesSupportRow = {
   updated_at?: string | null;
 };
 
-export type TeamMember = SalesSupportRow & { full_name: string; department: string | null; status: string | null };
+export type TeamMember = SalesSupportRow & {
+  full_name: string;
+  department: string | null;
+  status: string | null;
+};
 export type CrmCustomer = SalesSupportRow;
-export type SalesLead = SalesSupportRow & { assigned_to: string | null; stage: string | null; company: string | null };
+export type SalesLead = SalesSupportRow & {
+  assigned_to: string | null;
+  stage: string | null;
+  company: string | null;
+};
 export type SalesDeal = SalesSupportRow;
 export type CrmTask = SalesSupportRow;
 export type SalesCommission = SalesSupportRow;
-export type SupportTicket = SalesSupportRow & { assigned_to: string | null; status: string | null; reference: string; subject: string; resolved_at: string | null };
-export type SupportEscalation = SalesSupportRow & { reference: string | null; reason: string | null };
-export type CallLog = SalesSupportRow & { status: string | null; caller_name: string | null; started_at: string };
+export type SupportTicket = SalesSupportRow & {
+  assigned_to: string | null;
+  status: string | null;
+  reference: string;
+  subject: string;
+  resolved_at: string | null;
+};
+export type SupportEscalation = SalesSupportRow & {
+  reference: string | null;
+  reason: string | null;
+};
+export type CallLog = SalesSupportRow & {
+  status: string | null;
+  caller_name: string | null;
+  started_at: string;
+};
 export type EmailQueueItem = SalesSupportRow;
 export type ChatSession = SalesSupportRow & { started_at: string };
 export type ChatMessage = SalesSupportRow & { session_id: string };
@@ -81,21 +102,30 @@ export const useTeamMembers = (department?: string) => {
 export const useCustomers = () => useTable<CrmCustomer>("crm_customers");
 export const useLeads = () => useTable<SalesLead>("sales_leads");
 export const useDeals = () => useTable<SalesDeal>("sales_deals");
-export const useTasks = () => useTable<CrmTask>("crm_tasks", { orderBy: "due_at", ascending: true });
+export const useTasks = () =>
+  useTable<CrmTask>("crm_tasks", { orderBy: "due_at", ascending: true });
 export const useCommissions = () => useTable<SalesCommission>("sales_commissions");
 export const useTickets = () => useTable<SupportTicket>("support_tickets");
 export const useEscalations = () => useTable<SupportEscalation>("support_escalations");
 export const useCallLogs = () => useTable<CallLog>("call_logs", { orderBy: "started_at" });
-export const useEmailQueue = () => useTable<EmailQueueItem>("email_queue", { orderBy: "received_at" });
-export const useChatSessions = () => useTable<ChatSession>("chat_sessions", { orderBy: "started_at" });
-export const useChatbots = () => useTable<Chatbot>("chatbots", { orderBy: "name", ascending: true });
-export const useBotTrainingDocuments = () => useTable<BotTrainingDocument>("bot_training_documents");
-export const useAutomationRules = () => useTable<AutomationRule>("automation_rules", { orderBy: "name", ascending: true });
+export const useEmailQueue = () =>
+  useTable<EmailQueueItem>("email_queue", { orderBy: "received_at" });
+export const useChatSessions = () =>
+  useTable<ChatSession>("chat_sessions", { orderBy: "started_at" });
+export const useChatbots = () =>
+  useTable<Chatbot>("chatbots", { orderBy: "name", ascending: true });
+export const useBotTrainingDocuments = () =>
+  useTable<BotTrainingDocument>("bot_training_documents");
+export const useAutomationRules = () =>
+  useTable<AutomationRule>("automation_rules", { orderBy: "name", ascending: true });
 export const useBotConversationLogs = () => useTable<BotConversationLog>("bot_conversation_logs");
-export const useBotLanguages = () => useTable<BotLanguage>("bot_languages", { orderBy: "name", ascending: true });
-export const useCannedResponses = () => useTable<CannedResponse>("canned_responses", { orderBy: "title", ascending: true });
+export const useBotLanguages = () =>
+  useTable<BotLanguage>("bot_languages", { orderBy: "name", ascending: true });
+export const useCannedResponses = () =>
+  useTable<CannedResponse>("canned_responses", { orderBy: "title", ascending: true });
 export const useWikiArticles = () => useTable<WikiArticle>("wiki_articles");
-export const useAuditLogs = () => useTable<AuditLog>("audit_logs", { orderBy: "occurred_at", retry: false });
+export const useAuditLogs = () =>
+  useTable<AuditLog>("audit_logs", { orderBy: "occurred_at", retry: false });
 
 export const useChatMessages = (sessionId: string | null) =>
   useQuery({

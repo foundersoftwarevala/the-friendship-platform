@@ -9,13 +9,21 @@ import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 import { ROLE_AWARD } from "@/lib/ams/role-assets";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/tickets/award-vault")({
+export const Route = createFileRoute("/ams/award-vault")({
   head: () => ({
     meta: [
       { title: "Award Vault — Premium 3D Awards" },
-      { name: "description", content: "Museum-quality 3D awards, one per role — with premium materials, 3D rotation and PNG export." },
+      {
+        name: "description",
+        content:
+          "Museum-quality 3D awards, one per role — with premium materials, 3D rotation and PNG export.",
+      },
       { property: "og:title", content: "Award Vault — Premium 3D Awards" },
-      { property: "og:description", content: "11 handcrafted role awards with distinct silhouettes, premium bases and cinematic lighting." },
+      {
+        property: "og:description",
+        content:
+          "11 handcrafted role awards with distinct silhouettes, premium bases and cinematic lighting.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,7 +38,8 @@ function Page() {
     [filter],
   );
   const exportItems = useMemo(
-    () => visible.map((role) => ({ src: ROLE_AWARD[role.slug], filename: `${role.slug}-award.png` })),
+    () =>
+      visible.map((role) => ({ src: ROLE_AWARD[role.slug], filename: `${role.slug}-award.png` })),
     [visible],
   );
 
@@ -42,9 +51,11 @@ function Page() {
         description="Signature luxury awards for every role — sculpted materials, cinematic reflections, custom bases and profession-led identity language. Rotate, inspect and export each PNG."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Award className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} awards · {visible.length} shown</span>
-        </div>
+            <Award className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} awards · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -73,7 +84,10 @@ function Page() {
               />
               <div className="border-t border-border/60 bg-surface/45 p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${role.accent}bb` }}
+                >
                   {role.archetype} · {role.awardStyle}
                 </div>
                 <p className="mt-2 text-xs text-foreground/70 italic">"{role.vision}"</p>

@@ -9,13 +9,21 @@ import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 import { ROLE_ACHIEVEMENT } from "@/lib/ams/role-assets";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/tickets/achievement-vault")({
+export const Route = createFileRoute("/ams/achievement-vault")({
   head: () => ({
     meta: [
       { title: "Achievement Vault — Premium 3D Achievements" },
-      { name: "description", content: "Museum-quality 3D achievement collectibles, one per role — with premium rotation, animated lighting and PNG export." },
+      {
+        name: "description",
+        content:
+          "Museum-quality 3D achievement collectibles, one per role — with premium rotation, animated lighting and PNG export.",
+      },
       { property: "og:title", content: "Achievement Vault — Premium 3D Achievements" },
-      { property: "og:description", content: "11 handcrafted role achievements with unique silhouettes, engraved motifs and collectible-grade finish." },
+      {
+        property: "og:description",
+        content:
+          "11 handcrafted role achievements with unique silhouettes, engraved motifs and collectible-grade finish.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,7 +38,11 @@ function Page() {
     [filter],
   );
   const exportItems = useMemo(
-    () => visible.map((role) => ({ src: ROLE_ACHIEVEMENT[role.slug], filename: `${role.slug}-achievement.png` })),
+    () =>
+      visible.map((role) => ({
+        src: ROLE_ACHIEVEMENT[role.slug],
+        filename: `${role.slug}-achievement.png`,
+      })),
     [visible],
   );
 
@@ -42,9 +54,11 @@ function Page() {
         description="Each achievement collectible is built as a role-specific medallion — distinct silhouette, engraved profession cues, luxury finish and cinematic lighting. Rotate and export each one."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Trophy className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} achievements · {visible.length} shown</span>
-        </div>
+            <Trophy className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} achievements · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -73,7 +87,10 @@ function Page() {
               />
               <div className="border-t border-border/60 bg-surface/45 p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${role.accent}bb` }}
+                >
                   {role.archetype} · Achievement Core
                 </div>
                 <p className="mt-2 text-xs text-foreground/70 italic">"{role.motivation}"</p>

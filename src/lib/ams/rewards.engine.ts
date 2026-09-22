@@ -9,9 +9,9 @@ export interface RewardPayload {
   xp?: number;
   coins?: number;
   tokens?: number;
-  awardIds?: string[];   // award ids to unlock
-  reason?: string;       // human-readable source (e.g. "mission:daily-login")
-  actor?: string;        // user id — defaults to "me"
+  awardIds?: string[]; // award ids to unlock
+  reason?: string; // human-readable source (e.g. "mission:daily-login")
+  actor?: string; // user id — defaults to "me"
 }
 
 export interface LedgerEntry extends Required<Omit<RewardPayload, "awardIds">> {
@@ -43,14 +43,20 @@ let STATE: WalletState = {
 
 type Listener = (s: WalletState) => void;
 const listeners = new Set<Listener>();
-function emit() { for (const fn of listeners) fn(STATE); }
+function emit() {
+  for (const fn of listeners) fn(STATE);
+}
 
 export function subscribe(fn: Listener): () => void {
   listeners.add(fn);
-  return () => { listeners.delete(fn); };
+  return () => {
+    listeners.delete(fn);
+  };
 }
 
-export function getWallet(): WalletState { return STATE; }
+export function getWallet(): WalletState {
+  return STATE;
+}
 
 export function grant(p: RewardPayload): LedgerEntry {
   const entry: LedgerEntry = {

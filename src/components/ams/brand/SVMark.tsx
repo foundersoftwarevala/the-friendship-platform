@@ -6,7 +6,11 @@ export function SVSeal({
   accent,
   size = 26,
   title = "Software Vala Verification Seal",
-}: { accent: string; size?: number; title?: string }) {
+}: {
+  accent: string;
+  size?: number;
+  title?: string;
+}) {
   return (
     <svg
       width={size}
@@ -25,15 +29,42 @@ export function SVSeal({
         </linearGradient>
       </defs>
       {/* milled outer rim */}
-      <circle cx="24" cy="24" r="22" fill="none" stroke="url(#sv-metal)" strokeWidth="1.6" opacity="0.9" />
-      <circle cx="24" cy="24" r="18.5" fill="none" stroke="url(#sv-metal)" strokeWidth="0.6" opacity="0.6" />
+      <circle
+        cx="24"
+        cy="24"
+        r="22"
+        fill="none"
+        stroke="url(#sv-metal)"
+        strokeWidth="1.6"
+        opacity="0.9"
+      />
+      <circle
+        cx="24"
+        cy="24"
+        r="18.5"
+        fill="none"
+        stroke="url(#sv-metal)"
+        strokeWidth="0.6"
+        opacity="0.6"
+      />
       {Array.from({ length: 36 }).map((_, i) => {
         const a = (i / 36) * Math.PI * 2;
         const x1 = 24 + Math.cos(a) * 19.2;
         const y1 = 24 + Math.sin(a) * 19.2;
         const x2 = 24 + Math.cos(a) * 21.2;
         const y2 = 24 + Math.sin(a) * 21.2;
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={accent} strokeWidth="0.5" opacity="0.45" />;
+        return (
+          <line
+            key={i}
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke={accent}
+            strokeWidth="0.5"
+            opacity="0.45"
+          />
+        );
       })}
       {/* engraved SV monogram */}
       <text

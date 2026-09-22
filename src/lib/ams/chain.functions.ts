@@ -64,8 +64,7 @@ async function callAsUser<T>(fn: string, args: Record<string, unknown>): Promise
 
   const { createClient } = await import("@supabase/supabase-js");
   const url = process.env.SUPABASE_URL ?? process.env.VITE_SUPABASE_URL ?? "";
-  const key =
-    process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? "";
+  const key = process.env.SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? "";
   if (!url || !key) return null;
 
   const client = createClient(url, key, {
@@ -81,9 +80,7 @@ async function callAsUser<T>(fn: string, args: Record<string, unknown>): Promise
 }
 
 export const getRoleChain = createServerFn({ method: "GET" })
-  .inputValidator((input: unknown) =>
-    z.object({ role: z.string().min(1).max(40) }).parse(input),
-  )
+  .inputValidator((input: unknown) => z.object({ role: z.string().min(1).max(40) }).parse(input))
   .handler(async ({ data }): Promise<RoleChain | null> => {
     return callAsUser<RoleChain>("ams_role_chain", {
       p_role: data.role,

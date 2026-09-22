@@ -429,8 +429,7 @@ const ROLES: RoleDef[] = [
   {
     role: "Founder",
     slug: "founder",
-    language:
-      "extremely prestigious executive award design, visionary geometry, rarest materials",
+    language: "extremely prestigious executive award design, visionary geometry, rarest materials",
     stages: [
       "Vision",
       "Innovation",

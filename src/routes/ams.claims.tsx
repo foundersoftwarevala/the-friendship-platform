@@ -1,13 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/tickets/claims")({
+export const Route = createFileRoute("/ams/claims")({
   head: () => ({
     meta: [
       { title: "Claims — AMS" },
-      { name: "description", content: "Pending, approved, rejected reward claims — verify, dispatch and audit." },
+      {
+        name: "description",
+        content: "Pending, approved, rejected reward claims — verify, dispatch and audit.",
+      },
       { property: "og:title", content: "Claims — AMS" },
-      { property: "og:description", content: "Pending, approved, rejected reward claims — verify, dispatch and audit." },
+      {
+        property: "og:description",
+        content: "Pending, approved, rejected reward claims — verify, dispatch and audit.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,9 +49,30 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "CLM-1042", user: "@arjun.k", reward: "Golden Ticket", value: "$500", requested: "12h ago", status: <StatusChip tone="warn">Pending</StatusChip> },
-        { id: "CLM-1041", user: "@meera.s", reward: "Legendary Box", value: "$120", requested: "1d ago", status: <StatusChip tone="success">Approved</StatusChip> },
-        { id: "CLM-1040", user: "@dev.rj", reward: "Commission ×2", value: "+100%", requested: "2d ago", status: <StatusChip tone="info">Dispatched</StatusChip> },
+        {
+          id: "CLM-1042",
+          user: "@arjun.k",
+          reward: "Golden Ticket",
+          value: "$500",
+          requested: "12h ago",
+          status: <StatusChip tone="warn">Pending</StatusChip>,
+        },
+        {
+          id: "CLM-1041",
+          user: "@meera.s",
+          reward: "Legendary Box",
+          value: "$120",
+          requested: "1d ago",
+          status: <StatusChip tone="success">Approved</StatusChip>,
+        },
+        {
+          id: "CLM-1040",
+          user: "@dev.rj",
+          reward: "Commission ×2",
+          value: "+100%",
+          requested: "2d ago",
+          status: <StatusChip tone="info">Dispatched</StatusChip>,
+        },
       ]}
     />
   );

@@ -52,7 +52,9 @@ export function Collectible3D({
     if (eager) return;
     const el = wrapRef.current;
     if (!el || typeof IntersectionObserver === "undefined") {
-      setInView(true); setVisible(true); return;
+      setInView(true);
+      setVisible(true);
+      return;
     }
     const io = new IntersectionObserver(
       (entries) => {
@@ -138,8 +140,10 @@ export function Collectible3D({
     >
       {!inView ? (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-24 w-24 rounded-full animate-pulse"
-            style={{ background: `radial-gradient(closest-side, ${accent}44, transparent)` }} />
+          <div
+            className="h-24 w-24 rounded-full animate-pulse"
+            style={{ background: `radial-gradient(closest-side, ${accent}44, transparent)` }}
+          />
         </div>
       ) : (
         <>
@@ -147,7 +151,8 @@ export function Collectible3D({
           <div
             className="pointer-events-none absolute inset-x-[14%] top-0 h-3/4 opacity-60"
             style={{
-              background: "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 22%, transparent), transparent 66%)",
+              background:
+                "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 22%, transparent), transparent 66%)",
               mixBlendMode: "screen",
             }}
           />
@@ -158,7 +163,9 @@ export function Collectible3D({
             <div
               className="stage-3d-object relative"
               style={{
-                animation: doSpin ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none",
+                animation: doSpin
+                  ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite"
+                  : "none",
                 width: height * 0.78,
                 height: height * 0.94,
                 willChange: doSpin || engaged ? "transform" : undefined,
@@ -205,7 +212,13 @@ export function Collectible3D({
             <div
               className="stage-reflection pointer-events-none absolute left-1/2 -translate-x-1/2"
               aria-hidden
-              style={{ bottom: 2, width: height * 0.78, height: height * 0.36, marginLeft: 0, transformOrigin: "center" }}
+              style={{
+                bottom: 2,
+                width: height * 0.78,
+                height: height * 0.36,
+                marginLeft: 0,
+                transformOrigin: "center",
+              }}
             >
               <img
                 src={src}
@@ -239,7 +252,6 @@ export function Collectible3D({
           </div>
         </>
       )}
-
 
       {/* Software Vala museum case + brand marks */}
       <MuseumCase accent={accent} />

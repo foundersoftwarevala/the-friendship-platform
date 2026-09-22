@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import {
-  getSoundPrefs, setSoundPrefs, subscribeSoundPrefs, playSound,
-  type SoundPrefs, type UiSound,
+  getSoundPrefs,
+  setSoundPrefs,
+  subscribeSoundPrefs,
+  playSound,
+  type SoundPrefs,
+  type UiSound,
 } from "@/lib/ams/ui-sound";
 
 /**
@@ -14,7 +18,9 @@ export function useUiSound() {
   useEffect(() => {
     setPrefs(getSoundPrefs());
     const unsub = subscribeSoundPrefs(setPrefs);
-    return () => { unsub(); };
+    return () => {
+      unsub();
+    };
   }, []);
 
   const play = useCallback((name: UiSound) => playSound(name), []);

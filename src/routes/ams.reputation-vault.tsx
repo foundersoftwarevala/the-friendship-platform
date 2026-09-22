@@ -2,13 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_REPUTATION } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/tickets/reputation-vault")({
+export const Route = createFileRoute("/ams/reputation-vault")({
   head: () => ({
     meta: [
       { title: "Reputation Vault — Premium 3D Medals" },
       { name: "description", content: "Museum-quality 3D reputation medals, one per role." },
       { property: "og:title", content: "Reputation Vault — Premium 3D Medals" },
-      { property: "og:description", content: "11 handcrafted reputation medals with laurel wreaths and role motifs." },
+      {
+        property: "og:description",
+        content: "11 handcrafted reputation medals with laurel wreaths and role motifs.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

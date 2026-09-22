@@ -16,9 +16,15 @@ export const Route = createFileRoute("/ams/badges")({
   head: () => ({
     meta: [
       { title: "Badge Engine — AMS" },
-      { name: "description", content: "Every badge that can be earned, its rarity and how many people hold it." },
+      {
+        name: "description",
+        content: "Every badge that can be earned, its rarity and how many people hold it.",
+      },
       { property: "og:title", content: "Badge Engine — AMS" },
-      { property: "og:description", content: "Every badge that can be earned, its rarity and how many people hold it." },
+      {
+        property: "og:description",
+        content: "Every badge that can be earned, its rarity and how many people hold it.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

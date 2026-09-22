@@ -3,13 +3,21 @@ import { ArrowUpRight } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/tickets/role-manager/")({
+export const Route = createFileRoute("/ams/role-manager/")({
   head: () => ({
     meta: [
       { title: "Role Manager — AMS" },
-      { name: "description", content: "Every role is its own professional world — motto, journey, passport, trophies and language. Open a role to view its full DNA." },
+      {
+        name: "description",
+        content:
+          "Every role is its own professional world — motto, journey, passport, trophies and language. Open a role to view its full DNA.",
+      },
       { property: "og:title", content: "Role Manager — AMS" },
-      { property: "og:description", content: "Every role is its own professional world — motto, journey, passport, trophies and language. Open a role to view its full DNA." },
+      {
+        property: "og:description",
+        content:
+          "Every role is its own professional world — motto, journey, passport, trophies and language. Open a role to view its full DNA.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -21,13 +29,21 @@ function Page() {
   const rows = ROLES.map((r) => ({
     id: r.slug,
     name: (
-      <Link to="/ams/role-manager/$slug" params={{ slug: r.slug }} className="group flex items-center gap-2">
-        <span className="text-lg" style={{ color: r.accent }}>{r.glyph}</span>
+      <Link
+        to="/ams/role-manager/$slug"
+        params={{ slug: r.slug }}
+        className="group flex items-center gap-2"
+      >
+        <span className="text-lg" style={{ color: r.accent }}>
+          {r.glyph}
+        </span>
         <span>
           <div className="font-medium flex items-center gap-1 group-hover:underline">
             {r.name} <ArrowUpRight className="h-3 w-3 opacity-40 group-hover:opacity-100" />
           </div>
-          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{r.archetype}</div>
+          <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            {r.archetype}
+          </div>
         </span>
       </Link>
     ),
@@ -51,7 +67,12 @@ function Page() {
         { label: "Certificate Levels", value: 7 },
         { label: "Reputation Pillars", value: 7 },
       ]}
-      filters={[{ label: "Behavior", values: ["Engineer", "Merchant", "Leader", "Creator", "Support", "Learner"] }]}
+      filters={[
+        {
+          label: "Behavior",
+          values: ["Engineer", "Merchant", "Leader", "Creator", "Support", "Learner"],
+        },
+      ]}
       columns={[
         { key: "name", label: "Role" },
         { key: "behavior", label: "Behavior" },

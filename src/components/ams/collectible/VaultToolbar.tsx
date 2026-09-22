@@ -63,7 +63,11 @@ export function VaultToolbar({
         disabled={busy}
         className="btn-glow focus-ring inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-medium text-primary-foreground transition-all disabled:opacity-60"
       >
-        {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Download className="h-3.5 w-3.5" />}
+        {busy ? (
+          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+        ) : (
+          <Download className="h-3.5 w-3.5" />
+        )}
         {busy ? `Exporting ${done}/${items.length}` : `${exportLabel} (${items.length} PNG)`}
       </button>
 
@@ -86,7 +90,6 @@ export function VaultToolbar({
         {soundOn ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
         Sound: {soundOn ? "On" : "Muted"}
       </button>
-
     </div>
   );
 }

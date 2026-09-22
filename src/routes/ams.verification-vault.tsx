@@ -9,13 +9,21 @@ import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 
-export const Route = createFileRoute("/ams/tickets/verification-vault")({
+export const Route = createFileRoute("/ams/verification-vault")({
   head: () => ({
     meta: [
       { title: "Verification Vault — Premium 3D Trust Shields" },
-      { name: "description", content: "Museum-quality 3D verification shields, one per role — animated lighting, rotating preview and PNG export." },
+      {
+        name: "description",
+        content:
+          "Museum-quality 3D verification shields, one per role — animated lighting, rotating preview and PNG export.",
+      },
       { property: "og:title", content: "Verification Vault — Premium 3D Trust Shields" },
-      { property: "og:description", content: "11 handcrafted verification shields with unique profession cues, engraved approval marks and luxury materials." },
+      {
+        property: "og:description",
+        content:
+          "11 handcrafted verification shields with unique profession cues, engraved approval marks and luxury materials.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,10 +38,13 @@ function Page() {
     [filter],
   );
   const exportItems = useMemo(
-    () => visible.map((r) => ({ src: ROLE_SHIELD[r.slug], filename: `${r.slug}-verification-shield.png` })),
+    () =>
+      visible.map((r) => ({
+        src: ROLE_SHIELD[r.slug],
+        filename: `${r.slug}-verification-shield.png`,
+      })),
     [visible],
   );
-
 
   return (
     <div className="space-y-6">
@@ -43,9 +54,11 @@ function Page() {
         description="Profession-specific verification collectibles with premium shield geometry, engraved trust marks, luxury finishes and approval stamps. Rotate, inspect and export every shield as PNG."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Shield className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} shields · {visible.length} shown</span>
-        </div>
+            <Shield className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} shields · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -58,10 +71,7 @@ function Page() {
         {visible.map((role) => {
           const img = ROLE_SHIELD[role.slug];
           return (
-            <article
-              key={role.slug}
-              className="dashboard-card overflow-hidden"
-            >
+            <article key={role.slug} className="dashboard-card overflow-hidden">
               <MuseumStage
                 src={img}
                 filename={`${role.slug}-verification-shield.png`}
@@ -77,7 +87,10 @@ function Page() {
               />
               <div className="border-t border-border/60 bg-surface/45 p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${role.accent}bb` }}
+                >
                   {role.archetype} · Verification Shield
                 </div>
                 <p className="mt-2 text-xs text-foreground/70 italic">&quot;{role.motto}&quot;</p>

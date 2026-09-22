@@ -14,7 +14,12 @@ export function RoleFilter({
 }) {
   const items: { key: RoleFilterValue; label: string; hue?: string; glyph: string }[] = [
     { key: "all", label: "All Roles", hue: accent, glyph: "★" },
-    ...ROLES.map((r) => ({ key: r.slug as RoleFilterValue, label: r.name, hue: r.accent, glyph: r.glyph })),
+    ...ROLES.map((r) => ({
+      key: r.slug as RoleFilterValue,
+      label: r.name,
+      hue: r.accent,
+      glyph: r.glyph,
+    })),
   ];
 
   return (
@@ -31,7 +36,12 @@ export function RoleFilter({
             aria-pressed={active}
             className="h-8 gap-1.5 rounded-md px-2.5 text-[11px] tracking-wide"
           >
-            <span className="text-sm leading-none" style={active || !it.hue ? undefined : { color: it.hue }}>{it.glyph}</span>
+            <span
+              className="text-sm leading-none"
+              style={active || !it.hue ? undefined : { color: it.hue }}
+            >
+              {it.glyph}
+            </span>
             {it.label}
           </Button>
         );

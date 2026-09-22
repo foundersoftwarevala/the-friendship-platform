@@ -1,13 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/tickets/ai")({
+export const Route = createFileRoute("/ams/ai")({
   head: () => ({
     meta: [
       { title: "AI Center — AMS" },
-      { name: "description", content: "Recommendations, anomaly detection, cheat scoring, generative award design and copy assistants." },
+      {
+        name: "description",
+        content:
+          "Recommendations, anomaly detection, cheat scoring, generative award design and copy assistants.",
+      },
       { property: "og:title", content: "AI Center — AMS" },
-      { property: "og:description", content: "Recommendations, anomaly detection, cheat scoring, generative award design and copy assistants." },
+      {
+        property: "og:description",
+        content:
+          "Recommendations, anomaly detection, cheat scoring, generative award design and copy assistants.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,9 +51,33 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "ai1", name: "Next-mission suggester", kind: "Recommendation", model: "Gemini 2.5", runs: "12,481", acc: "92%", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "ai2", name: "XP anomaly guardian", kind: "Anomaly", model: "Custom", runs: "48,204", acc: "97%", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "ai3", name: "Award emblem designer", kind: "Generative", model: "GPT-5", runs: "412", acc: "—", status: <StatusChip tone="info">Beta</StatusChip> },
+        {
+          id: "ai1",
+          name: "Next-mission suggester",
+          kind: "Recommendation",
+          model: "Gemini 2.5",
+          runs: "12,481",
+          acc: "92%",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "ai2",
+          name: "XP anomaly guardian",
+          kind: "Anomaly",
+          model: "Custom",
+          runs: "48,204",
+          acc: "97%",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "ai3",
+          name: "Award emblem designer",
+          kind: "Generative",
+          model: "GPT-5",
+          runs: "412",
+          acc: "—",
+          status: <StatusChip tone="info">Beta</StatusChip>,
+        },
       ]}
     />
   );

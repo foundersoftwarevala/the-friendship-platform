@@ -1,11 +1,26 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Crown, Trophy, Award, Sparkles, Star, Diamond, Gift, ScrollText } from "lucide-react";
 import trophy3d from "@/assets/trophy-3d.png";
 import medal3d from "@/assets/medal-3d.png";
 import badge3d from "@/assets/badge-3d.png";
 import {
-  playWin, playRankUp, playLevelUp, playDiamond, playFireworks,
-  playCoinDrop, playMythic, playRandom, playCertificate,
+  playWin,
+  playRankUp,
+  playLevelUp,
+  playDiamond,
+  playFireworks,
+  playCoinDrop,
+  playMythic,
+  playRandom,
+  playCertificate,
 } from "@/lib/celebrate";
 import { getSoundPrefs, playSound, type UiSound } from "@/lib/ams/ui-sound";
 import { AnimatedNumber } from "./AnimatedNumber";
@@ -16,8 +31,16 @@ import { useReducedMotion } from "@/hooks/use-reduced-motion";
 // ──────────────────────────────────────────────────────────────
 export type Rarity = "Common" | "Rare" | "Epic" | "Legendary" | "Mythic" | "Founder";
 export type CelebrateKind =
-  | "achievement" | "rankUp" | "levelUp" | "badge" | "trophy"
-  | "milestone" | "firstSale" | "founder" | "surprise" | "certificate";
+  | "achievement"
+  | "rankUp"
+  | "levelUp"
+  | "badge"
+  | "trophy"
+  | "milestone"
+  | "firstSale"
+  | "founder"
+  | "surprise"
+  | "certificate";
 
 export interface CelebrationPayload {
   kind: CelebrateKind;
@@ -47,23 +70,32 @@ export const useCelebration = () => {
 type ParticleStyle = "coin" | "diamond" | "confetti" | "star" | "spark";
 
 interface P {
-  x: number; y: number; vx: number; vy: number;
-  size: number; rot: number; vr: number; color: string;
-  style: ParticleStyle; life: number; maxLife: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  rot: number;
+  vr: number;
+  color: string;
+  style: ParticleStyle;
+  life: number;
+  maxLife: number;
 }
 
 const PALETTE = {
-  Common:    ["#c0c0c0", "#e5e4e2", "#94a3b8"],
-  Rare:      ["#60a5fa", "#93c5fd", "#bfdbfe"],
-  Epic:      ["#c084fc", "#a855f7", "#e9d5ff"],
+  Common: ["#c0c0c0", "#e5e4e2", "#94a3b8"],
+  Rare: ["#60a5fa", "#93c5fd", "#bfdbfe"],
+  Epic: ["#c084fc", "#a855f7", "#e9d5ff"],
   Legendary: ["var(--color-primary-glow)", "var(--color-primary)", "#fff3c4"],
-  Mythic:    ["#ff9b6a", "#d97aff", "#9be5ff"],
-  Founder:   ["#fff3c4", "var(--color-primary-glow)", "#b4892a", "#9be5ff"],
+  Mythic: ["#ff9b6a", "#d97aff", "#9be5ff"],
+  Founder: ["#fff3c4", "var(--color-primary-glow)", "#b4892a", "#9be5ff"],
 };
 
 function makeBurst(w: number, h: number, rarity: Rarity, style: ParticleStyle, count: number): P[] {
   const colors = PALETTE[rarity];
-  const cx = w / 2, cy = h * 0.45;
+  const cx = w / 2,
+    cy = h * 0.45;
   const arr: P[] = [];
   for (let i = 0; i < count; i++) {
     const angle = Math.random() * Math.PI * 2;
@@ -115,30 +147,48 @@ function drawParticle(ctx: CanvasRenderingContext2D, p: P) {
   ctx.shadowColor = p.color;
   if (p.style === "coin") {
     // gold coin disk
-    ctx.beginPath(); ctx.ellipse(0, 0, p.size, p.size * 0.85, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size, p.size * 0.85, 0, 0, Math.PI * 2);
+    ctx.fill();
     ctx.fillStyle = "rgba(255,243,196,0.7)";
-    ctx.beginPath(); ctx.ellipse(-p.size * 0.25, -p.size * 0.25, p.size * 0.35, p.size * 0.25, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(-p.size * 0.25, -p.size * 0.25, p.size * 0.35, p.size * 0.25, 0, 0, Math.PI * 2);
+    ctx.fill();
   } else if (p.style === "diamond") {
     ctx.beginPath();
-    ctx.moveTo(0, -p.size); ctx.lineTo(p.size * 0.7, 0); ctx.lineTo(0, p.size); ctx.lineTo(-p.size * 0.7, 0);
-    ctx.closePath(); ctx.fill();
+    ctx.moveTo(0, -p.size);
+    ctx.lineTo(p.size * 0.7, 0);
+    ctx.lineTo(0, p.size);
+    ctx.lineTo(-p.size * 0.7, 0);
+    ctx.closePath();
+    ctx.fill();
     ctx.fillStyle = "rgba(255,255,255,0.6)";
-    ctx.beginPath(); ctx.moveTo(0, -p.size * 0.7); ctx.lineTo(p.size * 0.3, 0); ctx.lineTo(0, 0); ctx.closePath(); ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(0, -p.size * 0.7);
+    ctx.lineTo(p.size * 0.3, 0);
+    ctx.lineTo(0, 0);
+    ctx.closePath();
+    ctx.fill();
   } else if (p.style === "confetti") {
     ctx.fillRect(-p.size * 0.4, -p.size * 0.7, p.size * 0.8, p.size * 1.4);
   } else if (p.style === "star") {
-    const r1 = p.size, r2 = p.size * 0.45;
+    const r1 = p.size,
+      r2 = p.size * 0.45;
     ctx.beginPath();
     for (let i = 0; i < 10; i++) {
       const r = i % 2 === 0 ? r1 : r2;
       const a = (Math.PI / 5) * i - Math.PI / 2;
-      const x = Math.cos(a) * r, y = Math.sin(a) * r;
+      const x = Math.cos(a) * r,
+        y = Math.sin(a) * r;
       i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
     }
-    ctx.closePath(); ctx.fill();
+    ctx.closePath();
+    ctx.fill();
   } else {
     // spark
-    ctx.beginPath(); ctx.arc(0, 0, p.size * 0.5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath();
+    ctx.arc(0, 0, p.size * 0.5, 0, Math.PI * 2);
+    ctx.fill();
   }
   ctx.restore();
 }
@@ -146,20 +196,119 @@ function drawParticle(ctx: CanvasRenderingContext2D, p: P) {
 // ──────────────────────────────────────────────────────────────
 // Overlay
 // ──────────────────────────────────────────────────────────────
-const KIND_META: Record<CelebrateKind, {
-  icon: typeof Trophy; title: string; rarity: Rarity; rain: ParticleStyle; burst: ParticleStyle;
-  asset: string; sound: () => void; full: boolean;
-}> = {
-  achievement: { icon: Award,    title: "Achievement Unlocked", rarity: "Epic",      rain: "spark",    burst: "star",     asset: badge3d,   sound: playWin,       full: false },
-  rankUp:      { icon: Crown,    title: "Rank Up",              rarity: "Legendary", rain: "coin",     burst: "star",     asset: trophy3d,  sound: playRankUp,    full: true  },
-  levelUp:     { icon: Sparkles, title: "Level Up",             rarity: "Rare",      rain: "spark",    burst: "spark",    asset: medal3d,   sound: playLevelUp,   full: false },
-  badge:       { icon: Star,     title: "New Badge Earned",     rarity: "Rare",      rain: "spark",    burst: "star",     asset: badge3d,   sound: playWin,       full: false },
-  trophy:      { icon: Trophy,   title: "New Trophy Earned",    rarity: "Legendary", rain: "coin",     burst: "star",     asset: trophy3d,  sound: playRankUp,    full: true  },
-  milestone:   { icon: Diamond,  title: "Milestone Reached",    rarity: "Legendary", rain: "diamond",  burst: "diamond",  asset: trophy3d,  sound: playDiamond,   full: true  },
-  firstSale:   { icon: Gift,     title: "First Sale",           rarity: "Epic",      rain: "coin",     burst: "coin",     asset: trophy3d,  sound: playCoinDrop,  full: true  },
-  founder:     { icon: Crown,    title: "Founder Award",        rarity: "Founder",   rain: "diamond",  burst: "star",     asset: trophy3d,  sound: playMythic,    full: true  },
-  surprise:    { icon: Sparkles, title: "Surprise Reward",      rarity: "Mythic",    rain: "confetti", burst: "confetti", asset: badge3d,   sound: playRandom,    full: false },
-  certificate: { icon: ScrollText, title: "Certificate Issued",  rarity: "Epic",      rain: "spark",    burst: "spark",    asset: medal3d,   sound: playCertificate, full: false },
+const KIND_META: Record<
+  CelebrateKind,
+  {
+    icon: typeof Trophy;
+    title: string;
+    rarity: Rarity;
+    rain: ParticleStyle;
+    burst: ParticleStyle;
+    asset: string;
+    sound: () => void;
+    full: boolean;
+  }
+> = {
+  achievement: {
+    icon: Award,
+    title: "Achievement Unlocked",
+    rarity: "Epic",
+    rain: "spark",
+    burst: "star",
+    asset: badge3d,
+    sound: playWin,
+    full: false,
+  },
+  rankUp: {
+    icon: Crown,
+    title: "Rank Up",
+    rarity: "Legendary",
+    rain: "coin",
+    burst: "star",
+    asset: trophy3d,
+    sound: playRankUp,
+    full: true,
+  },
+  levelUp: {
+    icon: Sparkles,
+    title: "Level Up",
+    rarity: "Rare",
+    rain: "spark",
+    burst: "spark",
+    asset: medal3d,
+    sound: playLevelUp,
+    full: false,
+  },
+  badge: {
+    icon: Star,
+    title: "New Badge Earned",
+    rarity: "Rare",
+    rain: "spark",
+    burst: "star",
+    asset: badge3d,
+    sound: playWin,
+    full: false,
+  },
+  trophy: {
+    icon: Trophy,
+    title: "New Trophy Earned",
+    rarity: "Legendary",
+    rain: "coin",
+    burst: "star",
+    asset: trophy3d,
+    sound: playRankUp,
+    full: true,
+  },
+  milestone: {
+    icon: Diamond,
+    title: "Milestone Reached",
+    rarity: "Legendary",
+    rain: "diamond",
+    burst: "diamond",
+    asset: trophy3d,
+    sound: playDiamond,
+    full: true,
+  },
+  firstSale: {
+    icon: Gift,
+    title: "First Sale",
+    rarity: "Epic",
+    rain: "coin",
+    burst: "coin",
+    asset: trophy3d,
+    sound: playCoinDrop,
+    full: true,
+  },
+  founder: {
+    icon: Crown,
+    title: "Founder Award",
+    rarity: "Founder",
+    rain: "diamond",
+    burst: "star",
+    asset: trophy3d,
+    sound: playMythic,
+    full: true,
+  },
+  surprise: {
+    icon: Sparkles,
+    title: "Surprise Reward",
+    rarity: "Mythic",
+    rain: "confetti",
+    burst: "confetti",
+    asset: badge3d,
+    sound: playRandom,
+    full: false,
+  },
+  certificate: {
+    icon: ScrollText,
+    title: "Certificate Issued",
+    rarity: "Epic",
+    rain: "spark",
+    burst: "spark",
+    asset: medal3d,
+    sound: playCertificate,
+    full: false,
+  },
 };
 
 /**
@@ -191,19 +340,25 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
 
   useEffect(() => {
     if (reduced) return;
-    const canvas = canvasRef.current; if (!canvas) return;
-    const ctx = canvas.getContext("2d"); if (!ctx) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const resize = () => {
-      const w = window.innerWidth, h = window.innerHeight;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = `${w}px`; canvas.style.height = `${h}px`;
+      const w = window.innerWidth,
+        h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener("resize", resize);
 
-    const w = window.innerWidth, h = window.innerHeight;
+    const w = window.innerWidth,
+      h = window.innerHeight;
     const burstCount = meta.full ? 120 : 70;
     const rainCount = meta.full ? 90 : 40;
     particlesRef.current = [
@@ -215,21 +370,26 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
     const secondaryTimers: ReturnType<typeof setTimeout>[] = [];
     if (meta.full) {
       [0.6, 1.2].forEach((t) => {
-        secondaryTimers.push(setTimeout(() => {
-          particlesRef.current.push(...makeBurst(w, h, rarity, "star", 60));
-          if (payload.kind === "rankUp" || payload.kind === "founder") playFireworks();
-        }, t * 1000));
+        secondaryTimers.push(
+          setTimeout(() => {
+            particlesRef.current.push(...makeBurst(w, h, rarity, "star", 60));
+            if (payload.kind === "rankUp" || payload.kind === "founder") playFireworks();
+          }, t * 1000),
+        );
       });
     }
 
     const tick = () => {
-      const W = window.innerWidth, H = window.innerHeight;
+      const W = window.innerWidth,
+        H = window.innerHeight;
       ctx.clearRect(0, 0, W, H);
       const list = particlesRef.current;
       for (let i = list.length - 1; i >= 0; i--) {
         const p = list[i];
         p.vy += 0.18;
-        p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
         p.life++;
         const alpha = Math.max(0, 1 - p.life / p.maxLife);
         ctx.globalAlpha = alpha;
@@ -264,52 +424,95 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
       aria-live="polite"
       aria-atomic="true"
       className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
-      style={{ background: meta.full ? "radial-gradient(ellipse at center, rgba(8,10,24,0.75), rgba(0,0,0,0.92))" : "radial-gradient(ellipse at center, rgba(8,10,24,0.55), rgba(0,0,0,0.75))", backdropFilter: "blur(8px)" }}
+      style={{
+        background: meta.full
+          ? "radial-gradient(ellipse at center, rgba(8,10,24,0.75), rgba(0,0,0,0.92))"
+          : "radial-gradient(ellipse at center, rgba(8,10,24,0.55), rgba(0,0,0,0.75))",
+        backdropFilter: "blur(8px)",
+      }}
     >
-      {!reduced && <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none absolute inset-0" />}
+      {!reduced && (
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+        />
+      )}
 
       {/* Spotlight rings */}
       {!reduced && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="absolute h-[60vmin] w-[60vmin] rounded-full opacity-40 animate-[ams-pulse_2.4s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}55 0%, transparent 60%)` }} />
-          <div className="absolute h-[40vmin] w-[40vmin] rounded-full opacity-60 animate-[ams-pulse_1.8s_ease-out_infinite]" style={{ background: `radial-gradient(circle, ${ringColor}88 0%, transparent 65%)`, animationDelay: "0.3s" }} />
+          <div
+            className="absolute h-[60vmin] w-[60vmin] rounded-full opacity-40 animate-[ams-pulse_2.4s_ease-out_infinite]"
+            style={{ background: `radial-gradient(circle, ${ringColor}55 0%, transparent 60%)` }}
+          />
+          <div
+            className="absolute h-[40vmin] w-[40vmin] rounded-full opacity-60 animate-[ams-pulse_1.8s_ease-out_infinite]"
+            style={{
+              background: `radial-gradient(circle, ${ringColor}88 0%, transparent 65%)`,
+              animationDelay: "0.3s",
+            }}
+          />
         </div>
       )}
 
       {/* Center card */}
-      <div className={`relative z-10 mx-4 w-full max-w-md${reduced ? "" : " animate-[ams-pop_0.55s_cubic-bezier(.2,.9,.25,1.2)_both]"}`}>
+      <div
+        className={`relative z-10 mx-4 w-full max-w-md${reduced ? "" : " animate-[ams-pop_0.55s_cubic-bezier(.2,.9,.25,1.2)_both]"}`}
+      >
         <div className="relative overflow-hidden rounded-2xl border border-gold bg-surface/95 px-8 pb-7 pt-20 text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9),inset_0_1px_0_oklch(0.58_0.19_255/0.3)]">
           {/* Glint */}
           {!reduced && (
-            <div className="pointer-events-none absolute inset-0" style={{
-              background: "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.14) 50%, transparent 65%)",
-              mixBlendMode: "screen",
-              animation: "ams-glint 2.6s ease-in-out infinite",
-            }} />
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.14) 50%, transparent 65%)",
+                mixBlendMode: "screen",
+                animation: "ams-glint 2.6s ease-in-out infinite",
+              }}
+            />
           )}
 
           {/* 3D award */}
           <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-            <div className="relative grid h-32 w-32 place-items-center rounded-full" style={{ background: `radial-gradient(circle, ${ringColor}44, transparent 70%)` }}>
-              <img src={meta.asset} alt="" className={`h-28 w-28 drop-shadow-[0_10px_30px_rgba(245,215,122,0.6)]${reduced ? "" : " award-3d"}`} />
-
+            <div
+              className="relative grid h-32 w-32 place-items-center rounded-full"
+              style={{ background: `radial-gradient(circle, ${ringColor}44, transparent 70%)` }}
+            >
+              <img
+                src={meta.asset}
+                alt=""
+                className={`h-28 w-28 drop-shadow-[0_10px_30px_rgba(245,215,122,0.6)]${reduced ? "" : " award-3d"}`}
+              />
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.3em]" style={{ color: ringColor }}>
+          <div
+            className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.3em]"
+            style={{ color: ringColor }}
+          >
             <Icon className="h-3 w-3" /> {rarity} · {meta.title}
           </div>
-          <h2 className="mt-2 font-display text-3xl font-semibold text-gold-gradient">{payload.title}</h2>
-          {payload.subtitle && <p className="mt-2 text-sm text-muted-foreground">{payload.subtitle}</p>}
+          <h2 className="mt-2 font-display text-3xl font-semibold text-gold-gradient">
+            {payload.title}
+          </h2>
+          {payload.subtitle && (
+            <p className="mt-2 text-sm text-muted-foreground">{payload.subtitle}</p>
+          )}
 
           {typeof payload.xp === "number" && (
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold bg-surface px-4 py-1.5 text-xs">
               <Sparkles className="h-3.5 w-3.5 text-[var(--color-primary-glow)]" />
-              <span className="font-semibold text-[var(--color-primary-glow)]">+<AnimatedNumber value={payload.xp} duration={900} /> XP</span>
+              <span className="font-semibold text-[var(--color-primary-glow)]">
+                +<AnimatedNumber value={payload.xp} duration={900} /> XP
+              </span>
             </div>
           )}
 
-          <div className="mt-6 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Tap anywhere to dismiss</div>
+          <div className="mt-6 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            Tap anywhere to dismiss
+          </div>
         </div>
       </div>
     </div>
@@ -323,38 +526,59 @@ export function CelebrationProvider({ children }: { children: React.ReactNode })
   const [queue, setQueue] = useState<CelebrationPayload[]>([]);
   const [soundOn, setSoundOn] = useState(true);
 
-  const celebrate = useCallback((p: CelebrationPayload) => {
-    setQueue((q) => [...q, p]);
-    if (soundOn && getSoundPrefs().enabled) {
-      try {
-        KIND_META[p.kind].sound();
-        playSound(UI_CUE[p.kind]);
-      } catch { /* ignore */ }
-    }
-  }, [soundOn]);
+  const celebrate = useCallback(
+    (p: CelebrationPayload) => {
+      setQueue((q) => [...q, p]);
+      if (soundOn && getSoundPrefs().enabled) {
+        try {
+          KIND_META[p.kind].sound();
+          playSound(UI_CUE[p.kind]);
+        } catch {
+          /* ignore */
+        }
+      }
+    },
+    [soundOn],
+  );
 
   const surprise = useCallback(() => {
-    const kinds: CelebrateKind[] = ["achievement", "levelUp", "badge", "trophy", "milestone", "rankUp", "surprise"];
+    const kinds: CelebrateKind[] = [
+      "achievement",
+      "levelUp",
+      "badge",
+      "trophy",
+      "milestone",
+      "rankUp",
+      "surprise",
+    ];
     const k = kinds[Math.floor(Math.random() * kinds.length)];
     const titles: Record<CelebrateKind, string> = {
       achievement: "Hidden Achievement",
-      levelUp:     "Bonus Level Up",
-      badge:       "Mystery Badge",
-      trophy:      "Surprise Trophy",
-      milestone:   "Lucky Milestone",
-      rankUp:      "Rank Boost",
-      firstSale:   "First Sale",
-      founder:     "Founder Pick",
+      levelUp: "Bonus Level Up",
+      badge: "Mystery Badge",
+      trophy: "Surprise Trophy",
+      milestone: "Lucky Milestone",
+      rankUp: "Rank Boost",
+      firstSale: "First Sale",
+      founder: "Founder Pick",
       certificate: "Certificate Issued",
-      surprise:    "Mystery Reward",
+      surprise: "Mystery Reward",
     };
-    celebrate({ kind: k, title: titles[k], subtitle: "From the AMS surprise engine.", xp: 50 + Math.floor(Math.random() * 950) });
+    celebrate({
+      kind: k,
+      title: titles[k],
+      subtitle: "From the AMS surprise engine.",
+      xp: 50 + Math.floor(Math.random() * 950),
+    });
   }, [celebrate]);
 
   const current = queue[0];
   const close = useCallback(() => setQueue((q) => q.slice(1)), []);
 
-  const value = useMemo(() => ({ celebrate, surprise, soundOn, setSoundOn }), [celebrate, surprise, soundOn]);
+  const value = useMemo(
+    () => ({ celebrate, surprise, soundOn, setSoundOn }),
+    [celebrate, surprise, soundOn],
+  );
 
   return (
     <Ctx.Provider value={value}>

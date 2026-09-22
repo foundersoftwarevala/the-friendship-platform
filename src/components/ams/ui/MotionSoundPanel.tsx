@@ -54,7 +54,11 @@ export function MotionSoundPanel() {
           <Label htmlFor="settings-sound-enabled" className="text-xs text-muted-foreground">
             {prefs.enabled ? "On" : "Muted"}
           </Label>
-          <Switch id="settings-sound-enabled" checked={prefs.enabled} onCheckedChange={setEnabled} />
+          <Switch
+            id="settings-sound-enabled"
+            checked={prefs.enabled}
+            onCheckedChange={setEnabled}
+          />
         </div>
       </header>
 
@@ -97,7 +101,8 @@ export function MotionSoundPanel() {
                 <Gauge className="mr-1.5 inline h-3.5 w-3.5" /> Reduced motion
               </Label>
               <p className="mt-1 text-[11px] text-muted-foreground">
-                Turns off celebration, reveal and XP count-up animations. State changes still update instantly.
+                Turns off celebration, reveal and XP count-up animations. State changes still update
+                instantly.
               </p>
             </div>
             <Switch

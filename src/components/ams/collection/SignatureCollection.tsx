@@ -7,8 +7,12 @@ import { SVMicroMark } from "@/components/ams/brand/SVMark";
 import { ROLES } from "@/lib/ams/roles";
 import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import {
-  COLLECTION_LAYOUTS, buildRoleCollection,
-  type CollectionLayout, type CollectionPiece, type CollectionTypeDef, type RoleCollection,
+  COLLECTION_LAYOUTS,
+  buildRoleCollection,
+  type CollectionLayout,
+  type CollectionPiece,
+  type CollectionTypeDef,
+  type RoleCollection,
 } from "@/lib/ams/signature-collection";
 import { cn } from "@/lib/utils";
 
@@ -30,19 +34,23 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
     () =>
       (filter === "all" ? ROLES : ROLES.filter((r) => r.slug === filter)).map((r) =>
         buildRoleCollection({
-          slug: r.slug, name: r.name, accent: r.accent, passportPrefix: r.passportPrefix, type,
+          slug: r.slug,
+          name: r.name,
+          accent: r.accent,
+          passportPrefix: r.passportPrefix,
+          type,
         }),
       ),
     [filter, type],
   );
 
-  const current =
-    collections.find((c) => c.role === activeRole) ?? collections[0];
+  const current = collections.find((c) => c.role === activeRole) ?? collections[0];
   const heroPiece = current.pieces[Math.min(heroIndex, current.pieces.length - 1)];
   const env = ROLE_ENVIRONMENT[current.role];
 
   const exportItems = useMemo(
-    () => current.pieces.filter((p) => p.unlocked).map((p) => ({ src: p.src, filename: p.filename })),
+    () =>
+      current.pieces.filter((p) => p.unlocked).map((p) => ({ src: p.src, filename: p.filename })),
     [current],
   );
 
@@ -107,7 +115,10 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
             key={c.role}
             type="button"
             aria-pressed={c.role === current.role}
-            onClick={() => { setActiveRole(c.role); setHeroIndex(0); }}
+            onClick={() => {
+              setActiveRole(c.role);
+              setHeroIndex(0);
+            }}
             className="rounded-lg border px-2.5 py-1.5 text-[11px] transition"
             style={{
               borderColor: c.role === current.role ? c.accent : `${c.accent}33`,
@@ -121,7 +132,11 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
       </div>
 
       {/* layout switch */}
-      <div className="flex flex-wrap gap-1.5 rounded-xl border border-border/60 bg-muted/20 p-1.5" role="tablist" aria-label="Collection layouts">
+      <div
+        className="flex flex-wrap gap-1.5 rounded-xl border border-border/60 bg-muted/20 p-1.5"
+        role="tablist"
+        aria-label="Collection layouts"
+      >
         {COLLECTION_LAYOUTS.map((l) => (
           <button
             key={l.key}
@@ -145,13 +160,19 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
       {/* ------------ hero + collection ------------ */}
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
         <div className="space-y-3">
-          <MuseumStage {...stageProps(heroPiece, 560, "full")} eager onExpand={() => setZoomPiece(heroPiece)} />
+          <MuseumStage
+            {...stageProps(heroPiece, 560, "full")}
+            eager
+            onExpand={() => setZoomPiece(heroPiece)}
+          />
           <SpecPlate piece={heroPiece} roleName={current.roleName} type={type} large />
           <div className="flex items-center justify-between gap-2">
             <button
               type="button"
               aria-label="Previous piece"
-              onClick={() => setHeroIndex((i) => (i - 1 + current.pieces.length) % current.pieces.length)}
+              onClick={() =>
+                setHeroIndex((i) => (i - 1 + current.pieces.length) % current.pieces.length)
+              }
               className="rounded-lg border border-border/60 p-2 text-muted-foreground hover:text-foreground"
             >
               <ChevronLeft className="h-4 w-4" />
@@ -183,15 +204,19 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
                   aria-pressed={p.index === heroPiece.index}
                   className={cn(
                     "w-full rounded-xl border p-2 text-left transition motion-card",
-                    p.index === heroPiece.index ? "border-trophy/60 bg-trophy/10" : "border-border/50 bg-card hover:bg-muted/20",
+                    p.index === heroPiece.index
+                      ? "border-trophy/60 bg-trophy/10"
+                      : "border-border/50 bg-card hover:bg-muted/20",
                   )}
                 >
                   <Thumb piece={p} />
                   <div className="mt-2 flex items-center justify-between gap-1">
                     <span className="text-[11px] font-medium text-foreground">{p.stage.label}</span>
-                    {p.unlocked
-                      ? <Sparkles className="h-3 w-3" style={{ color: p.stage.hue }} />
-                      : <Lock className="h-3 w-3 text-muted-foreground" />}
+                    {p.unlocked ? (
+                      <Sparkles className="h-3 w-3" style={{ color: p.stage.hue }} />
+                    ) : (
+                      <Lock className="h-3 w-3 text-muted-foreground" />
+                    )}
                   </div>
                   <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
                     {p.stage.rarity}
@@ -211,8 +236,15 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
             <div key={i} className="rounded-2xl border border-border/60 bg-card p-4">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 {row.map((p) => (
-                  <PieceCard key={p.id} piece={p} roleName={current.roleName} type={type}
-                    onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={230} />
+                  <PieceCard
+                    key={p.id}
+                    piece={p}
+                    roleName={current.roleName}
+                    type={type}
+                    onExpand={() => setZoomPiece(p)}
+                    stageProps={stageProps}
+                    height={230}
+                  />
                 ))}
               </div>
               <div className="mt-3 h-2 rounded-full bg-gradient-to-b from-amber-200/50 to-amber-900/40" />
@@ -225,8 +257,14 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
         <div className="-mx-2 flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 pb-3">
           {current.pieces.map((p) => (
             <div key={p.id} className="w-[280px] shrink-0 snap-start">
-              <PieceCard piece={p} roleName={current.roleName} type={type}
-                onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={300} />
+              <PieceCard
+                piece={p}
+                roleName={current.roleName}
+                type={type}
+                onExpand={() => setZoomPiece(p)}
+                stageProps={stageProps}
+                height={300}
+              />
             </div>
           ))}
         </div>
@@ -235,18 +273,36 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
       {layout === "grid" && (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {current.pieces.map((p) => (
-            <PieceCard key={p.id} piece={p} roleName={current.roleName} type={type}
-              onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={280} />
+            <PieceCard
+              key={p.id}
+              piece={p}
+              roleName={current.roleName}
+              type={type}
+              onExpand={() => setZoomPiece(p)}
+              stageProps={stageProps}
+              height={280}
+            />
           ))}
         </div>
       )}
 
       {layout === "museum" && (
-        <div className="rounded-3xl border border-border/60 p-4" style={{ background: env.backdrop }}>
+        <div
+          className="rounded-3xl border border-border/60 p-4"
+          style={{ background: env.backdrop }}
+        >
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {current.pieces.map((p) => (
-              <PieceCard key={p.id} piece={p} roleName={current.roleName} type={type}
-                onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={320} chrome="full" />
+              <PieceCard
+                key={p.id}
+                piece={p}
+                roleName={current.roleName}
+                type={type}
+                onExpand={() => setZoomPiece(p)}
+                stageProps={stageProps}
+                height={320}
+                chrome="full"
+              />
             ))}
           </div>
           <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -259,9 +315,21 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
         <div className="space-y-3">
           <div className="flex items-stretch gap-4 overflow-x-auto pb-3">
             {rotate(current.pieces, heroIndex).map((p, i) => (
-              <div key={p.id} className={cn("shrink-0 transition-all", i === 0 ? "w-[360px]" : "w-[220px] opacity-80")}>
-                <PieceCard piece={p} roleName={current.roleName} type={type}
-                  onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={i === 0 ? 340 : 220} />
+              <div
+                key={p.id}
+                className={cn(
+                  "shrink-0 transition-all",
+                  i === 0 ? "w-[360px]" : "w-[220px] opacity-80",
+                )}
+              >
+                <PieceCard
+                  piece={p}
+                  roleName={current.roleName}
+                  type={type}
+                  onExpand={() => setZoomPiece(p)}
+                  stageProps={stageProps}
+                  height={i === 0 ? 340 : 220}
+                />
               </div>
             ))}
           </div>
@@ -272,14 +340,23 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
         <ol className="relative space-y-6 border-l border-border/60 pl-6">
           {current.pieces.map((p) => (
             <li key={p.id} className="relative">
-              <span className="absolute -left-[31px] top-5 h-3 w-3 rounded-full"
-                style={{ background: p.stage.hue, boxShadow: `0 0 12px ${p.stage.hue}` }} />
+              <span
+                className="absolute -left-[31px] top-5 h-3 w-3 rounded-full"
+                style={{ background: p.stage.hue, boxShadow: `0 0 12px ${p.stage.hue}` }}
+              />
               <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                Stage {String(p.index + 1).padStart(2, "0")} · {p.stage.stage} · {p.unlockDate ?? "Locked"}
+                Stage {String(p.index + 1).padStart(2, "0")} · {p.stage.stage} ·{" "}
+                {p.unlockDate ?? "Locked"}
               </div>
               <div className="max-w-md">
-                <PieceCard piece={p} roleName={current.roleName} type={type}
-                  onExpand={() => setZoomPiece(p)} stageProps={stageProps} height={260} />
+                <PieceCard
+                  piece={p}
+                  roleName={current.roleName}
+                  type={type}
+                  onExpand={() => setZoomPiece(p)}
+                  stageProps={stageProps}
+                  height={260}
+                />
               </div>
             </li>
           ))}
@@ -287,7 +364,11 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
       )}
 
       {zoomPiece && zoomPiece.unlocked && (
-        <MuseumFullscreen open onClose={() => setZoomPiece(null)} {...stageProps(zoomPiece, 720, "full")} />
+        <MuseumFullscreen
+          open
+          onClose={() => setZoomPiece(null)}
+          {...stageProps(zoomPiece, 720, "full")}
+        />
       )}
     </div>
   );
@@ -302,7 +383,10 @@ function Thumb({ piece }: { piece: CollectionPiece }) {
         src={piece.src}
         alt={piece.unlocked ? piece.title : `${piece.stage.label} — locked`}
         loading="lazy"
-        className={cn("h-full w-full object-contain", !piece.unlocked && "blur-[6px] brightness-[0.35] saturate-50")}
+        className={cn(
+          "h-full w-full object-contain",
+          !piece.unlocked && "blur-[6px] brightness-[0.35] saturate-50",
+        )}
       />
       {!piece.unlocked && (
         <div className="absolute inset-0 grid place-items-center bg-card">
@@ -314,13 +398,23 @@ function Thumb({ piece }: { piece: CollectionPiece }) {
 }
 
 function PieceCard({
-  piece, roleName, type, onExpand, stageProps, height, chrome = "compact",
+  piece,
+  roleName,
+  type,
+  onExpand,
+  stageProps,
+  height,
+  chrome = "compact",
 }: {
   piece: CollectionPiece;
   roleName: string;
   type: CollectionTypeDef;
   onExpand: () => void;
-  stageProps: (p: CollectionPiece, h: number, c: "compact" | "full") => Parameters<typeof MuseumStage>[0];
+  stageProps: (
+    p: CollectionPiece,
+    h: number,
+    c: "compact" | "full",
+  ) => Parameters<typeof MuseumStage>[0];
   height: number;
   chrome?: "compact" | "full";
 }) {
@@ -373,8 +467,16 @@ function LockedStage({ piece, height }: { piece: CollectionPiece; height: number
 }
 
 function SpecPlate({
-  piece, roleName, type, large = false,
-}: { piece: CollectionPiece; roleName: string; type: CollectionTypeDef; large?: boolean }) {
+  piece,
+  roleName,
+  type,
+  large = false,
+}: {
+  piece: CollectionPiece;
+  roleName: string;
+  type: CollectionTypeDef;
+  large?: boolean;
+}) {
   return (
     <div className={cn("border-t border-border/50 bg-card p-4", large && "rounded-2xl border")}>
       <div className="flex items-start justify-between gap-3">
@@ -382,7 +484,10 @@ function SpecPlate({
           <div className={cn("font-semibold text-foreground", large ? "text-xl" : "text-sm")}>
             {piece.stage.label} {type.singular}
           </div>
-          <div className="text-[11px] uppercase tracking-widest" style={{ color: `${piece.stage.hue}cc` }}>
+          <div
+            className="text-[11px] uppercase tracking-widest"
+            style={{ color: `${piece.stage.hue}cc` }}
+          >
             {roleName} · {piece.stage.stage}
           </div>
         </div>

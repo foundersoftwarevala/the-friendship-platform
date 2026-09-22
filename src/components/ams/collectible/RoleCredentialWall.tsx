@@ -7,10 +7,14 @@ import { SVSeal, SVMicroMark, svCollectionNumber } from "@/components/ams/brand/
 import { ROLE_LIST } from "@/lib/ams/trophy-catalog";
 
 const shields = import.meta.glob<string>("/src/assets/shields/*.png", {
-  eager: true, query: "?url", import: "default",
+  eager: true,
+  query: "?url",
+  import: "default",
 });
 const certificates = import.meta.glob<string>("/src/assets/certificates/*.png", {
-  eager: true, query: "?url", import: "default",
+  eager: true,
+  query: "?url",
+  import: "default",
 });
 
 function keyed(map: Record<string, string>, suffix: string) {
@@ -29,16 +33,41 @@ const SHIELD = keyed(shields, "shield");
 const CERT = keyed(certificates, "certificate");
 
 const ACCENTS = [
-  "#60a5fa", "#f472b6", "#facc15", "#34d399", "#a78bfa", "#fb923c",
-  "#22d3ee", "#f87171", "#4ade80", "#e879f9", "#38bdf8", "#fcd34d",
-  "#818cf8", "#2dd4bf", "#fda4af", "#c084fc", "#93c5fd", "#fbbf24",
+  "#60a5fa",
+  "#f472b6",
+  "#facc15",
+  "#34d399",
+  "#a78bfa",
+  "#fb923c",
+  "#22d3ee",
+  "#f87171",
+  "#4ade80",
+  "#e879f9",
+  "#38bdf8",
+  "#fcd34d",
+  "#818cf8",
+  "#2dd4bf",
+  "#fda4af",
+  "#c084fc",
+  "#93c5fd",
+  "#fbbf24",
 ];
 
 type Kind = "shield" | "certificate";
 
 function Credential({
-  src, role, slug, kind, accent,
-}: { src: string; role: string; slug: string; kind: Kind; accent: string }) {
+  src,
+  role,
+  slug,
+  kind,
+  accent,
+}: {
+  src: string;
+  role: string;
+  slug: string;
+  kind: Kind;
+  accent: string;
+}) {
   const Icon = kind === "shield" ? ShieldCheck : ScrollText;
   return (
     <figure
@@ -71,7 +100,10 @@ function Credential({
       <figcaption className="mt-3 flex items-end justify-between gap-2">
         <div>
           <div className="text-sm font-semibold text-foreground">{role}</div>
-          <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em]" style={{ color: `${accent}cc` }}>
+          <div
+            className="flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em]"
+            style={{ color: `${accent}cc` }}
+          >
             <Icon className="h-3.5 w-3.5" />
             {kind === "shield" ? "Trust Shield" : "Certificate"}
           </div>
@@ -102,7 +134,8 @@ export function RoleCredentialWall() {
         <div>
           <h2 className="text-xl font-semibold text-foreground">Role Credential Wall</h2>
           <p className="text-sm text-muted-foreground">
-            Trust shields and certificates for all {ROLE_LIST.length} roles — every piece sealed with the Software Vala mark.
+            Trust shields and certificates for all {ROLE_LIST.length} roles — every piece sealed
+            with the Software Vala mark.
           </p>
         </div>
         <div className="inline-flex rounded-full border border-border/60 bg-black/20 p-1">
@@ -112,7 +145,9 @@ export function RoleCredentialWall() {
               type="button"
               onClick={() => setKind(k)}
               className={`rounded-full px-3 py-1.5 text-xs capitalize transition ${
-                kind === k ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                kind === k
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {k}s
@@ -122,7 +157,14 @@ export function RoleCredentialWall() {
       </div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {items.map((r) => (
-          <Credential key={`${r.slug}-${kind}`} src={r.src!} role={r.role} slug={r.slug} kind={kind} accent={r.accent} />
+          <Credential
+            key={`${r.slug}-${kind}`}
+            src={r.src!}
+            role={r.role}
+            slug={r.slug}
+            kind={kind}
+            accent={r.accent}
+          />
         ))}
       </div>
     </section>

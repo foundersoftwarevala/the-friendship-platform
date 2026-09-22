@@ -3,28 +3,72 @@
 // truly sounds different.
 
 export type UnlockPreset =
-  | "starter" | "bronze" | "silver" | "gold" | "diamond"
-  | "elite" | "legend" | "master" | "founder";
+  "starter" | "bronze" | "silver" | "gold" | "diamond" | "elite" | "legend" | "master" | "founder";
 
-const PRESETS: Record<UnlockPreset, {
-  freqs: number[]; type: OscillatorType; duration: number; gain: number; sweep?: number;
-}> = {
-  starter: { freqs: [523.25, 659.25], type: "triangle", duration: 0.35, gain: 0.10 },
-  bronze:  { freqs: [329.63, 415.30, 523.25], type: "sine", duration: 0.55, gain: 0.12 },
-  silver:  { freqs: [440, 554.37, 659.25], type: "triangle", duration: 0.7, gain: 0.13, sweep: 200 },
-  gold:    { freqs: [523.25, 659.25, 783.99, 1046.5], type: "sine", duration: 1.1, gain: 0.14, sweep: 300 },
-  diamond: { freqs: [659.25, 830.61, 987.77, 1318.5], type: "sine", duration: 1.3, gain: 0.15, sweep: 420 },
-  elite:   { freqs: [392, 523.25, 659.25, 987.77], type: "sawtooth", duration: 1.4, gain: 0.10, sweep: 260 },
-  legend:  { freqs: [261.63, 329.63, 392, 523.25, 659.25, 783.99], type: "triangle", duration: 1.8, gain: 0.13, sweep: 380 },
-  master:  { freqs: [349.23, 440, 523.25, 659.25, 880], type: "sine", duration: 1.9, gain: 0.15, sweep: 500 },
-  founder: { freqs: [261.63, 392, 523.25, 659.25, 783.99, 1046.5, 1318.5], type: "sine", duration: 2.6, gain: 0.17, sweep: 640 },
+const PRESETS: Record<
+  UnlockPreset,
+  {
+    freqs: number[];
+    type: OscillatorType;
+    duration: number;
+    gain: number;
+    sweep?: number;
+  }
+> = {
+  starter: { freqs: [523.25, 659.25], type: "triangle", duration: 0.35, gain: 0.1 },
+  bronze: { freqs: [329.63, 415.3, 523.25], type: "sine", duration: 0.55, gain: 0.12 },
+  silver: { freqs: [440, 554.37, 659.25], type: "triangle", duration: 0.7, gain: 0.13, sweep: 200 },
+  gold: {
+    freqs: [523.25, 659.25, 783.99, 1046.5],
+    type: "sine",
+    duration: 1.1,
+    gain: 0.14,
+    sweep: 300,
+  },
+  diamond: {
+    freqs: [659.25, 830.61, 987.77, 1318.5],
+    type: "sine",
+    duration: 1.3,
+    gain: 0.15,
+    sweep: 420,
+  },
+  elite: {
+    freqs: [392, 523.25, 659.25, 987.77],
+    type: "sawtooth",
+    duration: 1.4,
+    gain: 0.1,
+    sweep: 260,
+  },
+  legend: {
+    freqs: [261.63, 329.63, 392, 523.25, 659.25, 783.99],
+    type: "triangle",
+    duration: 1.8,
+    gain: 0.13,
+    sweep: 380,
+  },
+  master: {
+    freqs: [349.23, 440, 523.25, 659.25, 880],
+    type: "sine",
+    duration: 1.9,
+    gain: 0.15,
+    sweep: 500,
+  },
+  founder: {
+    freqs: [261.63, 392, 523.25, 659.25, 783.99, 1046.5, 1318.5],
+    type: "sine",
+    duration: 2.6,
+    gain: 0.17,
+    sweep: 640,
+  },
 };
 
 let ctx: AudioContext | null = null;
 function getCtx() {
   if (typeof window === "undefined") return null;
   if (!ctx) {
-    const AC = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext);
+    const AC =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     ctx = new AC();
   }
   if (ctx.state === "suspended") ctx.resume().catch(() => {});
@@ -66,11 +110,12 @@ export function playUnlock(preset: UnlockPreset) {
   });
 
   // Metallic shimmer top layer for premium tiers
-  if (["gold","diamond","elite","legend","master","founder"].includes(preset)) {
+  if (["gold", "diamond", "elite", "legend", "master", "founder"].includes(preset)) {
     const noise = ac.createBufferSource();
     const buffer = ac.createBuffer(1, ac.sampleRate * 0.4, ac.sampleRate);
     const data = buffer.getChannelData(0);
-    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
+    for (let i = 0; i < data.length; i++)
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
     noise.buffer = buffer;
     const bp = ac.createBiquadFilter();
     bp.type = "bandpass";

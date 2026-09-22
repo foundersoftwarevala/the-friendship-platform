@@ -6,29 +6,51 @@ import type { UnlockPreset } from "./trophy-sounds";
 
 export interface StageReward {
   label: string;
-  kind: "trophy" | "medal" | "badge" | "passport" | "certificate" | "frame" | "nameplate" | "identity" | "crown" | "collection" | "museum";
+  kind:
+    | "trophy"
+    | "medal"
+    | "badge"
+    | "passport"
+    | "certificate"
+    | "frame"
+    | "nameplate"
+    | "identity"
+    | "crown"
+    | "collection"
+    | "museum";
 }
 
 export interface StageBackground {
-  gradient: string;    // CSS background gradient
-  accent: string;      // main hex
-  glow: string;        // glow color rgba
-  particle: string;    // particle color
+  gradient: string; // CSS background gradient
+  accent: string; // main hex
+  glow: string; // glow color rgba
+  particle: string; // particle color
 }
 
 export interface DeveloperStage {
   n: number;
-  code: string;                 // STAGE 01
-  title: string;                // Developer Apprentice
-  theme: string;                // Startup Developer
+  code: string; // STAGE 01
+  title: string; // Developer Apprentice
+  theme: string; // Startup Developer
   tagline: string;
-  material: string;             // Copper, Bronze, Silver, Gold...
-  trophyShape: "cup" | "flame" | "obelisk" | "diamond" | "orb" | "crown" | "wing" | "prism" | "tower" | "star";
-  medalShape: "circle" | "hexagon" | "shield" | "star" | "octagon" | "gear" | "diamond" | "sun" | "laurel" | "phoenix";
-  passportMotif: string;        // pattern name for cover
+  material: string; // Copper, Bronze, Silver, Gold...
+  trophyShape:
+    "cup" | "flame" | "obelisk" | "diamond" | "orb" | "crown" | "wing" | "prism" | "tower" | "star";
+  medalShape:
+    | "circle"
+    | "hexagon"
+    | "shield"
+    | "star"
+    | "octagon"
+    | "gear"
+    | "diamond"
+    | "sun"
+    | "laurel"
+    | "phoenix";
+  passportMotif: string; // pattern name for cover
   badgeStyle: string;
-  nameplate: string;            // engraving surface
-  ribbon: [string, string];     // ribbon gradient stops
+  nameplate: string; // engraving surface
+  ribbon: [string, string]; // ribbon gradient stops
   unlock: UnlockPreset;
   bg: StageBackground;
   rewards: StageReward[];
@@ -39,16 +61,25 @@ export interface DeveloperStage {
 /* Palette per stage — hand-tuned so no two stages share the same feel. */
 export const DEVELOPER_STAGES: DeveloperStage[] = [
   {
-    n: 1, code: "STAGE 01",
-    title: "Developer Apprentice", theme: "Startup Developer",
+    n: 1,
+    code: "STAGE 01",
+    title: "Developer Apprentice",
+    theme: "Startup Developer",
     tagline: "First keystrokes. First green build. The journey begins.",
-    material: "Copper", trophyShape: "cup", medalShape: "circle",
-    passportMotif: "Grid Terminal", badgeStyle: "Pixel Pin",
-    nameplate: "Etched Copper Plate", ribbon: ["#b87333", "#6b3a1f"],
+    material: "Copper",
+    trophyShape: "cup",
+    medalShape: "circle",
+    passportMotif: "Grid Terminal",
+    badgeStyle: "Pixel Pin",
+    nameplate: "Etched Copper Plate",
+    ribbon: ["#b87333", "#6b3a1f"],
     unlock: "starter",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 20% 0%, rgba(184,115,51,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#b87333", glow: "rgba(184,115,51,0.55)", particle: "#e8b47a",
+      gradient:
+        "radial-gradient(1200px 500px at 20% 0%, rgba(184,115,51,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#b87333",
+      glow: "rgba(184,115,51,0.55)",
+      particle: "#e8b47a",
     },
     rewards: [
       { label: "Basic Digital Passport", kind: "passport" },
@@ -64,16 +95,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Keyboard Click", "Success Bell", "UI Unlock"],
   },
   {
-    n: 2, code: "STAGE 02",
-    title: "Junior Developer", theme: "Growing Engineer",
+    n: 2,
+    code: "STAGE 02",
+    title: "Junior Developer",
+    theme: "Growing Engineer",
     tagline: "Shipping features. Learning the codebase. Earning trust.",
-    material: "Bronze", trophyShape: "flame", medalShape: "hexagon",
-    passportMotif: "Bronze Emboss", badgeStyle: "Enamel Pin",
-    nameplate: "Brushed Bronze", ribbon: ["#cd7f32", "#5c3410"],
+    material: "Bronze",
+    trophyShape: "flame",
+    medalShape: "hexagon",
+    passportMotif: "Bronze Emboss",
+    badgeStyle: "Enamel Pin",
+    nameplate: "Brushed Bronze",
+    ribbon: ["#cd7f32", "#5c3410"],
     unlock: "bronze",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 80% 0%, rgba(205,127,50,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#cd7f32", glow: "rgba(205,127,50,0.55)", particle: "#f2c98a",
+      gradient:
+        "radial-gradient(1200px 500px at 80% 0%, rgba(205,127,50,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#cd7f32",
+      glow: "rgba(205,127,50,0.55)",
+      particle: "#f2c98a",
     },
     rewards: [
       { label: "Bronze Passport", kind: "passport" },
@@ -88,16 +128,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Build Complete", "UI Sweep", "Digital Unlock"],
   },
   {
-    n: 3, code: "STAGE 03",
-    title: "Software Engineer", theme: "Professional Practitioner",
+    n: 3,
+    code: "STAGE 03",
+    title: "Software Engineer",
+    theme: "Professional Practitioner",
     tagline: "You own systems. You review PRs. You mentor apprentices.",
-    material: "Silver", trophyShape: "obelisk", medalShape: "shield",
-    passportMotif: "Silver Weave", badgeStyle: "Polished Silver",
-    nameplate: "Silver Chrome", ribbon: ["#d9d9d9", "#5a6472"],
+    material: "Silver",
+    trophyShape: "obelisk",
+    medalShape: "shield",
+    passportMotif: "Silver Weave",
+    badgeStyle: "Polished Silver",
+    nameplate: "Silver Chrome",
+    ribbon: ["#d9d9d9", "#5a6472"],
     unlock: "silver",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 50% 0%, rgba(200,210,225,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#c8d2e1", glow: "rgba(200,210,225,0.55)", particle: "#eaf2ff",
+      gradient:
+        "radial-gradient(1200px 500px at 50% 0%, rgba(200,210,225,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#c8d2e1",
+      glow: "rgba(200,210,225,0.55)",
+      particle: "#eaf2ff",
     },
     rewards: [
       { label: "Silver Passport", kind: "passport" },
@@ -112,16 +161,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Metal Impact", "Crystal Ring", "Premium Notification"],
   },
   {
-    n: 4, code: "STAGE 04",
-    title: "Senior Engineer", theme: "Golden Standard",
+    n: 4,
+    code: "STAGE 04",
+    title: "Senior Engineer",
+    theme: "Golden Standard",
     tagline: "The engineer other engineers ask for help. Golden hour.",
-    material: "Gold", trophyShape: "diamond", medalShape: "star",
-    passportMotif: "Gold Leaf", badgeStyle: "Gold Plated",
-    nameplate: "Engraved Gold Bar", ribbon: ["#f5c542", "#7a5008"],
+    material: "Gold",
+    trophyShape: "diamond",
+    medalShape: "star",
+    passportMotif: "Gold Leaf",
+    badgeStyle: "Gold Plated",
+    nameplate: "Engraved Gold Bar",
+    ribbon: ["#f5c542", "#7a5008"],
     unlock: "gold",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 30% 0%, rgba(245,197,66,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#f5c542", glow: "rgba(245,197,66,0.6)", particle: "#ffe28a",
+      gradient:
+        "radial-gradient(1200px 500px at 30% 0%, rgba(245,197,66,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#f5c542",
+      glow: "rgba(245,197,66,0.6)",
+      particle: "#ffe28a",
     },
     rewards: [
       { label: "Gold Passport", kind: "passport" },
@@ -136,16 +194,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Golden Bell", "Achievement Fanfare", "Energy Pulse"],
   },
   {
-    n: 5, code: "STAGE 05",
-    title: "Lead Developer", theme: "Platinum Command",
+    n: 5,
+    code: "STAGE 05",
+    title: "Lead Developer",
+    theme: "Platinum Command",
     tagline: "You set the tempo. Teams follow your architecture.",
-    material: "Platinum", trophyShape: "orb", medalShape: "octagon",
-    passportMotif: "Platinum Circuit", badgeStyle: "Platinum Enamel",
-    nameplate: "Polished Platinum", ribbon: ["#e5e4e2", "#7d8794"],
+    material: "Platinum",
+    trophyShape: "orb",
+    medalShape: "octagon",
+    passportMotif: "Platinum Circuit",
+    badgeStyle: "Platinum Enamel",
+    nameplate: "Polished Platinum",
+    ribbon: ["#e5e4e2", "#7d8794"],
     unlock: "elite",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 60% 0%, rgba(229,228,226,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#e5e4e2", glow: "rgba(229,228,226,0.5)", particle: "#f7f8fb",
+      gradient:
+        "radial-gradient(1200px 500px at 60% 0%, rgba(229,228,226,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#e5e4e2",
+      glow: "rgba(229,228,226,0.5)",
+      particle: "#f7f8fb",
     },
     rewards: [
       { label: "New Trophy Collection", kind: "collection" },
@@ -160,16 +227,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Orchestral Hit", "Digital Chime", "Premium Alert"],
   },
   {
-    n: 6, code: "STAGE 06",
-    title: "Solution Architect", theme: "Crystal & Glass",
+    n: 6,
+    code: "STAGE 06",
+    title: "Solution Architect",
+    theme: "Crystal & Glass",
     tagline: "You design what a hundred engineers will build.",
-    material: "Crystal Glass", trophyShape: "prism", medalShape: "diamond",
-    passportMotif: "Etched Crystal", badgeStyle: "Beveled Glass",
-    nameplate: "Frosted Crystal Slab", ribbon: ["#8de9ff", "#0b6ea6"],
+    material: "Crystal Glass",
+    trophyShape: "prism",
+    medalShape: "diamond",
+    passportMotif: "Etched Crystal",
+    badgeStyle: "Beveled Glass",
+    nameplate: "Frosted Crystal Slab",
+    ribbon: ["#8de9ff", "#0b6ea6"],
     unlock: "diamond",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(141,233,255,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#8de9ff", glow: "rgba(141,233,255,0.55)", particle: "#c7f3ff",
+      gradient:
+        "radial-gradient(1200px 500px at 40% 0%, rgba(141,233,255,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#8de9ff",
+      glow: "rgba(141,233,255,0.55)",
+      particle: "#c7f3ff",
     },
     rewards: [
       { label: "Glass Trophy", kind: "trophy" },
@@ -183,16 +259,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Crystal Ring", "Glass Chime", "Ambient Pad"],
   },
   {
-    n: 7, code: "STAGE 07",
-    title: "Principal Engineer", theme: "Titanium & Diamond",
+    n: 7,
+    code: "STAGE 07",
+    title: "Principal Engineer",
+    theme: "Titanium & Diamond",
     tagline: "Rare air. Company-wide influence. Named on the patents.",
-    material: "Titanium", trophyShape: "wing", medalShape: "gear",
-    passportMotif: "Titanium Machined", badgeStyle: "Diamond Cut",
-    nameplate: "Laser-Etched Titanium", ribbon: ["#b5c0d0", "#3a4a5e"],
+    material: "Titanium",
+    trophyShape: "wing",
+    medalShape: "gear",
+    passportMotif: "Titanium Machined",
+    badgeStyle: "Diamond Cut",
+    nameplate: "Laser-Etched Titanium",
+    ribbon: ["#b5c0d0", "#3a4a5e"],
     unlock: "legend",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 70% 0%, rgba(181,192,208,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#b5c0d0", glow: "rgba(120,255,240,0.4)", particle: "#7de1d3",
+      gradient:
+        "radial-gradient(1200px 500px at 70% 0%, rgba(181,192,208,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#b5c0d0",
+      glow: "rgba(120,255,240,0.4)",
+      particle: "#7de1d3",
     },
     rewards: [
       { label: "Titanium Trophy", kind: "trophy" },
@@ -206,16 +291,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Electric Spark", "Diamond Ring", "Cinematic Rise"],
   },
   {
-    n: 8, code: "STAGE 08",
-    title: "Engineering Master", theme: "Obsidian & Amethyst",
+    n: 8,
+    code: "STAGE 08",
+    title: "Engineering Master",
+    theme: "Obsidian & Amethyst",
     tagline: "You've built the systems that built the company.",
-    material: "Obsidian & Amethyst", trophyShape: "tower", medalShape: "sun",
-    passportMotif: "Obsidian Sigil", badgeStyle: "Amethyst Inlay",
-    nameplate: "Obsidian Slab", ribbon: ["#c084fc", "#3b0f5c"],
+    material: "Obsidian & Amethyst",
+    trophyShape: "tower",
+    medalShape: "sun",
+    passportMotif: "Obsidian Sigil",
+    badgeStyle: "Amethyst Inlay",
+    nameplate: "Obsidian Slab",
+    ribbon: ["#c084fc", "#3b0f5c"],
     unlock: "master",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(192,132,252,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#c084fc", glow: "rgba(192,132,252,0.6)", particle: "#e4c9ff",
+      gradient:
+        "radial-gradient(1200px 500px at 40% 0%, rgba(192,132,252,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#c084fc",
+      glow: "rgba(192,132,252,0.6)",
+      particle: "#e4c9ff",
     },
     rewards: [
       { label: "Master Trophy Collection", kind: "collection" },
@@ -229,16 +323,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Deep Bell", "Orchestral Swell", "Ceremonial Gong"],
   },
   {
-    n: 9, code: "STAGE 09",
-    title: "Technology Legend", theme: "Solar Gold",
+    n: 9,
+    code: "STAGE 09",
+    title: "Technology Legend",
+    theme: "Solar Gold",
     tagline: "Written about. Quoted in keynotes. Standard-bearer.",
-    material: "24k Legend Gold", trophyShape: "star", medalShape: "laurel",
-    passportMotif: "Solar Emboss", badgeStyle: "Legend Seal",
-    nameplate: "24k Legend Plaque", ribbon: ["#facc15", "#7a3e00"],
+    material: "24k Legend Gold",
+    trophyShape: "star",
+    medalShape: "laurel",
+    passportMotif: "Solar Emboss",
+    badgeStyle: "Legend Seal",
+    nameplate: "24k Legend Plaque",
+    ribbon: ["#facc15", "#7a3e00"],
     unlock: "legend",
     bg: {
-      gradient: "radial-gradient(1400px 600px at 50% 0%, rgba(250,204,21,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#facc15", glow: "rgba(250,204,21,0.7)", particle: "#fff2a8",
+      gradient:
+        "radial-gradient(1400px 600px at 50% 0%, rgba(250,204,21,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#facc15",
+      glow: "rgba(250,204,21,0.7)",
+      particle: "#fff2a8",
     },
     rewards: [
       { label: "Legend Trophy", kind: "trophy" },
@@ -252,16 +355,25 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
     sound: ["Victory Orchestra", "Golden Bell", "Legend Fanfare"],
   },
   {
-    n: 10, code: "STAGE 10",
-    title: "Chief Architect", theme: "Founder Level Experience",
+    n: 10,
+    code: "STAGE 10",
+    title: "Chief Architect",
+    theme: "Founder Level Experience",
     tagline: "The Museum. The Crown. The final chapter you never close.",
-    material: "Meteorite · Diamond · Founder Gold", trophyShape: "crown", medalShape: "phoenix",
-    passportMotif: "Founder Sigil, Meteorite Cover", badgeStyle: "Founder Crown Seal",
-    nameplate: "Meteorite & Diamond Plaque", ribbon: ["#fff2b0", "#8a5a00"],
+    material: "Meteorite · Diamond · Founder Gold",
+    trophyShape: "crown",
+    medalShape: "phoenix",
+    passportMotif: "Founder Sigil, Meteorite Cover",
+    badgeStyle: "Founder Crown Seal",
+    nameplate: "Meteorite & Diamond Plaque",
+    ribbon: ["#fff2b0", "#8a5a00"],
     unlock: "founder",
     bg: {
-      gradient: "radial-gradient(1600px 700px at 50% 0%, rgba(255,242,176,0.14), transparent 65%), radial-gradient(900px 500px at 50% 100%, rgba(200,120,255,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
-      accent: "#fff2b0", glow: "rgba(255,242,176,0.75)", particle: "#ffe98a",
+      gradient:
+        "radial-gradient(1600px 700px at 50% 0%, rgba(255,242,176,0.14), transparent 65%), radial-gradient(900px 500px at 50% 100%, rgba(200,120,255,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
+      accent: "#fff2b0",
+      glow: "rgba(255,242,176,0.75)",
+      particle: "#ffe98a",
     },
     rewards: [
       { label: "Founder Trophy", kind: "trophy" },
@@ -275,7 +387,13 @@ export const DEVELOPER_STAGES: DeveloperStage[] = [
       { label: "Founder Collection Room", kind: "collection" },
       { label: "Founder Museum", kind: "museum" },
     ],
-    animation: ["Museum Cinematic", "Crown Descent", "Aurora Fanfare", "Phoenix Rise", "Volumetric Confetti"],
+    animation: [
+      "Museum Cinematic",
+      "Crown Descent",
+      "Aurora Fanfare",
+      "Phoenix Rise",
+      "Volumetric Confetti",
+    ],
     sound: ["Founder Fanfare", "Choir Swell", "Ceremonial Gong", "Aurora Pad"],
   },
 ];

@@ -16,9 +16,17 @@ export const Route = createFileRoute("/ams/achievements")({
   head: () => ({
     meta: [
       { title: "Achievement Engine — AMS" },
-      { name: "description", content: "Every achievement that can be earned, its rarity and how many people have unlocked it." },
+      {
+        name: "description",
+        content:
+          "Every achievement that can be earned, its rarity and how many people have unlocked it.",
+      },
       { property: "og:title", content: "Achievement Engine — AMS" },
-      { property: "og:description", content: "Every achievement that can be earned, its rarity and how many people have unlocked it." },
+      {
+        property: "og:description",
+        content:
+          "Every achievement that can be earned, its rarity and how many people have unlocked it.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

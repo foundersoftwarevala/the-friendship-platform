@@ -8,13 +8,21 @@ import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 import { ROLE_CERTIFICATE } from "@/lib/ams/role-assets";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/tickets/certificates")({
+export const Route = createFileRoute("/ams/certificates")({
   head: () => ({
     meta: [
       { title: "Certificate Vault — Premium 3D Certificates" },
-      { name: "description", content: "Museum-quality 3D certificates, one per role — with 3D rotation, animated lighting and PNG export." },
+      {
+        name: "description",
+        content:
+          "Museum-quality 3D certificates, one per role — with 3D rotation, animated lighting and PNG export.",
+      },
       { property: "og:title", content: "Certificate Vault — Premium 3D Certificates" },
-      { property: "og:description", content: "11 handcrafted role certificates with luxury materials, hologram strips, wax seals and QR verification." },
+      {
+        property: "og:description",
+        content:
+          "11 handcrafted role certificates with luxury materials, hologram strips, wax seals and QR verification.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -29,7 +37,11 @@ function Page() {
     [filter],
   );
   const exportItems = useMemo(
-    () => visible.map((role) => ({ src: ROLE_CERTIFICATE[role.slug], filename: `${role.slug}-certificate.png` })),
+    () =>
+      visible.map((role) => ({
+        src: ROLE_CERTIFICATE[role.slug],
+        filename: `${role.slug}-certificate.png`,
+      })),
     [visible],
   );
 
@@ -41,9 +53,11 @@ function Page() {
         description="Every role earns a handcrafted luxury certificate — foil borders, wax seals, holographic security strips and QR verification. Rotate, inspect and export as high-resolution PNG."
         actions={
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Ribbon className="h-4 w-4 text-primary" />
-          <span>{ROLES.length} certificates · {visible.length} shown</span>
-        </div>
+            <Ribbon className="h-4 w-4 text-primary" />
+            <span>
+              {ROLES.length} certificates · {visible.length} shown
+            </span>
+          </div>
         }
       />
 
@@ -74,10 +88,15 @@ function Page() {
               />
               <div className="p-4">
                 <div className="text-lg font-semibold text-foreground">{role.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${role.accent}bb` }}
+                >
                   {role.archetype} · {topCert}
                 </div>
-                <p className="mt-2 text-xs text-foreground/70 italic">"{role.awardStyle} — {role.motto}"</p>
+                <p className="mt-2 text-xs text-foreground/70 italic">
+                  "{role.awardStyle} — {role.motto}"
+                </p>
               </div>
             </article>
           );
@@ -86,4 +105,3 @@ function Page() {
     </div>
   );
 }
-

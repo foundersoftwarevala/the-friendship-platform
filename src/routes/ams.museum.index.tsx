@@ -4,13 +4,21 @@ import { SHOWCASES, ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { ROLES } from "@/lib/ams/roles";
 import { PageHeader } from "@/components/ams/shared/PageHeader";
 
-export const Route = createFileRoute("/ams/tickets/museum/")({
+export const Route = createFileRoute("/ams/museum/")({
   head: () => ({
     meta: [
       { title: "Presentation Engine — Software Vala Museums" },
-      { name: "description", content: "Fourteen luxury showcases — trophy museum, award gallery, certificate hall and more — each with glass cabinets, spotlights and cinematic 3D preview." },
+      {
+        name: "description",
+        content:
+          "Fourteen luxury showcases — trophy museum, award gallery, certificate hall and more — each with glass cabinets, spotlights and cinematic 3D preview.",
+      },
       { property: "og:title", content: "Presentation Engine — Software Vala Museums" },
-      { property: "og:description", content: "Experience every collectible inside a world-class digital museum with museum, showcase, carousel and comparison display modes." },
+      {
+        property: "og:description",
+        content:
+          "Experience every collectible inside a world-class digital museum with museum, showcase, carousel and comparison display modes.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -36,7 +44,10 @@ function Page() {
             className="group rounded-2xl border border-border/60 bg-card p-4 motion-card"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: `${s.accent}cc` }}>
+              <span
+                className="font-mono text-[10px] uppercase tracking-[0.28em]"
+                style={{ color: `${s.accent}cc` }}
+              >
                 {s.kicker}
               </span>
               <Landmark className="h-4 w-4" style={{ color: s.accent }} />
@@ -59,10 +70,20 @@ function Page() {
           {ROLES.map((r) => {
             const env = ROLE_ENVIRONMENT[r.slug];
             return (
-              <div key={r.slug} className="rounded-xl border border-border/60 p-3"
-                style={{ background: env.backdrop, borderColor: `${r.accent}44` }}>
-                <div className="text-sm font-semibold text-foreground">{r.glyph} {r.name}</div>
-                <div className="text-[11px] uppercase tracking-widest" style={{ color: `${r.accent}bb` }}>{env.name}</div>
+              <div
+                key={r.slug}
+                className="rounded-xl border border-border/60 p-3"
+                style={{ background: env.backdrop, borderColor: `${r.accent}44` }}
+              >
+                <div className="text-sm font-semibold text-foreground">
+                  {r.glyph} {r.name}
+                </div>
+                <div
+                  className="text-[11px] uppercase tracking-widest"
+                  style={{ color: `${r.accent}bb` }}
+                >
+                  {env.name}
+                </div>
                 <p className="mt-1 text-xs text-muted-foreground">{env.vibe}</p>
               </div>
             );

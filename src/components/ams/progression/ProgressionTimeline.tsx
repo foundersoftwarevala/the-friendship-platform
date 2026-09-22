@@ -8,7 +8,6 @@ import { useReducedMotion, setReducedMotionOverride } from "@/hooks/use-reduced-
 import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { Button } from "@/components/ui/button";
 
-
 const UNLOCK_KIND: Record<string, CelebrateKind> = {
   starter: "achievement",
   bronze: "achievement",
@@ -49,7 +48,11 @@ export function ProgressionTimeline({
     setUnlocked((prev) => new Set(prev).add(n));
     setSelected(stages.findIndex((x) => x.n === n));
     if (soundOn && globalSound) {
-      try { playUnlock(s.unlock); } catch { /* noop */ }
+      try {
+        playUnlock(s.unlock);
+      } catch {
+        /* noop */
+      }
     }
     celebrate({
       kind: UNLOCK_KIND[s.unlock] ?? "achievement",
@@ -98,13 +101,14 @@ export function ProgressionTimeline({
         }
       />
 
-
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
         {/* Timeline rail */}
         <ol className="relative rounded-2xl border border-border/60 bg-card p-3 space-y-1.5 h-fit">
           <span
             className="absolute left-[26px] top-4 bottom-4 w-px"
-            style={{ background: `linear-gradient(180deg, ${stages[0].bg.accent}55, ${stages[stages.length - 1].bg.accent}55)` }}
+            style={{
+              background: `linear-gradient(180deg, ${stages[0].bg.accent}55, ${stages[stages.length - 1].bg.accent}55)`,
+            }}
           />
           {stages.map((s, i) => {
             const isSelected = i === selected;
@@ -134,7 +138,10 @@ export function ProgressionTimeline({
                     {isUnlocked ? <Check className="h-3.5 w-3.5" /> : String(s.n).padStart(2, "0")}
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[10px] font-mono tracking-widest uppercase" style={{ color: `${s.bg.accent}bb` }}>
+                    <span
+                      className="block text-[10px] font-mono tracking-widest uppercase"
+                      style={{ color: `${s.bg.accent}bb` }}
+                    >
                       LV {String(s.n).padStart(2, "0")} · {s.material}
                     </span>
                     <span className="block text-sm text-foreground truncate">{s.title}</span>

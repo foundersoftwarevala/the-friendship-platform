@@ -48,7 +48,5 @@ export function AnimatedNumber({
     };
   }, [value, duration, reduced]);
 
-  return (
-    <span className={cn("tabular-nums", className)}>{format(Math.round(display))}</span>
-  );
+  return <span className={cn("tabular-nums", className)}>{format(Math.round(display))}</span>;
 }

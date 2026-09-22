@@ -41,15 +41,15 @@ export const useHealthCheck = () => {
     try {
       // Get all demo IDs if not provided
       let idsToCheck = demoIds;
-      
+
       if (!idsToCheck || idsToCheck.length === 0) {
         const { data: demos, error } = await supabase
           .from("demos")
           .select("id")
           .eq("status", "active");
-        
+
         if (error) throw error;
-        idsToCheck = demos?.map(d => d.id) || [];
+        idsToCheck = demos?.map((d) => d.id) || [];
       }
 
       const totalDemos = idsToCheck.length;
@@ -75,7 +75,7 @@ export const useHealthCheck = () => {
 
         const response = data as HealthCheckResponse;
         allResults = [...allResults, ...response.results];
-        
+
         overallSummary.total += response.summary.total;
         overallSummary.healthy += response.summary.healthy;
         overallSummary.unhealthy += response.summary.unhealthy;
@@ -87,11 +87,13 @@ export const useHealthCheck = () => {
 
         // Small delay between batches to avoid rate limiting
         if (i < batches - 1) {
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise((resolve) => setTimeout(resolve, 500));
         }
       }
 
-      toast.success(`Health check completed! ${overallSummary.healthy}/${overallSummary.total} healthy`);
+      toast.success(
+        `Health check completed! ${overallSummary.healthy}/${overallSummary.total} healthy`,
+      );
       return { results: allResults, summary: overallSummary };
     } catch (error: any) {
       console.error("Health check error:", error);

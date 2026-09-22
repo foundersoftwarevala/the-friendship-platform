@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { SignatureCollection } from "@/components/ams/collection/SignatureCollection";
 import { getCollectionType } from "@/lib/ams/signature-collection";
 
-export const Route = createFileRoute("/ams/tickets/collection/$type")({
+export const Route = createFileRoute("/ams/collection/$type")({
   loader: ({ params }) => {
     const type = getCollectionType(params.type);
     if (!type) throw notFound();
@@ -10,7 +10,12 @@ export const Route = createFileRoute("/ams/tickets/collection/$type")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Collection unavailable — Software Vala AMS" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Collection unavailable — Software Vala AMS" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     return {
       meta: [

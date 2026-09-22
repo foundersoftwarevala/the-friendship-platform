@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-import type { RealtimeChannel } from '@supabase/supabase-js';
+import { useEffect, useState, useCallback, useRef } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import type { RealtimeChannel } from "@supabase/supabase-js";
 
 export interface ServerMetrics {
   server_id: string;
@@ -52,7 +52,7 @@ const toMetrics = (row: ServerInstanceRow): ServerMetrics => ({
 });
 
 const METRIC_COLUMNS =
-  'id, server_name, cpu_usage, ram_usage, disk_usage, network_in_mbps, network_out_mbps, health_score, status, updated_at';
+  "id, server_name, cpu_usage, ram_usage, disk_usage, network_in_mbps, network_out_mbps, health_score, status, updated_at";
 
 interface UseServerRealtimeReturn {
   metrics: Record<string, ServerMetrics>;
@@ -74,9 +74,9 @@ export function useServerRealtime(): UseServerRealtimeReturn {
   const refreshMetrics = useCallback(async () => {
     try {
       const { data: serverRows } = await supabase
-        .from('server_instances')
+        .from("server_instances")
         .select(METRIC_COLUMNS)
-        .neq('status', 'decommissioned');
+        .neq("status", "decommissioned");
 
       if (serverRows) {
         const metricsMap: Record<string, ServerMetrics> = {};
@@ -87,17 +87,17 @@ export function useServerRealtime(): UseServerRealtimeReturn {
       }
 
       const { data: alertsData } = await supabase
-        .from('server_alerts')
-        .select('id, server_id, alert_type, severity, message, is_resolved, created_at')
-        .eq('is_resolved', false)
-        .order('created_at', { ascending: false })
+        .from("server_alerts")
+        .select("id, server_id, alert_type, severity, message, is_resolved, created_at")
+        .eq("is_resolved", false)
+        .order("created_at", { ascending: false })
         .limit(50);
 
       if (alertsData) setAlerts(alertsData as ServerAlert[]);
 
       setLastUpdate(new Date());
     } catch (error) {
-      console.error('[ServerRealtime] Refresh error:', error);
+      console.error("[ServerRealtime] Refresh error:", error);
     }
   }, []);
 
@@ -106,10 +106,10 @@ export function useServerRealtime(): UseServerRealtimeReturn {
     let alertsChannel: RealtimeChannel | undefined;
 
     metricsChannel = supabase
-      .channel('server-metrics-realtime')
+      .channel("server-metrics-realtime")
       .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'server_instances' },
+        "postgres_changes",
+        { event: "*", schema: "public", table: "server_instances" },
         (payload) => {
           const row = payload.new as ServerInstanceRow | undefined;
           if (row?.id) {
@@ -119,22 +119,22 @@ export function useServerRealtime(): UseServerRealtimeReturn {
         },
       )
       .subscribe((status) => {
-        setIsConnected(status === 'SUBSCRIBED');
+        setIsConnected(status === "SUBSCRIBED");
       });
 
     alertsChannel = supabase
-      .channel('server-alerts-realtime')
+      .channel("server-alerts-realtime")
       .on(
-        'postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'server_alerts' },
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "server_alerts" },
         (payload) => {
           const row = payload.new as ServerAlert | undefined;
           if (row) setAlerts((prev) => [row, ...prev.slice(0, 49)]);
         },
       )
       .on(
-        'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'server_alerts' },
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "server_alerts" },
         (payload) => {
           const updated = payload.new as ServerAlert | undefined;
           if (!updated) return;
@@ -178,7 +178,15 @@ export function useServerRealtime(): UseServerRealtimeReturn {
     };
   }, []);
 
-  return { metrics, alerts, isConnected, lastUpdate, refreshMetrics, startAutoRefresh, stopAutoRefresh };
+  return {
+    metrics,
+    alerts,
+    isConnected,
+    lastUpdate,
+    refreshMetrics,
+    startAutoRefresh,
+    stopAutoRefresh,
+  };
 }
 
 export function useServerDashboard(autoRefreshMs = 5000) {
@@ -197,21 +205,21 @@ export function useServerDashboard(autoRefreshMs = 5000) {
   const fetchSummary = useCallback(async () => {
     try {
       const { data: servers } = await supabase
-        .from('server_instances')
+        .from("server_instances")
         .select(METRIC_COLUMNS)
-        .neq('status', 'decommissioned');
+        .neq("status", "decommissioned");
 
       const { data: alerts } = await supabase
-        .from('server_alerts')
-        .select('severity')
-        .eq('is_resolved', false);
+        .from("server_alerts")
+        .select("severity")
+        .eq("is_resolved", false);
 
       const rows = (servers ?? []) as ServerInstanceRow[];
       const total = rows.length;
-      const online = rows.filter((s) => s.status === 'active').length;
-      const offline = rows.filter((s) => s.status === 'offline' || s.status === 'stopped').length;
-      const warnings = alerts?.filter((a) => a.severity === 'warning').length ?? 0;
-      const critical = alerts?.filter((a) => a.severity === 'critical').length ?? 0;
+      const online = rows.filter((s) => s.status === "active").length;
+      const offline = rows.filter((s) => s.status === "offline" || s.status === "stopped").length;
+      const warnings = alerts?.filter((a) => a.severity === "warning").length ?? 0;
+      const critical = alerts?.filter((a) => a.severity === "critical").length ?? 0;
 
       const avgCpu = total ? rows.reduce((acc, m) => acc + Number(m.cpu_usage || 0), 0) / total : 0;
       const avgRam = total ? rows.reduce((acc, m) => acc + Number(m.ram_usage || 0), 0) / total : 0;
@@ -229,7 +237,7 @@ export function useServerDashboard(autoRefreshMs = 5000) {
         network_throughput: { in: Math.round(netIn), out: Math.round(netOut) },
       });
     } catch (error) {
-      console.error('[Dashboard] Fetch error:', error);
+      console.error("[Dashboard] Fetch error:", error);
     } finally {
       setLoading(false);
     }

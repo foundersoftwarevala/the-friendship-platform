@@ -8,9 +8,15 @@ export const Route = createFileRoute("/ams/awards/audit")({
   head: () => ({
     meta: [
       { title: "Award Audit — AMS" },
-      { name: "description", content: "Every create, edit, approve, publish, archive and delete action on every award." },
+      {
+        name: "description",
+        content: "Every create, edit, approve, publish, archive and delete action on every award.",
+      },
       { property: "og:title", content: "Award Audit — AMS" },
-      { property: "og:description", content: "Every create, edit, approve, publish, archive and delete action on every award." },
+      {
+        property: "og:description",
+        content: "Every create, edit, approve, publish, archive and delete action on every award.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -41,7 +47,9 @@ function AwardsAuditPage() {
                 <div className="font-medium capitalize w-32">{e.action}</div>
                 <div className="flex-1 truncate">{e.awardName}</div>
                 <div className="text-xs text-muted-foreground">{e.actor}</div>
-                <time className="text-xs text-muted-foreground w-44 text-right">{new Date(e.at).toLocaleString()}</time>
+                <time className="text-xs text-muted-foreground w-44 text-right">
+                  {new Date(e.at).toLocaleString()}
+                </time>
               </li>
             ))}
           </ul>

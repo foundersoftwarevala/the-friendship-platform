@@ -10,13 +10,35 @@
  */
 
 export type UiSound =
-  | "click" | "toggle" | "checkbox" | "switch" | "dropdown"
-  | "notification" | "mention" | "success" | "warning" | "error"
-  | "approval" | "rejection" | "save" | "publish" | "archive"
-  | "delete" | "uploadComplete" | "downloadComplete"
-  | "importComplete" | "exportComplete"
-  | "ai" | "message" | "announcement" | "reminder"
-  | "achievement" | "reward" | "badge" | "trophy" | "verified";
+  | "click"
+  | "toggle"
+  | "checkbox"
+  | "switch"
+  | "dropdown"
+  | "notification"
+  | "mention"
+  | "success"
+  | "warning"
+  | "error"
+  | "approval"
+  | "rejection"
+  | "save"
+  | "publish"
+  | "archive"
+  | "delete"
+  | "uploadComplete"
+  | "downloadComplete"
+  | "importComplete"
+  | "exportComplete"
+  | "ai"
+  | "message"
+  | "announcement"
+  | "reminder"
+  | "achievement"
+  | "reward"
+  | "badge"
+  | "trophy"
+  | "verified";
 
 type Voice = {
   /** note frequencies in Hz, played as a short arpeggio */
@@ -39,44 +61,129 @@ const n = (semi: number) => A * Math.pow(2, semi / 12);
 
 const VOICES: Record<UiSound, Voice> = {
   // --- primitives: extremely short, near-subliminal ---
-  click:      { notes: [n(4)], type: "sine", dur: 0.045, gain: 0.05 },
-  toggle:     { notes: [n(2), n(9)], type: "sine", dur: 0.05, step: 0.035, gain: 0.05 },
-  checkbox:   { notes: [n(7), n(12)], type: "triangle", dur: 0.05, step: 0.03, gain: 0.05 },
-  switch:     { notes: [n(0), n(7)], type: "sine", dur: 0.055, step: 0.035, gain: 0.05 },
-  dropdown:   { notes: [n(9)], type: "sine", dur: 0.05, gain: 0.04, sweep: -60 },
+  click: { notes: [n(4)], type: "sine", dur: 0.045, gain: 0.05 },
+  toggle: { notes: [n(2), n(9)], type: "sine", dur: 0.05, step: 0.035, gain: 0.05 },
+  checkbox: { notes: [n(7), n(12)], type: "triangle", dur: 0.05, step: 0.03, gain: 0.05 },
+  switch: { notes: [n(0), n(7)], type: "sine", dur: 0.055, step: 0.035, gain: 0.05 },
+  dropdown: { notes: [n(9)], type: "sine", dur: 0.05, gain: 0.04, sweep: -60 },
 
   // --- feedback ---
-  success:    { notes: [n(4), n(9), n(16)], type: "sine", dur: 0.16, step: 0.06, gain: 0.07, air: 0.02 },
-  warning:    { notes: [n(2), n(2)], type: "triangle", dur: 0.13, step: 0.13, gain: 0.06 },
-  error:      { notes: [n(1), n(-4)], type: "sine", dur: 0.18, step: 0.09, gain: 0.07 },
-  approval:   { notes: [n(7), n(12), n(19)], type: "sine", dur: 0.15, step: 0.055, gain: 0.07, air: 0.02 },
-  rejection:  { notes: [n(5), n(0), n(-3)], type: "sine", dur: 0.15, step: 0.06, gain: 0.06 },
+  success: {
+    notes: [n(4), n(9), n(16)],
+    type: "sine",
+    dur: 0.16,
+    step: 0.06,
+    gain: 0.07,
+    air: 0.02,
+  },
+  warning: { notes: [n(2), n(2)], type: "triangle", dur: 0.13, step: 0.13, gain: 0.06 },
+  error: { notes: [n(1), n(-4)], type: "sine", dur: 0.18, step: 0.09, gain: 0.07 },
+  approval: {
+    notes: [n(7), n(12), n(19)],
+    type: "sine",
+    dur: 0.15,
+    step: 0.055,
+    gain: 0.07,
+    air: 0.02,
+  },
+  rejection: { notes: [n(5), n(0), n(-3)], type: "sine", dur: 0.15, step: 0.06, gain: 0.06 },
 
   // --- workflow ---
-  save:       { notes: [n(9), n(14)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
-  publish:    { notes: [n(4), n(11), n(16), n(23)], type: "sine", dur: 0.16, step: 0.05, gain: 0.07, air: 0.03 },
-  archive:    { notes: [n(4), n(-1)], type: "triangle", dur: 0.14, step: 0.06, gain: 0.05 },
-  delete:     { notes: [n(0), n(-5)], type: "triangle", dur: 0.16, step: 0.07, gain: 0.06 },
+  save: { notes: [n(9), n(14)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
+  publish: {
+    notes: [n(4), n(11), n(16), n(23)],
+    type: "sine",
+    dur: 0.16,
+    step: 0.05,
+    gain: 0.07,
+    air: 0.03,
+  },
+  archive: { notes: [n(4), n(-1)], type: "triangle", dur: 0.14, step: 0.06, gain: 0.05 },
+  delete: { notes: [n(0), n(-5)], type: "triangle", dur: 0.16, step: 0.07, gain: 0.06 },
 
-  uploadComplete:   { notes: [n(2), n(9), n(14)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
+  uploadComplete: { notes: [n(2), n(9), n(14)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
   downloadComplete: { notes: [n(14), n(9), n(4)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
-  importComplete:   { notes: [n(0), n(7), n(12)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
-  exportComplete:   { notes: [n(12), n(7), n(2)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
+  importComplete: { notes: [n(0), n(7), n(12)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
+  exportComplete: { notes: [n(12), n(7), n(2)], type: "sine", dur: 0.12, step: 0.05, gain: 0.06 },
 
   // --- communication ---
-  notification:  { notes: [n(12), n(16)], type: "sine", dur: 0.13, step: 0.06, gain: 0.06, air: 0.015 },
-  mention:       { notes: [n(9), n(16), n(21)], type: "sine", dur: 0.12, step: 0.05, gain: 0.07, air: 0.02 },
-  message:       { notes: [n(7), n(12)], type: "sine", dur: 0.1, step: 0.045, gain: 0.05 },
-  announcement:  { notes: [n(4), n(9), n(11), n(16)], type: "sine", dur: 0.14, step: 0.055, gain: 0.06, air: 0.02 },
-  reminder:      { notes: [n(9), n(7)], type: "triangle", dur: 0.14, step: 0.07, gain: 0.05 },
-  ai:            { notes: [n(11), n(18)], type: "sine", dur: 0.2, step: 0.07, gain: 0.05, sweep: 90, air: 0.02 },
+  notification: {
+    notes: [n(12), n(16)],
+    type: "sine",
+    dur: 0.13,
+    step: 0.06,
+    gain: 0.06,
+    air: 0.015,
+  },
+  mention: {
+    notes: [n(9), n(16), n(21)],
+    type: "sine",
+    dur: 0.12,
+    step: 0.05,
+    gain: 0.07,
+    air: 0.02,
+  },
+  message: { notes: [n(7), n(12)], type: "sine", dur: 0.1, step: 0.045, gain: 0.05 },
+  announcement: {
+    notes: [n(4), n(9), n(11), n(16)],
+    type: "sine",
+    dur: 0.14,
+    step: 0.055,
+    gain: 0.06,
+    air: 0.02,
+  },
+  reminder: { notes: [n(9), n(7)], type: "triangle", dur: 0.14, step: 0.07, gain: 0.05 },
+  ai: {
+    notes: [n(11), n(18)],
+    type: "sine",
+    dur: 0.2,
+    step: 0.07,
+    gain: 0.05,
+    sweep: 90,
+    air: 0.02,
+  },
 
   // --- recognition (still restrained: premium, not arcade) ---
-  achievement: { notes: [n(4), n(11), n(16), n(20)], type: "sine", dur: 0.18, step: 0.06, gain: 0.08, air: 0.03 },
-  reward:      { notes: [n(7), n(12), n(19)], type: "sine", dur: 0.18, step: 0.06, gain: 0.07, air: 0.03 },
-  badge:       { notes: [n(9), n(14), n(21)], type: "sine", dur: 0.18, step: 0.06, gain: 0.07, air: 0.03 },
-  trophy:      { notes: [n(4), n(11), n(16), n(23), n(28)], type: "sine", dur: 0.2, step: 0.06, gain: 0.08, air: 0.04 },
-  verified:    { notes: [n(12), n(19), n(24)], type: "sine", dur: 0.16, step: 0.05, gain: 0.07, air: 0.03 },
+  achievement: {
+    notes: [n(4), n(11), n(16), n(20)],
+    type: "sine",
+    dur: 0.18,
+    step: 0.06,
+    gain: 0.08,
+    air: 0.03,
+  },
+  reward: {
+    notes: [n(7), n(12), n(19)],
+    type: "sine",
+    dur: 0.18,
+    step: 0.06,
+    gain: 0.07,
+    air: 0.03,
+  },
+  badge: {
+    notes: [n(9), n(14), n(21)],
+    type: "sine",
+    dur: 0.18,
+    step: 0.06,
+    gain: 0.07,
+    air: 0.03,
+  },
+  trophy: {
+    notes: [n(4), n(11), n(16), n(23), n(28)],
+    type: "sine",
+    dur: 0.2,
+    step: 0.06,
+    gain: 0.08,
+    air: 0.04,
+  },
+  verified: {
+    notes: [n(12), n(19), n(24)],
+    type: "sine",
+    dur: 0.16,
+    step: 0.05,
+    gain: 0.07,
+    air: 0.03,
+  },
 };
 
 /* ---------------------------------------------------------------- */
@@ -101,7 +208,10 @@ function load(): SoundPrefs {
       const parsed = JSON.parse(raw) as Partial<SoundPrefs>;
       prefs = {
         enabled: typeof parsed.enabled === "boolean" ? parsed.enabled : DEFAULTS.enabled,
-        volume: typeof parsed.volume === "number" ? Math.min(1, Math.max(0, parsed.volume)) : DEFAULTS.volume,
+        volume:
+          typeof parsed.volume === "number"
+            ? Math.min(1, Math.max(0, parsed.volume))
+            : DEFAULTS.volume,
       };
     }
   } catch {

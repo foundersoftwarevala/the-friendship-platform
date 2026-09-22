@@ -43,7 +43,6 @@ export function useDeliveryOverview() {
     staleTime: 15_000,
   });
 
-
   // Realtime notifications: task + escalation + note changes push a refresh.
   useEffect(() => {
     const channel = supabase
@@ -51,9 +50,13 @@ export function useDeliveryOverview() {
       .on("postgres_changes", { event: "*", schema: "public", table: "developer_tasks" }, () => {
         void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
       })
-      .on("postgres_changes", { event: "*", schema: "public", table: "developer_task_internal_notes" }, () => {
-        void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
-      })
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "developer_task_internal_notes" },
+        () => {
+          void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
+        },
+      )
       .on(
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "developer_task_escalations" },
@@ -70,9 +73,13 @@ export function useDeliveryOverview() {
           void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
         },
       )
-      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "developer_task_escalations" }, () => {
-        void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
-      })
+      .on(
+        "postgres_changes",
+        { event: "UPDATE", schema: "public", table: "developer_task_escalations" },
+        () => {
+          void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
+        },
+      )
       .subscribe();
 
     return () => {
@@ -183,11 +190,18 @@ export function useSetDeveloperStatus() {
       reason: string;
     }) => mutate({ data: { ...input, actor: hostActor() } }),
     onSuccess: (_r, vars) => {
-      toast({ title: `Developer ${vars.status}`, description: "Change recorded in the audit trail." });
+      toast({
+        title: `Developer ${vars.status}`,
+        description: "Change recorded in the audit trail.",
+      });
       void queryClient.invalidateQueries({ queryKey: REGISTRY_QUERY_KEY });
       void queryClient.invalidateQueries({ queryKey: DELIVERY_QUERY_KEY });
     },
     onError: (error) =>
-      toast({ title: "Status change failed", description: describeError(error), variant: "destructive" }),
+      toast({
+        title: "Status change failed",
+        description: describeError(error),
+        variant: "destructive",
+      }),
   });
 }

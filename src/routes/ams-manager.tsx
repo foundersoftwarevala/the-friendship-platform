@@ -9,7 +9,8 @@ export const Route = createFileRoute("/ams-manager")({
       { title: "AMS Manager — Software Vala Control Panel" },
       {
         name: "description",
-        content: "Achievement management, progression, leaderboard and rewards analytics from one control panel.",
+        content:
+          "Achievement management, progression, leaderboard and rewards analytics from one control panel.",
       },
       { property: "og:title", content: "AMS Manager — Software Vala" },
       {

@@ -54,23 +54,38 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
   return (
     <div
       className="rounded-xl border p-3 flex gap-3 items-center"
-      style={{ borderColor: `${role.accent}44`, background: `linear-gradient(135deg, ${role.accent}12, transparent)` }}
+      style={{
+        borderColor: `${role.accent}44`,
+        background: `linear-gradient(135deg, ${role.accent}12, transparent)`,
+      }}
     >
       <div
         className="rounded-lg p-1.5 shrink-0"
         style={{ background: "#fff", boxShadow: `0 0 22px -8px ${role.accent}` }}
       >
         {dataUrl ? (
-          <img src={dataUrl} alt={`Verification QR for passport ${identity.code}`} width={size} height={size} style={{ width: size, height: size }} />
+          <img
+            src={dataUrl}
+            alt={`Verification QR for passport ${identity.code}`}
+            width={size}
+            height={size}
+            style={{ width: size, height: size }}
+          />
         ) : (
-          <div className="flex items-center justify-center text-background/40" style={{ width: size, height: size }}>
+          <div
+            className="flex items-center justify-center text-background/40"
+            style={{ width: size, height: size }}
+          >
             <QrCode className="h-6 w-6" />
           </div>
         )}
       </div>
 
       <div className="min-w-0 space-y-1.5">
-        <div className="text-[10px] font-mono uppercase tracking-[0.25em]" style={{ color: `${role.accent}cc` }}>
+        <div
+          className="text-[10px] font-mono uppercase tracking-[0.25em]"
+          style={{ color: `${role.accent}cc` }}
+        >
           Verification Code
         </div>
         <div className="font-mono text-xs text-foreground break-all">{identity.code}</div>
@@ -80,7 +95,10 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
             to="/verify/$code"
             params={{ code: identity.code }}
             className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-semibold"
-            style={{ background: `linear-gradient(135deg, ${role.accent}, ${role.accent}aa)`, color: "#0b0f1a" }}
+            style={{
+              background: `linear-gradient(135deg, ${role.accent}, ${role.accent}aa)`,
+              color: "#0b0f1a",
+            }}
           >
             <ShieldCheck className="h-3 w-3" /> Verify
           </Link>
@@ -92,7 +110,8 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
             className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-foreground/80 hover:bg-foreground/5"
             style={{ borderColor: `${role.accent}55` }}
           >
-            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />} {copied ? "Copied" : "Code"}
+            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}{" "}
+            {copied ? "Copied" : "Code"}
           </button>
           <button
             type="button"

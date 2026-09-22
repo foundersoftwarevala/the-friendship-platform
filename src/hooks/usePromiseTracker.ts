@@ -29,7 +29,8 @@ const FAILURE_REASONS: Record<string, string> = {
   already_applied: "That rule has already been applied to this promise.",
   already_released: "That tip has already been released for this promise.",
   nothing_to_charge: "That rule produced no amount — a percentage rule needs a value to work from.",
-  nothing_to_release: "That rule produced no amount — a percentage rule needs a value to work from.",
+  nothing_to_release:
+    "That rule produced no amount — a percentage rule needs a value to work from.",
   no_such_rule: "That rule is no longer active.",
   no_such_promise: "That promise no longer exists.",
   not_a_fine_rule: "That is not a fine rule.",
@@ -559,7 +560,12 @@ export function useEscalatePromise() {
       p_raised_by: "user",
     });
     if (error) throw error;
-    const result = data as { ok?: boolean; reason?: string; label?: string; already_raised?: boolean } | null;
+    const result = data as {
+      ok?: boolean;
+      reason?: string;
+      label?: string;
+      already_raised?: boolean;
+    } | null;
     if (!result?.ok) throw new Error(result?.reason ?? "Escalation was refused");
     if (result.already_raised) {
       return { message: `Level ${level} was already raised`, description: input.promise.code };
@@ -604,8 +610,16 @@ export function useApplyFine() {
         p_actor: "user",
       });
       if (error) throw error;
-      const result = data as { ok?: boolean; reason?: string; amount?: number; rule?: string } | null;
-      if (!result?.ok) throw new Error(FAILURE_REASONS[result?.reason ?? ""] ?? result?.reason ?? "The fine was refused");
+      const result = data as {
+        ok?: boolean;
+        reason?: string;
+        amount?: number;
+        rule?: string;
+      } | null;
+      if (!result?.ok)
+        throw new Error(
+          FAILURE_REASONS[result?.reason ?? ""] ?? result?.reason ?? "The fine was refused",
+        );
       return {
         message: "Fine applied",
         description: `${input.promise.code} · ${result.rule} · ${result.amount}`,
@@ -626,8 +640,16 @@ export function useReleaseTip() {
         p_actor: "user",
       });
       if (error) throw error;
-      const result = data as { ok?: boolean; reason?: string; amount?: number; rule?: string } | null;
-      if (!result?.ok) throw new Error(FAILURE_REASONS[result?.reason ?? ""] ?? result?.reason ?? "The tip was refused");
+      const result = data as {
+        ok?: boolean;
+        reason?: string;
+        amount?: number;
+        rule?: string;
+      } | null;
+      if (!result?.ok)
+        throw new Error(
+          FAILURE_REASONS[result?.reason ?? ""] ?? result?.reason ?? "The tip was refused",
+        );
       return {
         message: "Tip released",
         description: `${input.promise.code} · ${result.rule} · ${result.amount}`,
@@ -925,10 +947,9 @@ export function useGenerateInsights() {
       void queryClient.invalidateQueries({ queryKey: trackerKeys.logs });
       const generated = (result as { generated?: number; message?: string }).generated ?? 0;
       const note = (result as { message?: string }).message;
-      toast.success(
-        generated > 0 ? `${generated} insight(s) generated` : "Nothing new to assess",
-        { description: note },
-      );
+      toast.success(generated > 0 ? `${generated} insight(s) generated` : "Nothing new to assess", {
+        description: note,
+      });
     },
     onError: (error: Error) => {
       void reportHealth({ source: "mutation", event: "generate_insights", message: error.message });
