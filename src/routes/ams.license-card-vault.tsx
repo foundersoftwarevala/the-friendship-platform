@@ -8,7 +8,10 @@ export const Route = createFileRoute("/ams/license-card-vault")({
       { title: "License Card Vault — Premium 3D Credentials" },
       { name: "description", content: "Official-looking license cards, one per role." },
       { property: "og:title", content: "License Card Vault — Premium 3D Credentials" },
-      { property: "og:description", content: "11 embossed professional license cards with holograms and guilloché." },
+      {
+        property: "og:description",
+        content: "11 embossed professional license cards with holograms and guilloché.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

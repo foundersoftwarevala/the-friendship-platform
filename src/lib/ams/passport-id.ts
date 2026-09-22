@@ -67,7 +67,9 @@ export function passportVerifyUrl(role: RoleDNA): string {
   return `${origin}${passportVerifyPath(role)}`;
 }
 
-export function findPassportByCode(code: string): { role: RoleDNA; identity: PassportIdentity } | null {
+export function findPassportByCode(
+  code: string,
+): { role: RoleDNA; identity: PassportIdentity } | null {
   const needle = code.trim().toUpperCase();
   for (const role of ROLES) {
     const identity = passportIdentity(role);

@@ -31,7 +31,9 @@
 - [x] Control Panel -> AMS Manager opens the module at /ams; every AMS page returns 200
 - [x] AMS Manager route parity with the reference module (79/79 pages mapped, all render 200; /ams redirects to /ams/overview)
 - [x] Shared button supports the AMS sound/loading/compact-icon options — AMS module is TypeScript-clean
-- [ ] End-to-end signed-in verification of AMS CRUD flows — BLOCKED: the backend has zero accounts, so no session can be minted. Needs one sign-up in the preview first.
+- [x] End-to-end signed-in verification of AMS pages (12 key screens load signed-in, zero console errors)
+- [x] Full reference port: components/ams, lib/ams (Role DNA engine, museum, showcases, effects, sound), hooks, vault/showcase/progression routes
+- [x] AMS unit + e2e suites pass (72/72 via vitest)
 
 ## Module navigation + auth tests (current)
 

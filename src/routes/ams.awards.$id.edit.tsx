@@ -13,7 +13,10 @@ export const Route = createFileRoute("/ams/awards/$id/edit")({
       { title: "Edit Award — AMS" },
       { name: "description", content: "Update basics, media, rules, rewards or visibility." },
       { property: "og:title", content: "Edit Award — AMS" },
-      { property: "og:description", content: "Update basics, media, rules, rewards or visibility." },
+      {
+        property: "og:description",
+        content: "Update basics, media, rules, rewards or visibility.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -28,8 +31,16 @@ function EditAwardPage() {
   if (!data) return <EmptyState title="Award not found" />;
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto">
-      <Button asChild variant="ghost" size="sm" className="gap-1.5 -ml-2"><Link to="/ams/awards/$id" params={{ id }}><ChevronLeft className="h-4 w-4" /> Back to award</Link></Button>
-      <PageHeader kicker="Edit" title={data.name} description="Update basics, media, rules, rewards or visibility." />
+      <Button asChild variant="ghost" size="sm" className="gap-1.5 -ml-2">
+        <Link to="/ams/awards/$id" params={{ id }}>
+          <ChevronLeft className="h-4 w-4" /> Back to award
+        </Link>
+      </Button>
+      <PageHeader
+        kicker="Edit"
+        title={data.name}
+        description="Update basics, media, rules, rewards or visibility."
+      />
       <AwardForm mode="edit" initial={data} />
     </div>
   );

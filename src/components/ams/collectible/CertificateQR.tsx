@@ -1,5 +1,9 @@
 import { CredentialQR } from "./CredentialQR";
-import { certificateIdentity, certificateVerifyPath, certificateVerifyUrl } from "@/lib/ams/certificate-id";
+import {
+  certificateIdentity,
+  certificateVerifyPath,
+  certificateVerifyUrl,
+} from "@/lib/ams/certificate-id";
 import type { RoleDNA } from "@/lib/ams/roles";
 
 /** Scannable QR verification block for a role certificate. */

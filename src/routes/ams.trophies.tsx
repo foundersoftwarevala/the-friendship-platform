@@ -57,10 +57,7 @@ function Page() {
     () => Array.from(new Set(trophies.map((t) => t.role).filter(Boolean))) as string[],
     [trophies],
   );
-  const holders = useMemo(
-    () => trophies.reduce((sum, t) => sum + t.holders, 0),
-    [trophies],
-  );
+  const holders = useMemo(() => trophies.reduce((sum, t) => sum + t.holders, 0), [trophies]);
 
   const kpis = [
     { label: "Bronze", value: byTier.bronze ?? 0, accent: TIER_ACCENT.bronze },
@@ -115,9 +112,7 @@ function Page() {
       ]}
       rows={rows}
       emptyLabel={
-        catalogue.isLoading
-          ? "Reading the trophy catalogue…"
-          : "No trophies in the catalogue yet."
+        catalogue.isLoading ? "Reading the trophy catalogue…" : "No trophies in the catalogue yet."
       }
     />
   );

@@ -8,7 +8,10 @@ export const Route = createFileRoute("/ams/identity-card-vault")({
       { title: "Identity Card Vault — Premium 3D Cards" },
       { name: "description", content: "Luxury metallic identity cards, one per role." },
       { property: "og:title", content: "Identity Card Vault — Premium 3D Cards" },
-      { property: "og:description", content: "11 handcrafted identity cards with embossed crests and holographic strips." },
+      {
+        property: "og:description",
+        content: "11 handcrafted identity cards with embossed crests and holographic strips.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

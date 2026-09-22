@@ -3,49 +3,99 @@
 // Pure SVG, zero assets, deterministic by name.
 
 import {
-  Code2, PenTool, TrendingUp, Megaphone, Radio, Headphones, Lock, BookOpen,
-  Store, Network, Users, Crown, Star, Shield, Trophy, Award, Medal,
-  Sparkles, Diamond, Cpu, Gem, Target, Flame, Zap,
+  Code2,
+  PenTool,
+  TrendingUp,
+  Megaphone,
+  Radio,
+  Headphones,
+  Lock,
+  BookOpen,
+  Store,
+  Network,
+  Users,
+  Crown,
+  Star,
+  Shield,
+  Trophy,
+  Award,
+  Medal,
+  Sparkles,
+  Diamond,
+  Cpu,
+  Gem,
+  Target,
+  Flame,
+  Zap,
 } from "lucide-react";
 
 export type Grade =
-  | "Bronze" | "Silver" | "Gold" | "Platinum" | "Diamond"
-  | "Elite" | "Champion" | "Legend" | "Founder" | "Ultimate"
-  | "Mythic" | "Legendary" | "Epic" | "Rare" | "Common";
+  | "Bronze"
+  | "Silver"
+  | "Gold"
+  | "Platinum"
+  | "Diamond"
+  | "Elite"
+  | "Champion"
+  | "Legend"
+  | "Founder"
+  | "Ultimate"
+  | "Mythic"
+  | "Legendary"
+  | "Epic"
+  | "Rare"
+  | "Common";
 
 export type Role =
-  | "developer" | "designer" | "sales" | "marketing" | "influencer"
-  | "support" | "security" | "author" | "vendor" | "reseller"
-  | "community" | "management";
+  | "developer"
+  | "designer"
+  | "sales"
+  | "marketing"
+  | "influencer"
+  | "support"
+  | "security"
+  | "author"
+  | "vendor"
+  | "reseller"
+  | "community"
+  | "management";
 
 export type Module =
-  | "identity" | "recognition" | "progress" | "community"
-  | "collections" | "analytics";
+  "identity" | "recognition" | "progress" | "community" | "collections" | "analytics";
 
 // ── deterministic 32-bit hash ──
 function hash(s: string) {
   let h = 2166136261 >>> 0;
-  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
   return h >>> 0;
 }
 
 // ── grade material palettes (Bronze → Ultimate) ──
 const GRADES: Record<Grade, { a: string; b: string; rim: string; glow: string; tier: number }> = {
-  Common:    { a: "#9aa3ad", b: "#5a626b", rim: "#3d434a", glow: "#9aa3ad", tier: 0 },
-  Bronze:    { a: "#e3a76b", b: "#8a5429", rim: "#5a3618", glow: "#e3a76b", tier: 1 },
-  Rare:      { a: "#7cc3ff", b: "#2563eb", rim: "#1e3a8a", glow: "#7cc3ff", tier: 1 },
-  Silver:    { a: "#f0f1f3", b: "#9aa1ab", rim: "#6b7280", glow: "#e8eaee", tier: 2 },
-  Epic:      { a: "#d8b4fe", b: "#7c3aed", rim: "#4c1d95", glow: "#c084fc", tier: 2 },
-  Gold:      { a: "#fde488", b: "#c98a17", rim: "#7a4e08", glow: "#f5d77a", tier: 3 },
-  Platinum:  { a: "#eef2f7", b: "#a8b3c4", rim: "#5e6878", glow: "#dfe6f0", tier: 4 },
-  Diamond:   { a: "#d4f3ff", b: "#5ec0e8", rim: "#1e4a66", glow: "#9be5ff", tier: 5 },
+  Common: { a: "#9aa3ad", b: "#5a626b", rim: "#3d434a", glow: "#9aa3ad", tier: 0 },
+  Bronze: { a: "#e3a76b", b: "#8a5429", rim: "#5a3618", glow: "#e3a76b", tier: 1 },
+  Rare: { a: "#7cc3ff", b: "#2563eb", rim: "#1e3a8a", glow: "#7cc3ff", tier: 1 },
+  Silver: { a: "#f0f1f3", b: "#9aa1ab", rim: "#6b7280", glow: "#e8eaee", tier: 2 },
+  Epic: { a: "#d8b4fe", b: "#7c3aed", rim: "#4c1d95", glow: "#c084fc", tier: 2 },
+  Gold: { a: "#fde488", b: "#c98a17", rim: "#7a4e08", glow: "var(--color-primary-glow)", tier: 3 },
+  Platinum: { a: "#eef2f7", b: "#a8b3c4", rim: "#5e6878", glow: "#dfe6f0", tier: 4 },
+  Diamond: { a: "#d4f3ff", b: "#5ec0e8", rim: "#1e4a66", glow: "#9be5ff", tier: 5 },
   Legendary: { a: "#ffb98a", b: "#d4452a", rim: "#7a2010", glow: "#ff9b6a", tier: 6 },
-  Elite:     { a: "#ffe9a8", b: "#d4a14a", rim: "#7a5418", glow: "#f5d77a", tier: 6 },
-  Champion:  { a: "#ffd1a8", b: "#ff7a3d", rim: "#7a2a08", glow: "#ff9b6a", tier: 7 },
-  Mythic:    { a: "#ecc1ff", b: "#a04dff", rim: "#3b0a6b", glow: "#d97aff", tier: 8 },
-  Legend:    { a: "#f3c7ff", b: "#7a1fd1", rim: "#2c0858", glow: "#d97aff", tier: 8 },
-  Founder:   { a: "#fff4c6", b: "#e0aa2b", rim: "#5c3a05", glow: "#ffe28a", tier: 9 },
-  Ultimate:  { a: "#fffbeb", b: "#f0c14b", rim: "#3a2604", glow: "#fff1a8", tier: 10 },
+  Elite: {
+    a: "#ffe9a8",
+    b: "var(--color-primary)",
+    rim: "#7a5418",
+    glow: "var(--color-primary-glow)",
+    tier: 6,
+  },
+  Champion: { a: "#ffd1a8", b: "#ff7a3d", rim: "#7a2a08", glow: "#ff9b6a", tier: 7 },
+  Mythic: { a: "#ecc1ff", b: "#a04dff", rim: "#3b0a6b", glow: "#d97aff", tier: 8 },
+  Legend: { a: "#f3c7ff", b: "#7a1fd1", rim: "#2c0858", glow: "#d97aff", tier: 8 },
+  Founder: { a: "#fff4c6", b: "#e0aa2b", rim: "#5c3a05", glow: "#ffe28a", tier: 9 },
+  Ultimate: { a: "#fffbeb", b: "#f0c14b", rim: "#3a2604", glow: "#fff1a8", tier: 10 },
 };
 
 // ── role inference from arbitrary text (badge / achievement title) ──
@@ -70,30 +120,44 @@ export function inferRole(text: string): Role {
 }
 
 const ROLE_ICON: Record<Role, typeof Code2> = {
-  developer: Code2, designer: PenTool, sales: TrendingUp, marketing: Megaphone,
-  influencer: Radio, support: Headphones, security: Lock, author: BookOpen,
-  vendor: Store, reseller: Network, community: Users, management: Crown,
+  developer: Code2,
+  designer: PenTool,
+  sales: TrendingUp,
+  marketing: Megaphone,
+  influencer: Radio,
+  support: Headphones,
+  security: Lock,
+  author: BookOpen,
+  vendor: Store,
+  reseller: Network,
+  community: Users,
+  management: Crown,
 };
 
 const MODULE_ICON: Record<Module, typeof Star> = {
-  identity: Shield, recognition: Award, progress: Zap,
-  community: Users, collections: Gem, analytics: Target,
+  identity: Shield,
+  recognition: Award,
+  progress: Zap,
+  community: Users,
+  collections: Gem,
+  analytics: Target,
 };
 
 // ── shape system — different per (role, gradeTier % shapes) ──
-type ShapeKey = "shield" | "hex" | "star8" | "rosette" | "octagon" | "lozenge" | "laurel" | "crown" | "diamond";
+type ShapeKey =
+  "shield" | "hex" | "star8" | "rosette" | "octagon" | "lozenge" | "laurel" | "crown" | "diamond";
 const SHAPE_BY_ROLE: Record<Role, ShapeKey[]> = {
-  developer:  ["hex", "octagon", "shield"],
-  designer:   ["rosette", "lozenge", "hex"],
-  sales:      ["star8", "shield", "crown"],
-  marketing:  ["rosette", "star8", "hex"],
+  developer: ["hex", "octagon", "shield"],
+  designer: ["rosette", "lozenge", "hex"],
+  sales: ["star8", "shield", "crown"],
+  marketing: ["rosette", "star8", "hex"],
   influencer: ["star8", "rosette", "diamond"],
-  support:    ["shield", "hex", "octagon"],
-  security:   ["shield", "octagon", "lozenge"],
-  author:     ["lozenge", "rosette", "laurel"],
-  vendor:     ["octagon", "shield", "crown"],
-  reseller:   ["hex", "octagon", "star8"],
-  community:  ["laurel", "rosette", "shield"],
+  support: ["shield", "hex", "octagon"],
+  security: ["shield", "octagon", "lozenge"],
+  author: ["lozenge", "rosette", "laurel"],
+  vendor: ["octagon", "shield", "crown"],
+  reseller: ["hex", "octagon", "star8"],
+  community: ["laurel", "rosette", "shield"],
   management: ["crown", "diamond", "star8"],
 };
 
@@ -139,9 +203,9 @@ function shapePath(kind: ShapeKey): string {
 export type InsigniaKind = "badge" | "trophy" | "medal";
 
 export interface InsigniaProps {
-  name: string;          // used to seed shape variation
+  name: string; // used to seed shape variation
   grade: Grade;
-  role?: Role;           // inferred from name if omitted
+  role?: Role; // inferred from name if omitted
   module?: Module;
   kind?: InsigniaKind;
   size?: number;
@@ -150,8 +214,14 @@ export interface InsigniaProps {
 }
 
 export function Insignia({
-  name, grade, role, module: mod, kind = "badge",
-  size = 80, unlocked = true, className = "",
+  name,
+  grade,
+  role,
+  module: mod,
+  kind = "badge",
+  size = 80,
+  unlocked = true,
+  className = "",
 }: InsigniaProps) {
   const g = GRADES[grade] ?? GRADES.Gold;
   const r = role ?? inferRole(name);
@@ -163,9 +233,9 @@ export function Insignia({
   const ModIcon = mod ? MODULE_ICON[mod] : Sparkles;
 
   // unique ornament rotation / pip count per item
-  const rot = (seed >> 3) % 30 - 15;
+  const rot = ((seed >> 3) % 30) - 15;
   const pipCount = 4 + ((seed >> 5) % 4); // 4–7 pips
-  const engrave = (seed >> 11) % 5;       // 0–4 engraving variants
+  const engrave = (seed >> 11) % 5; // 0–4 engraving variants
 
   // grade-driven flourishes
   const showLaurel = g.tier >= 6;
@@ -196,7 +266,10 @@ export function Insignia({
         </radialGradient>
         <filter id={`${uid}-glow`} x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="2.4" result="b" />
-          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
         </filter>
         <linearGradient id={`${uid}-ribbon`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={g.b} />
@@ -217,13 +290,18 @@ export function Insignia({
         <g>
           <rect x="34" y="118" width="52" height="10" rx="2" fill={g.rim} />
           <rect x="40" y="108" width="40" height="10" rx="2" fill={`url(#${uid}-ribbon)`} />
-          <rect x="48" y="98"  width="24" height="12" rx="2" fill={g.rim} />
+          <rect x="48" y="98" width="24" height="12" rx="2" fill={g.rim} />
         </g>
       )}
 
       {/* medal chain (medal kind) */}
       {kind === "medal" && (
-        <path d="M20 6 Q60 -6 100 6 L78 36 Q60 30 42 36 Z" fill="none" stroke={g.rim} strokeWidth="3" />
+        <path
+          d="M20 6 Q60 -6 100 6 L78 36 Q60 30 42 36 Z"
+          fill="none"
+          stroke={g.rim}
+          strokeWidth="3"
+        />
       )}
 
       {/* outer halo */}
@@ -243,8 +321,26 @@ export function Insignia({
         <path d={path} fill={`url(#${uid}-body)`} stroke={g.rim} strokeWidth="2.4" />
         <path d={path} fill={`url(#${uid}-shine)`} />
         {/* engraving rings */}
-        {engrave > 0 && <path d={path} fill="none" stroke={g.a} strokeOpacity="0.45" strokeWidth="0.8" transform="translate(50 50) scale(0.78) translate(-50 -50)" />}
-        {engrave > 2 && <path d={path} fill="none" stroke={g.rim} strokeOpacity="0.6" strokeWidth="0.6" transform="translate(50 50) scale(0.62) translate(-50 -50)" />}
+        {engrave > 0 && (
+          <path
+            d={path}
+            fill="none"
+            stroke={g.a}
+            strokeOpacity="0.45"
+            strokeWidth="0.8"
+            transform="translate(50 50) scale(0.78) translate(-50 -50)"
+          />
+        )}
+        {engrave > 2 && (
+          <path
+            d={path}
+            fill="none"
+            stroke={g.rim}
+            strokeOpacity="0.6"
+            strokeWidth="0.6"
+            transform="translate(50 50) scale(0.62) translate(-50 -50)"
+          />
+        )}
       </g>
 
       {/* laurel wreath */}
@@ -254,8 +350,22 @@ export function Insignia({
           <path d="M106 78 Q116 56 102 32" />
           {Array.from({ length: 5 }).map((_, i) => (
             <g key={i}>
-              <ellipse cx={10 + i * 2} cy={70 - i * 10} rx="3.5" ry="1.6" fill={g.b} transform={`rotate(${-30 - i * 8} ${10 + i * 2} ${70 - i * 10})`} />
-              <ellipse cx={110 - i * 2} cy={70 - i * 10} rx="3.5" ry="1.6" fill={g.b} transform={`rotate(${30 + i * 8} ${110 - i * 2} ${70 - i * 10})`} />
+              <ellipse
+                cx={10 + i * 2}
+                cy={70 - i * 10}
+                rx="3.5"
+                ry="1.6"
+                fill={g.b}
+                transform={`rotate(${-30 - i * 8} ${10 + i * 2} ${70 - i * 10})`}
+              />
+              <ellipse
+                cx={110 - i * 2}
+                cy={70 - i * 10}
+                rx="3.5"
+                ry="1.6"
+                fill={g.b}
+                transform={`rotate(${30 + i * 8} ${110 - i * 2} ${70 - i * 10})`}
+              />
             </g>
           ))}
         </g>
@@ -289,7 +399,9 @@ export function Insignia({
       <g transform="translate(60 124)">
         {Array.from({ length: Math.min(g.tier, 10) }).map((_, i) => {
           const x = (i - (Math.min(g.tier, 10) - 1) / 2) * 7;
-          return <circle key={i} cx={x} cy={0} r="2.2" fill={g.glow} stroke={g.rim} strokeWidth="0.6" />;
+          return (
+            <circle key={i} cx={x} cy={0} r="2.2" fill={g.glow} stroke={g.rim} strokeWidth="0.6" />
+          );
         })}
       </g>
     </svg>
@@ -298,15 +410,30 @@ export function Insignia({
 
 // Helper: pick module from a screen / context
 export const MODULE_FROM_LABEL: Record<string, Module> = {
-  Passport: "identity", Membership: "identity", "Identity Card": "identity",
-  "Public Profile": "identity", "QR Identity": "identity", Verification: "identity",
-  Achievements: "recognition", Badges: "recognition", Trophies: "recognition",
-  Recognition: "recognition", Certificates: "recognition",
-  "Levels & XP": "progress", Ranks: "progress", Missions: "progress",
-  Journey: "progress", Reputation: "progress",
-  Chat: "community", Leaderboard: "community", "Hall Of Fame": "community",
-  Rewards: "community", "Community Ranking": "community",
+  Passport: "identity",
+  Membership: "identity",
+  "Identity Card": "identity",
+  "Public Profile": "identity",
+  "QR Identity": "identity",
+  Verification: "identity",
+  Achievements: "recognition",
+  Badges: "recognition",
+  Trophies: "recognition",
+  Recognition: "recognition",
+  Certificates: "recognition",
+  "Levels & XP": "progress",
+  Ranks: "progress",
+  Missions: "progress",
+  Journey: "progress",
+  Reputation: "progress",
+  Chat: "community",
+  Leaderboard: "community",
+  "Hall Of Fame": "community",
+  Rewards: "community",
+  "Community Ranking": "community",
   Collections: "collections",
-  "XP Analytics": "analytics", "Achievement Analytics": "analytics",
-  "Engagement Analytics": "analytics", "Growth Analytics": "analytics",
+  "XP Analytics": "analytics",
+  "Achievement Analytics": "analytics",
+  "Engagement Analytics": "analytics",
+  "Growth Analytics": "analytics",
 };

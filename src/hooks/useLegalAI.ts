@@ -58,8 +58,7 @@ export function useLegalAI() {
         // scrolls past its own disclaimer is a draft somebody will quote.
         return `${res.text}\n\n---\n${res.notice}`;
       } catch (error) {
-        const message =
-          error instanceof Error ? error.message : "The legal AI request failed.";
+        const message = error instanceof Error ? error.message : "The legal AI request failed.";
         toast.error("Legal AI unavailable", { description: message });
         return null;
       } finally {

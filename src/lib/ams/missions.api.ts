@@ -3,8 +3,13 @@
 
 import { grant } from "./rewards.engine";
 import type {
-  Mission, MissionRule, MissionStatus, MissionType,
-  QuestChain, QuestMode, QuestStage,
+  Mission,
+  MissionRule,
+  MissionStatus,
+  MissionType,
+  QuestChain,
+  QuestMode,
+  QuestStage,
 } from "./missions.types";
 
 const uid = () =>
@@ -12,15 +17,28 @@ const uid = () =>
     ? crypto.randomUUID()
     : Math.random().toString(36).slice(2);
 const now = () => new Date().toISOString();
-const slugify = (s: string) => s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
 let MISSIONS: Mission[] = [];
 let QUESTS: QuestChain[] = [];
 
 type Listener = () => void;
 const listeners = new Set<Listener>();
-export function subscribeMissions(fn: Listener) { listeners.add(fn); return () => { listeners.delete(fn); }; }
-const emit = () => { missionsVersion++; for (const fn of listeners) fn(); };
+export function subscribeMissions(fn: Listener) {
+  listeners.add(fn);
+  return () => {
+    listeners.delete(fn);
+  };
+}
+const emit = () => {
+  missionsVersion++;
+  for (const fn of listeners) fn();
+};
 
 // Stable snapshot for useSyncExternalStore — a fresh array on every read
 // causes an infinite render loop.
@@ -35,7 +53,9 @@ export function missionsSnapshot(): Mission[] {
   return snapshotValue;
 }
 const EMPTY_MISSIONS: Mission[] = [];
-export function missionsServerSnapshot(): Mission[] { return EMPTY_MISSIONS; }
+export function missionsServerSnapshot(): Mission[] {
+  return EMPTY_MISSIONS;
+}
 
 /* ============ Missions ============ */
 export interface MissionDraft {
@@ -50,13 +70,16 @@ export interface MissionDraft {
   status?: MissionStatus;
 }
 
-export function listMissions(filters: { type?: MissionType; status?: MissionStatus; search?: string } = {}): Mission[] {
+export function listMissions(
+  filters: { type?: MissionType; status?: MissionStatus; search?: string } = {},
+): Mission[] {
   return MISSIONS.filter((m) => {
     if (filters.type && m.type !== filters.type) return false;
     if (filters.status && m.status !== filters.status) return false;
     if (filters.search) {
       const q = filters.search.toLowerCase();
-      if (!m.name.toLowerCase().includes(q) && !m.description.toLowerCase().includes(q)) return false;
+      if (!m.name.toLowerCase().includes(q) && !m.description.toLowerCase().includes(q))
+        return false;
     }
     return true;
   });
@@ -79,7 +102,10 @@ export function createMission(d: MissionDraft): Mission {
     hidden: d.hidden ?? d.type === "hidden",
     rules: d.rules ?? [],
     rewards: { xp: 0, coins: 0, tokens: 0, awardIds: [], ...d.rewards },
-    activation: { repeatable: d.type === "daily" || d.type === "weekly" || d.type === "monthly", ...d.activation },
+    activation: {
+      repeatable: d.type === "daily" || d.type === "weekly" || d.type === "monthly",
+      ...d.activation,
+    },
     progress: { current: 0, target },
     createdAt: now(),
     updatedAt: now(),
@@ -146,8 +172,12 @@ export interface QuestDraft {
   finaleRewards?: Partial<QuestChain["finaleRewards"]>;
 }
 
-export function listQuests(): QuestChain[] { return QUESTS; }
-export function getQuest(id: string): QuestChain | undefined { return QUESTS.find((q) => q.id === id); }
+export function listQuests(): QuestChain[] {
+  return QUESTS;
+}
+export function getQuest(id: string): QuestChain | undefined {
+  return QUESTS.find((q) => q.id === id);
+}
 
 export function createQuest(d: QuestDraft): QuestChain {
   const stages: QuestStage[] = (d.stages ?? []).map((s, i) => ({
@@ -183,10 +213,16 @@ export function updateQuest(id: string, patch: Partial<QuestChain>): QuestChain 
   return QUESTS[idx];
 }
 
-export function deleteQuest(id: string) { QUESTS = QUESTS.filter((q) => q.id !== id); emit(); }
+export function deleteQuest(id: string) {
+  QUESTS = QUESTS.filter((q) => q.id !== id);
+  emit();
+}
 
 /** Add / reorder / remove a stage. */
-export function upsertStage(questId: string, stage: Partial<QuestStage> & { id?: string; title: string }): QuestChain {
+export function upsertStage(
+  questId: string,
+  stage: Partial<QuestStage> & { id?: string; title: string },
+): QuestChain {
   const q = getQuest(questId);
   if (!q) throw new Error("Quest not found");
   const stages = [...q.stages];
@@ -220,7 +256,9 @@ export function removeStage(questId: string, stageId: string): QuestChain {
 export function completeStage(questId: string, stageId: string): QuestChain {
   const q = getQuest(questId);
   if (!q) throw new Error("Quest not found");
-  const stages = q.stages.map((s) => (s.id === stageId ? { ...s, status: "completed" as const } : s));
+  const stages = q.stages.map((s) =>
+    s.id === stageId ? { ...s, status: "completed" as const } : s,
+  );
   const completedIds = new Set(stages.filter((s) => s.status === "completed").map((s) => s.id));
   for (let i = 0; i < stages.length; i++) {
     const s = stages[i];
@@ -231,15 +269,21 @@ export function completeStage(questId: string, stageId: string): QuestChain {
   const done = stages.find((s) => s.id === stageId);
   if (done) {
     grant({
-      xp: done.rewards.xp, coins: done.rewards.coins, tokens: done.rewards.tokens,
-      awardIds: done.rewards.awardIds, reason: `quest:${q.slug}:stage:${done.order}`,
+      xp: done.rewards.xp,
+      coins: done.rewards.coins,
+      tokens: done.rewards.tokens,
+      awardIds: done.rewards.awardIds,
+      reason: `quest:${q.slug}:stage:${done.order}`,
     });
   }
   const allDone = stages.every((s) => s.status === "completed");
   if (allDone) {
     grant({
-      xp: q.finaleRewards.xp, coins: q.finaleRewards.coins, tokens: q.finaleRewards.tokens,
-      awardIds: q.finaleRewards.awardIds, reason: `quest:${q.slug}:finale`,
+      xp: q.finaleRewards.xp,
+      coins: q.finaleRewards.coins,
+      tokens: q.finaleRewards.tokens,
+      awardIds: q.finaleRewards.awardIds,
+      reason: `quest:${q.slug}:finale`,
     });
   }
   return updateQuest(questId, { stages, status: allDone ? "completed" : q.status });

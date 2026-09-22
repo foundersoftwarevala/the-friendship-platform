@@ -6,9 +6,17 @@ export const Route = createFileRoute("/ams/vendor-progression")({
   head: () => ({
     meta: [
       { title: "Vendor Progression — 10 Stage Career" },
-      { name: "description", content: "A cinematic 10-stage vendor career: from First Listing to Founding Vendor. Every stage unlocks a unique storefront, passport, trophy, medal and certificate." },
+      {
+        name: "description",
+        content:
+          "A cinematic 10-stage vendor career: from First Listing to Founding Vendor. Every stage unlocks a unique storefront, passport, trophy, medal and certificate.",
+      },
       { property: "og:title", content: "Vendor Progression — 10 Stage Career" },
-      { property: "og:description", content: "Stage-by-stage timeline for the Vendor role, with unlock celebrations and premium sound cues." },
+      {
+        property: "og:description",
+        content:
+          "Stage-by-stage timeline for the Vendor role, with unlock celebrations and premium sound cues.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

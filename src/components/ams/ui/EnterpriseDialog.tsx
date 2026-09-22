@@ -1,8 +1,13 @@
 import * as React from "react";
 import { AlertTriangle, CheckCircle2, Loader2, X } from "lucide-react";
 import {
-  Dialog, DialogClose, DialogContent, DialogDescription,
-  DialogFooter, DialogHeader, DialogTitle,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -47,10 +52,23 @@ const SIZES: Record<NonNullable<EnterpriseDialogProps["size"]>, string> = {
  * states — plus focus management, Escape-to-close and sound feedback.
  */
 export function EnterpriseDialog({
-  open, onOpenChange, title, description, eyebrow, icon, children,
-  state = "idle", statusMessage, confirmLabel, cancelLabel = "Cancel",
-  onConfirm, confirmVariant = "default", confirmDisabled,
-  footerLeading, size = "md", className,
+  open,
+  onOpenChange,
+  title,
+  description,
+  eyebrow,
+  icon,
+  children,
+  state = "idle",
+  statusMessage,
+  confirmLabel,
+  cancelLabel = "Cancel",
+  onConfirm,
+  confirmVariant = "default",
+  confirmDisabled,
+  footerLeading,
+  size = "md",
+  className,
 }: EnterpriseDialogProps) {
   const loading = state === "loading";
 
@@ -69,8 +87,12 @@ export function EnterpriseDialog({
     >
       <DialogContent
         className={cn("p-0 gap-0 overflow-hidden", SIZES[size], className)}
-        onEscapeKeyDown={(e) => { if (loading) e.preventDefault(); }}
-        onInteractOutside={(e) => { if (loading) e.preventDefault(); }}
+        onEscapeKeyDown={(e) => {
+          if (loading) e.preventDefault();
+        }}
+        onInteractOutside={(e) => {
+          if (loading) e.preventDefault();
+        }}
       >
         <DialogHeader className="px-5 pt-5 pb-4 text-left">
           <div className="flex items-start gap-3">
@@ -109,7 +131,8 @@ export function EnterpriseDialog({
             aria-live="polite"
             className={cn(
               "mx-5 mb-4 flex items-center gap-2 rounded-md border px-3 py-2 text-xs",
-              state === "error" && "border-destructive/40 bg-destructive/10 text-destructive motion-shake",
+              state === "error" &&
+                "border-destructive/40 bg-destructive/10 text-destructive motion-shake",
               state === "success" && "border-success/40 bg-success/10 text-success",
               state === "loading" && "border-border bg-muted/30 text-muted-foreground",
             )}
@@ -127,7 +150,9 @@ export function EnterpriseDialog({
           </div>
           <div className="flex items-center justify-end gap-2">
             <DialogClose asChild>
-              <Button variant="ghost" size="sm" disabled={loading}>{cancelLabel}</Button>
+              <Button variant="ghost" size="sm" disabled={loading}>
+                {cancelLabel}
+              </Button>
             </DialogClose>
             {confirmLabel && (
               <Button

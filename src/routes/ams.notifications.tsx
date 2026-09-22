@@ -5,9 +5,15 @@ export const Route = createFileRoute("/ams/notifications")({
   head: () => ({
     meta: [
       { title: "Notification Engine — AMS" },
-      { name: "description", content: "Templates, rules, channels (in-app, email, push, sms) and delivery analytics." },
+      {
+        name: "description",
+        content: "Templates, rules, channels (in-app, email, push, sms) and delivery analytics.",
+      },
       { property: "og:title", content: "Notification Engine — AMS" },
-      { property: "og:description", content: "Templates, rules, channels (in-app, email, push, sms) and delivery analytics." },
+      {
+        property: "og:description",
+        content: "Templates, rules, channels (in-app, email, push, sms) and delivery analytics.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,9 +49,33 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "n1", name: "Achievement unlocked", channel: "In-App", event: "Unlock", sent: "48,204", open: "94%", status: <StatusChip tone="success">Active</StatusChip> },
-        { id: "n2", name: "Weekly digest", channel: "Email", event: "System", sent: "12,481", open: "42%", status: <StatusChip tone="success">Active</StatusChip> },
-        { id: "n3", name: "Rank promotion", channel: "Push", event: "Promotion", sent: "3,412", open: "78%", status: <StatusChip tone="success">Active</StatusChip> },
+        {
+          id: "n1",
+          name: "Achievement unlocked",
+          channel: "In-App",
+          event: "Unlock",
+          sent: "48,204",
+          open: "94%",
+          status: <StatusChip tone="success">Active</StatusChip>,
+        },
+        {
+          id: "n2",
+          name: "Weekly digest",
+          channel: "Email",
+          event: "System",
+          sent: "12,481",
+          open: "42%",
+          status: <StatusChip tone="success">Active</StatusChip>,
+        },
+        {
+          id: "n3",
+          name: "Rank promotion",
+          channel: "Push",
+          event: "Promotion",
+          sent: "3,412",
+          open: "78%",
+          status: <StatusChip tone="success">Active</StatusChip>,
+        },
       ]}
     />
   );

@@ -46,9 +46,7 @@ export function useAutoImportSuppliedDemos() {
 
     try {
       const importedDemoSlugs = new Set((products || []).map((p: any) => p.slug));
-      const missingDemos = SUPPLIED_DEMO_SLUGS.filter(
-        (slug) => !importedDemoSlugs.has(slug)
-      );
+      const missingDemos = SUPPLIED_DEMO_SLUGS.filter((slug) => !importedDemoSlugs.has(slug));
 
       // If demos are present, we're good
       if (missingDemos.length === 0) {
@@ -62,8 +60,8 @@ export function useAutoImportSuppliedDemos() {
       if (missingDemos.length > SUPPLIED_DEMO_SLUGS.length / 2) {
         console.log(
           `[auto-check] Supplied demos not yet in database (${missingDemos.length} missing). ` +
-          `This is normal if SUPABASE_SERVICE_ROLE_KEY was not configured. ` +
-          `The demos will be imported on next server restart with proper credentials.`
+            `This is normal if SUPABASE_SERVICE_ROLE_KEY was not configured. ` +
+            `The demos will be imported on next server restart with proper credentials.`,
         );
       }
     } catch (err) {

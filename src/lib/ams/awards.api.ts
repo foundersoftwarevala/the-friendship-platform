@@ -6,22 +6,33 @@
 // returned reflect optimistic local mutations performed in this session.
 
 import type {
-  Award, AwardFilters, AwardRewards, AwardStatus,
-  AwardType, AwardCategory, Department, PageResult, Rarity,
+  Award,
+  AwardFilters,
+  AwardRewards,
+  AwardStatus,
+  AwardType,
+  AwardCategory,
+  Department,
+  PageResult,
+  Rarity,
 } from "./types";
-
 
 // In-memory store for the current session. NOT persisted.
 // TODO: replace with `supabase.from("awards")…` once the schema lands.
 let STORE: Award[] = [];
 
 const now = () => new Date().toISOString();
-const uid = () => (typeof crypto !== "undefined" && "randomUUID" in crypto
-  ? crypto.randomUUID()
-  : Math.random().toString(36).slice(2));
+const uid = () =>
+  typeof crypto !== "undefined" && "randomUUID" in crypto
+    ? crypto.randomUUID()
+    : Math.random().toString(36).slice(2);
 
 function slugify(s: string): string {
-  return s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 function matches(a: Award, f: AwardFilters): boolean {
@@ -76,7 +87,6 @@ export interface AwardDraft {
   supportedRoles?: string[];
 }
 
-
 export async function createAward(draft: AwardDraft): Promise<Award> {
   const a: Award = {
     id: uid(),
@@ -123,14 +133,14 @@ async function setStatus(id: string, status: AwardStatus, action: string): Promi
   });
 }
 
-export const archiveAward    = (id: string) => setStatus(id, "archived", "archived");
-export const restoreAward    = (id: string) => setStatus(id, "draft", "restored");
-export const approveAward    = (id: string) => setStatus(id, "approved", "approved");
-export const rejectAward     = (id: string) => setStatus(id, "rejected", "rejected");
-export const publishAward    = (id: string) => setStatus(id, "published", "published");
-export const unpublishAward  = (id: string) => setStatus(id, "unpublished", "unpublished");
-export const disableAward    = (id: string) => setStatus(id, "disabled", "disabled");
-export const enableAward     = (id: string) => setStatus(id, "draft", "enabled");
+export const archiveAward = (id: string) => setStatus(id, "archived", "archived");
+export const restoreAward = (id: string) => setStatus(id, "draft", "restored");
+export const approveAward = (id: string) => setStatus(id, "approved", "approved");
+export const rejectAward = (id: string) => setStatus(id, "rejected", "rejected");
+export const publishAward = (id: string) => setStatus(id, "published", "published");
+export const unpublishAward = (id: string) => setStatus(id, "unpublished", "unpublished");
+export const disableAward = (id: string) => setStatus(id, "disabled", "disabled");
+export const enableAward = (id: string) => setStatus(id, "draft", "enabled");
 
 export async function deleteAward(id: string): Promise<void> {
   STORE = STORE.filter((a) => a.id !== id);
@@ -158,7 +168,12 @@ export async function cloneAward(id: string): Promise<Award> {
 export async function bulkUpdate(ids: string[], patch: Partial<Award>): Promise<number> {
   let n = 0;
   for (const id of ids) {
-    try { await updateAward(id, patch); n++; } catch { /* skip */ }
+    try {
+      await updateAward(id, patch);
+      n++;
+    } catch {
+      /* skip */
+    }
   }
   return n;
 }
@@ -172,7 +187,12 @@ export async function bulkDelete(ids: string[]): Promise<number> {
 export async function bulkSetStatus(ids: string[], status: AwardStatus): Promise<number> {
   let n = 0;
   for (const id of ids) {
-    try { await setStatus(id, status, `bulk:${status}`); n++; } catch { /* skip */ }
+    try {
+      await setStatus(id, status, `bulk:${status}`);
+      n++;
+    } catch {
+      /* skip */
+    }
   }
   return n;
 }

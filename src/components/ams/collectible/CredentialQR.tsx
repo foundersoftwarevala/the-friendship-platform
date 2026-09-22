@@ -73,9 +73,15 @@ export function CredentialQR({
   return (
     <div
       className="rounded-xl border p-3 flex gap-3 items-center"
-      style={{ borderColor: `${accent}44`, background: `linear-gradient(135deg, ${accent}12, transparent)` }}
+      style={{
+        borderColor: `${accent}44`,
+        background: `linear-gradient(135deg, ${accent}12, transparent)`,
+      }}
     >
-      <div className="rounded-lg p-1.5 shrink-0" style={{ background: "#fff", boxShadow: `0 0 22px -8px ${accent}` }}>
+      <div
+        className="rounded-lg p-1.5 shrink-0"
+        style={{ background: "#fff", boxShadow: `0 0 22px -8px ${accent}` }}
+      >
         {dataUrl ? (
           <img
             src={dataUrl}
@@ -85,18 +91,24 @@ export function CredentialQR({
             style={{ width: size, height: size }}
           />
         ) : (
-          <div className="flex items-center justify-center text-black/40" style={{ width: size, height: size }}>
+          <div
+            className="flex items-center justify-center text-background/40"
+            style={{ width: size, height: size }}
+          >
             <QrCode className="h-6 w-6" />
           </div>
         )}
       </div>
 
       <div className="min-w-0 space-y-1.5">
-        <div className="text-[10px] font-mono uppercase tracking-[0.25em]" style={{ color: `${accent}cc` }}>
+        <div
+          className="text-[10px] font-mono uppercase tracking-[0.25em]"
+          style={{ color: `${accent}cc` }}
+        >
           Verification Code
         </div>
-        <div className="font-mono text-xs text-white break-all">{code}</div>
-        <div className="text-[10px] text-white/55">
+        <div className="font-mono text-xs text-foreground break-all">{code}</div>
+        <div className="text-[10px] text-foreground/55">
           {numberLabel} {number}
         </div>
         <div className="flex flex-wrap items-center gap-1.5 pt-1">
@@ -104,7 +116,10 @@ export function CredentialQR({
             to="/verify/$code"
             params={{ code }}
             className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-semibold"
-            style={{ background: `linear-gradient(135deg, ${accent}, ${accent}aa)`, color: "#0b0f1a" }}
+            style={{
+              background: `linear-gradient(135deg, ${accent}, ${accent}aa)`,
+              color: "#0b0f1a",
+            }}
           >
             <ShieldCheck className="h-3 w-3" /> Verify
           </Link>
@@ -113,23 +128,24 @@ export function CredentialQR({
             onClick={copyCode}
             title="Copy verification code"
             aria-label={`Copy verification code ${code}`}
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-white/80 hover:bg-white/5"
+            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-foreground/80 hover:bg-foreground/5"
             style={{ borderColor: `${accent}55` }}
           >
-            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />} {copied ? "Copied" : "Code"}
+            {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}{" "}
+            {copied ? "Copied" : "Code"}
           </button>
           <button
             type="button"
             onClick={downloadQr}
             title="Download QR code"
             aria-label="Download verification QR code as PNG"
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-white/80 hover:bg-white/5"
+            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-foreground/80 hover:bg-foreground/5"
             style={{ borderColor: `${accent}55` }}
           >
             <Download className="h-3 w-3" /> QR
           </button>
         </div>
-        <div className="text-[10px] text-white/40 font-mono">{path}</div>
+        <div className="text-[10px] text-foreground/40 font-mono">{path}</div>
       </div>
     </div>
   );

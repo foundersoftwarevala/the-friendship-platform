@@ -5,8 +5,18 @@
 import type { PatternKind } from "@/lib/ams/role-themes";
 
 export function RolePattern({
-  kind, color, opacity = 0.18, id, className,
-}: { kind: PatternKind; color: string; opacity?: number; id: string; className?: string }) {
+  kind,
+  color,
+  opacity = 0.18,
+  id,
+  className,
+}: {
+  kind: PatternKind;
+  color: string;
+  opacity?: number;
+  id: string;
+  className?: string;
+}) {
   const pid = `pat-${id}`;
   const c = color;
 
@@ -27,7 +37,12 @@ export function RolePattern({
     ),
     "royal-crest": (
       <pattern id={pid} width="70" height="70" patternUnits="userSpaceOnUse">
-        <path d="M35 8 L48 20 L48 40 L35 52 L22 40 L22 20 Z" fill="none" stroke={c} strokeWidth="0.7" />
+        <path
+          d="M35 8 L48 20 L48 40 L35 52 L22 40 L22 20 Z"
+          fill="none"
+          stroke={c}
+          strokeWidth="0.7"
+        />
         <path d="M35 20 L42 28 L35 40 L28 28 Z" fill={c} opacity="0.5" />
       </pattern>
     ),
@@ -56,13 +71,33 @@ export function RolePattern({
     "sound-waves": (
       <pattern id={pid} width="60" height="30" patternUnits="userSpaceOnUse">
         <path d="M0 15 Q 15 0 30 15 T 60 15" stroke={c} strokeWidth="0.7" fill="none" />
-        <path d="M0 15 Q 15 30 30 15 T 60 15" stroke={c} strokeWidth="0.4" fill="none" opacity="0.6" />
+        <path
+          d="M0 15 Q 15 30 30 15 T 60 15"
+          stroke={c}
+          strokeWidth="0.4"
+          fill="none"
+          opacity="0.6"
+        />
       </pattern>
     ),
     "brush-strokes": (
       <pattern id={pid} width="70" height="70" patternUnits="userSpaceOnUse">
-        <path d="M4 20 Q 30 4 60 26" stroke={c} strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.6" />
-        <path d="M6 50 Q 34 40 64 58" stroke={c} strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.5" />
+        <path
+          d="M4 20 Q 30 4 60 26"
+          stroke={c}
+          strokeWidth="1.4"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.6"
+        />
+        <path
+          d="M6 50 Q 34 40 64 58"
+          stroke={c}
+          strokeWidth="1"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
       </pattern>
     ),
     "search-orbit": (

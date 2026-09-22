@@ -8,7 +8,10 @@ export const Route = createFileRoute("/ams/trust-seal-vault")({
       { title: "Trust Seal Vault — Premium 3D Wax Seals" },
       { name: "description", content: "Heavy wax-stamped trust seals, one per role." },
       { property: "og:title", content: "Trust Seal Vault — Premium 3D Wax Seals" },
-      { property: "og:description", content: "11 hand-embossed trust seals with role crests and silk ribbons." },
+      {
+        property: "og:description",
+        content: "11 hand-embossed trust seals with role crests and silk ribbons.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

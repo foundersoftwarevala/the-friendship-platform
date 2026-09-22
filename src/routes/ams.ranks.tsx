@@ -16,9 +16,15 @@ export const Route = createFileRoute("/ams/ranks")({
   head: () => ({
     meta: [
       { title: "Rank Engine — AMS" },
-      { name: "description", content: "Every recognition rank, the XP it opens at and how many people hold it." },
+      {
+        name: "description",
+        content: "Every recognition rank, the XP it opens at and how many people hold it.",
+      },
       { property: "og:title", content: "Rank Engine — AMS" },
-      { property: "og:description", content: "Every recognition rank, the XP it opens at and how many people hold it." },
+      {
+        property: "og:description",
+        content: "Every recognition rank, the XP it opens at and how many people hold it.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -60,7 +66,10 @@ function Page() {
         { label: "Ranks", value: ranks.length },
         { label: "Held", value: held },
         { label: "People ranked", value: people },
-        { label: "Highest opens at", value: (ranks[ranks.length - 1]?.minXp ?? 0).toLocaleString() },
+        {
+          label: "Highest opens at",
+          value: (ranks[ranks.length - 1]?.minXp ?? 0).toLocaleString(),
+        },
       ]}
       columns={[
         { key: "n", label: "#", align: "right" },

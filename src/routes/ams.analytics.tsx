@@ -5,9 +5,15 @@ export const Route = createFileRoute("/ams/analytics")({
   head: () => ({
     meta: [
       { title: "Analytics Engine — AMS" },
-      { name: "description", content: "Engagement, retention, unlock funnels, cohort analysis and reward ROI." },
+      {
+        name: "description",
+        content: "Engagement, retention, unlock funnels, cohort analysis and reward ROI.",
+      },
       { property: "og:title", content: "Analytics Engine — AMS" },
-      { property: "og:description", content: "Engagement, retention, unlock funnels, cohort analysis and reward ROI." },
+      {
+        property: "og:description",
+        content: "Engagement, retention, unlock funnels, cohort analysis and reward ROI.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,9 +49,33 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "an1", name: "Weekly engagement", type: "Engagement", runs: "482", owner: "@ops", updated: "2h ago", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "an2", name: "Onboarding funnel", type: "Funnel", runs: "128", owner: "@growth", updated: "1d ago", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "an3", name: "Reward ROI — Q3", type: "ROI", runs: "12", owner: "@finance", updated: "3d ago", status: <StatusChip tone="info">Draft</StatusChip> },
+        {
+          id: "an1",
+          name: "Weekly engagement",
+          type: "Engagement",
+          runs: "482",
+          owner: "@ops",
+          updated: "2h ago",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "an2",
+          name: "Onboarding funnel",
+          type: "Funnel",
+          runs: "128",
+          owner: "@growth",
+          updated: "1d ago",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "an3",
+          name: "Reward ROI — Q3",
+          type: "ROI",
+          runs: "12",
+          owner: "@finance",
+          updated: "3d ago",
+          status: <StatusChip tone="info">Draft</StatusChip>,
+        },
       ]}
     />
   );

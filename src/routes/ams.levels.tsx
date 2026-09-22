@@ -16,9 +16,17 @@ export const Route = createFileRoute("/ams/levels")({
   head: () => ({
     meta: [
       { title: "Level Engine — AMS" },
-      { name: "description", content: "Every progression level, the XP it requires and how many people currently sit on it." },
+      {
+        name: "description",
+        content:
+          "Every progression level, the XP it requires and how many people currently sit on it.",
+      },
       { property: "og:title", content: "Level Engine — AMS" },
-      { property: "og:description", content: "Every progression level, the XP it requires and how many people currently sit on it." },
+      {
+        property: "og:description",
+        content:
+          "Every progression level, the XP it requires and how many people currently sit on it.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

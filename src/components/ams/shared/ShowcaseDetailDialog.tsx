@@ -7,10 +7,20 @@ import { SVSeal, SVMicroMark, svCollectionNumber } from "@/components/ams/brand/
 import type { RoleDNA } from "@/lib/ams/roles";
 
 export type ShowcaseKind =
-  | "Signature Trophy" | "Latest Award" | "Featured Badge" | "Current Rank"
-  | "Digital Passport" | "Certificate" | "Membership" | "Identity Card"
-  | "Trust Seal" | "Legacy Medal" | "Honor Coin" | "XP Crystal"
-  | "Reward Chest" | "Guardian Shield";
+  | "Signature Trophy"
+  | "Latest Award"
+  | "Featured Badge"
+  | "Current Rank"
+  | "Digital Passport"
+  | "Certificate"
+  | "Membership"
+  | "Identity Card"
+  | "Trust Seal"
+  | "Legacy Medal"
+  | "Honor Coin"
+  | "XP Crystal"
+  | "Reward Chest"
+  | "Guardian Shield";
 
 export interface ShowcaseItem {
   kind: ShowcaseKind;
@@ -117,8 +127,14 @@ function criteria(role: RoleDNA, item: ShowcaseItem): string[] {
 }
 
 export function ShowcaseDetailDialog({
-  role, item, onOpenChange,
-}: { role: RoleDNA; item: ShowcaseItem | null; onOpenChange: (open: boolean) => void }) {
+  role,
+  item,
+  onOpenChange,
+}: {
+  role: RoleDNA;
+  item: ShowcaseItem | null;
+  onOpenChange: (open: boolean) => void;
+}) {
   const accent = role.accent;
   const open = item !== null;
 
@@ -158,12 +174,18 @@ export function ShowcaseDetailDialog({
 
           <div className="min-w-0 space-y-4">
             <section>
-              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">Description</h3>
-              <p className="mt-1 text-sm leading-relaxed text-foreground/90">{describe(role, item)}</p>
+              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                Description
+              </h3>
+              <p className="mt-1 text-sm leading-relaxed text-foreground/90">
+                {describe(role, item)}
+              </p>
             </section>
 
             <section>
-              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">Unlock criteria</h3>
+              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                Unlock criteria
+              </h3>
               <ul className="mt-1.5 space-y-1.5">
                 {criteria(role, item).map((c) => (
                   <li key={c} className="flex gap-2 text-[13px] leading-snug text-foreground/85">
@@ -178,13 +200,25 @@ export function ShowcaseDetailDialog({
             </section>
 
             <section>
-              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">Collection metadata</h3>
+              <h3 className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                Collection metadata
+              </h3>
               <dl className="mt-1.5 grid gap-x-4 gap-y-1.5 text-[12px] sm:grid-cols-2">
-                <Meta label="Collection No." value={svCollectionNumber(item.seed, role.passportPrefix)} accent={accent} mono />
+                <Meta
+                  label="Collection No."
+                  value={svCollectionNumber(item.seed, role.passportPrefix)}
+                  accent={accent}
+                  mono
+                />
                 <Meta label="Type" value={item.kind} accent={accent} />
                 <Meta label="Rarity" value={RARITY[item.kind]} accent={accent} />
                 <Meta label="Role" value={`${role.name} · ${role.archetype}`} accent={accent} />
-                <Meta label="Holder ID" value={`${role.passportPrefix}-00001`} accent={accent} mono />
+                <Meta
+                  label="Holder ID"
+                  value={`${role.passportPrefix}-00001`}
+                  accent={accent}
+                  mono
+                />
                 <Meta label="Verification" value={role.passport.verification} accent={accent} />
                 <Meta label="Signature" value={role.signature} accent={accent} />
                 <Meta label="Issuer" value="Software Vala" accent={accent} />
@@ -198,12 +232,25 @@ export function ShowcaseDetailDialog({
 }
 
 function Meta({
-  label, value, accent, mono,
-}: { label: string; value: string; accent: string; mono?: boolean }) {
+  label,
+  value,
+  accent,
+  mono,
+}: {
+  label: string;
+  value: string;
+  accent: string;
+  mono?: boolean;
+}) {
   return (
     <div className="flex min-w-0 items-baseline justify-between gap-2 border-b border-border/40 pb-1">
       <dt className="shrink-0 text-muted-foreground">{label}</dt>
-      <dd className={`truncate text-right ${mono ? "font-mono text-[11px]" : ""}`} style={{ color: accent }}>{value}</dd>
+      <dd
+        className={`truncate text-right ${mono ? "font-mono text-[11px]" : ""}`}
+        style={{ color: accent }}
+      >
+        {value}
+      </dd>
     </div>
   );
 }

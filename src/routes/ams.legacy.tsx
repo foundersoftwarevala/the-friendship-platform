@@ -6,9 +6,17 @@ export const Route = createFileRoute("/ams/legacy")({
   head: () => ({
     meta: [
       { title: "Legacy Engine — AMS" },
-      { name: "description", content: "Career timeline, major milestones, historic achievements, lifetime journey, digital museum." },
+      {
+        name: "description",
+        content:
+          "Career timeline, major milestones, historic achievements, lifetime journey, digital museum.",
+      },
       { property: "og:title", content: "Legacy Engine — AMS" },
-      { property: "og:description", content: "Career timeline, major milestones, historic achievements, lifetime journey, digital museum." },
+      {
+        property: "og:description",
+        content:
+          "Career timeline, major milestones, historic achievements, lifetime journey, digital museum.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -41,9 +49,38 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "lg1", title: <div className="flex items-center gap-2"><Archive className="h-4 w-4 text-purple-400" /><span className="font-medium">First 100 sales — Meera</span></div>, owner: "@meera.s", type: "Milestone", date: "2024-06-04", views: "12,481", status: <StatusChip tone="success">Featured</StatusChip> },
-        { id: "lg2", title: <span className="font-medium">Founder story — Arjun</span>, owner: "@arjun.k", type: "Story", date: "2024-01-12", views: "48,204", status: <StatusChip tone="success">Featured</StatusChip> },
-        { id: "lg3", title: <span className="font-medium">10K commit celebration</span>, owner: "Community", type: "Museum", date: "2025-08-22", views: "8,412", status: <StatusChip tone="info">Live</StatusChip> },
+        {
+          id: "lg1",
+          title: (
+            <div className="flex items-center gap-2">
+              <Archive className="h-4 w-4 text-accent-pink" />
+              <span className="font-medium">First 100 sales — Meera</span>
+            </div>
+          ),
+          owner: "@meera.s",
+          type: "Milestone",
+          date: "2024-06-04",
+          views: "12,481",
+          status: <StatusChip tone="success">Featured</StatusChip>,
+        },
+        {
+          id: "lg2",
+          title: <span className="font-medium">Founder story — Arjun</span>,
+          owner: "@arjun.k",
+          type: "Story",
+          date: "2024-01-12",
+          views: "48,204",
+          status: <StatusChip tone="success">Featured</StatusChip>,
+        },
+        {
+          id: "lg3",
+          title: <span className="font-medium">10K commit celebration</span>,
+          owner: "Community",
+          type: "Museum",
+          date: "2025-08-22",
+          views: "8,412",
+          status: <StatusChip tone="info">Live</StatusChip>,
+        },
       ]}
     />
   );

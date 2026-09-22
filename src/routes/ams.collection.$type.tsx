@@ -10,7 +10,12 @@ export const Route = createFileRoute("/ams/collection/$type")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Collection unavailable — Software Vala AMS" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Collection unavailable — Software Vala AMS" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     return {
       meta: [

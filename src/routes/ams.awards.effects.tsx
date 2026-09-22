@@ -102,13 +102,6 @@ function EffectsPage() {
         celebrate({ kind: "achievement", title: "Reward Claimed", subtitle: "Sent to wallet" }),
     },
     {
-      key: "milestone",
-      title: "Milestone",
-      description: "Diamond cascade.",
-      icon: Crown,
-      run: () => celebrate({ kind: "milestone", title: "Milestone Reached" }),
-    },
-    {
       key: "certificate",
       title: "Certificate Issued",
       description: "Seal press + verify chime.",
@@ -119,6 +112,13 @@ function EffectsPage() {
           title: "Certificate Issued",
           subtitle: "Credential verified",
         }),
+    },
+    {
+      key: "milestone",
+      title: "Milestone",
+      description: "Diamond cascade.",
+      icon: Crown,
+      run: () => celebrate({ kind: "milestone", title: "Milestone Reached" }),
     },
   ];
 

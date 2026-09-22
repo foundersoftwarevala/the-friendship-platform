@@ -1,36 +1,38 @@
 import { useEffect, useState } from "react";
 
-let overrideValue: boolean | null = null;
-const subscribers = new Set<(value: boolean) => void>();
+/**
+ * Returns true when the user prefers reduced motion — either via the OS setting
+ * (prefers-reduced-motion) or via the local override toggled from the UI.
+ * The override is persisted in localStorage under "ams:reduced-motion".
+ */
+const STORAGE_KEY = "ams:reduced-motion";
 
-function getDefaultReducedMotion() {
-  if (typeof window === "undefined") return false;
-
-  if (overrideValue !== null) return overrideValue;
-  const query = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-  return query?.matches ?? false;
+function readOverride(): boolean | null {
+  if (typeof window === "undefined") return null;
+  const v = window.localStorage.getItem(STORAGE_KEY);
+  if (v === "1") return true;
+  if (v === "0") return false;
+  return null;
 }
 
-function notifySubscribers(value: boolean) {
-  subscribers.forEach((subscriber) => subscriber(value));
-}
-
-export function useReducedMotion() {
-  const [reduced, setReduced] = useState(() => getDefaultReducedMotion());
+export function useReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    const onChange = () => setReduced(getDefaultReducedMotion());
-    subscribers.add(onChange);
-
-    const mediaQuery = typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
-    const listener = () => onChange();
-    mediaQuery?.addEventListener("change", listener);
-
-    setReduced(getDefaultReducedMotion());
-
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => {
+      const override = readOverride();
+      const next = override ?? mq.matches;
+      setReduced(next);
+      document.documentElement.dataset["reducedMotion"] = next ? "true" : "false";
+    };
+    sync();
+    mq.addEventListener?.("change", sync);
+    const onStorage = (e: StorageEvent) => e.key === STORAGE_KEY && sync();
+    window.addEventListener("storage", onStorage);
     return () => {
-      subscribers.delete(onChange);
-      mediaQuery?.removeEventListener("change", listener);
+      mq.removeEventListener?.("change", sync);
+      window.removeEventListener("storage", onStorage);
     };
   }, []);
 
@@ -38,6 +40,8 @@ export function useReducedMotion() {
 }
 
 export function setReducedMotionOverride(value: boolean | null) {
-  overrideValue = value;
-  notifySubscribers(getDefaultReducedMotion());
+  if (typeof window === "undefined") return;
+  if (value === null) window.localStorage.removeItem(STORAGE_KEY);
+  else window.localStorage.setItem(STORAGE_KEY, value ? "1" : "0");
+  window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
 }

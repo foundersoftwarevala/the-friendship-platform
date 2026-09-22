@@ -77,14 +77,10 @@ const SIGNED_OUT: AmsStanding = {
 };
 
 function clientFor(token: string) {
-  return createClient<Database>(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    {
-      auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-      global: { headers: { Authorization: `Bearer ${token}` } },
-    },
-  );
+  return createClient<Database>(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+    global: { headers: { Authorization: `Bearer ${token}` } },
+  });
 }
 
 /** A stable passport number for a person, derived from their account id. */
@@ -110,19 +106,31 @@ export const getAmsStanding = createServerFn({ method: "GET" }).handler(
     // person has not earned anything yet, which is a real answer.
     const [xp, achievements, badges, trophies, missions, claims, streak, profile] =
       await Promise.all([
-        supabase.from("user_xp").select("total_xp,current_level,current_rank")
-          .eq("user_id", userId).maybeSingle(),
+        supabase
+          .from("user_xp")
+          .select("total_xp,current_level,current_rank")
+          .eq("user_id", userId)
+          .maybeSingle(),
         // Joined to the catalogue so the UI receives slugs, which is what its
         // role definitions match on. Ids would silently match nothing.
-        supabase.from("user_achievements").select("achievements(slug)")
-          .eq("user_id", userId).not("unlocked_at", "is", null),
+        supabase
+          .from("user_achievements")
+          .select("achievements(slug)")
+          .eq("user_id", userId)
+          .not("unlocked_at", "is", null),
         supabase.from("user_badges").select("badges(slug)").eq("user_id", userId),
         supabase.from("user_trophies").select("trophies(slug)").eq("user_id", userId),
-        supabase.from("user_mission_progress").select("mission_id,completed_at")
-          .eq("user_id", userId).not("completed_at", "is", null),
+        supabase
+          .from("user_mission_progress")
+          .select("mission_id,completed_at")
+          .eq("user_id", userId)
+          .not("completed_at", "is", null),
         supabase.from("claims").select("reward_id,status").eq("user_id", userId),
-        supabase.from("user_streaks").select("current_streak,longest_streak")
-          .eq("user_id", userId).maybeSingle(),
+        supabase
+          .from("user_streaks")
+          .select("current_streak,longest_streak")
+          .eq("user_id", userId)
+          .maybeSingle(),
         supabase.from("profiles").select("created_at").eq("id", userId).maybeSingle(),
       ]);
 

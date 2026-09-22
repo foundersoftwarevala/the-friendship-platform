@@ -8,7 +8,10 @@ export const Route = createFileRoute("/ams/recognition-coin-vault")({
       { title: "Recognition Coin Vault — Premium 3D Coins" },
       { name: "description", content: "Thick minted collector coins, one per role." },
       { property: "og:title", content: "Recognition Coin Vault — Premium 3D Coins" },
-      { property: "og:description", content: "11 heavy engraved recognition coins with milled edges and role crests." },
+      {
+        property: "og:description",
+        content: "11 heavy engraved recognition coins with milled edges and role crests.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -33,10 +33,14 @@ export function SoundControl({ className }: { className?: string }) {
             <Button
               variant="ghost"
               size="icon"
-              aria-label={prefs.enabled ? "Interface sound settings (on)" : "Interface sound settings (muted)"}
+              aria-label={
+                prefs.enabled ? "Interface sound settings (on)" : "Interface sound settings (muted)"
+              }
               className={cn(className)}
             >
-              <Icon className={cn("h-4 w-4", prefs.enabled ? "text-trophy" : "text-muted-foreground")} />
+              <Icon
+                className={cn("h-4 w-4", prefs.enabled ? "text-trophy" : "text-muted-foreground")}
+              />
             </Button>
           </PopoverTrigger>
         </TooltipTrigger>
@@ -103,7 +107,9 @@ export function SoundControl({ className }: { className?: string }) {
         </div>
 
         <div className="space-y-2">
-          <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Preview</div>
+          <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+            Preview
+          </div>
           <div className="grid grid-cols-2 gap-2">
             {SAMPLES.map((s) => (
               <Button

@@ -8,76 +8,255 @@ import { ROLE_TROPHY as TROPHY_IMG } from "@/lib/ams/role-assets";
 import { MuseumCase, SVMicroMark, SVSeal, svCollectionNumber } from "@/components/ams/brand/SVMark";
 
 type SlotKey =
-  | "trophy" | "award" | "badge" | "passport"
-  | "rank" | "level" | "membership" | "verification";
+  "trophy" | "award" | "badge" | "passport" | "rank" | "level" | "membership" | "verification";
 
 // Per-role profession-specific glyphs for the non-trophy slots — never
 // reused between roles.
 const PROF_GLYPH: Record<RoleSlug, Record<Exclude<SlotKey, "trophy">, string>> = {
-  developer:  { award: "</>",   badge: "⌘",  passport: "⎇",  rank: "◈", level: "▲", membership: "◆", verification: "✓" },
-  reseller:   { award: "$",     badge: "▲$", passport: "$$", rank: "♛", level: "★", membership: "♦", verification: "✓" },
-  franchise:  { award: "◉",     badge: "⚑",  passport: "⌾",  rank: "♚", level: "☗", membership: "◈", verification: "✓" },
-  author:     { award: "✒",     badge: "❦",  passport: "❧",  rank: "♜", level: "❋", membership: "❖", verification: "✓" },
-  vendor:     { award: "🛍",    badge: "▤",  passport: "▦",  rank: "▣", level: "▧", membership: "▩", verification: "✓" },
-  affiliate:  { award: "∞",     badge: "⇌",  passport: "⇆",  rank: "⟁", level: "⌘", membership: "◇", verification: "✓" },
-  influencer: { award: "▶",     badge: "♥",  passport: "❤",  rank: "☆", level: "✧", membership: "❥", verification: "✓" },
-  creator:    { award: "✦",     badge: "❈",  passport: "✺",  rank: "❉", level: "✵", membership: "◈", verification: "✓" },
-  seo:        { award: "⌕",     badge: "↗",  passport: "⌗",  rank: "⇞", level: "△", membership: "◇", verification: "✓" },
-  support:    { award: "♥",     badge: "☏",  passport: "✚",  rank: "★", level: "✦", membership: "◈", verification: "✓" },
-  user:       { award: "❦",     badge: "❤",  passport: "◐",  rank: "☆", level: "✧", membership: "◇", verification: "✓" },
-  manager:    { award: "◑",     badge: "⌖",  passport: "◉",  rank: "▲", level: "◆", membership: "◇", verification: "✓" },
-  administrator: { award: "⌗", badge: "⬟", passport: "◈", rank: "♜", level: "▲", membership: "◆", verification: "✓" },
-  founder:    { award: "✦",     badge: "★",  passport: "❂",  rank: "♛", level: "✧", membership: "◆", verification: "✓" },
-  operator:   { award: "◎",     badge: "⚙",  passport: "◍",  rank: "▲", level: "◈", membership: "◇", verification: "✓" },
+  developer: {
+    award: "</>",
+    badge: "⌘",
+    passport: "⎇",
+    rank: "◈",
+    level: "▲",
+    membership: "◆",
+    verification: "✓",
+  },
+  reseller: {
+    award: "$",
+    badge: "▲$",
+    passport: "$$",
+    rank: "♛",
+    level: "★",
+    membership: "♦",
+    verification: "✓",
+  },
+  franchise: {
+    award: "◉",
+    badge: "⚑",
+    passport: "⌾",
+    rank: "♚",
+    level: "☗",
+    membership: "◈",
+    verification: "✓",
+  },
+  author: {
+    award: "✒",
+    badge: "❦",
+    passport: "❧",
+    rank: "♜",
+    level: "❋",
+    membership: "❖",
+    verification: "✓",
+  },
+  vendor: {
+    award: "🛍",
+    badge: "▤",
+    passport: "▦",
+    rank: "▣",
+    level: "▧",
+    membership: "▩",
+    verification: "✓",
+  },
+  affiliate: {
+    award: "∞",
+    badge: "⇌",
+    passport: "⇆",
+    rank: "⟁",
+    level: "⌘",
+    membership: "◇",
+    verification: "✓",
+  },
+  influencer: {
+    award: "▶",
+    badge: "♥",
+    passport: "❤",
+    rank: "☆",
+    level: "✧",
+    membership: "❥",
+    verification: "✓",
+  },
+  creator: {
+    award: "✦",
+    badge: "❈",
+    passport: "✺",
+    rank: "❉",
+    level: "✵",
+    membership: "◈",
+    verification: "✓",
+  },
+  seo: {
+    award: "⌕",
+    badge: "↗",
+    passport: "⌗",
+    rank: "⇞",
+    level: "△",
+    membership: "◇",
+    verification: "✓",
+  },
+  support: {
+    award: "♥",
+    badge: "☏",
+    passport: "✚",
+    rank: "★",
+    level: "✦",
+    membership: "◈",
+    verification: "✓",
+  },
+  user: {
+    award: "❦",
+    badge: "❤",
+    passport: "◐",
+    rank: "☆",
+    level: "✧",
+    membership: "◇",
+    verification: "✓",
+  },
+  manager: {
+    award: "◑",
+    badge: "⌖",
+    passport: "◉",
+    rank: "▲",
+    level: "◆",
+    membership: "◇",
+    verification: "✓",
+  },
+  administrator: {
+    award: "⌗",
+    badge: "⬟",
+    passport: "◈",
+    rank: "♜",
+    level: "▲",
+    membership: "◆",
+    verification: "✓",
+  },
+  founder: {
+    award: "✦",
+    badge: "★",
+    passport: "❂",
+    rank: "♛",
+    level: "✧",
+    membership: "◆",
+    verification: "✓",
+  },
+  operator: {
+    award: "◎",
+    badge: "⚙",
+    passport: "◍",
+    rank: "▲",
+    level: "◈",
+    membership: "◇",
+    verification: "✓",
+  },
 };
 
-interface Slot { key: SlotKey; kicker: string; }
+interface Slot {
+  key: SlotKey;
+  kicker: string;
+}
 const SLOTS: Slot[] = [
-  { key: "trophy",       kicker: "Signature Trophy" },
-  { key: "award",        kicker: "Latest Award" },
-  { key: "badge",        kicker: "Featured Badge" },
-  { key: "passport",     kicker: "Digital Passport" },
-  { key: "rank",         kicker: "Current Rank" },
-  { key: "level",        kicker: "Current Level" },
-  { key: "membership",   kicker: "Membership" },
+  { key: "trophy", kicker: "Signature Trophy" },
+  { key: "award", kicker: "Latest Award" },
+  { key: "badge", kicker: "Featured Badge" },
+  { key: "passport", kicker: "Digital Passport" },
+  { key: "rank", kicker: "Current Rank" },
+  { key: "level", kicker: "Current Level" },
+  { key: "membership", kicker: "Membership" },
   { key: "verification", kicker: "Verification" },
 ];
 
 const OVERRIDES: Partial<Record<RoleSlug, Partial<Record<SlotKey, string>>>> = {
-  reseller:   { trophy: "Million Dollar Club",       award: "Revenue King Crown",         badge: "Sales Diamond",         passport: "Reseller Passport" },
-  franchise:  { trophy: "Global Empire",             award: "Business Empire Award",      badge: "Leadership Crown",      passport: "Franchise Passport" },
-  author:     { trophy: "Gold Pen",                  award: "Master Publisher",           badge: "Creative Crown",        passport: "Author Passport" },
-  vendor:     { trophy: "Trusted Seller",            award: "Marketplace Excellence",     badge: "Quality Merchant",      passport: "Vendor Passport" },
-  affiliate:  { trophy: "Referral King",             award: "Conversion Champion",        badge: "Partner Excellence",    passport: "Affiliate Passport" },
-  influencer: { trophy: "Creator Diamond",           award: "Brand Ambassador",           badge: "Influence Crown",       passport: "Influencer Passport" },
-  developer:  { trophy: "Code Excellence",           award: "Architecture Master",        badge: "Elite Developer",       passport: "Developer Passport" },
-  support:    { trophy: "Customer Hero",             award: "Five Star Service",          badge: "Fast Resolution",       passport: "Support Passport" },
-  seo:        { trophy: "Search King",               award: "Organic Growth",             badge: "SEO Expert",            passport: "SEO Passport" },
-  creator:    { trophy: "Creative Master",           award: "Design Innovation",          badge: "Prism Master",          passport: "Creator Passport" },
-  user:       { trophy: "Loyalty",                   award: "Community Star",             badge: "Verified Member",       passport: "User Passport" },
+  reseller: {
+    trophy: "Million Dollar Club",
+    award: "Revenue King Crown",
+    badge: "Sales Diamond",
+    passport: "Reseller Passport",
+  },
+  franchise: {
+    trophy: "Global Empire",
+    award: "Business Empire Award",
+    badge: "Leadership Crown",
+    passport: "Franchise Passport",
+  },
+  author: {
+    trophy: "Gold Pen",
+    award: "Master Publisher",
+    badge: "Creative Crown",
+    passport: "Author Passport",
+  },
+  vendor: {
+    trophy: "Trusted Seller",
+    award: "Marketplace Excellence",
+    badge: "Quality Merchant",
+    passport: "Vendor Passport",
+  },
+  affiliate: {
+    trophy: "Referral King",
+    award: "Conversion Champion",
+    badge: "Partner Excellence",
+    passport: "Affiliate Passport",
+  },
+  influencer: {
+    trophy: "Creator Diamond",
+    award: "Brand Ambassador",
+    badge: "Influence Crown",
+    passport: "Influencer Passport",
+  },
+  developer: {
+    trophy: "Code Excellence",
+    award: "Architecture Master",
+    badge: "Elite Developer",
+    passport: "Developer Passport",
+  },
+  support: {
+    trophy: "Customer Hero",
+    award: "Five Star Service",
+    badge: "Fast Resolution",
+    passport: "Support Passport",
+  },
+  seo: {
+    trophy: "Search King",
+    award: "Organic Growth",
+    badge: "SEO Expert",
+    passport: "SEO Passport",
+  },
+  creator: {
+    trophy: "Creative Master",
+    award: "Design Innovation",
+    badge: "Prism Master",
+    passport: "Creator Passport",
+  },
+  user: {
+    trophy: "Loyalty",
+    award: "Community Star",
+    badge: "Verified Member",
+    passport: "User Passport",
+  },
 };
 
 // Different silhouettes for every slot so no two collectibles share a shape.
 const FRAME_CLIP: Record<Exclude<SlotKey, "trophy">, string> = {
-  award:        "circle(50% at 50% 50%)",
-  badge:        "polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)",
-  passport:     "inset(6% 4% 6% 4% round 12px)",
-  rank:         "polygon(50% 0, 100% 35%, 82% 100%, 18% 100%, 0 35%)",
-  level:        "polygon(50% 4%, 62% 38%, 98% 38%, 68% 60%, 80% 96%, 50% 74%, 20% 96%, 32% 60%, 2% 38%, 38% 38%)",
-  membership:   "polygon(50% 0, 100% 35%, 50% 100%, 0 35%)",
+  award: "circle(50% at 50% 50%)",
+  badge: "polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)",
+  passport: "inset(6% 4% 6% 4% round 12px)",
+  rank: "polygon(50% 0, 100% 35%, 82% 100%, 18% 100%, 0 35%)",
+  level:
+    "polygon(50% 4%, 62% 38%, 98% 38%, 68% 60%, 80% 96%, 50% 74%, 20% 96%, 32% 60%, 2% 38%, 38% 38%)",
+  membership: "polygon(50% 0, 100% 35%, 50% 100%, 0 35%)",
   verification: "path('M50,2 L92,18 L92,54 C92,78 74,94 50,100 C26,94 8,78 8,54 L8,18 Z')",
 };
 
 function Sparkles({ accent }: { accent: string }) {
   const dots = useMemo(
-    () => Array.from({ length: 10 }, (_, i) => ({
-      i,
-      left: 8 + Math.random() * 84,
-      top:  8 + Math.random() * 84,
-      sx:   (Math.random() * 24 - 12).toFixed(1) + "px",
-      sy:   (Math.random() * -30 - 4).toFixed(1) + "px",
-      d:    (Math.random() * 2.6).toFixed(2) + "s",
-    })),
+    () =>
+      Array.from({ length: 10 }, (_, i) => ({
+        i,
+        left: 8 + Math.random() * 84,
+        top: 8 + Math.random() * 84,
+        sx: (Math.random() * 24 - 12).toFixed(1) + "px",
+        sy: (Math.random() * -30 - 4).toFixed(1) + "px",
+        d: (Math.random() * 2.6).toFixed(2) + "s",
+      })),
     [],
   );
   return (
@@ -88,7 +267,7 @@ function Sparkles({ accent }: { accent: string }) {
           className="absolute h-1.5 w-1.5 rounded-full trophy-sparkle"
           style={{
             left: `${d.left}%`,
-            top:  `${d.top}%`,
+            top: `${d.top}%`,
             background: accent,
             boxShadow: `0 0 8px ${accent}, 0 0 16px ${accent}88`,
             animationDelay: d.d,
@@ -102,7 +281,15 @@ function Sparkles({ accent }: { accent: string }) {
   );
 }
 
-function TrophyTile({ role, unlockKey, label }: { role: RoleDNA; unlockKey: string; label: string }) {
+function TrophyTile({
+  role,
+  unlockKey,
+  label,
+}: {
+  role: RoleDNA;
+  unlockKey: string;
+  label: string;
+}) {
   const accent = role.accent;
   return (
     <div className="group relative flex flex-col items-center gap-2 col-span-2 row-span-2 md:col-span-2 md:row-span-2">
@@ -169,9 +356,16 @@ function TrophyTile({ role, unlockKey, label }: { role: RoleDNA; unlockKey: stri
             background: `linear-gradient(180deg, ${accent}18, #00000055)`,
           }}
         >
-          <div className="text-[9px] uppercase tracking-[0.28em] text-muted-foreground">Signature Trophy</div>
-          <div className="text-sm font-semibold tracking-wide" style={{ color: accent }}>{label}</div>
-          <div className="mt-0.5 font-mono uppercase text-muted-foreground" style={{ fontSize: 8, letterSpacing: "0.22em" }}>
+          <div className="text-[9px] uppercase tracking-[0.28em] text-muted-foreground">
+            Signature Trophy
+          </div>
+          <div className="text-sm font-semibold tracking-wide" style={{ color: accent }}>
+            {label}
+          </div>
+          <div
+            className="mt-0.5 font-mono uppercase text-muted-foreground"
+            style={{ fontSize: 8, letterSpacing: "0.22em" }}
+          >
             {svCollectionNumber(`${role.slug}-trophy`, role.passportPrefix)}
           </div>
         </div>
@@ -180,7 +374,15 @@ function TrophyTile({ role, unlockKey, label }: { role: RoleDNA; unlockKey: stri
   );
 }
 
-function SlotTile({ role, slot, label }: { role: RoleDNA; slot: Exclude<SlotKey, "trophy">; label: string }) {
+function SlotTile({
+  role,
+  slot,
+  label,
+}: {
+  role: RoleDNA;
+  slot: Exclude<SlotKey, "trophy">;
+  label: string;
+}) {
   const clip = FRAME_CLIP[slot];
   const accent = role.accent;
   const glyph = PROF_GLYPH[role.slug][slot];
@@ -194,7 +396,8 @@ function SlotTile({ role, slot, label }: { role: RoleDNA; slot: Exclude<SlotKey,
         <div
           className="absolute inset-0"
           style={{
-            clipPath: clip, WebkitClipPath: clip,
+            clipPath: clip,
+            WebkitClipPath: clip,
             background: `
               radial-gradient(120% 100% at 30% 15%, ${accent}ee 0%, ${accent}55 40%, #06070d 80%),
               linear-gradient(160deg, ${accent}33, transparent 60%)`,
@@ -203,12 +406,16 @@ function SlotTile({ role, slot, label }: { role: RoleDNA; slot: Exclude<SlotKey,
         <div
           className="absolute inset-0 mix-blend-screen opacity-70 pointer-events-none"
           style={{
-            clipPath: clip, WebkitClipPath: clip,
+            clipPath: clip,
+            WebkitClipPath: clip,
             background: `linear-gradient(180deg, ${accent}88, transparent 55%, ${accent}22 100%)`,
           }}
         />
         <div className="absolute inset-0 grid place-items-center">
-          <div className="font-bold leading-none text-lg" style={{ color: "#0a0a12", textShadow: `0 1px 0 ${accent}` }}>
+          <div
+            className="font-bold leading-none text-lg"
+            style={{ color: "#0a0a12", textShadow: `0 1px 0 ${accent}` }}
+          >
             {glyph}
           </div>
         </div>
@@ -216,18 +423,29 @@ function SlotTile({ role, slot, label }: { role: RoleDNA; slot: Exclude<SlotKey,
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            clipPath: clip, WebkitClipPath: clip,
-            background: "linear-gradient(122deg, rgba(255,255,255,0.16), transparent 34%, transparent 68%, rgba(255,255,255,0.1))",
+            clipPath: clip,
+            WebkitClipPath: clip,
+            background:
+              "linear-gradient(122deg, rgba(255,255,255,0.16), transparent 34%, transparent 68%, rgba(255,255,255,0.1))",
             mixBlendMode: "screen",
           }}
         />
         <div className="pointer-events-none absolute inset-x-0 bottom-[3px] flex justify-center">
-          <span className="font-mono uppercase" style={{ fontSize: 5, letterSpacing: "0.3em", color: "#0a0a1299" }}>SV</span>
+          <span
+            className="font-mono uppercase"
+            style={{ fontSize: 5, letterSpacing: "0.3em", color: "#0a0a1299" }}
+          >
+            SV
+          </span>
         </div>
       </div>
       <div className="text-center w-full">
-        <div className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground">{SLOTS.find(s => s.key === slot)!.kicker}</div>
-        <div className="text-[11px] font-semibold leading-tight truncate" style={{ color: accent }}>{label}</div>
+        <div className="text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+          {SLOTS.find((s) => s.key === slot)!.kicker}
+        </div>
+        <div className="text-[11px] font-semibold leading-tight truncate" style={{ color: accent }}>
+          {label}
+        </div>
       </div>
     </div>
   );
@@ -236,21 +454,26 @@ function SlotTile({ role, slot, label }: { role: RoleDNA; slot: Exclude<SlotKey,
 export function RoleAchievementShowcase({
   defaultRole = "developer" as RoleSlug,
   name,
-}: { defaultRole?: RoleSlug; name?: string }) {
+}: {
+  defaultRole?: RoleSlug;
+  name?: string;
+}) {
   const [slug, setSlug] = useState<RoleSlug>(defaultRole);
   const role = useMemo(() => ROLES.find((r) => r.slug === slug)!, [slug]);
   const [unlockKey, setUnlockKey] = useState(0);
-  useEffect(() => { setUnlockKey((k) => k + 1); }, [slug]);
+  useEffect(() => {
+    setUnlockKey((k) => k + 1);
+  }, [slug]);
 
   const ov = OVERRIDES[role.slug] ?? {};
   const labels: Record<SlotKey, string> = {
-    trophy:       ov.trophy       ?? role.trophies[3].label,
-    award:        ov.award        ?? role.awardExamples[3],
-    badge:        ov.badge        ?? role.badges[4].label,
-    passport:     ov.passport     ?? `${role.name} Passport`,
-    rank:         role.trophies[5].label,
-    level:        role.careerPath[Math.min(3, role.careerPath.length - 1)],
-    membership:   role.trophies[4].label,
+    trophy: ov.trophy ?? role.trophies[3].label,
+    award: ov.award ?? role.awardExamples[3],
+    badge: ov.badge ?? role.badges[4].label,
+    passport: ov.passport ?? `${role.name} Passport`,
+    rank: role.trophies[5].label,
+    level: role.careerPath[Math.min(3, role.careerPath.length - 1)],
+    membership: role.trophies[4].label,
     verification: role.passport.verification,
   };
 
@@ -266,7 +489,9 @@ export function RoleAchievementShowcase({
     >
       <header className="flex flex-wrap items-end justify-between gap-3 mb-4">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Role Achievement Showcase</div>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            Role Achievement Showcase
+          </div>
           <h2 className="text-lg font-semibold tracking-tight">
             {name ? `${name} · ` : ""}
             <span style={{ color: role.accent }}>{role.name}</span>
@@ -290,7 +515,8 @@ export function RoleAchievementShowcase({
                 }}
                 aria-pressed={active}
               >
-                <span className="mr-1">{r.glyph}</span>{r.name}
+                <span className="mr-1">{r.glyph}</span>
+                {r.name}
               </button>
             );
           })}
@@ -307,12 +533,21 @@ export function RoleAchievementShowcase({
       </div>
 
       <footer className="mt-4 flex flex-wrap items-center justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-        <span>Passport · <span style={{ color: role.accent }}>{role.passportPrefix}-00001</span></span>
-        <span>Verification · <span style={{ color: role.accent }}>{role.passport.verification}</span></span>
-        <span>Signature · <span style={{ color: role.accent }}>{role.signature}</span></span>
+        <span>
+          Passport · <span style={{ color: role.accent }}>{role.passportPrefix}-00001</span>
+        </span>
+        <span>
+          Verification · <span style={{ color: role.accent }}>{role.passport.verification}</span>
+        </span>
+        <span>
+          Signature · <span style={{ color: role.accent }}>{role.signature}</span>
+        </span>
         <span className="inline-flex items-center gap-1.5">
           <SVSeal accent={role.accent} size={14} title="Software Vala Collection Mark" />
-          Software Vala Collection · <span style={{ color: role.accent }}>{svCollectionNumber(role.slug, role.passportPrefix)}</span>
+          Software Vala Collection ·{" "}
+          <span style={{ color: role.accent }}>
+            {svCollectionNumber(role.slug, role.passportPrefix)}
+          </span>
         </span>
       </footer>
     </section>

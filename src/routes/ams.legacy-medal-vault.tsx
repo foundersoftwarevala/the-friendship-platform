@@ -8,7 +8,10 @@ export const Route = createFileRoute("/ams/legacy-medal-vault")({
       { title: "Legacy Medal Vault — Premium 3D Heirlooms" },
       { name: "description", content: "Aged bronze legacy medals on silk ribbons, one per role." },
       { property: "og:title", content: "Legacy Medal Vault — Premium 3D Heirlooms" },
-      { property: "og:description", content: "11 heirloom legacy medals with role engravings and silk ribbons." },
+      {
+        property: "og:description",
+        content: "11 heirloom legacy medals with role engravings and silk ribbons.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

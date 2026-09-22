@@ -2,7 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { getAuthenticatedRole } from "@/lib/auth-bridge";
 import type { RoleKey } from "@/lib/roles";
 import {
-  accessibleRoles, can as canFor, canAccessRole, canViewModule,
+  accessibleRoles,
+  can as canFor,
+  canAccessRole,
+  canViewModule,
   type Capability,
 } from "@/lib/permissions";
 
@@ -16,9 +19,15 @@ export function useSessionRole() {
   useEffect(() => {
     let alive = true;
     getAuthenticatedRole()
-      .then((role) => { if (alive) setState({ role, ready: true }); })
-      .catch(() => { if (alive) setState({ role: null, ready: true }); });
-    return () => { alive = false; };
+      .then((role) => {
+        if (alive) setState({ role, ready: true });
+      })
+      .catch(() => {
+        if (alive) setState({ role: null, ready: true });
+      });
+    return () => {
+      alive = false;
+    };
   }, []);
 
   return state;

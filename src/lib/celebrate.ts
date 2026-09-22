@@ -5,7 +5,9 @@ let ctx: AudioContext | null = null;
 function getCtx() {
   if (typeof window === "undefined") return null;
   if (!ctx) {
-    const AC = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext);
+    const AC =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     ctx = new AC();
   }
   if (ctx.state === "suspended") void ctx.resume();
@@ -13,7 +15,14 @@ function getCtx() {
 }
 
 type Wave = OscillatorType;
-function tone(freq: number, start: number, dur: number, gain = 0.18, type: Wave = "triangle", detune = 0) {
+function tone(
+  freq: number,
+  start: number,
+  dur: number,
+  gain = 0.18,
+  type: Wave = "triangle",
+  detune = 0,
+) {
   const ac = getCtx();
   if (!ac) return;
   const t0 = ac.currentTime + start;
@@ -37,14 +46,19 @@ function noise(start: number, dur: number, gain = 0.12, freq = 800, q = 8) {
   const buf = ac.createBuffer(1, ac.sampleRate * dur, ac.sampleRate);
   const data = buf.getChannelData(0);
   for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
-  const src = ac.createBufferSource(); src.buffer = buf;
-  const filt = ac.createBiquadFilter(); filt.type = "bandpass"; filt.frequency.value = freq; filt.Q.value = q;
+  const src = ac.createBufferSource();
+  src.buffer = buf;
+  const filt = ac.createBiquadFilter();
+  filt.type = "bandpass";
+  filt.frequency.value = freq;
+  filt.Q.value = q;
   const g = ac.createGain();
   g.gain.setValueAtTime(0, t0);
   g.gain.linearRampToValueAtTime(gain, t0 + 0.01);
   g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
   src.connect(filt).connect(g).connect(ac.destination);
-  src.start(t0); src.stop(t0 + dur + 0.02);
+  src.start(t0);
+  src.stop(t0 + dur + 0.02);
 }
 
 // Crystal "ting" — UI hover
@@ -78,16 +92,20 @@ export function playUnveil() {
 
 // LEVEL UP — rising sweep + sparkle
 export function playLevelUp() {
-  const ac = getCtx(); if (!ac) return;
+  const ac = getCtx();
+  if (!ac) return;
   const t0 = ac.currentTime;
-  const osc = ac.createOscillator(); const g = ac.createGain();
+  const osc = ac.createOscillator();
+  const g = ac.createGain();
   osc.type = "sawtooth";
   osc.frequency.setValueAtTime(220, t0);
   osc.frequency.exponentialRampToValueAtTime(1760, t0 + 0.55);
   g.gain.setValueAtTime(0, t0);
   g.gain.linearRampToValueAtTime(0.12, t0 + 0.05);
   g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.6);
-  osc.connect(g).connect(ac.destination); osc.start(t0); osc.stop(t0 + 0.65);
+  osc.connect(g).connect(ac.destination);
+  osc.start(t0);
+  osc.stop(t0 + 0.65);
   [1318, 1760, 2093, 2637, 3136].forEach((f, i) => tone(f, 0.45 + i * 0.04, 0.3, 0.07, "sine"));
 }
 
@@ -131,18 +149,17 @@ export function playMythic() {
   noise(0, 1.4, 0.05, 1200, 4);
 }
 
-/**
- * Awarding a certificate: a short rising figure with a soft seal underneath,
- * quieter than a trophy so it reads as formal rather than celebratory.
- */
-export function playCertificate() {
-  [523, 659, 784].forEach((f, i) => tone(f, i * 0.09, 0.5, 0.09, "sine"));
-  tone(392, 0.28, 0.7, 0.06, "triangle");
-  noise(0.26, 0.5, 0.03, 900, 3);
-}
-
 // Random surprise for logo clicks
 export function playRandom() {
   const fns = [playCoinDrop, playLevelUp, playRankUp, playDiamond, playFireworks];
   fns[Math.floor(Math.random() * fns.length)]();
+}
+
+// CERTIFICATE ISSUED — soft seal press + verification chime
+export function playCertificate() {
+  tone(392, 0, 0.28, 0.1, "sine");
+  tone(523.25, 0.06, 0.32, 0.1, "triangle");
+  tone(783.99, 0.14, 0.5, 0.08, "sine");
+  tone(1046.5, 0.22, 0.55, 0.05, "sine");
+  noise(0, 0.22, 0.04, 2200, 6);
 }

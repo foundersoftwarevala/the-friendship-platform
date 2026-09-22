@@ -1,6 +1,6 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
-import { useEffect } from 'react';
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect } from "react";
 
 export interface SafeAssistSession {
   id: string;
@@ -44,23 +44,29 @@ export function useSafeAssistSessions() {
 
   useEffect(() => {
     const channel = supabase
-      .channel('safe-assist-sessions-realtime')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'safe_assist_sessions' }, () => {
-        queryClient.invalidateQueries({ queryKey: ['safe-assist-sessions'] });
-        queryClient.invalidateQueries({ queryKey: ['safe-assist-metrics'] });
-      })
+      .channel("safe-assist-sessions-realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "safe_assist_sessions" },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["safe-assist-sessions"] });
+          queryClient.invalidateQueries({ queryKey: ["safe-assist-metrics"] });
+        },
+      )
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [queryClient]);
 
   return useQuery({
-    queryKey: ['safe-assist-sessions'],
+    queryKey: ["safe-assist-sessions"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('safe_assist_sessions')
-        .select('*')
-        .order('created_at', { ascending: false })
+        .from("safe_assist_sessions")
+        .select("*")
+        .order("created_at", { ascending: false })
         .limit(20);
 
       if (error) throw error;
@@ -74,23 +80,29 @@ export function useSafeAssistAlerts() {
 
   useEffect(() => {
     const channel = supabase
-      .channel('safe-assist-alerts-realtime')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'safe_assist_ai_logs' }, () => {
-        queryClient.invalidateQueries({ queryKey: ['safe-assist-alerts'] });
-        queryClient.invalidateQueries({ queryKey: ['safe-assist-metrics'] });
-      })
+      .channel("safe-assist-alerts-realtime")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "safe_assist_ai_logs" },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["safe-assist-alerts"] });
+          queryClient.invalidateQueries({ queryKey: ["safe-assist-metrics"] });
+        },
+      )
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [queryClient]);
 
   return useQuery({
-    queryKey: ['safe-assist-alerts'],
+    queryKey: ["safe-assist-alerts"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('safe_assist_ai_logs')
-        .select('*')
-        .order('timestamp', { ascending: false })
+        .from("safe_assist_ai_logs")
+        .select("*")
+        .order("timestamp", { ascending: false })
         .limit(10);
 
       if (error) throw error;
@@ -101,32 +113,32 @@ export function useSafeAssistAlerts() {
 
 export function useSafeAssistMetrics() {
   return useQuery({
-    queryKey: ['safe-assist-metrics'],
+    queryKey: ["safe-assist-metrics"],
     queryFn: async () => {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
       // Get active sessions
       const { data: activeSessions, error: activeError } = await supabase
-        .from('safe_assist_sessions')
-        .select('id')
-        .in('status', ['active', 'pending']);
+        .from("safe_assist_sessions")
+        .select("id")
+        .in("status", ["active", "pending"]);
 
       if (activeError) throw activeError;
 
       // Get today's sessions
       const { data: todaySessions, error: todayError } = await supabase
-        .from('safe_assist_sessions')
-        .select('id, started_at, ended_at')
-        .gte('created_at', today.toISOString());
+        .from("safe_assist_sessions")
+        .select("id, started_at, ended_at")
+        .gte("created_at", today.toISOString());
 
       if (todayError) throw todayError;
 
       // Get AI alerts today
       const { data: alerts, error: alertsError } = await supabase
-        .from('safe_assist_ai_logs')
-        .select('id, risk_level')
-        .gte('timestamp', today.toISOString());
+        .from("safe_assist_ai_logs")
+        .select("id, risk_level")
+        .gte("timestamp", today.toISOString());
 
       if (alertsError) throw alertsError;
 
@@ -143,14 +155,13 @@ export function useSafeAssistMetrics() {
       const avgMinutes = Math.floor(avgMs / 60000);
       const avgSeconds = Math.floor((avgMs % 60000) / 1000);
 
-      const terminatedByAI = (alerts || []).filter((a: any) => 
-        a.risk_level === 'critical'
-      ).length;
+      const terminatedByAI = (alerts || []).filter((a: any) => a.risk_level === "critical").length;
 
       return {
         activeSessions: (activeSessions || []).length,
         totalToday: (todaySessions || []).length,
-        avgDuration: sessionCount > 0 ? `${avgMinutes}:${avgSeconds.toString().padStart(2, '0')}` : '0:00',
+        avgDuration:
+          sessionCount > 0 ? `${avgMinutes}:${avgSeconds.toString().padStart(2, "0")}` : "0:00",
         aiAlerts: (alerts || []).length,
         terminatedByAI,
         satisfactionRate: 96, // Would come from feedback table

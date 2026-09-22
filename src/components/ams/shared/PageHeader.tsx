@@ -5,7 +5,10 @@ import { type ReactNode } from "react";
  * Gradient hero surface + kicker + title + description + actions.
  */
 export function PageHeader({
-  kicker, title, description, actions,
+  kicker,
+  title,
+  description,
+  actions,
 }: {
   kicker?: string;
   title: string;
@@ -45,7 +48,5 @@ export function PageHeader({
         {actions && <div className="flex flex-wrap items-center gap-2 sm:shrink-0">{actions}</div>}
       </div>
     </div>
-
-
   );
 }

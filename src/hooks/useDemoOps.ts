@@ -26,7 +26,9 @@ import {
 
 const OPS = "demo-ops";
 
-const rows = async <T,>(promise: PromiseLike<{ data: T[] | null; error: unknown }>): Promise<T[]> => {
+const rows = async <T>(
+  promise: PromiseLike<{ data: T[] | null; error: unknown }>,
+): Promise<T[]> => {
   const { data, error } = await promise;
   if (error) throw error;
   return data ?? [];
@@ -37,7 +39,11 @@ export const useOpsDemos = () =>
     queryKey: [OPS, "demos"],
     queryFn: () =>
       rows<DemoRow>(
-        supabase.from("demos").select("*").order("updated_at", { ascending: false }).limit(500) as never,
+        supabase
+          .from("demos")
+          .select("*")
+          .order("updated_at", { ascending: false })
+          .limit(500) as never,
       ),
   });
 
@@ -59,7 +65,11 @@ export const useOpsAlerts = () =>
     queryKey: [OPS, "alerts"],
     queryFn: () =>
       rows<AlertRow>(
-        supabase.from("demo_alerts").select("*").order("created_at", { ascending: false }).limit(200) as never,
+        supabase
+          .from("demo_alerts")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(200) as never,
       ),
   });
 
@@ -68,7 +78,11 @@ export const useOpsAnalytics = () =>
     queryKey: [OPS, "analytics"],
     queryFn: () =>
       rows<AnalyticsRow>(
-        supabase.from("demo_analytics").select("*").order("date", { ascending: false }).limit(400) as never,
+        supabase
+          .from("demo_analytics")
+          .select("*")
+          .order("date", { ascending: false })
+          .limit(400) as never,
       ),
   });
 
@@ -77,7 +91,11 @@ export const useOpsEscalations = () =>
     queryKey: [OPS, "escalations"],
     queryFn: () =>
       rows<EscalationRow>(
-        supabase.from("demo_escalations").select("*").order("created_at", { ascending: false }).limit(200) as never,
+        supabase
+          .from("demo_escalations")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(200) as never,
       ),
   });
 
@@ -93,7 +111,11 @@ export const useOpsDeployments = () =>
     queryKey: [OPS, "deployments"],
     queryFn: () =>
       rows<DeploymentRow>(
-        supabase.from("demo_deployments").select("*").order("created_at", { ascending: false }).limit(300) as never,
+        supabase
+          .from("demo_deployments")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(300) as never,
       ),
   });
 
@@ -102,7 +124,11 @@ export const useOpsRenewals = () =>
     queryKey: [OPS, "renewals"],
     queryFn: () =>
       rows<Record<string, unknown>>(
-        supabase.from("demo_renewal_logs").select("*").order("created_at", { ascending: false }).limit(200) as never,
+        supabase
+          .from("demo_renewal_logs")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(200) as never,
       ),
   });
 
@@ -112,7 +138,11 @@ export const useOpsAuditTrail = () =>
     queryFn: async () => {
       const [logs, cards] = await Promise.all([
         rows<Record<string, any>>(
-          supabase.from("audit_logs").select("*").order("timestamp", { ascending: false }).limit(150) as never,
+          supabase
+            .from("audit_logs")
+            .select("*")
+            .order("timestamp", { ascending: false })
+            .limit(150) as never,
         ),
         rows<Record<string, any>>(
           supabase
@@ -160,7 +190,11 @@ export const useOpsBackups = () =>
     queryKey: [OPS, "backups"],
     queryFn: () =>
       rows<Record<string, any>>(
-        supabase.from("server_backups").select("*").order("created_at", { ascending: false }).limit(100) as never,
+        supabase
+          .from("server_backups")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(100) as never,
       ),
   });
 
@@ -212,7 +246,8 @@ export const useOpsKpis = () => {
         : null;
       if (days !== null && days >= 0 && days <= 7) expiringSoon += 1;
       if (!demo.url?.startsWith("https://")) insecureUrls += 1;
-      if (!demo.title?.trim() || !demo.demo_banner_text?.trim() || !demo.masked_url?.trim()) brandingIssues += 1;
+      if (!demo.title?.trim() || !demo.demo_banner_text?.trim() || !demo.masked_url?.trim())
+        brandingIssues += 1;
       const score = performanceScore(demo);
       if (score !== null && score < 70) performanceIssues += 1;
     }
@@ -254,7 +289,11 @@ export const useOpsKpis = () => {
   return {
     kpis,
     isLoading:
-      demos.isLoading || alerts.isLoading || escalations.isLoading || credentials.isLoading || logs.isLoading,
+      demos.isLoading ||
+      alerts.isLoading ||
+      escalations.isLoading ||
+      credentials.isLoading ||
+      logs.isLoading,
     error: demos.error ?? alerts.error ?? escalations.error,
     refetch: () => {
       void demos.refetch();
@@ -269,7 +308,10 @@ export const useOpsKpis = () => {
 export const useOpsDetections = () => {
   const demos = useOpsDemos();
   const logs = useOpsValidationLogs();
-  const hits = useMemo(() => detectFailures(demos.data ?? [], logs.data ?? []), [demos.data, logs.data]);
+  const hits = useMemo(
+    () => detectFailures(demos.data ?? [], logs.data ?? []),
+    [demos.data, logs.data],
+  );
   return {
     hits,
     isLoading: demos.isLoading || logs.isLoading,
@@ -446,7 +488,13 @@ export const useOpsActions = () => {
   });
 
   const setLifecycle = useMutation({
-    mutationFn: async ({ demo, lifecycle }: { demo: DemoRow; lifecycle: "archived" | "active" | "retired" }) => {
+    mutationFn: async ({
+      demo,
+      lifecycle,
+    }: {
+      demo: DemoRow;
+      lifecycle: "archived" | "active" | "retired";
+    }) => {
       const { error } = await supabase
         .from("demos")
         .update({

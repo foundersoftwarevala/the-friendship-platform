@@ -66,26 +66,31 @@ export function DuplicateSilhouetteChecker() {
       </header>
 
       <p className="text-xs leading-relaxed text-muted-foreground">
-        Every rendered stage is reduced to a 16×16 occupancy map of its silhouette, normalised to its
-        own bounding box, so a recoloured or rescaled copy still matches the original. Any pair under
-        the distinctness threshold is listed for redesign.
+        Every rendered stage is reduced to a 16×16 occupancy map of its silhouette, normalised to
+        its own bounding box, so a recoloured or rescaled copy still matches the original. Any pair
+        under the distinctness threshold is listed for redesign.
       </p>
 
       {status === "done" &&
         (pairs.length === 0 ? (
           <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 text-sm text-foreground">
             <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-            All {checked} rendered stages are visually distinct — no reused or recoloured silhouettes.
+            All {checked} rendered stages are visually distinct — no reused or recoloured
+            silhouettes.
           </div>
         ) : (
           <div className="space-y-3">
             <div className="flex items-center gap-3 rounded-xl border border-destructive/60 bg-card p-4 text-sm text-foreground">
               <TriangleAlert className="h-5 w-5 text-destructive" />
-              {pairs.length} conflicting pair{pairs.length === 1 ? "" : "s"} across {checked} stages.
+              {pairs.length} conflicting pair{pairs.length === 1 ? "" : "s"} across {checked}{" "}
+              stages.
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {pairs.map((p) => (
-                <article key={`${p.a}-${p.b}`} className="space-y-3 rounded-xl border border-border bg-card p-4">
+                <article
+                  key={`${p.a}-${p.b}`}
+                  className="space-y-3 rounded-xl border border-border bg-card p-4"
+                >
                   <div className="grid grid-cols-2 gap-3">
                     {[p.a, p.b].map((id) => (
                       <figure key={id} className="space-y-2">

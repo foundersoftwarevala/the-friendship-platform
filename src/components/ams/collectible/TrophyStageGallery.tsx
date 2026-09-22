@@ -22,7 +22,6 @@ function accentFor(slug: string, tier: Tier) {
 const chip =
   "rounded-full border px-3 py-1.5 text-[11px] font-medium uppercase tracking-widest transition-colors";
 
-
 /**
  * Real per-trophy state for one role, keyed by trophy slug ("developer-01"),
  * which is exactly the id the catalogue and the stage renders already use.
@@ -156,12 +155,14 @@ export function TrophyStageGallery() {
         </div>
         {role !== "all" && chain.signedIn && (
           <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-widest">
-            {(["locked", "in_progress", "eligible", "earned", "claimed"] as AssetState[]).map((k) => (
-              <span key={k} className="flex items-center gap-1.5 text-muted-foreground">
-                <i className="h-2 w-2 rounded-full" style={{ background: STATE_HUE[k] }} />
-                {STATE_LABEL[k]}
-              </span>
-            ))}
+            {(["locked", "in_progress", "eligible", "earned", "claimed"] as AssetState[]).map(
+              (k) => (
+                <span key={k} className="flex items-center gap-1.5 text-muted-foreground">
+                  <i className="h-2 w-2 rounded-full" style={{ background: STATE_HUE[k] }} />
+                  {STATE_LABEL[k]}
+                </span>
+              ),
+            )}
           </div>
         )}
       </div>
@@ -282,7 +283,10 @@ export function TrophyStageGallery() {
           >
             <div className="flex items-start justify-between gap-4 border-b border-border/50 p-4">
               <div>
-                <div className="text-[11px] font-mono uppercase tracking-[0.25em]" style={{ color: `${activeAccent}bb` }}>
+                <div
+                  className="text-[11px] font-mono uppercase tracking-[0.25em]"
+                  style={{ color: `${activeAccent}bb` }}
+                >
                   {active.role} · Stage {String(active.stage).padStart(2, "0")} · {active.tier}
                 </div>
                 <h2 className="mt-1 text-xl font-semibold text-foreground">{active.name}</h2>

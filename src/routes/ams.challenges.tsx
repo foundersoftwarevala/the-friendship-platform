@@ -5,9 +5,17 @@ export const Route = createFileRoute("/ams/challenges")({
   head: () => ({
     meta: [
       { title: "Challenges — AMS" },
-      { name: "description", content: "1-vs-1, guild-vs-guild, department-vs-department, seasonal and community challenges." },
+      {
+        name: "description",
+        content:
+          "1-vs-1, guild-vs-guild, department-vs-department, seasonal and community challenges.",
+      },
       { property: "og:title", content: "Challenges — AMS" },
-      { property: "og:description", content: "1-vs-1, guild-vs-guild, department-vs-department, seasonal and community challenges." },
+      {
+        property: "og:description",
+        content:
+          "1-vs-1, guild-vs-guild, department-vs-department, seasonal and community challenges.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,9 +51,33 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "c1", name: "Ship 50 PRs — 30d", mode: "Department", reward: "5,000 XP + Trophy", participants: "412", ends: "in 12d", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "c2", name: "Winter Sales Sprint", mode: "Guild", reward: "Legendary Box", participants: "1,204", ends: "in 42d", status: <StatusChip tone="success">Live</StatusChip> },
-        { id: "c3", name: "SEO Ranking Duel", mode: "1v1", reward: "Golden Ticket", participants: "48", ends: "in 3d", status: <StatusChip tone="warn">Ending soon</StatusChip> },
+        {
+          id: "c1",
+          name: "Ship 50 PRs — 30d",
+          mode: "Department",
+          reward: "5,000 XP + Trophy",
+          participants: "412",
+          ends: "in 12d",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "c2",
+          name: "Winter Sales Sprint",
+          mode: "Guild",
+          reward: "Legendary Box",
+          participants: "1,204",
+          ends: "in 42d",
+          status: <StatusChip tone="success">Live</StatusChip>,
+        },
+        {
+          id: "c3",
+          name: "SEO Ranking Duel",
+          mode: "1v1",
+          reward: "Golden Ticket",
+          participants: "48",
+          ends: "in 3d",
+          status: <StatusChip tone="warn">Ending soon</StatusChip>,
+        },
       ]}
     />
   );
