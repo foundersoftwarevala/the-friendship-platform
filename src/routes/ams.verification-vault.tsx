@@ -1,13 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { useMemo, useState } from "react";
 import { Shield } from "lucide-react";
 import { ROLES } from "@/lib/ams/roles";
 import { ROLE_SHIELD } from "@/lib/ams/role-assets";
-import { Collectible3D } from "@/components/ams/collectible/Collectible3D";
+import { MuseumStage } from "@/components/ams/museum/MuseumStage";
+import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 
-export const Route = createFileRoute("/ams/verification-vault")({
+export const Route = createFileRoute("/ams/tickets/verification-vault")({
   head: () => ({
     meta: [
       { title: "Verification Vault — Premium 3D Trust Shields" },
@@ -34,21 +36,18 @@ function Page() {
 
 
   return (
-    <div className="p-6 lg:p-8 space-y-6">
-      <header className="flex items-end justify-between flex-wrap gap-4">
-        <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Verification Vault</div>
-          <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">Premium 3D Trust Shields</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
-            Profession-specific verification collectibles with premium shield geometry, engraved trust marks,
-            luxury finishes and approval stamps. Rotate, inspect and export every shield as PNG.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Shield className="h-4 w-4 text-amber-400" />
+    <div className="space-y-6">
+      <PageHeader
+        kicker="Verification Vault"
+        title="Premium 3D Trust Shields"
+        description="Profession-specific verification collectibles with premium shield geometry, engraved trust marks, luxury finishes and approval stamps. Rotate, inspect and export every shield as PNG."
+        actions={
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Shield className="h-4 w-4 text-primary" />
           <span>{ROLES.length} shields · {visible.length} shown</span>
         </div>
-      </header>
+        }
+      />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <RoleFilter value={filter} onChange={setFilter} />
@@ -61,25 +60,27 @@ function Page() {
           return (
             <article
               key={role.slug}
-              className="rounded-2xl border border-border/60 bg-black/20 overflow-hidden"
+              className="dashboard-card overflow-hidden"
             >
-              <Collectible3D
+              <MuseumStage
                 src={img}
                 filename={`${role.slug}-verification-shield.png`}
                 accent={role.accent}
                 label={`${role.passportPrefix} · Verified`}
-                height={340}
-                showUnlock
+                environment={ROLE_ENVIRONMENT[role.slug]}
+                material="Titanium & sapphire · Trust display"
+                height={320}
+                chrome="compact"
                 unlockKind="surprise"
                 unlockTitle={`${role.name} Verification Granted`}
                 unlockSubtitle={role.motto}
               />
-              <div className="p-4">
-                <div className="text-lg font-semibold text-white">{role.name}</div>
+              <div className="border-t border-border/60 bg-surface/45 p-4">
+                <div className="text-lg font-semibold text-foreground">{role.name}</div>
                 <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
                   {role.archetype} · Verification Shield
                 </div>
-                <p className="mt-2 text-xs text-white/70 italic">&quot;{role.motto}&quot;</p>
+                <p className="mt-2 text-xs text-foreground/70 italic">&quot;{role.motto}&quot;</p>
               </div>
             </article>
           );

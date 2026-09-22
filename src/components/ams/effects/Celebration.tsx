@@ -56,9 +56,9 @@ const PALETTE = {
   Common:    ["#c0c0c0", "#e5e4e2", "#94a3b8"],
   Rare:      ["#60a5fa", "#93c5fd", "#bfdbfe"],
   Epic:      ["#c084fc", "#a855f7", "#e9d5ff"],
-  Legendary: ["#f5d77a", "#d4a14a", "#fff3c4"],
+  Legendary: ["var(--color-primary-glow)", "var(--color-primary)", "#fff3c4"],
   Mythic:    ["#ff9b6a", "#d97aff", "#9be5ff"],
-  Founder:   ["#fff3c4", "#f5d77a", "#b4892a", "#9be5ff"],
+  Founder:   ["#fff3c4", "var(--color-primary-glow)", "#b4892a", "#9be5ff"],
 };
 
 function makeBurst(w: number, h: number, rarity: Rarity, style: ParticleStyle, count: number): P[] {
@@ -278,11 +278,11 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
 
       {/* Center card */}
       <div className={`relative z-10 mx-4 w-full max-w-md${reduced ? "" : " animate-[ams-pop_0.55s_cubic-bezier(.2,.9,.25,1.2)_both]"}`}>
-        <div className="relative overflow-hidden rounded-2xl border border-gold bg-[oklch(0.13_0.025_250)]/95 px-8 pb-7 pt-20 text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9),inset_0_1px_0_oklch(0.78_0.14_82/0.3)]">
+        <div className="relative overflow-hidden rounded-2xl border border-gold bg-surface/95 px-8 pb-7 pt-20 text-center shadow-[0_30px_80px_-10px_rgba(0,0,0,0.9),inset_0_1px_0_oklch(0.58_0.19_255/0.3)]">
           {/* Glint */}
           {!reduced && (
             <div className="pointer-events-none absolute inset-0" style={{
-              background: "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.25) 50%, transparent 65%)",
+              background: "linear-gradient(115deg, transparent 35%, rgba(255,243,196,0.14) 50%, transparent 65%)",
               mixBlendMode: "screen",
               animation: "ams-glint 2.6s ease-in-out infinite",
             }} />
@@ -303,9 +303,9 @@ function Overlay({ payload, onClose }: { payload: CelebrationPayload; onClose: (
           {payload.subtitle && <p className="mt-2 text-sm text-muted-foreground">{payload.subtitle}</p>}
 
           {typeof payload.xp === "number" && (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold bg-[oklch(0.18_0.03_250)] px-4 py-1.5 text-xs">
-              <Sparkles className="h-3.5 w-3.5 text-[#f5d77a]" />
-              <span className="font-semibold text-[#f5d77a]">+<AnimatedNumber value={payload.xp} duration={900} /> XP</span>
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-gold bg-surface px-4 py-1.5 text-xs">
+              <Sparkles className="h-3.5 w-3.5 text-[var(--color-primary-glow)]" />
+              <span className="font-semibold text-[var(--color-primary-glow)]">+<AnimatedNumber value={payload.xp} duration={900} /> XP</span>
             </div>
           )}
 

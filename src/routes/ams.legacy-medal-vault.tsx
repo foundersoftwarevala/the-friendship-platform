@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_LEGACY_MEDAL } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/legacy-medal-vault")({
+export const Route = createFileRoute("/ams/tickets/legacy-medal-vault")({
   head: () => ({
     meta: [
       { title: "Legacy Medal Vault — Premium 3D Heirlooms" },

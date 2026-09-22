@@ -33,7 +33,7 @@ const ENV = (
 ): MuseumEnvironment => ({
   key,
   name,
-  backdrop: `radial-gradient(120% 80% at 50% -10%, ${a}33, transparent 65%), radial-gradient(90% 60% at 15% 110%, ${b}2b, transparent 70%), linear-gradient(180deg, #04060c 0%, #080d17 55%, #03050b 100%)`,
+  backdrop: `radial-gradient(120% 80% at 50% -10%, ${a}33, transparent 65%), radial-gradient(90% 60% at 15% 110%, ${b}2b, transparent 70%), linear-gradient(180deg, oklch(0.235 0.036 258) 0%, oklch(0.205 0.035 258) 55%, oklch(0.185 0.034 258) 100%)`,
   floor: `${a}55`,
   ambient: a,
   plinth,

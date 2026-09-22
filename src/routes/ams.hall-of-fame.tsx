@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/hall-of-fame")({
+export const Route = createFileRoute("/ams/tickets/hall-of-fame")({
   head: () => ({
     meta: [
       { title: "Hall of Fame — AMS" },
@@ -40,7 +40,7 @@ function Page() {
         { key: "tier", label: "Tier" },
       ]}
       rows={[
-        { id: "h1", user: <div className="flex items-center gap-2"><Star className="h-4 w-4 text-amber-500" /><span className="font-medium">@arjun.k</span></div>, role: "Developer", since: "2024-01-12", awards: "48", tier: <StatusChip tone="warn">Founder</StatusChip> },
+        { id: "h1", user: <div className="flex items-center gap-2"><Star className="h-4 w-4 text-accent-amber" /><span className="font-medium">@arjun.k</span></div>, role: "Developer", since: "2024-01-12", awards: "48", tier: <StatusChip tone="warn">Founder</StatusChip> },
         { id: "h2", user: <span className="font-medium">@meera.s</span>, role: "Reseller", since: "2024-06-04", awards: "36", tier: <StatusChip tone="info">Legend</StatusChip> },
         { id: "h3", user: <span className="font-medium">@vivek.p</span>, role: "Support", since: "2025-02-18", awards: "24", tier: <StatusChip tone="info">Legend</StatusChip> },
       ]}

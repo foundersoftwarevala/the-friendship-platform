@@ -37,7 +37,7 @@ export function MembershipCard({ theme, name, id, tier }: { theme: RoleTheme; na
       <div className="absolute left-6 bottom-16 text-[9px] tracking-[0.3em] uppercase" style={{ color: `${theme.primary}bb` }}>
         {tier}
       </div>
-      <div className="absolute left-6 bottom-8 text-lg text-white font-medium tracking-wide" style={{ fontFamily: theme.displayFont }}>
+      <div className="absolute left-6 bottom-8 text-lg text-foreground font-medium tracking-wide" style={{ fontFamily: theme.displayFont }}>
         {name}
       </div>
       <div className="absolute left-6 bottom-3 text-[10px] font-mono" style={{ color: `${theme.primary}cc` }}>
@@ -72,7 +72,7 @@ export function Passport({ theme, name, id }: { theme: RoleTheme; name: string; 
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-center px-6">
           <div className="text-[9px] tracking-[0.4em] uppercase" style={{ color: `${theme.primary}aa` }}>Sovereign Ledger</div>
           <div className="text-6xl" style={{ color: theme.primary, textShadow: `0 0 30px ${theme.glow}` }}>{theme.glyphIcon}</div>
-          <div className="text-lg text-white/95">Digital Passport</div>
+          <div className="text-lg text-foreground/95">Digital Passport</div>
           <div className="text-[10px] uppercase tracking-widest" style={{ color: `${theme.accent}cc` }}>{theme.environmentLabel}</div>
         </div>
         {/* metallic corner */}
@@ -97,7 +97,7 @@ export function Passport({ theme, name, id }: { theme: RoleTheme; name: string; 
         <div className="relative flex items-start justify-between">
           <div>
             <div className="text-[9px] tracking-[0.3em] uppercase" style={{ color: `${theme.primary}bb` }}>Holder</div>
-            <div className="mt-1 text-xl text-white" style={{ fontFamily: theme.displayFont }}>{name}</div>
+            <div className="mt-1 text-xl text-foreground" style={{ fontFamily: theme.displayFont }}>{name}</div>
             <div className="text-[10px] font-mono mt-0.5" style={{ color: `${theme.primary}cc` }}>{id}</div>
           </div>
           {/* QR-style block */}
@@ -133,7 +133,7 @@ export function Passport({ theme, name, id }: { theme: RoleTheme; name: string; 
           </div>
           <div className="text-right">
             <div className="text-[9px] tracking-widest uppercase" style={{ color: `${theme.accent}aa` }}>Sealed by</div>
-            <div className="text-[11px] text-white/85">{theme.environmentLabel}</div>
+            <div className="text-[11px] text-foreground/85">{theme.environmentLabel}</div>
           </div>
         </div>
       </div>
@@ -285,7 +285,7 @@ export function AwardPlate({ theme, title, subtitle }: { theme: RoleTheme; title
         </div>
         <div>
           <div className="text-[9px] tracking-[0.3em] uppercase" style={{ color: `${theme.primary}bb` }}>Presented</div>
-          <div className="text-lg text-white" style={{ fontFamily: theme.displayFont }}>{title}</div>
+          <div className="text-lg text-foreground" style={{ fontFamily: theme.displayFont }}>{title}</div>
           <div className="text-[11px]" style={{ color: `${theme.accent}cc`, fontFamily: theme.bodyFont }}>{subtitle}</div>
         </div>
       </div>
@@ -411,7 +411,7 @@ export function AvatarFrame({ theme, initials }: { theme: RoleTheme; initials: s
           boxShadow: `inset 0 0 20px ${theme.primary}44`,
           fontFamily: theme.displayFont,
         }}>
-        <span className="text-3xl text-white/90">{initials}</span>
+        <span className="text-3xl text-foreground/90">{initials}</span>
       </div>
       {/* verification seal */}
       <div className="absolute -bottom-1 -right-1 h-8 w-8 rounded-full flex items-center justify-center border"

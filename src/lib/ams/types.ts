@@ -36,7 +36,7 @@ export const RARITIES: Rarity[] = [
 ];
 
 export const RARITY_META: Record<Rarity, { label: string; tier: number; hue: string; glow: string }> = {
-  common:    { label: "Common",    tier: 1,  hue: "#9aa3b2", glow: "rgba(154,163,178,0.35)" },
+  common:    { label: "Common",    tier: 1,  hue: "#9aa3b2", glow: "rgba(154,163,178,0.14)" },
   uncommon:  { label: "Uncommon",  tier: 2,  hue: "#5eead4", glow: "rgba(94,234,212,0.45)" },
   rare:      { label: "Rare",      tier: 3,  hue: "#60a5fa", glow: "rgba(96,165,250,0.55)" },
   epic:      { label: "Epic",      tier: 4,  hue: "#c084fc", glow: "rgba(192,132,252,0.55)" },

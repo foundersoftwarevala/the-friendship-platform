@@ -11,7 +11,6 @@ import { useDialogA11y } from "@/hooks/use-dialog-a11y";
 import { playSound } from "@/lib/ams/ui-sound";
 import { cn } from "@/lib/utils";
 
-import { notBuilt } from "@/lib/ui/not-built";
 type ConvId = string;
 type Conversation = {
   id: ConvId;
@@ -257,7 +256,7 @@ export function ChatScreen() {
   if (!me) {
     return (
       <div className="gold-frame grid h-[420px] place-items-center rounded-2xl text-sm text-muted-foreground">
-        <div className="flex items-center gap-2"><Lock className="h-4 w-4 text-[#d4a14a]" /> Sign in to access secure chat</div>
+        <div className="flex items-center gap-2"><Lock className="h-4 w-4 text-[var(--color-primary)]" /> Sign in to access secure chat</div>
       </div>
     );
   }
@@ -266,14 +265,14 @@ export function ChatScreen() {
     <div className="space-y-6">
       {/* Header */}
       <div className="gold-frame relative overflow-hidden rounded-2xl">
-        <div className="absolute -right-32 -top-32 h-72 w-72 rounded-full bg-[oklch(0.78_0.14_82/0.18)] blur-3xl" />
+        <div className="absolute -right-32 -top-32 h-72 w-72 rounded-full bg-[oklch(0.58_0.19_255/0.18)] blur-3xl" />
         <div className="relative flex flex-wrap items-end justify-between gap-4 p-6 md:p-8">
           <div className="flex items-start gap-4">
-            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_10px_30px_-8px_#d4a14a]">
+            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_10px_30px_-8px_var(--color-primary)]">
               <MessageSquare className="h-6 w-6" strokeWidth={2.4} />
             </div>
             <div>
-              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[#d4a14a]">
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-[var(--color-primary)]">
                 <Sparkles className="h-3 w-3" /> Enterprise Communication Engine
               </div>
               <h1 className="mt-1 font-display text-3xl font-semibold text-gold-gradient md:text-4xl">
@@ -281,8 +280,8 @@ export function ChatScreen() {
               </h1>
               <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
                 Permission-aware chat with realtime delivery and role-scoped channels. Signed in as{" "}
-                <span className="text-[#f5d77a]">{me.email}</span> · role{" "}
-                <span className="rounded border border-gold px-1.5 text-[10px] uppercase tracking-[0.18em] text-[#f5d77a]">{myRole}</span>.
+                <span className="text-[var(--color-primary-glow)]">{me.email}</span> · role{" "}
+                <span className="rounded border border-gold px-1.5 text-[10px] uppercase tracking-[0.18em] text-[var(--color-primary-glow)]">{myRole}</span>.
               </p>
             </div>
           </div>
@@ -304,15 +303,15 @@ export function ChatScreen() {
       {/* Layout */}
       <div className="gold-frame grid h-[calc(100dvh-260px)] min-h-[560px] grid-cols-1 overflow-hidden rounded-2xl md:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[320px_minmax(0,1fr)_320px]">
         <aside className={cn(
-          "min-h-0 flex-col border-r border-gold bg-[oklch(0.12_0.025_250)] md:flex",
+          "min-h-0 flex-col border-r border-gold bg-surface md:flex",
           activeId ? "hidden md:flex" : "flex",
         )}>
           <div className="border-b border-gold p-4">
             <div className="flex items-center justify-between">
-              <div className="text-[10px] uppercase tracking-[0.25em] text-[#d4a14a]">Inbox</div>
+              <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-primary)]">Inbox</div>
               <button
                 onClick={() => setShowNew(true)}
-                className="grid h-7 w-7 place-items-center rounded-md bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_6px_18px_-6px_#d4a14a] transition-transform hover:scale-105"
+                className="grid h-7 w-7 place-items-center rounded-md bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_6px_18px_-6px_var(--color-primary)] transition-transform hover:scale-105"
                 title="New conversation"
                 aria-label="New conversation"
                 aria-haspopup="dialog"
@@ -321,8 +320,8 @@ export function ChatScreen() {
                 <Plus className="h-4 w-4" strokeWidth={2.6} />
               </button>
             </div>
-            <div className="mt-3 flex items-center gap-2 rounded-lg border border-gold bg-[oklch(0.16_0.03_250)] px-3 py-2">
-              <Search className="h-3.5 w-3.5 text-[#d4a14a]" aria-hidden="true" />
+            <div className="mt-3 flex items-center gap-2 rounded-lg border border-gold bg-surface px-3 py-2">
+              <Search className="h-3.5 w-3.5 text-[var(--color-primary)]" aria-hidden="true" />
               <label htmlFor="chat-channel-search" className="sr-only">Search channels</label>
               <input
                 id="chat-channel-search"
@@ -347,7 +346,7 @@ export function ChatScreen() {
                 className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] transition-all ${
                   filter === r
                     ? "bg-gold-gradient text-[oklch(0.13_0.025_250)]"
-                    : "text-muted-foreground hover:bg-[oklch(0.78_0.14_82/0.1)] hover:text-[#f5d77a]"
+                    : "text-muted-foreground hover:bg-[oklch(0.58_0.19_255/0.1)] hover:text-[var(--color-primary-glow)]"
                 }`}
               >{r}</button>
             ))}
@@ -373,18 +372,18 @@ export function ChatScreen() {
 
         {/* Stage */}
         <section className={cn(
-          "min-h-0 flex-col bg-[oklch(0.10_0.022_250)] md:flex",
+          "min-h-0 flex-col bg-surface md:flex",
           activeId ? "flex" : "hidden md:flex",
         )}>
           {active ? (
             <>
-              <div className="flex items-center justify-between gap-3 border-b border-gold bg-[oklch(0.13_0.025_250)] px-4 py-3 sm:px-5">
+              <div className="flex items-center justify-between gap-3 border-b border-gold bg-surface px-4 py-3 sm:px-5">
                 <div className="flex min-w-0 items-center gap-3">
                   <button
                     type="button"
                     onClick={() => setActiveId(null)}
                     aria-label="Back to channel list"
-                    className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-[oklch(0.78_0.14_82/0.12)] hover:text-[#f5d77a] focus-ring md:hidden"
+                    className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-[oklch(0.58_0.19_255/0.12)] hover:text-[var(--color-primary-glow)] focus-ring md:hidden"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </button>
@@ -393,13 +392,13 @@ export function ChatScreen() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-display text-sm font-semibold text-[#f5d77a]">{active.title}</span>
-                      <span className="rounded-full border border-gold px-2 py-[1px] text-[9px] uppercase tracking-[0.2em] text-[#d4a14a]">
+                      <span className="font-display text-sm font-semibold text-[var(--color-primary-glow)]">{active.title}</span>
+                      <span className="rounded-full border border-gold px-2 py-[1px] text-[9px] uppercase tracking-[0.2em] text-[var(--color-primary)]">
                         {active.allowed_roles.join(" · ")}
                       </span>
                     </div>
                     <div className="mt-0.5 flex items-center gap-2 text-[10px] text-muted-foreground">
-                      <Shield className="h-3 w-3 text-emerald-400" /> Module {active.module} · realtime enabled
+                      <Shield className="h-3 w-3 text-accent-emerald" /> Module {active.module} · realtime enabled
                     </div>
                   </div>
                 </div>
@@ -417,10 +416,10 @@ export function ChatScreen() {
                 aria-relevant="additions text"
                 aria-atomic="false"
                 tabIndex={0}
-                className="relative min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6 scrollbar-thin focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a14a]/60"
+                className="relative min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6 scrollbar-thin focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/60"
               >
                 <div className="pointer-events-none absolute inset-0 opacity-[0.04]"
-                  style={{ backgroundImage: "radial-gradient(circle at 20% 20%, #f5d77a 0%, transparent 40%), radial-gradient(circle at 80% 80%, #d4a14a 0%, transparent 40%)" }}
+                  style={{ backgroundImage: "radial-gradient(circle at 20% 20%, var(--color-primary-glow) 0%, transparent 40%), radial-gradient(circle at 80% 80%, var(--color-primary) 0%, transparent 40%)" }}
                 />
                 {loadingMessages && messages.length === 0 ? (
                   <MessagesSkeleton />
@@ -434,14 +433,14 @@ export function ChatScreen() {
                 )}
               </div>
 
-              <div className="border-t border-gold bg-[oklch(0.13_0.025_250)] px-4 py-3">
+              <div className="border-t border-gold bg-surface px-4 py-3">
                 {!canPostHere ? (
-                  <div className="flex items-center gap-2 rounded-xl border border-gold/60 bg-[oklch(0.16_0.03_250)] px-4 py-3 text-xs text-muted-foreground">
-                    <Lock className="h-3.5 w-3.5 text-[#d4a14a]" />
-                    Your role <span className="text-[#f5d77a]">{myRole}</span> is not authorized to post here. Allowed: {active.allowed_roles.join(", ")}.
+                  <div className="flex items-center gap-2 rounded-xl border border-gold/60 bg-surface px-4 py-3 text-xs text-muted-foreground">
+                    <Lock className="h-3.5 w-3.5 text-[var(--color-primary)]" />
+                    Your role <span className="text-[var(--color-primary-glow)]">{myRole}</span> is not authorized to post here. Allowed: {active.allowed_roles.join(", ")}.
                   </div>
                 ) : (
-                  <div className="flex items-end gap-2 rounded-2xl border border-gold bg-[oklch(0.16_0.03_250)] p-2 shadow-[inset_0_1px_0_oklch(0.78_0.14_82/0.15)] focus-within:shadow-[0_0_0_2px_oklch(0.78_0.14_82/0.35)]">
+                  <div className="flex items-end gap-2 rounded-2xl border border-gold bg-surface p-2 shadow-[inset_0_1px_0_oklch(0.58_0.19_255/0.15)] focus-within:shadow-[0_0_0_2px_oklch(0.58_0.19_255/0.35)]">
                     <IconBtn icon={Paperclip} small label="Attach a file" /><IconBtn icon={Smile} small label="Insert emoji" />
                     <label htmlFor="chat-composer" className="sr-only">{`Message ${active.title}`}</label>
                     <textarea
@@ -463,7 +462,7 @@ export function ChatScreen() {
                       aria-label="Send message"
                       onClick={send}
                       disabled={!composer.trim() || sending}
-                      className="grid h-9 w-9 place-items-center rounded-lg bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_8px_22px_-8px_#d4a14a] transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
+                      className="grid h-9 w-9 place-items-center rounded-lg bg-gold-gradient text-[oklch(0.13_0.025_250)] shadow-[0_8px_22px_-8px_var(--color-primary)] transition-transform hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       <Send className="h-4 w-4" strokeWidth={2.4} />
                     </button>
@@ -477,31 +476,31 @@ export function ChatScreen() {
         </section>
 
         {/* Right rail */}
-        <aside className="hidden min-h-0 flex-col gap-4 overflow-y-auto border-l border-gold bg-[oklch(0.12_0.025_250)] p-4 scrollbar-thin xl:flex">
-          <div className="text-[10px] uppercase tracking-[0.25em] text-[#d4a14a]">Channel</div>
+        <aside className="hidden min-h-0 flex-col gap-4 overflow-y-auto border-l border-gold bg-surface p-4 scrollbar-thin xl:flex">
+          <div className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-primary)]">Channel</div>
           {active ? (
-            <div className="space-y-3 rounded-xl border border-gold bg-[oklch(0.16_0.03_250)] p-4 text-xs">
+            <div className="space-y-3 rounded-xl border border-gold bg-surface p-4 text-xs">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#d4a14a]">Title</div>
-                <div className="mt-1 font-display text-sm text-[#f5d77a]">{active.title}</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-primary)]">Title</div>
+                <div className="mt-1 font-display text-sm text-[var(--color-primary-glow)]">{active.title}</div>
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#d4a14a]">Allowed roles</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-primary)]">Allowed roles</div>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {active.allowed_roles.map((r) => (
-                    <span key={r} className="rounded border border-gold/60 px-1.5 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[#f5d77a]">{r}</span>
+                    <span key={r} className="rounded border border-gold/60 px-1.5 py-0.5 text-[10px] uppercase tracking-[0.16em] text-[var(--color-primary-glow)]">{r}</span>
                   ))}
                 </div>
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#d4a14a]">Your access</div>
-                <div className={`mt-1 text-[11px] ${canPostHere ? "text-emerald-300" : "text-red-300"}`}>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-primary)]">Your access</div>
+                <div className={`mt-1 text-[11px] ${canPostHere ? "text-accent-emerald" : "text-red-300"}`}>
                   {canPostHere ? "Read + write" : "Read only"}
                 </div>
               </div>
             </div>
           ) : (
-            <div className="rounded-xl border border-gold/50 bg-[oklch(0.16_0.03_250)] p-4 text-xs text-muted-foreground">
+            <div className="rounded-xl border border-gold/50 bg-surface p-4 text-xs text-muted-foreground">
               Select or create a channel to see its permissions.
             </div>
           )}
@@ -517,7 +516,7 @@ export function ChatScreen() {
 
 function Pill({ icon: Icon, label }: { icon: typeof Shield; label: string }) {
   return (
-    <span className="flex items-center gap-1.5 rounded-full border border-gold bg-[oklch(0.16_0.03_250)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#f5d77a]">
+    <span className="flex items-center gap-1.5 rounded-full border border-gold bg-surface px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-primary-glow)]">
       <Icon className="h-3 w-3" /> {label}
     </span>
   );
@@ -527,11 +526,10 @@ function IconBtn({ icon: Icon, small, label }: { icon: typeof Phone; small?: boo
   const s = small ? "h-8 w-8" : "h-9 w-9";
   return (
     <button
-        onClick={() => notBuilt(label)}
       type="button"
       title={label}
       aria-label={label}
-      className={`grid ${s} place-items-center rounded-lg text-muted-foreground transition-all hover:bg-[oklch(0.78_0.14_82/0.12)] hover:text-[#f5d77a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a14a] focus-visible:ring-offset-1 focus-visible:ring-offset-[oklch(0.13_0.025_250)]`}
+      className={`grid ${s} place-items-center rounded-lg text-muted-foreground transition-all hover:bg-[oklch(0.58_0.19_255/0.12)] hover:text-[var(--color-primary-glow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-1 focus-visible:ring-offset-[oklch(0.13_0.025_250)]`}
     >
       <Icon className="h-4 w-4" aria-hidden="true" />
     </button>
@@ -543,8 +541,8 @@ function ConversationRow({ conv, active, onClick }: { conv: Conversation; active
     <button
       onClick={onClick}
       className={`group flex w-full items-start gap-3 rounded-xl p-3 text-left transition-all ${
-        active ? "bg-[oklch(0.78_0.14_82/0.14)] shadow-[inset_0_0_0_1px_oklch(0.78_0.14_82/0.45)]"
-          : "hover:bg-[oklch(0.78_0.14_82/0.06)]"
+        active ? "bg-[oklch(0.58_0.19_255/0.14)] shadow-[inset_0_0_0_1px_oklch(0.58_0.19_255/0.45)]"
+          : "hover:bg-[oklch(0.58_0.19_255/0.06)]"
       }`}
     >
       <div className="grid h-10 w-10 place-items-center rounded-full bg-gold-gradient text-[11px] font-bold text-[oklch(0.13_0.025_250)]">
@@ -552,11 +550,11 @@ function ConversationRow({ conv, active, onClick }: { conv: Conversation; active
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between">
-          <span className={`truncate text-xs font-semibold ${active ? "text-[#f5d77a]" : "text-foreground"}`}>{conv.title}</span>
+          <span className={`truncate text-xs font-semibold ${active ? "text-[var(--color-primary-glow)]" : "text-foreground"}`}>{conv.title}</span>
         </div>
         <div className="mt-0.5 flex flex-wrap items-center gap-1">
           {conv.allowed_roles.slice(0, 3).map((r) => (
-            <span key={r} className="rounded border border-gold/60 px-1.5 py-[1px] text-[9px] uppercase tracking-[0.16em] text-[#d4a14a]">{r}</span>
+            <span key={r} className="rounded border border-gold/60 px-1.5 py-[1px] text-[9px] uppercase tracking-[0.16em] text-[var(--color-primary)]">{r}</span>
           ))}
         </div>
       </div>
@@ -573,7 +571,7 @@ function MessageBubble({ m, mine }: { m: Message; mine: boolean }) {
           "max-w-[88%] rounded-2xl px-4 py-2.5 text-sm shadow-[0_10px_30px_-15px_rgba(0,0,0,0.7)] sm:max-w-[72%]",
           mine
             ? "bg-gold-gradient text-[oklch(0.13_0.025_250)] rounded-br-md"
-            : "border border-gold bg-[oklch(0.16_0.03_250)] text-foreground rounded-bl-md",
+            : "border border-gold bg-surface text-foreground rounded-bl-md",
           pending && "opacity-70",
         )}
       >
@@ -628,7 +626,7 @@ function TypingBubble({ labels }: { labels: string[] }) {
   return (
     <div className="flex justify-start" role="status" aria-live="polite" aria-atomic="true">
       <span className="sr-only">{labels.join(", ")} {labels.length === 1 ? "is" : "are"} typing</span>
-      <div className="flex items-center gap-2 rounded-2xl rounded-bl-md border border-gold bg-[oklch(0.16_0.03_250)] px-4 py-2.5 text-xs text-muted-foreground">
+      <div className="flex items-center gap-2 rounded-2xl rounded-bl-md border border-gold bg-surface px-4 py-2.5 text-xs text-muted-foreground">
         <span className="truncate" aria-hidden="true">{labels.join(", ")} typing</span>
         <span className="inline-flex gap-0.5">
           <Dot delay="0ms" /><Dot delay="150ms" /><Dot delay="300ms" />
@@ -638,16 +636,16 @@ function TypingBubble({ labels }: { labels: string[] }) {
   );
 }
 function Dot({ delay }: { delay: string }) {
-  return <span className="inline-block h-1.5 w-1.5 animate-bounce rounded-full bg-[#f5d77a]" style={{ animationDelay: delay }} />;
+  return <span className="inline-block h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--color-primary-glow)]" style={{ animationDelay: delay }} />;
 }
 
 function EmptyInbox({ onNew }: { onNew: () => void }) {
   return (
     <div className="flex flex-col items-center justify-center px-4 py-12 text-center">
-      <div className="grid h-16 w-16 place-items-center rounded-2xl border border-gold bg-[oklch(0.16_0.03_250)]">
-        <Inbox className="h-7 w-7 text-[#f5d77a]" />
+      <div className="grid h-16 w-16 place-items-center rounded-2xl border border-gold bg-surface">
+        <Inbox className="h-7 w-7 text-[var(--color-primary-glow)]" />
       </div>
-      <div className="mt-4 font-display text-sm font-semibold text-[#f5d77a]">No channels yet</div>
+      <div className="mt-4 font-display text-sm font-semibold text-[var(--color-primary-glow)]">No channels yet</div>
       <p className="mt-1 max-w-xs text-[11px] text-muted-foreground">Create a role-scoped channel — only participants with matching roles can post.</p>
       <button onClick={onNew} className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-gold-gradient px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.13_0.025_250)]">
         <Plus className="h-3 w-3" /> New Channel
@@ -659,8 +657,8 @@ function EmptyInbox({ onNew }: { onNew: () => void }) {
 function EmptyFilter({ role, onReset }: { role: string; onReset: () => void }) {
   return (
     <div className="px-4 py-8 text-center text-[11px] text-muted-foreground">
-      No channels for role <span className="text-[#f5d77a]">{role}</span>.
-      <button onClick={onReset} className="ml-2 underline hover:text-[#f5d77a]">Reset</button>
+      No channels for role <span className="text-[var(--color-primary-glow)]">{role}</span>.
+      <button onClick={onReset} className="ml-2 underline hover:text-[var(--color-primary-glow)]">Reset</button>
     </div>
   );
 }
@@ -668,8 +666,8 @@ function EmptyFilter({ role, onReset }: { role: string; onReset: () => void }) {
 function EmptyStage({ onNew }: { onNew: () => void }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center text-center">
-      <MessageSquare className="h-10 w-10 text-[#d4a14a]" />
-      <div className="mt-3 font-display text-sm text-[#f5d77a]">Select a channel to start chatting</div>
+      <MessageSquare className="h-10 w-10 text-[var(--color-primary)]" />
+      <div className="mt-3 font-display text-sm text-[var(--color-primary-glow)]">Select a channel to start chatting</div>
       <button onClick={onNew} className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-gold-gradient px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.13_0.025_250)]">
         <Plus className="h-3 w-3" /> New Channel
       </button>
@@ -681,8 +679,8 @@ function EmptyConversation({ title }: { title: string }) {
   return (
     <div className="grid h-full place-items-center text-center text-xs text-muted-foreground">
       <div>
-        <Shield className="mx-auto h-6 w-6 text-emerald-400" />
-        <div className="mt-2">Secure channel <span className="text-[#f5d77a]">{title}</span> is ready.</div>
+        <Shield className="mx-auto h-6 w-6 text-accent-emerald" />
+        <div className="mt-2">Secure channel <span className="text-[var(--color-primary-glow)]">{title}</span> is ready.</div>
         <div className="text-[10px]">Type a message to get started — realtime delivery is on.</div>
       </div>
     </div>
@@ -708,7 +706,7 @@ function NewConversationModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[100] grid place-items-center bg-[oklch(0.08_0.02_250/0.7)] p-4 backdrop-blur-sm" onClick={onClose} aria-hidden="true">
+    <div className="fixed inset-0 z-[100] grid place-items-center bg-background/70 p-4 backdrop-blur-sm" onClick={onClose} aria-hidden="true">
       <div
         ref={dialogRef}
         role="dialog"
@@ -716,10 +714,10 @@ function NewConversationModal({
         aria-labelledby="new-channel-title"
         aria-describedby="new-channel-desc"
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-md overflow-hidden rounded-2xl border border-gold bg-[oklch(0.13_0.025_250)] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.9)]">
+        className="w-full max-w-md overflow-hidden rounded-2xl border border-gold bg-surface shadow-[0_40px_120px_-20px_rgba(0,0,0,0.9)]">
         <div className="flex items-center justify-between border-b border-gold px-5 py-4">
           <div className="flex items-center gap-2">
-            <IdCard className="h-4 w-4 text-[#f5d77a]" />
+            <IdCard className="h-4 w-4 text-[var(--color-primary-glow)]" />
             <h2 id="new-channel-title" className="font-display text-sm font-semibold text-gold-gradient">Create a role-scoped channel</h2>
           </div>
           <button
@@ -727,16 +725,16 @@ function NewConversationModal({
             onClick={onClose}
             title="Close dialog"
             aria-label="Close dialog"
-            className="rounded-md text-muted-foreground hover:text-[#f5d77a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a14a]"
+            className="rounded-md text-muted-foreground hover:text-[var(--color-primary-glow)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
           ><X className="h-4 w-4" aria-hidden="true" /></button>
         </div>
         <div className="space-y-4 p-5">
           <div>
-            <label htmlFor="new-channel-name" className="text-[10px] uppercase tracking-[0.22em] text-[#d4a14a]">
+            <label htmlFor="new-channel-name" className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">
               Channel Title <span aria-hidden="true">*</span><span className="sr-only">(required)</span>
             </label>
-            <div className="mt-2 flex items-center gap-2 rounded-lg border border-gold bg-[oklch(0.16_0.03_250)] px-3 py-2">
-              <Hash className="h-3.5 w-3.5 text-[#d4a14a]" aria-hidden="true" />
+            <div className="mt-2 flex items-center gap-2 rounded-lg border border-gold bg-surface px-3 py-2">
+              <Hash className="h-3.5 w-3.5 text-[var(--color-primary)]" aria-hidden="true" />
               <input
                 id="new-channel-name"
                 autoComplete="off"
@@ -750,25 +748,25 @@ function NewConversationModal({
             </div>
           </div>
           <div>
-            <span id="roles-allowed-label" className="text-[10px] uppercase tracking-[0.22em] text-[#d4a14a]">Roles allowed to post</span>
+            <span id="roles-allowed-label" className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-primary)]">Roles allowed to post</span>
             <div role="group" aria-labelledby="roles-allowed-label" className="mt-2 flex flex-wrap gap-1.5">
               {ALL_POST_ROLES.map((r) => (
                 <button key={r} type="button" aria-pressed={roles.includes(r)} title={`Toggle ${r}`} onClick={() => toggle(r)} className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] transition-all ${
                   roles.includes(r) ? "bg-gold-gradient text-[oklch(0.13_0.025_250)]"
-                  : "border border-gold/60 text-muted-foreground hover:text-[#f5d77a]"
+                  : "border border-gold/60 text-muted-foreground hover:text-[var(--color-primary-glow)]"
                 }`}>{r}</button>
               ))}
             </div>
             <p id="new-channel-desc" className="mt-1.5 text-[10px] text-muted-foreground">Members outside these roles can read but cannot post. Admins always can.</p>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-2 border-t border-gold bg-[oklch(0.12_0.025_250)] px-5 py-3">
+        <div className="flex items-center justify-end gap-2 border-t border-gold bg-surface px-5 py-3">
           <button type="button" onClick={onClose} className="rounded-lg px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground hover:text-foreground">Cancel</button>
           <button
             type="button"
             disabled={!valid}
             onClick={() => onStart(title.trim(), roles)}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-gold-gradient px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.13_0.025_250)] shadow-[0_8px_22px_-8px_#d4a14a] disabled:cursor-not-allowed disabled:opacity-40"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-gold-gradient px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.13_0.025_250)] shadow-[0_8px_22px_-8px_var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-40"
           >
             Create Channel <ChevronRight className="h-3 w-3" />
           </button>

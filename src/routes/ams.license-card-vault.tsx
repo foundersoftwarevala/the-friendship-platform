@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_LICENSE_CARD } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/license-card-vault")({
+export const Route = createFileRoute("/ams/tickets/license-card-vault")({
   head: () => ({
     meta: [
       { title: "License Card Vault — Premium 3D Credentials" },

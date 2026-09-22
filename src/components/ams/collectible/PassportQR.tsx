@@ -63,7 +63,7 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
         {dataUrl ? (
           <img src={dataUrl} alt={`Verification QR for passport ${identity.code}`} width={size} height={size} style={{ width: size, height: size }} />
         ) : (
-          <div className="flex items-center justify-center text-black/40" style={{ width: size, height: size }}>
+          <div className="flex items-center justify-center text-background/40" style={{ width: size, height: size }}>
             <QrCode className="h-6 w-6" />
           </div>
         )}
@@ -73,8 +73,8 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
         <div className="text-[10px] font-mono uppercase tracking-[0.25em]" style={{ color: `${role.accent}cc` }}>
           Verification Code
         </div>
-        <div className="font-mono text-xs text-white break-all">{identity.code}</div>
-        <div className="text-[10px] text-white/55">Passport No. {identity.number}</div>
+        <div className="font-mono text-xs text-foreground break-all">{identity.code}</div>
+        <div className="text-[10px] text-foreground/55">Passport No. {identity.number}</div>
         <div className="flex flex-wrap items-center gap-1.5 pt-1">
           <Link
             to="/verify/$code"
@@ -89,7 +89,7 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
             onClick={copyCode}
             title="Copy verification code"
             aria-label={`Copy verification code ${identity.code}`}
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-white/80 hover:bg-white/5"
+            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-foreground/80 hover:bg-foreground/5"
             style={{ borderColor: `${role.accent}55` }}
           >
             {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />} {copied ? "Copied" : "Code"}
@@ -99,13 +99,13 @@ export function PassportQR({ role, size = 132 }: { role: RoleDNA; size?: number 
             onClick={downloadQr}
             title="Download QR code"
             aria-label="Download verification QR code as PNG"
-            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-white/80 hover:bg-white/5"
+            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[10px] text-foreground/80 hover:bg-foreground/5"
             style={{ borderColor: `${role.accent}55` }}
           >
             <Download className="h-3 w-3" /> QR
           </button>
         </div>
-        <div className="text-[10px] text-white/40 font-mono">{passportVerifyPath(role)}</div>
+        <div className="text-[10px] text-foreground/40 font-mono">{passportVerifyPath(role)}</div>
       </div>
     </div>
   );

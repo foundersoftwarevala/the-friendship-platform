@@ -23,7 +23,7 @@ import {
   missionsSnapshot, missionsServerSnapshot,
 } from "@/lib/ams/missions.api";
 
-export const Route = createFileRoute("/ams/missions")({
+export const Route = createFileRoute("/ams/tickets/missions")({
   head: () => ({
     meta: [
       { title: "Missions — AMS" },
@@ -43,9 +43,9 @@ function useMissions() {
 
 const STATUS_META: Record<MissionStatus, { label: string; className: string }> = {
   draft:      { label: "Draft",      className: "bg-muted text-muted-foreground" },
-  scheduled:  { label: "Scheduled",  className: "bg-blue-500/15 text-blue-300 border-blue-500/30" },
-  active:     { label: "Active",     className: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" },
-  paused:     { label: "Paused",     className: "bg-amber-500/15 text-amber-300 border-amber-500/30" },
+  scheduled:  { label: "Scheduled",  className: "bg-blue-500/15 text-primary-glow border-blue-500/30" },
+  active:     { label: "Active",     className: "bg-emerald-500/15 text-accent-emerald border-emerald-500/30" },
+  paused:     { label: "Paused",     className: "bg-amber-500/15 text-primary border-amber-500/30" },
   completed:  { label: "Completed",  className: "bg-legendary/20 text-legendary border-legendary/40" },
   expired:    { label: "Expired",    className: "bg-rose-500/15 text-rose-300 border-rose-500/30" },
   archived:   { label: "Archived",   className: "bg-muted text-muted-foreground" },
@@ -175,8 +175,8 @@ function MissionCard({ m }: { m: Mission }) {
 
       <div className="flex flex-wrap gap-1.5 text-[11px]">
         {m.rewards.xp > 0 && <span className="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">+{m.rewards.xp} XP</span>}
-        {m.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-300 border border-yellow-500/30">+{m.rewards.coins} coins</span>}
-        {m.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/30">+{m.rewards.tokens} tokens</span>}
+        {m.rewards.coins > 0 && <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-accent-amber border border-yellow-500/30">+{m.rewards.coins} coins</span>}
+        {m.rewards.tokens > 0 && <span className="px-2 py-0.5 rounded bg-primary/12 text-primary-glow border border-primary/30">+{m.rewards.tokens} tokens</span>}
         {m.rewards.awardIds.length > 0 && <span className="px-2 py-0.5 rounded bg-legendary/10 text-legendary border border-legendary/30">{m.rewards.awardIds.length} award{m.rewards.awardIds.length > 1 ? "s" : ""}</span>}
       </div>
 
@@ -200,7 +200,7 @@ function MissionCard({ m }: { m: Mission }) {
           </Button>
         )}
         {m.status !== "completed" && (
-          <Button size="sm" variant="ghost" className="h-7 gap-1 text-emerald-400" onClick={() => {
+          <Button size="sm" variant="ghost" className="h-7 gap-1 text-accent-emerald" onClick={() => {
             completeMission(m.id);
             toast.success(`"${m.name}" completed — rewards granted`);
           }}>

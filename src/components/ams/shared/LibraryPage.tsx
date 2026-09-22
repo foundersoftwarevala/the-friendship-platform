@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/ams/shared/PageHeader";
-import { EmptyState } from "@/components/ams/shared/EmptyState";
+import { EmptyState, LoadingState } from "@/components/ams/shared/EmptyState";
 import { AwardCard } from "@/components/ams/shared/AwardCard";
 import {
   listAwards, bulkDelete, bulkSetStatus, bulkUpdate, createAward,
@@ -207,7 +207,7 @@ export function LibraryPage({
       )}
 
       {isLoading ? (
-        <div className="surface-card p-8 text-center text-sm text-muted-foreground">Loading…</div>
+        <LoadingState />
       ) : rows.length === 0 ? (
         <EmptyState
           title={`No ${type}s yet`}

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_FOUNDER_SEAL } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/founder-seal-vault")({
+export const Route = createFileRoute("/ams/tickets/founder-seal-vault")({
   head: () => ({
     meta: [
       { title: "Founder Seal Vault — Premium 3D Founder Seals" },

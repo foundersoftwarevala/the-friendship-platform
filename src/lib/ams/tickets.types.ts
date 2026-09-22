@@ -20,16 +20,16 @@ export const STATUS_META: Record<AmsStatus, { label: string; tone: string }> = {
   waiting_customer:   { label: "Waiting customer",   tone: "bg-amber-500/15 text-amber-400" },
   waiting_developer:  { label: "Waiting developer",  tone: "bg-amber-500/15 text-amber-400" },
   waiting_qa:         { label: "Waiting QA",         tone: "bg-amber-500/15 text-amber-400" },
-  testing:            { label: "Testing",            tone: "bg-purple-500/15 text-purple-400" },
+  testing:            { label: "Testing",            tone: "bg-primary/15 text-primary-glow" },
   resolved:           { label: "Resolved",           tone: "bg-emerald-500/15 text-emerald-400" },
-  closed:             { label: "Closed",             tone: "bg-zinc-500/15 text-zinc-400" },
+  closed:             { label: "Closed",             tone: "bg-muted text-muted-foreground" },
   reopened:           { label: "Reopened",           tone: "bg-rose-500/15 text-rose-400" },
-  cancelled:          { label: "Cancelled",          tone: "bg-zinc-500/15 text-zinc-400" },
-  archived:           { label: "Archived",           tone: "bg-zinc-500/15 text-zinc-400" },
+  cancelled:          { label: "Cancelled",          tone: "bg-muted text-muted-foreground" },
+  archived:           { label: "Archived",           tone: "bg-muted text-muted-foreground" },
 };
 
 export const PRIORITY_META: Record<AmsPriority, { label: string; tone: string }> = {
-  low:      { label: "Low",      tone: "bg-zinc-500/15 text-zinc-300" },
+  low:      { label: "Low",      tone: "bg-muted text-muted-foreground" },
   medium:   { label: "Medium",   tone: "bg-blue-500/15 text-blue-400" },
   high:     { label: "High",     tone: "bg-amber-500/15 text-amber-400" },
   critical: { label: "Critical", tone: "bg-rose-500/15 text-rose-400" },

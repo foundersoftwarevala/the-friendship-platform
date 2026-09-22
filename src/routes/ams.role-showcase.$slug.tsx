@@ -11,7 +11,7 @@ import {
 import { StageTrophy } from "@/components/ams/trophy-gallery/StageTrophy";
 import { playUnlock, type UnlockPreset } from "@/lib/ams/trophy-sounds";
 
-export const Route = createFileRoute("/ams/role-showcase/$slug")({
+export const Route = createFileRoute("/ams/tickets/role-showcase/$slug")({
   head: ({ params }) => {
     const role = ROLES.find((r) => r.slug === params.slug);
     return {
@@ -62,7 +62,7 @@ function Page() {
           style={{ background: `radial-gradient(closest-side, ${t.accent}55, transparent)`, filter: "blur(24px)" }} />
 
         <div className="relative px-6 lg:px-10 pt-6 pb-16">
-          <Link to="/ams/role-showcase" className="inline-flex items-center gap-1.5 text-xs text-white/80 hover:text-white transition">
+          <Link to="/ams/role-showcase" className="inline-flex items-center gap-1.5 text-xs text-foreground/80 hover:text-foreground transition">
             <ArrowLeft className="h-3.5 w-3.5" /> All rooms
           </Link>
 
@@ -72,16 +72,16 @@ function Page() {
               <div className="text-[11px] tracking-[0.4em] uppercase" style={{ color: `${t.accent}cc` }}>
                 {t.environmentLabel} · {role.archetype}
               </div>
-              <h1 className="mt-2 text-4xl lg:text-5xl text-white leading-none" style={{ fontFamily: t.displayFont }}>
+              <h1 className="mt-2 text-4xl lg:text-5xl text-foreground leading-none" style={{ fontFamily: t.displayFont }}>
                 {role.name}
               </h1>
-              <p className="mt-3 text-sm text-white/70 max-w-2xl italic">"{role.motto}" — {role.vision}</p>
+              <p className="mt-3 text-sm text-foreground/70 max-w-2xl italic">"{role.motto}" — {role.vision}</p>
               {/* Rank ribbon */}
               <div className="mt-4 inline-flex items-center gap-3 rounded-full pl-1 pr-4 py-1 border"
                 style={{ borderColor: `${t.primary}66`, background: `${t.primary}12` }}>
                 <span className="rounded-full px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest"
                   style={{ background: t.metallic, color: t.ink }}>{tier.key}</span>
-                <span className="text-[12px] text-white/85" style={{ fontFamily: t.displayFont }}>{tier.label}</span>
+                <span className="text-[12px] text-foreground/85" style={{ fontFamily: t.displayFont }}>{tier.label}</span>
                 <span className="text-[10px] font-mono" style={{ color: `${t.primary}bb` }}>{holderId}</span>
               </div>
             </div>
@@ -152,7 +152,7 @@ function Page() {
                       style={{ background: t.metallic, color: t.ink, fontFamily: t.displayFont }}>{t.glyphIcon}</div>
                     <div>
                       <div className="text-[9px] uppercase tracking-widest" style={{ color: `${t.primary}bb` }}>Award</div>
-                      <div className="text-sm text-white/90" style={{ fontFamily: t.displayFont }}>{a}</div>
+                      <div className="text-sm text-foreground/90" style={{ fontFamily: t.displayFont }}>{a}</div>
                     </div>
                   </div>
                 ))}
@@ -180,7 +180,7 @@ function Page() {
                 {role.badges.slice(0, 6).map((b) => (
                   <div key={b.key} className="flex flex-col items-center gap-1.5">
                     <Badge theme={t} label={b.key} />
-                    <div className="text-[10px] text-white/70 text-center max-w-[8rem] leading-tight">{b.label}</div>
+                    <div className="text-[10px] text-foreground/70 text-center max-w-[8rem] leading-tight">{b.label}</div>
                   </div>
                 ))}
               </div>
@@ -220,7 +220,7 @@ function Page() {
                     <StageTrophy shape={t.trophyShape} accent={tt.hue} id={`hof-${t.slug}-${i}`} />
                   </div>
                   <div className="mt-1 text-[9px] uppercase tracking-widest" style={{ color: tt.hue }}>{tt.key}</div>
-                  <div className="text-[11px] text-white/85 truncate" style={{ fontFamily: t.displayFont }}>{tt.label}</div>
+                  <div className="text-[11px] text-foreground/85 truncate" style={{ fontFamily: t.displayFont }}>{tt.label}</div>
                 </div>
               ))}
             </div>
@@ -252,7 +252,7 @@ function Row({ theme, label, caption, children }: { theme: (typeof ROLE_THEMES)[
         <div className="text-[10px] tracking-[0.4em] uppercase" style={{ color: `${theme.primary}dd`, fontFamily: theme.displayFont }}>{label}</div>
         <div className="h-px flex-[3]" style={{ background: `linear-gradient(90deg, transparent, ${theme.primary}22)` }} />
       </div>
-      {caption && <div className="mb-4 text-[11px] text-white/50 italic">{caption}</div>}
+      {caption && <div className="mb-4 text-[11px] text-foreground/50 italic">{caption}</div>}
       {children}
     </section>
   );

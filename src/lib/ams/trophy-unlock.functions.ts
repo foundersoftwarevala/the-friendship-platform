@@ -3,15 +3,13 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 export const unlockTrophy = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator(
-    (data: {
-      trophySlug: string;
-      trophyName: string;
-      achievementSlug: string;
-      achievementName: string;
-      xpReward?: number;
-    }) => data,
-  )
+  .inputValidator((data: {
+    trophySlug: string;
+    trophyName: string;
+    achievementSlug: string;
+    achievementName: string;
+    xpReward?: number;
+  }) => data)
   .handler(async ({ data, context }) => {
     const { data: result, error } = await context.supabase.rpc("unlock_trophy", {
       _trophy_slug: data.trophySlug,

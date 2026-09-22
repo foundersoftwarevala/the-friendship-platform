@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { getRole, type RoleDNA } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/role-manager/$slug")({
+export const Route = createFileRoute("/ams/tickets/role-manager/$slug")({
   head: ({ params }) => {
     const title = `${params.slug} — Role DNA`;
     const description = `Complete role DNA for ${params.slug}: archetype, motto, progression path, collectibles and recognition rules inside AMS.`;

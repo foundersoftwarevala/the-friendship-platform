@@ -2,8 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Landmark } from "lucide-react";
 import { SHOWCASES, ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { ROLES } from "@/lib/ams/roles";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 
-export const Route = createFileRoute("/ams/museum/")({
+export const Route = createFileRoute("/ams/tickets/museum/")({
   head: () => ({
     meta: [
       { title: "Presentation Engine — Software Vala Museums" },
@@ -19,17 +20,12 @@ export const Route = createFileRoute("/ams/museum/")({
 
 function Page() {
   return (
-    <div className="space-y-8 p-6 lg:p-8">
-      <header>
-        <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-amber-400/80">
-          Software Vala · Master Presentation Engine
-        </div>
-        <h1 className="mt-2 text-3xl font-semibold text-foreground lg:text-4xl">Museums &amp; Galleries</h1>
-        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Every collectible presented as a real luxury object: glass cabinets, floating platforms,
-          spotlights, reflection floors and cinematic camera work — one immersive environment per role.
-        </p>
-      </header>
+    <div className="space-y-8">
+      <PageHeader
+        kicker="Software Vala · Master Presentation Engine"
+        title="Museums & Galleries"
+        description="Every collectible presented as a real luxury object: glass cabinets, floating platforms, spotlights, reflection floors and cinematic camera work — one immersive environment per role."
+      />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SHOWCASES.map((s) => (
@@ -37,7 +33,7 @@ function Page() {
             key={s.slug}
             to="/ams/museum/$showcase"
             params={{ showcase: s.slug }}
-            className="group rounded-2xl border border-border/60 bg-black/20 p-4 motion-card"
+            className="group rounded-2xl border border-border/60 bg-card p-4 motion-card"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: `${s.accent}cc` }}>

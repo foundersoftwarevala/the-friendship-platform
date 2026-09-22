@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Gift } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/rewards")({
+export const Route = createFileRoute("/ams/tickets/rewards")({
   head: () => ({
     meta: [
       { title: "Reward Engine — AMS" },
@@ -44,7 +44,7 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "rw1", name: <div className="flex items-center gap-2"><Gift className="h-4 w-4 text-fuchsia-400" /><span className="font-medium">Legendary Mystery Box</span></div>, type: "Mystery Box", rarity: "Legendary", issued: "84", value: "$120", status: <StatusChip tone="success">Live</StatusChip> },
+        { id: "rw1", name: <div className="flex items-center gap-2"><Gift className="h-4 w-4 text-accent-pink" /><span className="font-medium">Legendary Mystery Box</span></div>, type: "Mystery Box", rarity: "Legendary", issued: "84", value: "$120", status: <StatusChip tone="success">Live</StatusChip> },
         { id: "rw2", name: <span className="font-medium">Weekend Lucky Spin</span>, type: "Lucky Wheel", rarity: "Common", issued: "4,182", value: "$5–$50", status: <StatusChip tone="success">Live</StatusChip> },
         { id: "rw3", name: <span className="font-medium">Golden Ticket</span>, type: "Golden Ticket", rarity: "Mythic", issued: "24", value: "$500", status: <StatusChip tone="warn">Limited</StatusChip> },
         { id: "rw4", name: <span className="font-medium">Commission Booster ×2</span>, type: "Booster", rarity: "Epic", issued: "612", value: "+100%", status: <StatusChip tone="success">Live</StatusChip> },

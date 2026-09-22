@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LibraryPage } from "@/components/ams/shared/LibraryPage";
 
-export const Route = createFileRoute("/ams/awards/libraries/badges")({
+export const Route = createFileRoute("/ams/tickets/awards/libraries/badges")({
   head: () => ({
     meta: [
       { title: "Badge Library — AMS" },

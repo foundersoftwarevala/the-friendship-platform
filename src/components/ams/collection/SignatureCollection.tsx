@@ -183,7 +183,7 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
                   aria-pressed={p.index === heroPiece.index}
                   className={cn(
                     "w-full rounded-xl border p-2 text-left transition motion-card",
-                    p.index === heroPiece.index ? "border-trophy/60 bg-trophy/10" : "border-border/50 bg-black/20 hover:bg-muted/20",
+                    p.index === heroPiece.index ? "border-trophy/60 bg-trophy/10" : "border-border/50 bg-card hover:bg-muted/20",
                   )}
                 >
                   <Thumb piece={p} />
@@ -208,7 +208,7 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
       {layout === "cabinet" && (
         <div className="space-y-6">
           {chunk(current.pieces, 5).map((row, i) => (
-            <div key={i} className="rounded-2xl border border-border/60 bg-black/30 p-4">
+            <div key={i} className="rounded-2xl border border-border/60 bg-card p-4">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 {row.map((p) => (
                   <PieceCard key={p.id} piece={p} roleName={current.roleName} type={type}
@@ -297,7 +297,7 @@ export function SignatureCollection({ type }: { type: CollectionTypeDef }) {
 
 function Thumb({ piece }: { piece: CollectionPiece }) {
   return (
-    <div className="relative overflow-hidden rounded-lg bg-black/40" style={{ aspectRatio: "1 / 1" }}>
+    <div className="relative overflow-hidden rounded-lg bg-card" style={{ aspectRatio: "1 / 1" }}>
       <img
         src={piece.src}
         alt={piece.unlocked ? piece.title : `${piece.stage.label} — locked`}
@@ -305,8 +305,8 @@ function Thumb({ piece }: { piece: CollectionPiece }) {
         className={cn("h-full w-full object-contain", !piece.unlocked && "blur-[6px] brightness-[0.35] saturate-50")}
       />
       {!piece.unlocked && (
-        <div className="absolute inset-0 grid place-items-center bg-black/40">
-          <Lock className="h-4 w-4 text-white/70" />
+        <div className="absolute inset-0 grid place-items-center bg-card">
+          <Lock className="h-4 w-4 text-foreground/70" />
         </div>
       )}
     </div>
@@ -328,7 +328,7 @@ function PieceCard({
     <article
       data-collection-piece={piece.id}
       className={cn(
-        "overflow-hidden rounded-2xl border bg-black/25 motion-card",
+        "overflow-hidden rounded-2xl border bg-card motion-card",
         piece.unlocked ? "border-border/60" : "border-border/40",
       )}
     >
@@ -349,7 +349,7 @@ function LockedStage({ piece, height }: { piece: CollectionPiece; height: number
       style={{
         height,
         background:
-          "radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,0.06), transparent 65%), linear-gradient(180deg, #06080e 0%, #0a0e17 60%, #04060b 100%)",
+          "radial-gradient(120% 80% at 50% -10%, color-mix(in oklab, white 8%, transparent), transparent 65%), linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, black) 0%, color-mix(in oklab, var(--background) 88%, black) 100%)",
       }}
     >
       <img
@@ -358,14 +358,14 @@ function LockedStage({ piece, height }: { piece: CollectionPiece; height: number
         loading="lazy"
         className="h-full w-full object-contain blur-[10px] brightness-[0.3] saturate-[0.4]"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,5,10,0.35),rgba(3,5,10,0.75))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,5,10,0.14),rgba(3,5,10,0.75))]" />
       <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 p-3">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.25em] text-white/70">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/70">
           <Lock className="h-3 w-3" /> Locked · {piece.stage.rarity}
         </span>
         <SVMicroMark accent={piece.stage.hue} />
       </div>
-      <div className="absolute left-3 top-3 font-mono text-[9px] uppercase tracking-[0.3em] text-white/45">
+      <div className="absolute left-3 top-3 font-mono text-[9px] uppercase tracking-[0.3em] text-foreground/45">
         Next unlock · {piece.stage.stage}
       </div>
     </div>
@@ -376,7 +376,7 @@ function SpecPlate({
   piece, roleName, type, large = false,
 }: { piece: CollectionPiece; roleName: string; type: CollectionTypeDef; large?: boolean }) {
   return (
-    <div className={cn("border-t border-border/50 bg-black/30 p-4", large && "rounded-2xl border")}>
+    <div className={cn("border-t border-border/50 bg-card p-4", large && "rounded-2xl border")}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className={cn("font-semibold text-foreground", large ? "text-xl" : "text-sm")}>

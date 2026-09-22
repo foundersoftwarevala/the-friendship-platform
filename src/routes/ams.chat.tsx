@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { ChatScreen } from "@/components/ams/chat/ChatScreen";
 
-export const Route = createFileRoute("/ams/chat")({
+export const Route = createFileRoute("/ams/tickets/chat")({
   head: () => ({
     meta: [
       { title: "Chat — AMS Enterprise Communication" },
@@ -13,7 +14,12 @@ export const Route = createFileRoute("/ams/chat")({
     ],
   }),
   component: () => (
-    <div className="p-4 lg:p-6">
+    <div className="space-y-6">
+      <PageHeader
+        kicker="Enterprise Communication"
+        title="Chat"
+        description="Role-scoped enterprise messaging with verified Software Vala IDs, module scope and context rails."
+      />
       <ChatScreen />
     </div>
   ),

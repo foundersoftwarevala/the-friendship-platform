@@ -109,14 +109,14 @@ export function EngineDashboard({
       {/* KPI grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
         {kpis.map((k) => (
-          <div key={k.label} className="surface-card motion-card motion-fade p-4">
+          <div key={k.label} className="dashboard-card motion-card motion-fade p-4">
             <div className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{k.label}</div>
             <div className="mt-1 flex items-baseline gap-2">
               <div className="text-2xl font-bold tracking-tight" style={{ color: k.accent }}>{k.value}</div>
               {k.delta && (
                 <span className={cn(
                   "text-[11px] flex items-center gap-0.5",
-                  k.trend === "down" ? "text-destructive" : "text-emerald-500",
+                  k.trend === "down" ? "text-destructive" : "text-accent-emerald",
                 )}>
                   {k.trend === "down" ? <TrendingDown className="h-3 w-3" /> : <TrendingUp className="h-3 w-3" />}
                   {k.delta}
@@ -130,7 +130,7 @@ export function EngineDashboard({
       {extraPanels}
 
       {/* Filter + search bar */}
-      <div className="surface-card p-3 flex flex-wrap items-center gap-2">
+      <div className="dashboard-card p-3 flex flex-wrap items-center gap-2">
         <div className="relative flex-1 min-w-[220px] max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" className="pl-9 h-9 bg-muted/30" />
@@ -170,11 +170,11 @@ export function EngineDashboard({
       </div>
 
       {/* Table */}
-      <div className="surface-card overflow-hidden">
+      <div className="dashboard-table overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="sticky top-0 z-10 border-b border-border/60 bg-[oklch(0.2_0.032_260)] backdrop-blur text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+              <tr className="sticky top-0 z-10 border-b border-border/60 bg-surface-elevated backdrop-blur text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
                 <th scope="col" className="w-10 px-3 py-2 text-left">
                   <Checkbox
                     checked={filtered.length > 0 && selected.size === filtered.length}
@@ -262,9 +262,9 @@ export function EngineDashboard({
 
 export function StatusChip({ tone, children }: { tone: "success" | "warn" | "info" | "muted" | "danger"; children: ReactNode }) {
   const map: Record<string, string> = {
-    success: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
-    warn:    "bg-amber-500/10 text-amber-500 border-amber-500/30",
-    info:    "bg-sky-500/10 text-sky-500 border-sky-500/30",
+    success: "bg-emerald-500/10 text-accent-emerald border-emerald-500/30",
+    warn:    "bg-amber-500/10 text-accent-amber border-amber-500/30",
+    info:    "bg-sky-500/10 text-primary-glow border-sky-500/30",
     muted:   "bg-muted/40 text-muted-foreground border-border",
     danger:  "bg-destructive/10 text-destructive border-destructive/30",
   };

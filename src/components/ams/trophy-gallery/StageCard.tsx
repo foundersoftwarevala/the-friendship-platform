@@ -21,26 +21,11 @@ const UNLOCK_TO_KIND: Record<string, CelebrateKind> = {
 };
 
 const KIND_ICON: Record<string, string> = {
-  trophy: "🏆",
-  medal: "🎖",
-  badge: "🛡",
-  passport: "📘",
-  certificate: "📜",
-  frame: "🖼",
-  nameplate: "🪪",
-  identity: "🆔",
-  crown: "👑",
-  collection: "🗄",
-  museum: "🏛",
+  trophy: "🏆", medal: "🎖", badge: "🛡", passport: "📘", certificate: "📜",
+  frame: "🖼", nameplate: "🪪", identity: "🆔", crown: "👑", collection: "🗄", museum: "🏛",
 };
 
-export function StageCard({
-  stage,
-  unlocked = true,
-}: {
-  stage: DeveloperStage;
-  unlocked?: boolean;
-}) {
+export function StageCard({ stage, unlocked = true }: { stage: DeveloperStage; unlocked?: boolean }) {
   const [celebrateOn, setCelebrateOn] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -72,34 +57,23 @@ export function StageCard({
     const py = (e.clientY - r.top) / r.height - 0.5;
     setTilt({ x: py * -8, y: px * 10 });
   }
-  function onLeave() {
-    setTilt({ x: 0, y: 0 });
-  }
+  function onLeave() { setTilt({ x: 0, y: 0 }); }
 
   async function unlock() {
     if (unlocking) return;
     setUnlocking(true);
-    const base = stage.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
+    const base = stage.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     try {
-      const result = await unlockTrophyFn({
-        data: {
-          trophySlug: `progression-${base}`,
-          trophyName: `${stage.title} Trophy`,
-          achievementSlug: `progression-${base}-achievement`,
-          achievementName: `${stage.title} Achievement`,
-          xpReward: 100 * stage.n,
-        },
-      });
+      const result = await unlockTrophyFn({ data: {
+        trophySlug: `progression-${base}`,
+        trophyName: `${stage.title} Trophy`,
+        achievementSlug: `progression-${base}-achievement`,
+        achievementName: `${stage.title} Achievement`,
+        xpReward: 100 * stage.n,
+      } });
       if (!result.newly_unlocked) return;
       if (soundOn) {
-        try {
-          playUnlock(stage.unlock);
-        } catch {
-          /* noop */
-        }
+        try { playUnlock(stage.unlock); } catch { /* noop */ }
       }
       setCelebrateOn(false);
       requestAnimationFrame(() => setCelebrateOn(true));
@@ -136,14 +110,12 @@ export function StageCard({
             key={s.id}
             className="absolute h-1 w-1 rounded-full trophy-sparkle"
             style={{
-              left: s.left,
-              top: s.top,
+              left: s.left, top: s.top,
               background: stage.bg.particle,
               boxShadow: `0 0 12px ${stage.bg.particle}`,
               animationDelay: s.delay,
               // @ts-expect-error CSS vars
-              "--sx": s.sx,
-              "--sy": s.sy,
+              "--sx": s.sx, "--sy": s.sy,
             }}
           />
         ))}
@@ -152,29 +124,17 @@ export function StageCard({
       {/* header */}
       <div className="relative z-10 flex items-start justify-between p-5">
         <div>
-          <div
-            className="text-[10px] font-mono tracking-[0.3em] uppercase"
-            style={{ color: `${stage.bg.accent}` }}
-          >
+          <div className="text-[10px] font-mono tracking-[0.3em] uppercase" style={{ color: `${stage.bg.accent}` }}>
             {stage.code}
           </div>
           <div className="mt-1.5 text-xl font-semibold text-foreground">{stage.title}</div>
-          <div
-            className="text-[11px] uppercase tracking-widest"
-            style={{ color: `${stage.bg.accent}bb` }}
-          >
+          <div className="text-[11px] uppercase tracking-widest" style={{ color: `${stage.bg.accent}bb` }}>
             {stage.theme} · {stage.material}
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span
-            className="text-[10px] px-2 py-1 rounded-full font-mono"
-            style={{
-              background: `${stage.bg.accent}22`,
-              color: stage.bg.accent,
-              border: `1px solid ${stage.bg.accent}55`,
-            }}
-          >
+          <span className="text-[10px] px-2 py-1 rounded-full font-mono"
+            style={{ background: `${stage.bg.accent}22`, color: stage.bg.accent, border: `1px solid ${stage.bg.accent}55` }}>
             LV {String(stage.n).padStart(2, "0")}
           </span>
           {!unlocked && <Lock className="h-4 w-4 text-foreground/40" />}
@@ -185,13 +145,8 @@ export function StageCard({
       <div className="relative z-10 h-64 flex items-center justify-center px-4">
         <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
         {/* presentation pedestal */}
-        <div
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 h-6 w-56 rounded-full"
-          style={{
-            background: `radial-gradient(closest-side, ${stage.bg.glow}, transparent)`,
-            filter: "blur(6px)",
-          }}
-        />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 h-6 w-56 rounded-full"
+          style={{ background: `radial-gradient(closest-side, ${stage.bg.glow}, transparent)`, filter: "blur(6px)" }} />
         <div
           className="stage-3d-object relative trophy-float"
           style={{
@@ -213,46 +168,29 @@ export function StageCard({
       </div>
 
       {/* nameplate */}
-      <div
-        className="relative z-10 mx-5 mb-4 rounded-md border overflow-hidden"
+      <div className="relative z-10 mx-5 mb-4 rounded-md border overflow-hidden"
         style={{
           borderColor: `${stage.bg.accent}66`,
           background: `linear-gradient(180deg, ${stage.bg.accent}22, transparent 60%, ${stage.bg.accent}18)`,
-        }}
-      >
-        <div
-          className="h-1.5 w-full"
-          style={{ background: `linear-gradient(90deg, ${rFrom}, ${rTo})` }}
-        />
+        }}>
+        <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rFrom}, ${rTo})` }} />
         <div className="px-4 py-2.5 flex items-center justify-between">
-          <div className="text-xs uppercase tracking-[0.24em] text-foreground/85">
-            {stage.nameplate}
-          </div>
+          <div className="text-xs uppercase tracking-[0.24em] text-foreground/85">{stage.nameplate}</div>
           <Sparkles className="h-3.5 w-3.5" style={{ color: stage.bg.accent }} />
         </div>
-        <div
-          className="h-1.5 w-full"
-          style={{ background: `linear-gradient(90deg, ${rTo}, ${rFrom})` }}
-        />
+        <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, ${rTo}, ${rFrom})` }} />
       </div>
 
       {/* tagline */}
-      <div className="relative z-10 px-5 pb-3 text-sm text-foreground/70 italic">
-        "{stage.tagline}"
-      </div>
+      <div className="relative z-10 px-5 pb-3 text-sm text-foreground/70 italic">"{stage.tagline}"</div>
 
       {/* rewards grid */}
       <div className="relative z-10 px-5 pb-4">
         <div className="grid grid-cols-2 gap-1.5">
           {stage.rewards.map((r) => (
-            <div
-              key={r.label}
+            <div key={r.label}
               className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] text-foreground/85"
-              style={{
-                background: `${stage.bg.accent}12`,
-                border: `1px solid ${stage.bg.accent}33`,
-              }}
-            >
+              style={{ background: `${stage.bg.accent}12`, border: `1px solid ${stage.bg.accent}33` }}>
               <span className="text-sm leading-none">{KIND_ICON[r.kind] ?? "•"}</span>
               <span className="truncate">{r.label}</span>
             </div>
@@ -263,32 +201,18 @@ export function StageCard({
       {/* animation + sound meta */}
       <div className="relative z-10 px-5 pb-4 grid grid-cols-2 gap-3 text-[10px]">
         <div>
-          <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>
-            Animation
-          </div>
-          <div className="text-foreground/70 space-y-0.5">
-            {stage.animation.map((a) => (
-              <div key={a}>· {a}</div>
-            ))}
-          </div>
+          <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Animation</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.animation.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
         <div>
-          <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>
-            Sound
-          </div>
-          <div className="text-foreground/70 space-y-0.5">
-            {stage.sound.map((a) => (
-              <div key={a}>· {a}</div>
-            ))}
-          </div>
+          <div className="uppercase tracking-widest mb-1" style={{ color: `${stage.bg.accent}bb` }}>Sound</div>
+          <div className="text-foreground/70 space-y-0.5">{stage.sound.map((a) => <div key={a}>· {a}</div>)}</div>
         </div>
       </div>
 
       {/* actions */}
-      <div
-        className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
-        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.14)" }}
-      >
+      <div className="relative z-10 border-t px-5 py-3 flex items-center justify-between"
+        style={{ borderColor: `${stage.bg.accent}33`, background: "rgba(0,0,0,0.14)" }}>
         <div className="text-[11px] font-mono text-foreground/60">
           Passport · <span style={{ color: stage.bg.accent }}>{stage.passportMotif}</span>
         </div>

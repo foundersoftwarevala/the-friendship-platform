@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles } from "lucide-react";
 import { LibraryShell } from "@/components/ams/shared/LibraryShell";
 
-export const Route = createFileRoute("/ams/awards/rules/streaks")({
+export const Route = createFileRoute("/ams/tickets/awards/rules/streaks")({
   head: () => ({
     meta: [
       { title: "Streak Rules — AMS" },

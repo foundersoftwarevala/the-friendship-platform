@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layers } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/collections")({
+export const Route = createFileRoute("/ams/tickets/collections")({
   head: () => ({
     meta: [
       { title: "Collection Engine — AMS" },
@@ -43,7 +43,7 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "co1", name: <div className="flex items-center gap-2"><Layers className="h-4 w-4 text-fuchsia-400" /><span className="font-medium">Founding Collection</span></div>, kind: "Award", items: "12", completions: "12", status: <StatusChip tone="warn">Limited</StatusChip> },
+        { id: "co1", name: <div className="flex items-center gap-2"><Layers className="h-4 w-4 text-accent-pink" /><span className="font-medium">Founding Collection</span></div>, kind: "Award", items: "12", completions: "12", status: <StatusChip tone="warn">Limited</StatusChip> },
         { id: "co2", name: <span className="font-medium">Developer Journey</span>, kind: "Badge", items: "24", completions: "412", status: <StatusChip tone="success">Live</StatusChip> },
         { id: "co3", name: <span className="font-medium">Winter Ascendant</span>, kind: "Trophy", items: "8", completions: "204", status: <StatusChip tone="info">Seasonal</StatusChip> },
       ]}

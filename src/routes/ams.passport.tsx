@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BookMarked } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/passport")({
+export const Route = createFileRoute("/ams/tickets/passport")({
   head: () => ({
     meta: [
       { title: "Passport Engine — AMS" },
@@ -44,7 +44,7 @@ function Page() {
         { key: "status", label: "Status" },
       ]}
       rows={[
-        { id: "p1", name: <div className="flex items-center gap-2"><BookMarked className="h-4 w-4 text-emerald-400" /><span className="font-medium">Developer Passport</span></div>, role: "Developer", level: "Gold", stamps: "48", verified: "Yes", status: <StatusChip tone="success">Active</StatusChip> },
+        { id: "p1", name: <div className="flex items-center gap-2"><BookMarked className="h-4 w-4 text-accent-emerald" /><span className="font-medium">Developer Passport</span></div>, role: "Developer", level: "Gold", stamps: "48", verified: "Yes", status: <StatusChip tone="success">Active</StatusChip> },
         { id: "p2", name: <span className="font-medium">Reseller Passport</span>, role: "Reseller", level: "Diamond", stamps: "36", verified: "Yes", status: <StatusChip tone="success">Active</StatusChip> },
         { id: "p3", name: <span className="font-medium">Founder Passport</span>, role: "Founder", level: "Elite", stamps: "84", verified: "Yes", status: <StatusChip tone="warn">Limited</StatusChip> },
       ]}

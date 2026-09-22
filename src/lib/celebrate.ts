@@ -131,18 +131,17 @@ export function playMythic() {
   noise(0, 1.4, 0.05, 1200, 4);
 }
 
-/**
- * Awarding a certificate: a short rising figure with a soft seal underneath,
- * quieter than a trophy so it reads as formal rather than celebratory.
- */
-export function playCertificate() {
-  [523, 659, 784].forEach((f, i) => tone(f, i * 0.09, 0.5, 0.09, "sine"));
-  tone(392, 0.28, 0.7, 0.06, "triangle");
-  noise(0.26, 0.5, 0.03, 900, 3);
-}
-
 // Random surprise for logo clicks
 export function playRandom() {
   const fns = [playCoinDrop, playLevelUp, playRankUp, playDiamond, playFireworks];
   fns[Math.floor(Math.random() * fns.length)]();
+}
+
+// CERTIFICATE ISSUED — soft seal press + verification chime
+export function playCertificate() {
+  tone(392, 0, 0.28, 0.10, "sine");
+  tone(523.25, 0.06, 0.32, 0.10, "triangle");
+  tone(783.99, 0.14, 0.5, 0.08, "sine");
+  tone(1046.5, 0.22, 0.55, 0.05, "sine");
+  noise(0, 0.22, 0.04, 2200, 6);
 }

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DEVELOPER_STAGES } from "@/lib/ams/developer-stages";
 import { StageCard } from "@/components/ams/trophy-gallery/StageCard";
 
-export const Route = createFileRoute("/ams/developer-progression")({
+export const Route = createFileRoute("/ams/tickets/developer-progression")({
   head: () => ({
     meta: [
       { title: "Developer Progression — 10 Stage Career" },
@@ -18,17 +18,17 @@ export const Route = createFileRoute("/ams/developer-progression")({
 
 function Page() {
   return (
-    <div className="p-6 lg:p-8 space-y-8">
+    <div className="space-y-8">
       <header className="rounded-2xl border border-amber-500/30 p-8 relative overflow-hidden"
         style={{
           background:
             "radial-gradient(1200px 400px at 20% 0%, rgba(245,197,66,0.18), transparent 60%), radial-gradient(1200px 400px at 90% 100%, rgba(192,132,252,0.18), transparent 60%), linear-gradient(160deg, #0f0a04, #05030a)",
         }}>
-        <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Master Role Progression · Reference Model</div>
-        <h1 className="mt-3 text-3xl lg:text-4xl font-semibold text-white">
+        <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-primary/80">Master Role Progression · Reference Model</div>
+        <h1 className="mt-3 text-3xl lg:text-4xl font-semibold text-foreground">
           Developer — Ten Stages of a Career
         </h1>
-        <p className="mt-3 text-sm text-white/70 max-w-3xl">
+        <p className="mt-3 text-sm text-foreground/70 max-w-3xl">
           A cinematic engineering journey from first commit to Chief Architect. Every stage changes
           material, trophy silhouette, medal shape, ribbon, passport motif, nameplate, background
           theme and unlock sound. Ten leagues. No two stages alike.

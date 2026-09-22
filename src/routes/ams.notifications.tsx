@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/notifications")({
+export const Route = createFileRoute("/ams/tickets/notifications")({
   head: () => ({
     meta: [
       { title: "Notification Engine — AMS" },

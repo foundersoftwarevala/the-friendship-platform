@@ -3,6 +3,7 @@ import { Download, RotateCw, Pause, Sparkles } from "lucide-react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCelebration, type CelebrateKind } from "@/components/ams/effects/Celebration";
 import { MuseumCase, SVMicroMark, SVSeal, svCollectionNumber } from "@/components/ams/brand/SVMark";
+import { Button } from "@/components/ui/button";
 
 /**
  * Ultra-premium 3D collectible viewer with:
@@ -98,21 +99,41 @@ export function Collectible3D({
   const animate = !reducedMotion && visible;
   const doSpin = spin && animate;
 
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [engaged, setEngaged] = useState(false);
+
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (reducedMotion) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    setEngaged(true);
+    setTilt({ x: px * 26, y: py * 18 });
+  }
+  function handlePointerLeave() {
+    setEngaged(false);
+    setTilt({ x: 0, y: 0 });
+  }
+
   return (
     <div
       ref={wrapRef}
-      className="relative w-full rounded-2xl overflow-hidden border"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      data-engaged={engaged}
+      className="object-3d stage-3d relative w-full overflow-hidden rounded-t-xl border-b border-border/70"
       style={{
         height,
-        perspective: "1200px",
-        borderColor: `${accent}55`,
         background: `
-          radial-gradient(120% 60% at 50% 0%, ${accent}22, transparent 60%),
-          radial-gradient(80% 50% at 50% 100%, ${accent}18, transparent 70%),
-          linear-gradient(180deg, #05070d 0%, #0a0f1a 55%, #050810 100%)
+          radial-gradient(70% 55% at 50% 8%, color-mix(in oklab, white 12%, transparent), transparent 72%),
+          radial-gradient(90% 60% at 50% 108%, color-mix(in oklab, var(--color-primary) 22%, transparent), transparent 70%),
+          linear-gradient(180deg, color-mix(in oklab, var(--card) 78%, black), color-mix(in oklab, var(--background) 86%, black))
         `,
-        boxShadow: `inset 0 0 60px ${accent}22, 0 30px 60px -30px ${accent}66`,
+        boxShadow: "inset 0 1px 0 color-mix(in oklab, white 12%, transparent)",
         contain: "content",
+        // @ts-expect-error CSS custom props
+        "--rx": tilt.x,
+        "--ry": tilt.y,
       }}
     >
       {!inView ? (
@@ -122,53 +143,25 @@ export function Collectible3D({
         </div>
       ) : (
         <>
-          {animate && (
-            <div
-              className="pointer-events-none absolute inset-0 opacity-70 collectible-rim"
-              style={{
-                background: `conic-gradient(from 0deg, transparent, ${accent}55, transparent 30%, ${accent}33, transparent 60%, ${accent}66, transparent)`,
-                mixBlendMode: "screen",
-                filter: "blur(30px)",
-              }}
-            />
-          )}
+          {/* volumetric key light */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-2/3"
+            className="pointer-events-none absolute inset-x-[14%] top-0 h-3/4 opacity-60"
             style={{
-              background: `radial-gradient(ellipse at 50% 0%, ${accent}44, transparent 60%)`,
+              background: "radial-gradient(ellipse at 50% 0%, color-mix(in oklab, white 22%, transparent), transparent 66%)",
               mixBlendMode: "screen",
             }}
           />
-          {animate && (
-            <div className="pointer-events-none absolute inset-0">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <span
-                  key={i}
-                  className="absolute block h-1 w-1 rounded-full trophy-sparkle"
-                  style={{
-                    left: `${(i * 97) % 100}%`,
-                    top: `${20 + ((i * 53) % 60)}%`,
-                    background: accent,
-                    boxShadow: `0 0 8px ${accent}`,
-                    animationDelay: `${(i % 5) * 0.4}s`,
-                    // @ts-expect-error CSS custom props
-                    "--sx": `${((i * 13) % 40) - 20}px`,
-                    "--sy": `${-20 - (i % 8) * 4}px`,
-                  }}
-                />
-              ))}
-            </div>
-          )}
+          {/* holographic display glass */}
+          <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
 
           <div className="relative h-full w-full flex items-center justify-center">
             <div
-              className="relative"
+              className="stage-3d-object relative"
               style={{
-                transformStyle: "preserve-3d",
-                animation: doSpin ? "collectible-spin 12s linear infinite" : "none",
-                width: height * 0.7,
-                height: height * 0.9,
-                willChange: doSpin ? "transform" : undefined,
+                animation: doSpin ? "collectible-spin 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none",
+                width: height * 0.78,
+                height: height * 0.94,
+                willChange: doSpin || engaged ? "transform" : undefined,
               }}
             >
               <img
@@ -180,32 +173,73 @@ export function Collectible3D({
                 height={1024}
                 className="h-full w-full object-contain"
                 style={{
-                  filter: `drop-shadow(0 20px 40px ${accent}aa) drop-shadow(0 0 20px ${accent}66)`,
-                  backfaceVisibility: "hidden",
+                  filter:
+                    "drop-shadow(0 30px 34px color-mix(in oklab, black 78%, transparent)) drop-shadow(0 0 26px color-mix(in oklab, var(--color-primary) 34%, transparent)) contrast(1.08) saturate(1.05)",
+                }}
+              />
+              {/* rim light hugging the silhouette */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(60% 50% at 22% 18%, color-mix(in oklab, white 26%, transparent), transparent 62%)",
+                  mixBlendMode: "screen",
                 }}
               />
               {animate && (
-                <div
-                  className="pointer-events-none absolute inset-0 trophy-shine"
-                  style={{
-                    background: `linear-gradient(115deg, transparent 40%, ${accent}66 50%, transparent 60%)`,
-                    mixBlendMode: "screen",
-                  }}
-                />
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div
+                    className="absolute inset-y-[-20%] left-0 w-1/3 specular-sweep"
+                    style={{
+                      background:
+                        "linear-gradient(100deg, transparent, color-mix(in oklab, white 42%, transparent), transparent)",
+                      mixBlendMode: "screen",
+                      filter: "blur(2px)",
+                    }}
+                  />
+                </div>
               )}
             </div>
 
+            {/* mirrored pedestal reflection */}
             <div
-              className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 h-6 rounded-full"
+              className="stage-reflection pointer-events-none absolute left-1/2 -translate-x-1/2"
+              aria-hidden
+              style={{ bottom: 2, width: height * 0.78, height: height * 0.36, marginLeft: 0, transformOrigin: "center" }}
+            >
+              <img
+                src={src}
+                alt=""
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-contain object-top"
+              />
+            </div>
+
+            {/* caustic light pool */}
+            <div
+              className="caustic-pool pointer-events-none absolute left-1/2 bottom-5 h-7 rounded-full"
               style={{
-                width: height * 0.55,
-                background: `radial-gradient(closest-side, ${accent}bb, transparent 70%)`,
-                filter: "blur(10px)",
+                width: height * 0.58,
+                background:
+                  "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 55%, transparent), transparent 74%)",
+                filter: "blur(12px)",
+              }}
+            />
+            {/* contact shadow */}
+            <div
+              className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-6 h-3 rounded-full"
+              style={{
+                width: height * 0.34,
+                background: "radial-gradient(closest-side, oklch(0 0 0 / 0.75), transparent 76%)",
+                filter: "blur(6px)",
               }}
             />
           </div>
         </>
       )}
+
 
       {/* Software Vala museum case + brand marks */}
       <MuseumCase accent={accent} />
@@ -223,41 +257,39 @@ export function Collectible3D({
       {/* Controls */}
       <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
         {!reducedMotion && (
-          <button
+          <Button
             type="button"
             onClick={() => setSpin((s) => !s)}
             title={spin ? "Pause rotation" : "Resume rotation"}
-            className="h-8 w-8 rounded-md border flex items-center justify-center text-white/90 backdrop-blur bg-black/40 hover:bg-black/60 transition"
-            style={{ borderColor: `${accent}66` }}
+            variant="outline"
+            size="icon"
+            className="h-8 w-8 bg-card/90"
           >
             {spin ? <Pause className="h-3.5 w-3.5" /> : <RotateCw className="h-3.5 w-3.5" />}
-          </button>
+          </Button>
         )}
-        <button
+        <Button
           type="button"
           onClick={handleDownload}
           title="Download PNG"
-          className="h-8 rounded-md border flex items-center gap-1.5 px-2.5 text-[11px] font-medium text-white/90 backdrop-blur bg-black/40 hover:bg-black/60 transition"
-          style={{ borderColor: `${accent}66` }}
+          variant="outline"
+          size="sm"
+          className="h-8 bg-card/90 px-2.5 text-[11px]"
         >
           <Download className="h-3.5 w-3.5" />
           PNG
-        </button>
+        </Button>
       </div>
 
       {showUnlock && (
-        <button
+        <Button
           type="button"
           onClick={handleUnlock}
-          className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-semibold transition hover:brightness-110"
-          style={{
-            background: `linear-gradient(135deg, ${accent}, ${accent}aa)`,
-            color: "#0b0f1a",
-            boxShadow: `0 0 22px -6px ${accent}`,
-          }}
+          size="sm"
+          className="absolute bottom-3 right-3 z-10 h-8 gap-1.5 px-3 text-[11px]"
         >
           <Sparkles className="h-3.5 w-3.5" /> Unlock
-        </button>
+        </Button>
       )}
 
       {label && (

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_HALL_OF_FAME } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/hall-of-fame-vault")({
+export const Route = createFileRoute("/ams/tickets/hall-of-fame-vault")({
   head: () => ({
     meta: [
       { title: "Hall of Fame Vault — Premium 3D Monuments" },

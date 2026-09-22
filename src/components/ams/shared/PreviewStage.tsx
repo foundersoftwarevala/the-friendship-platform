@@ -32,13 +32,31 @@ export function PreviewStage({ award }: { award: PreviewAward }) {
         style={{ background: `radial-gradient(ellipse at center, ${meta.hue}33, transparent 65%)` }}
       />
       <div className="relative flex flex-col items-center gap-6">
-        <div className="grid h-52 w-52 place-items-center rounded-full"
+        <div className="stage-3d relative grid h-52 w-52 place-items-center overflow-hidden rounded-full"
              style={{ background: `radial-gradient(circle, ${meta.glow}, transparent 70%)` }}>
-          {award.media.model3dUrl ? (
-            <img src={award.media.model3dUrl} alt={award.name} className="h-44 w-44 drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)]" />
-          ) : (
-            <ProceduralEmblem award={emblemAward} size={200} />
-          )}
+          <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
+          <div
+            className="caustic-pool pointer-events-none absolute bottom-4 left-1/2 h-6 w-36 -translate-x-1/2 rounded-full blur-[10px]"
+            aria-hidden
+            style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 60%, transparent), transparent 74%)" }}
+          />
+          <div className="stage-3d-object relative">
+            {award.media.model3dUrl ? (
+              <img src={award.media.model3dUrl} alt={award.name} className="h-44 w-44 drop-shadow-[0_20px_50px_color-mix(in_oklab,black_70%,transparent)]" />
+            ) : (
+              <ProceduralEmblem award={emblemAward} size={200} />
+            )}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden">
+              <div
+                className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3"
+                style={{
+                  background: "linear-gradient(100deg, transparent, color-mix(in oklab, white 40%, transparent), transparent)",
+                  mixBlendMode: "screen",
+                  filter: "blur(2px)",
+                }}
+              />
+            </div>
+          </div>
         </div>
         <div className="text-center">
           <div className="text-[10px] uppercase tracking-[0.3em]" style={{ color: meta.hue }}>{meta.label} · {award.type}</div>

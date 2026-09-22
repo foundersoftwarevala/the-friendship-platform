@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/ai")({
+export const Route = createFileRoute("/ams/tickets/ai")({
   head: () => ({
     meta: [
       { title: "AI Center — AMS" },

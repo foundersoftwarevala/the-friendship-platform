@@ -1,13 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PageHeader } from "@/components/ams/shared/PageHeader";
 import { useMemo, useState } from "react";
 import { Trophy } from "lucide-react";
-import { Collectible3D } from "@/components/ams/collectible/Collectible3D";
+import { MuseumStage } from "@/components/ams/museum/MuseumStage";
+import { ROLE_ENVIRONMENT } from "@/lib/ams/museum";
 import { RoleFilter, type RoleFilterValue } from "@/components/ams/collectible/RoleFilter";
 import { VaultToolbar } from "@/components/ams/collectible/VaultToolbar";
 import { ROLE_ACHIEVEMENT } from "@/lib/ams/role-assets";
 import { ROLES } from "@/lib/ams/roles";
 
-export const Route = createFileRoute("/ams/achievement-vault")({
+export const Route = createFileRoute("/ams/tickets/achievement-vault")({
   head: () => ({
     meta: [
       { title: "Achievement Vault — Premium 3D Achievements" },
@@ -33,21 +35,18 @@ function Page() {
   );
 
   return (
-    <div className="p-6 lg:p-8 space-y-6">
-      <header className="flex items-end justify-between flex-wrap gap-4">
-        <div>
-          <div className="text-[11px] font-mono tracking-[0.3em] uppercase text-amber-400/80">Achievement Vault</div>
-          <h1 className="mt-2 text-3xl lg:text-4xl font-semibold text-foreground">Premium 3D Achievement Collection</h1>
-          <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
-            Each achievement collectible is built as a role-specific medallion — distinct silhouette,
-            engraved profession cues, luxury finish and cinematic lighting. Rotate and export each one.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Trophy className="h-4 w-4 text-amber-400" />
+    <div className="space-y-6">
+      <PageHeader
+        kicker="Achievement Vault"
+        title="Premium 3D Achievement Collection"
+        description="Each achievement collectible is built as a role-specific medallion — distinct silhouette, engraved profession cues, luxury finish and cinematic lighting. Rotate and export each one."
+        actions={
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <Trophy className="h-4 w-4 text-primary" />
           <span>{ROLES.length} achievements · {visible.length} shown</span>
         </div>
-      </header>
+        }
+      />
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <RoleFilter value={filter} onChange={setFilter} />
@@ -58,24 +57,26 @@ function Page() {
         {visible.map((role) => {
           const img = ROLE_ACHIEVEMENT[role.slug];
           return (
-            <article key={role.slug} className="rounded-2xl border border-border/60 bg-black/20 overflow-hidden">
-              <Collectible3D
+            <article key={role.slug} className="dashboard-card overflow-hidden">
+              <MuseumStage
                 src={img}
                 filename={`${role.slug}-achievement.png`}
                 accent={role.accent}
                 label={`${role.passportPrefix} · Achievement`}
-                height={340}
-                showUnlock
+                environment={ROLE_ENVIRONMENT[role.slug]}
+                material="Crystal & chrome · Achievement display"
+                height={320}
+                chrome="compact"
                 unlockKind="trophy"
                 unlockTitle={`${role.name} Achievement Unlocked`}
                 unlockSubtitle={role.congratulations}
               />
-              <div className="p-4">
-                <div className="text-lg font-semibold text-white">{role.name}</div>
+              <div className="border-t border-border/60 bg-surface/45 p-4">
+                <div className="text-lg font-semibold text-foreground">{role.name}</div>
                 <div className="text-[11px] uppercase tracking-widest" style={{ color: `${role.accent}bb` }}>
                   {role.archetype} · Achievement Core
                 </div>
-                <p className="mt-2 text-xs text-white/70 italic">"{role.motivation}"</p>
+                <p className="mt-2 text-xs text-foreground/70 italic">"{role.motivation}"</p>
               </div>
             </article>
           );

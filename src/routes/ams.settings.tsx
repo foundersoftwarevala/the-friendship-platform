@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 import { MotionSoundPanel } from "@/components/ams/ui/MotionSoundPanel";
 
-export const Route = createFileRoute("/ams/settings")({
+export const Route = createFileRoute("/ams/tickets/settings")({
   head: () => ({
     meta: [
       { title: "Global Settings — AMS" },

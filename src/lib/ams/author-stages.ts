@@ -11,7 +11,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Etched Parchment", ribbon: ["#c9a37a", "#5a3a20"],
     unlock: "starter",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 20% 0%, rgba(201,163,122,0.22), transparent 60%), linear-gradient(160deg, #1a140a 0%, #0c0805 100%)",
+      gradient: "radial-gradient(1200px 500px at 20% 0%, rgba(201,163,122,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#c9a37a", glow: "rgba(201,163,122,0.5)", particle: "#e6c9a1",
     },
     rewards: [
@@ -34,7 +34,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Brushed Bronze", ribbon: ["#cd7f32", "#5c3410"],
     unlock: "bronze",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 80% 0%, rgba(205,127,50,0.26), transparent 60%), linear-gradient(160deg, #1c150c 0%, #100a06 100%)",
+      gradient: "radial-gradient(1200px 500px at 80% 0%, rgba(205,127,50,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#cd7f32", glow: "rgba(205,127,50,0.55)", particle: "#f2c98a",
     },
     rewards: [
@@ -57,7 +57,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Silver Chrome", ribbon: ["#d9d9d9", "#5a6472"],
     unlock: "silver",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 50% 0%, rgba(200,210,225,0.22), transparent 60%), linear-gradient(160deg, #10151d 0%, #070a0f 100%)",
+      gradient: "radial-gradient(1200px 500px at 50% 0%, rgba(200,210,225,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#c8d2e1", glow: "rgba(200,210,225,0.5)", particle: "#eaf2ff",
     },
     rewards: [
@@ -80,7 +80,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Engraved Gold Bar", ribbon: ["#f5c542", "#7a5008"],
     unlock: "gold",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 30% 0%, rgba(245,197,66,0.28), transparent 60%), linear-gradient(160deg, #1a1508 0%, #0a0803 100%)",
+      gradient: "radial-gradient(1200px 500px at 30% 0%, rgba(245,197,66,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#f5c542", glow: "rgba(245,197,66,0.6)", particle: "#ffe28a",
     },
     rewards: [
@@ -103,7 +103,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Polished Platinum", ribbon: ["#e5e4e2", "#7d8794"],
     unlock: "elite",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 60% 0%, rgba(229,228,226,0.22), transparent 60%), linear-gradient(160deg, #14171c 0%, #08090c 100%)",
+      gradient: "radial-gradient(1200px 500px at 60% 0%, rgba(229,228,226,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#e5e4e2", glow: "rgba(229,228,226,0.5)", particle: "#f7f8fb",
     },
     rewards: [
@@ -125,7 +125,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Frosted Crystal Slab", ribbon: ["#a78bfa", "#4b2ea5"],
     unlock: "diamond",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(167,139,250,0.28), transparent 60%), linear-gradient(160deg, #100823 0%, #06030e 100%)",
+      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(167,139,250,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#a78bfa", glow: "rgba(167,139,250,0.55)", particle: "#e0d5ff",
     },
     rewards: [
@@ -147,7 +147,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Laser-Etched Titanium", ribbon: ["#b5c0d0", "#3a4a5e"],
     unlock: "legend",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 70% 0%, rgba(181,192,208,0.22), transparent 60%), linear-gradient(160deg, #0e1319 0%, #05080b 100%)",
+      gradient: "radial-gradient(1200px 500px at 70% 0%, rgba(181,192,208,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#b5c0d0", glow: "rgba(120,255,240,0.4)", particle: "#7de1d3",
     },
     rewards: [
@@ -169,7 +169,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Obsidian Slab", ribbon: ["#c084fc", "#3b0f5c"],
     unlock: "master",
     bg: {
-      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(192,132,252,0.32), transparent 60%), linear-gradient(160deg, #0f0819 0%, #050310 100%)",
+      gradient: "radial-gradient(1200px 500px at 40% 0%, rgba(192,132,252,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#c084fc", glow: "rgba(192,132,252,0.6)", particle: "#e4c9ff",
     },
     rewards: [
@@ -191,7 +191,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "24k Legend Plaque", ribbon: ["#facc15", "#7a3e00"],
     unlock: "legend",
     bg: {
-      gradient: "radial-gradient(1400px 600px at 50% 0%, rgba(250,204,21,0.35), transparent 60%), linear-gradient(160deg, #1a1305 0%, #0a0702 100%)",
+      gradient: "radial-gradient(1400px 600px at 50% 0%, rgba(250,204,21,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#facc15", glow: "rgba(250,204,21,0.7)", particle: "#fff2a8",
     },
     rewards: [
@@ -213,7 +213,7 @@ export const AUTHOR_STAGES: DeveloperStage[] = [
     nameplate: "Meteorite & Diamond Plaque", ribbon: ["#fff2b0", "#8a5a00"],
     unlock: "founder",
     bg: {
-      gradient: "radial-gradient(1600px 700px at 50% 0%, rgba(255,242,176,0.35), transparent 65%), radial-gradient(900px 500px at 50% 100%, rgba(200,120,255,0.25), transparent 60%), linear-gradient(160deg, #1a1204 0%, #05030a 100%)",
+      gradient: "radial-gradient(1600px 700px at 50% 0%, rgba(255,242,176,0.14), transparent 65%), radial-gradient(900px 500px at 50% 100%, rgba(200,120,255,0.14), transparent 60%), linear-gradient(160deg, oklch(0.235 0.036 258) 0%, oklch(0.185 0.034 258) 100%)",
       accent: "#fff2b0", glow: "rgba(255,242,176,0.75)", particle: "#ffe98a",
     },
     rewards: [

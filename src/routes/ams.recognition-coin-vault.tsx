@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_RECOGNITION_COIN } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/recognition-coin-vault")({
+export const Route = createFileRoute("/ams/tickets/recognition-coin-vault")({
   head: () => ({
     meta: [
       { title: "Recognition Coin Vault — Premium 3D Coins" },

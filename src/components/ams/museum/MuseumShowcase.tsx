@@ -175,7 +175,7 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
 
       {mode === "tabletop" && (
         <div className="rounded-3xl border border-border/60 p-4"
-          style={{ background: "linear-gradient(180deg, rgba(60,40,24,0.35), rgba(10,8,6,0.6))" }}>
+          style={{ background: "linear-gradient(180deg, rgba(60,40,24,0.14), rgba(10,8,6,0.6))" }}>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {visible.map((role) => (
               <MuseumStage key={role.slug} {...stageFor(role, 300)} onExpand={() => setFullscreenSlug(role.slug)} />
@@ -190,7 +190,7 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
       {mode === "shelf" && (
         <div className="space-y-6">
           {chunk(visible, 4).map((row, i) => (
-            <div key={i} className="rounded-2xl border border-border/60 bg-black/25 p-4">
+            <div key={i} className="rounded-2xl border border-border/60 bg-card p-4">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {row.map((role) => (
                   <MuseumStage key={role.slug} {...stageFor(role, 260)} onExpand={() => setFullscreenSlug(role.slug)} />
@@ -214,7 +214,7 @@ export function MuseumShowcase({ showcase }: { showcase: ShowcaseDef }) {
                 key={role.slug}
                 data-collectible-card={role.slug}
                 className={cn(
-                  "overflow-hidden rounded-2xl border border-border/60 bg-black/20 motion-card",
+                  "overflow-hidden rounded-2xl border border-border/60 bg-card motion-card",
                   mode === "museum" && "ring-1 ring-inset ring-white/5",
                 )}
               >

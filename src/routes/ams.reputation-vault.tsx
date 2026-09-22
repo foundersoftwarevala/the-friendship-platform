@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CollectibleVault } from "@/components/ams/collectible/CollectibleVault";
 import { ROLE_REPUTATION } from "@/lib/ams/role-assets";
 
-export const Route = createFileRoute("/ams/reputation-vault")({
+export const Route = createFileRoute("/ams/tickets/reputation-vault")({
   head: () => ({
     meta: [
       { title: "Reputation Vault — Premium 3D Medals" },

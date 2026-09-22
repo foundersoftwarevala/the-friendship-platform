@@ -40,12 +40,30 @@ export function AwardCard({
         </div>
         <Icon className="h-4 w-4 shrink-0" style={{ color: meta.hue }} />
       </div>
-      <div className="relative grid h-36 place-items-center overflow-hidden rounded-md bg-background/40">
-        {award.media.model3dUrl ? (
-          <img src={award.media.model3dUrl} alt={award.name} className="h-32 transition-transform group-hover:scale-105" />
-        ) : (
-          <ProceduralEmblem award={award} size={140} className="transition-transform group-hover:scale-105" />
-        )}
+      <div className="object-3d stage-3d relative grid h-36 place-items-center overflow-hidden rounded-lg">
+        <div className="pointer-events-none absolute inset-0 holo-glass" aria-hidden />
+        <div
+          className="caustic-pool pointer-events-none absolute bottom-2 left-1/2 h-5 w-28 -translate-x-1/2 rounded-full blur-[8px]"
+          aria-hidden
+          style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--color-primary-glow) 55%, transparent), transparent 74%)" }}
+        />
+        <div className="stage-3d-object relative">
+          {award.media.model3dUrl ? (
+            <img src={award.media.model3dUrl} alt={award.name} className="h-32 transition-transform group-hover:scale-105" />
+          ) : (
+            <ProceduralEmblem award={award} size={140} className="transition-transform group-hover:scale-105" />
+          )}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div
+              className="specular-sweep absolute inset-y-[-20%] left-0 w-1/3"
+              style={{
+                background: "linear-gradient(100deg, transparent, color-mix(in oklab, white 38%, transparent), transparent)",
+                mixBlendMode: "screen",
+                filter: "blur(2px)",
+              }}
+            />
+          </div>
+        </div>
       </div>
       <div>
         <div className="text-sm font-semibold leading-tight">{award.name}</div>

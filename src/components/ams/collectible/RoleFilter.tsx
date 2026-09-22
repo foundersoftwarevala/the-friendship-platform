@@ -1,17 +1,18 @@
 import { ROLES, type RoleSlug } from "@/lib/ams/roles";
+import { Button } from "@/components/ui/button";
 
 export type RoleFilterValue = RoleSlug | "all";
 
 export function RoleFilter({
   value,
   onChange,
-  accent = "#facc15",
+  accent,
 }: {
   value: RoleFilterValue;
   onChange: (v: RoleFilterValue) => void;
   accent?: string;
 }) {
-  const items: { key: RoleFilterValue; label: string; hue: string; glyph: string }[] = [
+  const items: { key: RoleFilterValue; label: string; hue?: string; glyph: string }[] = [
     { key: "all", label: "All Roles", hue: accent, glyph: "★" },
     ...ROLES.map((r) => ({ key: r.slug as RoleFilterValue, label: r.name, hue: r.accent, glyph: r.glyph })),
   ];
@@ -21,23 +22,18 @@ export function RoleFilter({
       {items.map((it) => {
         const active = it.key === value;
         return (
-          <button
+          <Button
             key={it.key}
             type="button"
             onClick={() => onChange(it.key)}
-            className="group relative flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[11px] font-medium tracking-wide transition-all"
-            style={{
-              color: active ? "#08121f" : `${it.hue}dd`,
-              background: active
-                ? `linear-gradient(135deg, ${it.hue}, ${it.hue}cc)`
-                : "transparent",
-              boxShadow: active ? `0 6px 18px -6px ${it.hue}aa` : "none",
-              border: `1px solid ${active ? it.hue : `${it.hue}33`}`,
-            }}
+            variant={active ? "default" : "outline"}
+            size="sm"
+            aria-pressed={active}
+            className="h-8 gap-1.5 rounded-md px-2.5 text-[11px] tracking-wide"
           >
-            <span className="text-sm leading-none">{it.glyph}</span>
+            <span className="text-sm leading-none" style={active || !it.hue ? undefined : { color: it.hue }}>{it.glyph}</span>
             {it.label}
-          </button>
+          </Button>
         );
       })}
     </div>

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Fingerprint } from "lucide-react";
 import { EngineDashboard, StatusChip } from "@/components/ams/shared/EngineDashboard";
 
-export const Route = createFileRoute("/ams/identity")({
+export const Route = createFileRoute("/ams/tickets/identity")({
   head: () => ({
     meta: [
       { title: "Identity Engine — AMS" },

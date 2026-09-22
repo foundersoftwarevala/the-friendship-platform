@@ -17,7 +17,7 @@ function keyed(map: Record<string, string>, suffix: string) {
   return Object.fromEntries(
     Object.entries(map).map(([p, url]) => [
       p
-        .slice(p.lastIndexOf("/") + 1)
+        .slice(p.lastIndexOf("/ams/overview") + 1)
         .replace(/\.png$/, "")
         .replace(new RegExp(`-${suffix}$`), ""),
       url,

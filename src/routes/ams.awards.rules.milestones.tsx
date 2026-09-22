@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Crown } from "lucide-react";
 import { LibraryShell } from "@/components/ams/shared/LibraryShell";
 
-export const Route = createFileRoute("/ams/awards/rules/milestones")({
+export const Route = createFileRoute("/ams/tickets/awards/rules/milestones")({
   head: () => ({
     meta: [
       { title: "Milestone Rules — AMS" },
