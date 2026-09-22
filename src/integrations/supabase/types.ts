@@ -410,6 +410,66 @@ export type Database = {
         }
         Relationships: []
       }
+      ams_achievement_progress: {
+        Row: {
+          achievement_id: string
+          earned_at: string | null
+          id: string
+          progress: number
+          revoked_at: string | null
+          role: string
+          source_event_id: string | null
+          state: string
+          target: number
+          updated_at: string
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          achievement_id: string
+          earned_at?: string | null
+          id?: string
+          progress?: number
+          revoked_at?: string | null
+          role: string
+          source_event_id?: string | null
+          state?: string
+          target?: number
+          updated_at?: string
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          achievement_id?: string
+          earned_at?: string | null
+          id?: string
+          progress?: number
+          revoked_at?: string | null
+          role?: string
+          source_event_id?: string | null
+          state?: string
+          target?: number
+          updated_at?: string
+          user_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ams_achievement_progress_achievement_id_fkey"
+            columns: ["achievement_id"]
+            isOneToOne: false
+            referencedRelation: "achievements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ams_achievement_progress_source_event_id_fkey"
+            columns: ["source_event_id"]
+            isOneToOne: false
+            referencedRelation: "ams_activity_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       ams_activity_events: {
         Row: {
           created_at: string
@@ -550,6 +610,7 @@ export type Database = {
         Row: {
           achievement_slug: string | null
           certificate_no: string
+          expires_at: string | null
           id: string
           issued_at: string
           revoked_at: string | null
@@ -559,10 +620,12 @@ export type Database = {
           title: string
           user_id: string
           verification: string
+          verification_code: string | null
         }
         Insert: {
           achievement_slug?: string | null
           certificate_no: string
+          expires_at?: string | null
           id?: string
           issued_at?: string
           revoked_at?: string | null
@@ -572,10 +635,12 @@ export type Database = {
           title: string
           user_id: string
           verification?: string
+          verification_code?: string | null
         }
         Update: {
           achievement_slug?: string | null
           certificate_no?: string
+          expires_at?: string | null
           id?: string
           issued_at?: string
           revoked_at?: string | null
@@ -585,6 +650,7 @@ export type Database = {
           title?: string
           user_id?: string
           verification?: string
+          verification_code?: string | null
         }
         Relationships: []
       }
@@ -716,34 +782,79 @@ export type Database = {
       }
       ams_passports: {
         Row: {
+          expires_at: string | null
+          id: string | null
           issued_at: string
           level: number
           passport_no: string
+          revoked_at: string | null
           role: string
           stage: number
           updated_at: string
           user_id: string
           verification: string
+          verification_code: string | null
         }
         Insert: {
+          expires_at?: string | null
+          id?: string | null
           issued_at?: string
           level?: number
           passport_no: string
+          revoked_at?: string | null
           role: string
           stage?: number
           updated_at?: string
           user_id: string
           verification?: string
+          verification_code?: string | null
         }
         Update: {
+          expires_at?: string | null
+          id?: string | null
           issued_at?: string
           level?: number
           passport_no?: string
+          revoked_at?: string | null
           role?: string
           stage?: number
           updated_at?: string
           user_id?: string
           verification?: string
+          verification_code?: string | null
+        }
+        Relationships: []
+      }
+      ams_role_progress: {
+        Row: {
+          current_level: number
+          current_rank: number
+          current_stage: number
+          id: string
+          role: string
+          total_xp: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          current_level?: number
+          current_rank?: number
+          current_stage?: number
+          id?: string
+          role: string
+          total_xp?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          current_level?: number
+          current_rank?: number
+          current_stage?: number
+          id?: string
+          role?: string
+          total_xp?: number
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -846,6 +957,36 @@ export type Database = {
           team?: string | null
           ticket_no?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      ams_user_roles: {
+        Row: {
+          active: boolean
+          assigned_at: string
+          id: string
+          role: string
+          source: string
+          source_reference: string | null
+          user_id: string
+        }
+        Insert: {
+          active?: boolean
+          assigned_at?: string
+          id?: string
+          role: string
+          source?: string
+          source_reference?: string | null
+          user_id: string
+        }
+        Update: {
+          active?: boolean
+          assigned_at?: string
+          id?: string
+          role?: string
+          source?: string
+          source_reference?: string | null
+          user_id?: string
         }
         Relationships: []
       }
@@ -7725,19 +7866,36 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      ams_asset_state: {
-        Args: {
-          p_claimed: boolean
-          p_earned: boolean
-          p_min_xp: number
-          p_stage: number
-          p_user: string
-          p_xp: number
-        }
-        Returns: string
-      }
+      ams_asset_state:
+        | {
+            Args: {
+              p_claimed: boolean
+              p_earned: boolean
+              p_min_xp: number
+              p_stage: number
+              p_user: string
+              p_xp: number
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              p_earned: boolean
+              p_min_xp: number
+              p_revoked: boolean
+              p_stage: number
+              p_user: string
+              p_verified: boolean
+              p_xp: number
+            }
+            Returns: string
+          }
       ams_claim_award: { Args: { p_award_slug: string }; Returns: Json }
       ams_evaluate_user: { Args: { p_user_id: string }; Returns: Json }
+      ams_evaluate_user_role: {
+        Args: { p_role: string; p_user_id: string }
+        Returns: Json
+      }
       ams_grant_reward: {
         Args: {
           p_award_ids?: string[]
@@ -7772,6 +7930,8 @@ export type Database = {
         Returns: Json
       }
       ams_sweep: { Args: never; Returns: Json }
+      ams_sync_platform_roles: { Args: { p_user_id: string }; Returns: number }
+      ams_verify_credential: { Args: { p_code: string }; Returns: Json }
       assist_audit: {
         Args: {
           p_action: string

@@ -36,6 +36,13 @@
       "when": 1790095915605,
       "tag": "0004_ams_persistent_reward_actions",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1790099013430,
+      "tag": "0005_ams_exact_eleven_role_flow",
+      "breakpoints": true
     }
   ]
 }

@@ -51,7 +51,6 @@ const TIER_UNLOCK: Record<string, UnlockPreset> = {
   diamond: "diamond",
   elite: "elite",
   legend: "legend",
-  founder: "founder",
 };
 
 function Page() {
