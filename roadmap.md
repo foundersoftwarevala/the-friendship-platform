@@ -33,5 +33,6 @@
 ## Module navigation + auth tests (current)
 - [x] Global "Back to Control Panel" chip on every gated module (RouteAccessGate)
 - [x] Back button inside CreatorSidebar, above the module search box (per user: sidebar top, not floating/top-bar); verified click → /control-panel
+- [x] Harden password login against session races and route super-admin/operator roles deterministically
 - [ ] Automated tests: login, super-admin access, affiliate routes, role redirects, invalid paths
 - [ ] Pre-existing type backlog (~4.7k errors in ported modules, stale DB types) — tracked, not introduced by these changes

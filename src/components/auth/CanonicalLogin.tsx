@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Eye, EyeOff, Fingerprint, Globe, LockKeyhole, Mail, Mic, MicOff, ShieldCheck } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { OwlStage, type OwlState } from "@/components/owl/OwlStage";
 import { LANGUAGES, useLanguage } from "@/lib/language-catalog";
@@ -10,7 +10,11 @@ const LANGUAGE_OPTIONS = ["EN", "HI", "AR", "ES", "FR", "DE", "JA", "ZH"];
 const RTL_LANGUAGES = new Set(["AR", "FA", "HE", "UR"]);
 
 const ROLE_DESTINATIONS: Record<string, string> = {
+  boss_owner: "/control-panel",
+  super_admin: "/control-panel",
   admin: "/control-panel",
+  founder: "/control-panel",
+  owner: "/control-panel",
   boss: "/boss",
   reseller: "/dashboard/reseller",
   finance: "/manager/finance",
@@ -27,6 +31,29 @@ const ROLE_DESTINATIONS: Record<string, string> = {
   vendor: "/dashboard/vendor",
   seo: "/dashboard/seo",
 };
+
+const ROLE_PRIORITY = [
+  "boss_owner",
+  "super_admin",
+  "admin",
+  "founder",
+  "owner",
+  "boss",
+  "reseller",
+  "finance",
+  "franchise",
+  "employee",
+  "sales",
+  "support",
+  "marketing",
+  "developer",
+  "customer",
+  "influencer",
+  "affiliate",
+  "author",
+  "vendor",
+  "seo",
+] as const;
 
 type Props = { redirectTo?: string };
 
@@ -53,21 +80,41 @@ export function CanonicalLogin({ redirectTo }: Props) {
     return () => window.speechSynthesis.cancel();
   }, [assistantLine, lang, voice]);
 
-  const routeAfterAuth = async () => {
-    if (redirectTo?.startsWith("/")) {
-      window.location.assign(redirectTo);
+  const routeAfterAuth = useCallback(async (userId: string) => {
+    const safeRedirect =
+      redirectTo?.startsWith("/") &&
+      !redirectTo.startsWith("//") &&
+      !redirectTo.startsWith("/login") &&
+      !redirectTo.startsWith("/auth")
+        ? redirectTo
+        : undefined;
+    if (safeRedirect) {
+      window.location.replace(safeRedirect);
       return;
     }
-    const { data } = await supabase.auth.getUser();
-    if (!data.user) {
-      navigate({ to: "/", replace: true });
-      return;
-    }
-    const { data: roleRows } = await supabase.from("user_roles").select("role").eq("user_id", data.user.id).order("role", { ascending: true });
-    const destination = ROLE_DESTINATIONS[String(roleRows?.[0]?.role ?? "").toLowerCase()];
-    if (destination) window.location.assign(destination);
-    else navigate({ to: "/", replace: true });
-  };
+
+    const { data: roleRows, error: roleError } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId);
+    if (roleError) console.error("Unable to load the signed-in user's roles", roleError.message);
+
+    const roles = new Set((roleRows ?? []).map((row) => String(row.role).toLowerCase()));
+    const primaryRole = ROLE_PRIORITY.find((role) => roles.has(role));
+    const destination = primaryRole ? ROLE_DESTINATIONS[primaryRole] : undefined;
+    window.location.replace(destination ?? "/");
+  }, [redirectTo]);
+
+  useEffect(() => {
+    let active = true;
+    void supabase.auth.getUser().then(({ data, error }) => {
+      if (!active || error || !data.user) return;
+      void routeAfterAuth(data.user.id);
+    });
+    return () => {
+      active = false;
+    };
+  }, [routeAfterAuth]);
 
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -82,17 +129,20 @@ export function CanonicalLogin({ redirectTo }: Props) {
     setOwlState("hide");
     setAssistantLine("Checking your credentials and matching your access level...");
     try {
-      const { error } = await supabase.auth.signInWithPassword({ email: trimmedEmail, password });
+      const { data, error } = await supabase.auth.signInWithPassword({ email: trimmedEmail, password });
       if (error) {
         setOwlState("curious");
         setAssistantLine(error.message);
         toast.error(error.message);
         return;
       }
+      if (!data.session || !data.user) {
+        throw new Error("Sign-in completed without an active session. Please try again.");
+      }
       setOwlState("celebrate");
       setAssistantLine("Authenticated. Opening your command surface.");
       toast.success("Signed in successfully.");
-      window.setTimeout(() => void routeAfterAuth(), 400);
+      await routeAfterAuth(data.user.id);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to sign in.";
       setOwlState("curious");
