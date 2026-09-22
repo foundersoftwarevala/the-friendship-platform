@@ -29,6 +29,13 @@
       "when": 1790090973848,
       "tag": "0003_add_trophy_unlock_rewards",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790095915605,
+      "tag": "0004_ams_persistent_reward_actions",
+      "breakpoints": true
     }
   ]
 }

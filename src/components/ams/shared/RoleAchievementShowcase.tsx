@@ -2,10 +2,30 @@
 // The signature trophy is a real cinematic 3D render per role. Every role has
 // its own icon set, palette, silhouettes and label set. Nothing is reused.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { ROLES, type RoleDNA, type RoleSlug } from "@/lib/ams/roles";
 import { ROLE_TROPHY as TROPHY_IMG } from "@/lib/ams/role-assets";
 import { MuseumCase, SVMicroMark, SVSeal, svCollectionNumber } from "@/components/ams/brand/SVMark";
+
+const ROLE_ACCENT: Record<RoleSlug, string> = {
+  developer: "var(--color-primary-glow)",
+  reseller: "var(--color-gold)",
+  franchise: "var(--color-primary)",
+  author: "var(--color-accent-pink)",
+  vendor: "var(--color-accent-emerald)",
+  affiliate: "var(--color-primary-glow)",
+  influencer: "var(--color-accent-pink)",
+  creator: "var(--color-primary)",
+  seo: "var(--color-accent-emerald)",
+  support: "var(--color-primary-glow)",
+  user: "var(--color-accent-pink)",
+  manager: "var(--color-primary)",
+  administrator: "var(--color-primary-glow)",
+  founder: "var(--color-gold)",
+  operator: "var(--color-accent-emerald)",
+};
+
+const roleAccent = (slug: RoleSlug) => ROLE_ACCENT[slug];
 
 type SlotKey =
   "trophy" | "award" | "badge" | "passport" | "rank" | "level" | "membership" | "verification";
@@ -265,16 +285,17 @@ function Sparkles({ accent }: { accent: string }) {
         <span
           key={d.i}
           className="absolute h-1.5 w-1.5 rounded-full trophy-sparkle"
-          style={{
-            left: `${d.left}%`,
-            top: `${d.top}%`,
-            background: accent,
-            boxShadow: `0 0 8px ${accent}, 0 0 16px ${accent}88`,
-            animationDelay: d.d,
-            // consumed by keyframes
-            ["--sx" as any]: d.sx,
-            ["--sy" as any]: d.sy,
-          }}
+          style={
+            {
+              left: `${d.left}%`,
+              top: `${d.top}%`,
+              background: accent,
+              boxShadow: `0 0 8px ${accent}, 0 0 16px ${accent}88`,
+              animationDelay: d.d,
+              "--sx": d.sx,
+              "--sy": d.sy,
+            } as CSSProperties
+          }
         />
       ))}
     </div>
@@ -290,7 +311,7 @@ function TrophyTile({
   unlockKey: string;
   label: string;
 }) {
-  const accent = role.accent;
+  const accent = roleAccent(role.slug);
   return (
     <div className="group relative flex flex-col items-center gap-2 col-span-2 row-span-2 md:col-span-2 md:row-span-2">
       {/* Luxury presentation stage */}
@@ -302,7 +323,7 @@ function TrophyTile({
           background: `
             radial-gradient(120% 80% at 50% 110%, ${accent}44 0%, ${accent}11 40%, transparent 70%),
             radial-gradient(80% 60% at 50% 0%,   ${accent}22 0%, transparent 65%),
-            linear-gradient(180deg, #05060c, #0b0d16 60%, #05060c)`,
+             linear-gradient(180deg, var(--color-card), var(--color-surface) 60%, var(--color-background))`,
           boxShadow: `inset 0 0 60px ${accent}22, 0 20px 60px -20px ${accent}66`,
         }}
       >
@@ -353,7 +374,7 @@ function TrophyTile({
           className="absolute inset-x-3 bottom-3 rounded-md border px-3 py-2 text-center backdrop-blur-sm"
           style={{
             borderColor: `${accent}66`,
-            background: `linear-gradient(180deg, ${accent}18, #00000055)`,
+            background: `linear-gradient(180deg, color-mix(in oklab, ${accent} 12%, transparent), color-mix(in oklab, var(--color-background) 74%, transparent))`,
           }}
         >
           <div className="text-[9px] uppercase tracking-[0.28em] text-muted-foreground">
@@ -384,7 +405,7 @@ function SlotTile({
   label: string;
 }) {
   const clip = FRAME_CLIP[slot];
-  const accent = role.accent;
+  const accent = roleAccent(role.slug);
   const glyph = PROF_GLYPH[role.slug][slot];
 
   return (
@@ -399,7 +420,7 @@ function SlotTile({
             clipPath: clip,
             WebkitClipPath: clip,
             background: `
-              radial-gradient(120% 100% at 30% 15%, ${accent}ee 0%, ${accent}55 40%, #06070d 80%),
+               radial-gradient(120% 100% at 30% 15%, ${accent} 0%, color-mix(in oklab, ${accent} 36%, var(--color-surface)) 40%, var(--color-background) 80%),
               linear-gradient(160deg, ${accent}33, transparent 60%)`,
           }}
         />
@@ -414,7 +435,7 @@ function SlotTile({
         <div className="absolute inset-0 grid place-items-center">
           <div
             className="font-bold leading-none text-lg"
-            style={{ color: "#0a0a12", textShadow: `0 1px 0 ${accent}` }}
+            style={{ color: "var(--color-background)", textShadow: `0 1px 0 ${accent}` }}
           >
             {glyph}
           </div>
@@ -433,7 +454,7 @@ function SlotTile({
         <div className="pointer-events-none absolute inset-x-0 bottom-[3px] flex justify-center">
           <span
             className="font-mono uppercase"
-            style={{ fontSize: 5, letterSpacing: "0.3em", color: "#0a0a1299" }}
+            style={{ fontSize: 5, letterSpacing: "0.3em", color: "var(--color-background)" }}
           >
             SV
           </span>
@@ -479,12 +500,12 @@ export function RoleAchievementShowcase({
 
   return (
     <section
-      className="relative overflow-hidden rounded-2xl border border-border/60 p-5"
+      className="ams-role-showcase relative overflow-hidden rounded-2xl border border-primary/25 p-5 shadow-[var(--shadow-card)]"
       style={{
         background: `
-          radial-gradient(900px 220px at 8% -20%, ${role.accent}22, transparent 60%),
-          radial-gradient(700px 200px at 100% 0%, ${role.accent}11, transparent 55%),
-          linear-gradient(180deg, #05060c, #0a0b12)`,
+          radial-gradient(900px 220px at 8% -20%, color-mix(in oklab, ${roleAccent(role.slug)} 22%, transparent), transparent 60%),
+          radial-gradient(700px 200px at 100% 0%, color-mix(in oklab, var(--color-primary) 12%, transparent), transparent 55%),
+          linear-gradient(180deg, var(--color-card), var(--color-surface))`,
       }}
     >
       <header className="flex flex-wrap items-end justify-between gap-3 mb-4">
@@ -494,7 +515,7 @@ export function RoleAchievementShowcase({
           </div>
           <h2 className="text-lg font-semibold tracking-tight">
             {name ? `${name} · ` : ""}
-            <span style={{ color: role.accent }}>{role.name}</span>
+            <span style={{ color: roleAccent(role.slug) }}>{role.name}</span>
             <span className="text-muted-foreground text-sm font-normal"> — {role.archetype}</span>
           </h2>
           <p className="text-[11px] text-muted-foreground italic mt-0.5">"{role.motto}"</p>
@@ -509,9 +530,13 @@ export function RoleAchievementShowcase({
                 onClick={() => setSlug(r.slug)}
                 className="text-[10px] uppercase tracking-[0.14em] rounded-md border px-2 py-1 transition-colors"
                 style={{
-                  borderColor: active ? r.accent : `${r.accent}44`,
-                  color: active ? "#0a0a12" : r.accent,
-                  background: active ? r.accent : `${r.accent}11`,
+                  borderColor: active
+                    ? roleAccent(r.slug)
+                    : `color-mix(in oklab, ${roleAccent(r.slug)} 32%, var(--color-border))`,
+                  color: active ? "var(--color-primary-foreground)" : roleAccent(r.slug),
+                  background: active
+                    ? roleAccent(r.slug)
+                    : `color-mix(in oklab, ${roleAccent(r.slug)} 8%, transparent)`,
                 }}
                 aria-pressed={active}
               >
@@ -534,18 +559,20 @@ export function RoleAchievementShowcase({
 
       <footer className="mt-4 flex flex-wrap items-center justify-between gap-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
         <span>
-          Passport · <span style={{ color: role.accent }}>{role.passportPrefix}-00001</span>
+          Passport ·{" "}
+          <span style={{ color: roleAccent(role.slug) }}>{role.passportPrefix}-00001</span>
         </span>
         <span>
-          Verification · <span style={{ color: role.accent }}>{role.passport.verification}</span>
+          Verification ·{" "}
+          <span style={{ color: roleAccent(role.slug) }}>{role.passport.verification}</span>
         </span>
         <span>
-          Signature · <span style={{ color: role.accent }}>{role.signature}</span>
+          Signature · <span style={{ color: roleAccent(role.slug) }}>{role.signature}</span>
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <SVSeal accent={role.accent} size={14} title="Software Vala Collection Mark" />
+          <SVSeal accent={roleAccent(role.slug)} size={14} title="Software Vala Collection Mark" />
           Software Vala Collection ·{" "}
-          <span style={{ color: role.accent }}>
+          <span style={{ color: roleAccent(role.slug) }}>
             {svCollectionNumber(role.slug, role.passportPrefix)}
           </span>
         </span>

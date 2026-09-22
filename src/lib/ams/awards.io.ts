@@ -1,5 +1,5 @@
 // Award Center — CSV/JSON import/export helpers.
-// Pure browser code; works against the in-memory awards.api.ts store.
+// Pure browser import/export helpers; persistence is handled by awards.api.ts.
 
 import type {
   Award,

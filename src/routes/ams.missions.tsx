@@ -1,4 +1,5 @@
-import { useSyncExternalStore, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Plus,
@@ -49,9 +50,6 @@ import {
   setMissionStatus,
   progressMission,
   completeMission,
-  subscribeMissions,
-  missionsSnapshot,
-  missionsServerSnapshot,
 } from "@/lib/ams/missions.api";
 
 export const Route = createFileRoute("/ams/missions")({
@@ -77,7 +75,7 @@ export const Route = createFileRoute("/ams/missions")({
 });
 
 function useMissions() {
-  return useSyncExternalStore(subscribeMissions, missionsSnapshot, missionsServerSnapshot);
+  return useQuery({ queryKey: ["ams-missions"], queryFn: () => listMissions() }).data ?? [];
 }
 
 const STATUS_META: Record<MissionStatus, { label: string; className: string }> = {
@@ -100,6 +98,7 @@ const STATUS_META: Record<MissionStatus, { label: string; className: string }> =
 };
 
 function MissionsPage() {
+  const qc = useQueryClient();
   const missions = useMissions();
   const [typeFilter, setTypeFilter] = useState<MissionType | "all">("all");
   const [statusFilter, setStatusFilter] = useState<MissionStatus | "all">("all");
@@ -191,7 +190,11 @@ function MissionsPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filtered.map((m) => (
-            <MissionCard key={m.id} m={m} />
+            <MissionCard
+              key={m.id}
+              m={m}
+              refresh={() => qc.invalidateQueries({ queryKey: ["ams-missions"] })}
+            />
           ))}
         </div>
       )}
@@ -225,7 +228,7 @@ function TypeChip({
   );
 }
 
-function MissionCard({ m }: { m: Mission }) {
+function MissionCard({ m, refresh }: { m: Mission; refresh: () => Promise<unknown> }) {
   const pct =
     m.progress.target > 0 ? Math.round((m.progress.current / m.progress.target) * 100) : 0;
   const meta = STATUS_META[m.status];
@@ -294,9 +297,14 @@ function MissionCard({ m }: { m: Mission }) {
             size="sm"
             variant="ghost"
             className="h-7 gap-1"
-            onClick={() => {
-              setMissionStatus(m.id, "active");
-              toast.success("Mission activated");
+            onClick={async () => {
+              try {
+                await setMissionStatus(m.id, "active");
+                await refresh();
+                toast.success("Mission activated");
+              } catch (e) {
+                toast.error((e as Error).message);
+              }
             }}
           >
             <Play className="h-3.5 w-3.5" /> Activate
@@ -307,9 +315,14 @@ function MissionCard({ m }: { m: Mission }) {
             size="sm"
             variant="ghost"
             className="h-7 gap-1"
-            onClick={() => {
-              setMissionStatus(m.id, "paused");
-              toast("Mission paused");
+            onClick={async () => {
+              try {
+                await setMissionStatus(m.id, "paused");
+                await refresh();
+                toast("Mission paused");
+              } catch (e) {
+                toast.error((e as Error).message);
+              }
             }}
           >
             <Pause className="h-3.5 w-3.5" /> Pause
@@ -320,9 +333,15 @@ function MissionCard({ m }: { m: Mission }) {
             size="sm"
             variant="ghost"
             className="h-7 gap-1"
-            onClick={() => {
-              const p = progressMission(m.id, 1);
-              if (p.status === "completed") toast.success(`Completed! +${p.rewards.xp} XP granted`);
+            onClick={async () => {
+              try {
+                const p = await progressMission(m.id, 1);
+                await refresh();
+                if (p?.status === "completed")
+                  toast.success(`Completed! +${p.rewards.xp} XP granted`);
+              } catch (e) {
+                toast.error((e as Error).message);
+              }
             }}
           >
             +1 progress
@@ -333,9 +352,14 @@ function MissionCard({ m }: { m: Mission }) {
             size="sm"
             variant="ghost"
             className="h-7 gap-1 text-accent-emerald"
-            onClick={() => {
-              completeMission(m.id);
-              toast.success(`"${m.name}" completed — rewards granted`);
+            onClick={async () => {
+              try {
+                await completeMission(m.id);
+                await refresh();
+                toast.success(`"${m.name}" completed — rewards granted`);
+              } catch (e) {
+                toast.error((e as Error).message);
+              }
             }}
           >
             <CheckCircle2 className="h-3.5 w-3.5" /> Complete
@@ -345,9 +369,14 @@ function MissionCard({ m }: { m: Mission }) {
           size="sm"
           variant="ghost"
           className="h-7 gap-1 text-rose-400 ml-auto"
-          onClick={() => {
-            deleteMission(m.id);
-            toast("Mission deleted");
+          onClick={async () => {
+            try {
+              await deleteMission(m.id);
+              await refresh();
+              toast("Mission deleted");
+            } catch (e) {
+              toast.error((e as Error).message);
+            }
           }}
         >
           <Trash2 className="h-3.5 w-3.5" />
@@ -358,6 +387,7 @@ function MissionCard({ m }: { m: Mission }) {
 }
 
 function NewMissionDialog({ onClose }: { onClose: () => void }) {
+  const qc = useQueryClient();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState<MissionType>("daily");
@@ -372,28 +402,33 @@ function NewMissionDialog({ onClose }: { onClose: () => void }) {
   const [endsAt, setEndsAt] = useState("");
   const [repeatable, setRepeatable] = useState(false);
 
-  function submit() {
+  async function submit() {
     if (!name.trim()) {
       toast.error("Name required");
       return;
     }
-    createMission({
-      name,
-      description,
-      type,
-      department: department ? (department as Mission["department"]) : undefined,
-      hidden: hidden || type === "hidden",
-      rules: [{ id: crypto.randomUUID(), metric, operator: ">=", target }],
-      rewards: { xp, coins, tokens, awardIds: [] },
-      activation: {
-        startsAt: startsAt || undefined,
-        endsAt: endsAt || undefined,
-        repeatable: repeatable || ["daily", "weekly", "monthly"].includes(type),
-      },
-      status: startsAt ? "scheduled" : "active",
-    });
-    toast.success(`Mission "${name}" created`);
-    onClose();
+    try {
+      await createMission({
+        name,
+        description,
+        type,
+        department: department ? (department as Mission["department"]) : undefined,
+        hidden: hidden || type === "hidden",
+        rules: [{ id: crypto.randomUUID(), metric, operator: ">=", target }],
+        rewards: { xp, coins, tokens, awardIds: [] },
+        activation: {
+          startsAt: startsAt || undefined,
+          endsAt: endsAt || undefined,
+          repeatable: repeatable || ["daily", "weekly", "monthly"].includes(type),
+        },
+        status: startsAt ? "scheduled" : "active",
+      });
+      await qc.invalidateQueries({ queryKey: ["ams-missions"] });
+      toast.success(`Mission "${name}" created`);
+      onClose();
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
   }
 
   return (

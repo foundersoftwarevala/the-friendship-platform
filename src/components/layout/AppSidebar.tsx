@@ -40,7 +40,12 @@ interface AppSidebarProps {
   onCloseMobile: () => void;
 }
 
-export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMobile }: AppSidebarProps) {
+export function AppSidebar({
+  collapsed,
+  onToggleCollapsed,
+  mobileOpen,
+  onCloseMobile,
+}: AppSidebarProps) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [query, setQuery] = useState("");
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
@@ -68,15 +73,24 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
         title={item.label}
         aria-current={active ? "page" : undefined}
         className={cn(
-          "group/item relative flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-sm transition-colors duration-150",
+          "group/item relative flex min-h-10 items-center gap-3 rounded-lg border px-3 py-2 text-sm transition-[color,background-color,border-color,box-shadow] duration-200",
           collapsed && "justify-center px-0",
           active
-            ? "bg-primary/18 text-foreground font-medium"
-            : "text-muted-foreground hover:text-foreground hover:bg-white/[0.04]",
+            ? "border-primary/35 bg-primary/12 font-semibold text-foreground shadow-[inset_0_1px_0_color-mix(in_oklab,var(--color-primary)_18%,transparent)]"
+            : "border-transparent text-muted-foreground hover:border-border/80 hover:bg-surface hover:text-foreground",
         )}
       >
-        {active && <span className="absolute left-0 top-1.5 bottom-1.5 w-[2px] rounded-full bg-primary" />}
-        <item.icon className="h-4 w-4 shrink-0" />
+        {active && (
+          <span className="absolute bottom-2 left-0 top-2 w-[3px] rounded-r-full bg-primary shadow-[0_0_12px_var(--color-primary)]" />
+        )}
+        <span
+          className={cn(
+            "grid h-6 w-6 shrink-0 place-items-center rounded-md",
+            active && "bg-primary/15 text-primary-glow",
+          )}
+        >
+          <item.icon className="h-4 w-4" />
+        </span>
         {!collapsed && <span className="truncate">{item.label}</span>}
       </Link>
     );
@@ -86,17 +100,23 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
     <div className="flex h-full flex-col">
       <div
         className={cn(
-          "flex h-16 shrink-0 items-center gap-2 border-b border-border px-3",
+          "flex h-[72px] shrink-0 items-center gap-2 border-b border-sidebar-border px-3",
           collapsed && "justify-center px-0",
         )}
       >
-        <Link to="/ams/overview" className="flex min-w-0 items-center gap-2" onClick={onCloseMobile}>
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground">
-            <Trophy className="h-4 w-4" />
+        <Link
+          to="/ams/overview"
+          className="flex min-w-0 items-center gap-2"
+          onClick={onCloseMobile}
+        >
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-primary/40 bg-gradient-to-br from-primary to-primary-glow text-primary-foreground shadow-[0_10px_24px_-10px_var(--color-primary)]">
+            <Trophy className="h-5 w-5" />
           </span>
           {!collapsed && (
             <span className="min-w-0 leading-tight">
-              <span className="block truncate text-sm font-semibold tracking-tight">AMS Manager</span>
+              <span className="block truncate text-[15px] font-bold tracking-tight text-foreground">
+                AMS Manager
+              </span>
               <span className="block truncate text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                 Software Vala
               </span>
@@ -133,7 +153,7 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
 
       {!collapsed && (
         <div className="shrink-0 px-3 pt-3">
-          <div className="focus-glow flex items-center gap-2 rounded-lg border border-border bg-surface px-2.5 py-1.5">
+          <div className="focus-glow flex h-10 items-center gap-2 rounded-lg border border-sidebar-border bg-surface/80 px-3 shadow-[inset_0_1px_0_color-mix(in_oklab,var(--color-primary)_8%,transparent)]">
             <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
             <input
               value={query}
@@ -146,7 +166,7 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
         </div>
       )}
 
-      <nav className="flex-1 space-y-3 overflow-y-auto px-2 py-3 scrollbar-thin">
+      <nav className="flex-1 space-y-4 overflow-y-auto px-2.5 py-4 scrollbar-thin">
         <div className="space-y-0.5">
           {primaryNav.map((item) => (
             <ItemLink key={item.to} item={item} />
@@ -154,7 +174,9 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
         </div>
 
         {filtered?.length === 0 && !collapsed && (
-          <p className="px-2.5 py-6 text-center text-xs text-muted-foreground">No modules match “{query}”.</p>
+          <p className="px-2.5 py-6 text-center text-xs text-muted-foreground">
+            No modules match “{query}”.
+          </p>
         )}
 
         {(filtered ?? navGroups).map((group) => {
@@ -173,10 +195,15 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
               <button
                 onClick={() => setOpenGroups((s) => ({ ...s, [group.label]: !open }))}
                 aria-expanded={open}
-                className="flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
+                className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
               >
                 {group.label}
-                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform duration-200", open && "rotate-180")} />
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 transition-transform duration-200",
+                    open && "rotate-180",
+                  )}
+                />
               </button>
               {open && (
                 <div className="mt-0.5 space-y-0.5">
@@ -202,7 +229,7 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
     <>
       <aside
         className={cn(
-          "sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-border bg-background/80 backdrop-blur-xl transition-[width] duration-200 lg:flex",
+          "ams-sidebar sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-sidebar-border bg-sidebar transition-[width] duration-200 lg:flex",
           collapsed ? "w-[72px]" : "w-[264px]",
         )}
       >
@@ -216,7 +243,7 @@ export function AppSidebar({ collapsed, onToggleCollapsed, mobileOpen, onCloseMo
             onClick={onCloseMobile}
             aria-label="Close menu overlay"
           />
-          <div className="absolute inset-y-0 left-0 w-[280px] max-w-[85vw] border-r border-border bg-background shadow-2xl">
+          <div className="ams-sidebar absolute inset-y-0 left-0 w-[280px] max-w-[85vw] border-r border-sidebar-border bg-sidebar shadow-2xl">
             {content}
           </div>
         </div>
