@@ -8286,6 +8286,16 @@ export type Database = {
         Args: { p_product: string; p_surface?: string }
         Returns: Json
       }
+      unlock_trophy: {
+        Args: {
+          _achievement_name: string
+          _achievement_slug: string
+          _trophy_name: string
+          _trophy_slug: string
+          _xp_reward?: number
+        }
+        Returns: Json
+      }
     }
     Enums: {
       ams_chat_channel:
