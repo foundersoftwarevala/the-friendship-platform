@@ -41,6 +41,7 @@ function EffectsPage() {
     { key: "xp-pop",       title: "XP Pop",            description: "Floating XP gain.",            icon: Zap,      run: () => celebrate({ kind: "levelUp", title: "+250 XP", xp: 250 }) },
     { key: "reward-claim", title: "Reward Claim",      description: "Reward gift animation.",       icon: Gift,     run: () => celebrate({ kind: "achievement", title: "Reward Claimed", subtitle: "Sent to wallet" }) },
     { key: "milestone",    title: "Milestone",         description: "Diamond cascade.",             icon: Crown,    run: () => celebrate({ kind: "milestone", title: "Milestone Reached" }) },
+    { key: "certificate",  title: "Certificate Issued",description: "Seal press + verify chime.",   icon: AwardIcon,run: () => celebrate({ kind: "certificate", title: "Certificate Issued", subtitle: "Credential verified" }) },
   ];
 
   const sounds: { key: string; label: string; play: () => void }[] = [
