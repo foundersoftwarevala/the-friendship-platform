@@ -63,7 +63,9 @@ function CommandCenter() {
     return (
       <div className="surface-card flex min-h-48 flex-col items-center justify-center gap-3 p-8 text-center">
         <p className="text-sm font-semibold text-foreground">Command Center could not load.</p>
-        <p className="text-xs text-muted-foreground">Your session is safe. Try loading the live data again.</p>
+        <p className="text-xs text-muted-foreground">
+          Your session is safe. Try loading the live data again.
+        </p>
         <button
           type="button"
           className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90 active:translate-y-px"

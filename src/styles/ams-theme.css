@@ -28,7 +28,11 @@
 
   --gradient-xp: linear-gradient(90deg, var(--primary), var(--xp));
   --gradient-trophy: linear-gradient(135deg, var(--primary), var(--primary-glow));
-  --gradient-rarity-mythic: linear-gradient(135deg, var(--destructive), var(--accent-pink, var(--primary-glow)));
+  --gradient-rarity-mythic: linear-gradient(
+    135deg,
+    var(--destructive),
+    var(--accent-pink, var(--primary-glow))
+  );
 
   --shadow-glow-primary: 0 0 30px -4px color-mix(in oklab, var(--primary) 70%, transparent);
   --shadow-glow-secondary: 0 0 26px -4px color-mix(in oklab, var(--primary-glow) 58%, transparent);
