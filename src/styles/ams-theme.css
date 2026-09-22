@@ -16,24 +16,25 @@
 }
 
 :root {
-  --surface-elevated: oklch(0.27 0.035 258);
-  --xp: oklch(0.72 0.14 165);
-  --trophy: oklch(0.66 0.17 250);
-  --rare: oklch(0.66 0.17 250);
-  --epic: oklch(0.7 0.12 300);
-  --legendary: oklch(0.83 0.14 85);
-  --mythic: oklch(0.66 0.2 18);
-  --info: oklch(0.66 0.17 250);
+  /* AMS uses Software Vala's semantic palette, not the reference repository palette. */
+  --surface-elevated: color-mix(in oklab, var(--card) 88%, var(--primary));
+  --xp: var(--accent-emerald, var(--neon));
+  --trophy: var(--primary-glow);
+  --rare: var(--primary);
+  --epic: var(--accent-pink, var(--primary-glow));
+  --legendary: var(--gold);
+  --mythic: var(--destructive);
+  --info: var(--primary-glow);
 
-  --gradient-xp: linear-gradient(90deg, oklch(0.58 0.19 255), oklch(0.72 0.14 165));
-  --gradient-trophy: linear-gradient(135deg, oklch(0.66 0.17 250), oklch(0.7 0.12 300));
-  --gradient-rarity-mythic: linear-gradient(135deg, oklch(0.69 0.215 18), oklch(0.7 0.12 300));
+  --gradient-xp: linear-gradient(90deg, var(--primary), var(--xp));
+  --gradient-trophy: linear-gradient(135deg, var(--primary), var(--primary-glow));
+  --gradient-rarity-mythic: linear-gradient(135deg, var(--destructive), var(--accent-pink, var(--primary-glow)));
 
-  --shadow-glow-primary: 0 0 30px -4px oklch(0.58 0.19 255 / 70%);
-  --shadow-glow-secondary: 0 0 26px -4px oklch(0.66 0.17 250 / 58%);
-  --shadow-glow-trophy: 0 0 34px -4px oklch(0.66 0.17 250 / 62%);
-  --shadow-glow-xp: 0 0 24px -4px oklch(0.72 0.14 165 / 58%);
-  --shadow-hero: 0 30px 80px -30px oklch(0.58 0.19 255 / 0.6);
+  --shadow-glow-primary: 0 0 30px -4px color-mix(in oklab, var(--primary) 70%, transparent);
+  --shadow-glow-secondary: 0 0 26px -4px color-mix(in oklab, var(--primary-glow) 58%, transparent);
+  --shadow-glow-trophy: 0 0 34px -4px color-mix(in oklab, var(--trophy) 62%, transparent);
+  --shadow-glow-xp: 0 0 24px -4px color-mix(in oklab, var(--xp) 58%, transparent);
+  --shadow-hero: 0 30px 80px -30px color-mix(in oklab, var(--primary) 60%, transparent);
 }
 
 /* ─────────────── Premium 3D icon buttons ─────────────── */

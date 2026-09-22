@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { getCommandCenter } from "@/lib/ams/dashboard.functions";
 import {
@@ -21,7 +21,12 @@ import {
 import { RoleAchievementShowcase } from "@/components/ams/shared/RoleAchievementShowcase";
 
 const dashOpts = (fn: () => Promise<any>) =>
-  queryOptions({ queryKey: ["command-center"], queryFn: fn });
+  queryOptions({
+    queryKey: ["command-center", "live"],
+    queryFn: fn,
+    staleTime: 30_000,
+    retry: 1,
+  });
 
 export const Route = createFileRoute("/ams/overview")({
   head: () => ({
@@ -42,19 +47,33 @@ export const Route = createFileRoute("/ams/overview")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(dashOpts(getCommandCenter)),
   component: CommandCenter,
   errorComponent: ({ error }) => (
     <div className="p-8 text-sm text-destructive">{error.message}</div>
-  ),
-  pendingComponent: () => (
-    <div className="p-8 text-sm text-muted-foreground">Booting command center…</div>
   ),
 });
 
 function CommandCenter() {
   const fn = useServerFn(getCommandCenter);
-  const { data } = useSuspenseQuery(dashOpts(fn));
+  const { data, error, isPending, refetch } = useQuery(dashOpts(fn));
+
+  if (isPending) return <CommandCenterSkeleton />;
+
+  if (error || !data) {
+    return (
+      <div className="surface-card flex min-h-48 flex-col items-center justify-center gap-3 p-8 text-center">
+        <p className="text-sm font-semibold text-foreground">Command Center could not load.</p>
+        <p className="text-xs text-muted-foreground">Your session is safe. Try loading the live data again.</p>
+        <button
+          type="button"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90 active:translate-y-px"
+          onClick={() => void refetch()}
+        >
+          Try again
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6 max-w-[1600px] mx-auto">
@@ -126,6 +145,23 @@ function CommandCenter() {
         <SectionTitle kicker="13 · Halls" title="Champions, legends, top performers" />
         <Row13Halls data={data} />
       </section>
+    </div>
+  );
+}
+
+function CommandCenterSkeleton() {
+  return (
+    <div className="mx-auto max-w-[1600px] space-y-6" aria-label="Loading Command Center">
+      <div className="space-y-2">
+        <div className="h-3 w-24 animate-pulse rounded bg-muted" />
+        <div className="h-9 w-64 animate-pulse rounded bg-muted" />
+        <div className="h-4 w-80 max-w-full animate-pulse rounded bg-muted" />
+      </div>
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div key={index} className="surface-card h-32 animate-pulse bg-muted/40" />
+        ))}
+      </div>
     </div>
   );
 }
