@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Bell, Globe, LayoutDashboard, Menu, Search, Settings, User } from "lucide-react";
+import { Bell, Globe, Menu, Search, Settings, User } from "lucide-react";
 import { toast } from "sonner";
 
 export function CreatorTopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
@@ -37,13 +37,6 @@ export function CreatorTopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
           <Globe className="h-3.5 w-3.5" /> EN
         </span>
 
-        <Link
-          to="/control-panel"
-          className="hidden items-center gap-1.5 rounded-full border border-border px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground lg:flex"
-        >
-          <LayoutDashboard className="h-3.5 w-3.5" /> Control Panel
-        </Link>
-
         {/* All three were inert. Settings and Account have real destinations;
             there is no notifications console yet, so that one says so rather
             than looking like a control that is merely broken. */}
@@ -60,7 +53,8 @@ export function CreatorTopBar({ onOpenMenu }: { onOpenMenu?: () => void }) {
           <Bell className="h-4 w-4" />
         </button>
         <Link
-          to="/manager/settings"
+          to="/manager/$section"
+          params={{ section: "settings" }}
           className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground"
           aria-label="Settings"
         >

@@ -29,3 +29,9 @@
 - [x] AMS Manager route parity with the reference module (79/79 pages mapped, all render 200; /ams redirects to /ams/overview)
 - [x] Shared button supports the AMS sound/loading/compact-icon options — AMS module is TypeScript-clean
 - [ ] End-to-end signed-in verification of AMS CRUD flows — BLOCKED: the backend has zero accounts, so no session can be minted. Needs one sign-up in the preview first.
+
+## Module navigation + auth tests (current)
+- [x] Global "Back to Control Panel" chip on every gated module (RouteAccessGate)
+- [x] Back button inside CreatorSidebar, above the module search box (per user: sidebar top, not floating/top-bar); verified click → /control-panel
+- [ ] Automated tests: login, super-admin access, affiliate routes, role redirects, invalid paths
+- [ ] Pre-existing type backlog (~4.7k errors in ported modules, stale DB types) — tracked, not introduced by these changes
