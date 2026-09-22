@@ -130,7 +130,7 @@ function CommandCenter() {
       </section>
       <section>
         <SectionTitle kicker="10 · AI Center" title="Growth, recommendations, suggestions" />
-        <Row10AI />
+        <Row10AI data={data} />
       </section>
       <section>
         <SectionTitle kicker="11 · Heatmaps" title="Patterns over time" />

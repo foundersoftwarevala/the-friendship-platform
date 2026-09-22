@@ -6109,6 +6109,7 @@ export type Database = {
           rewards: Json
           status: Database["public"]["Enums"]["entity_status"]
           steps: Json
+          steps_meta: Json
           updated_at: string
           xp_reward: number
         }
@@ -6121,6 +6122,7 @@ export type Database = {
           rewards?: Json
           status?: Database["public"]["Enums"]["entity_status"]
           steps?: Json
+          steps_meta?: Json
           updated_at?: string
           xp_reward?: number
         }
@@ -6133,6 +6135,7 @@ export type Database = {
           rewards?: Json
           status?: Database["public"]["Enums"]["entity_status"]
           steps?: Json
+          steps_meta?: Json
           updated_at?: string
           xp_reward?: number
         }
@@ -7735,6 +7738,16 @@ export type Database = {
       }
       ams_claim_award: { Args: { p_award_slug: string }; Returns: Json }
       ams_evaluate_user: { Args: { p_user_id: string }; Returns: Json }
+      ams_grant_reward: {
+        Args: {
+          p_award_ids?: string[]
+          p_coins?: number
+          p_reason?: string
+          p_tokens?: number
+          p_xp?: number
+        }
+        Returns: Json
+      }
       ams_ingest_event: {
         Args: {
           p_entity_id?: string

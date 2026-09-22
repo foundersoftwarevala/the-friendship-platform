@@ -1,10 +1,6 @@
-// Award Management Center — API placeholder layer.
-//
-// Every function returns a Promise so the UI can be swapped onto a real
-// backend (TanStack server functions, REST, GraphQL) without touching the
-// presentation layer. Today it serves an empty in-memory store; rows
-// returned reflect optimistic local mutations performed in this session.
-
+import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
+import { amsUserClient, throwDb } from "./server-client";
 import type {
   Award,
   AwardFilters,
@@ -17,60 +13,98 @@ import type {
   Rarity,
 } from "./types";
 
-// In-memory store for the current session. NOT persisted.
-// TODO: replace with `supabase.from("awards")…` once the schema lands.
-let STORE: Award[] = [];
-
+type AwardRow = Record<string, any>;
 const now = () => new Date().toISOString();
-const uid = () =>
-  typeof crypto !== "undefined" && "randomUUID" in crypto
-    ? crypto.randomUUID()
-    : Math.random().toString(36).slice(2);
-
-function slugify(s: string): string {
-  return s
+const slugify = (s: string) =>
+  s
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
-}
+const input = (d: unknown) => z.any().parse(d);
 
-function matches(a: Award, f: AwardFilters): boolean {
-  if (f.search) {
-    const q = f.search.toLowerCase();
-    if (!a.name.toLowerCase().includes(q) && !a.description.toLowerCase().includes(q)) return false;
-  }
-  if (f.category && a.category !== f.category) return false;
-  if (f.type && a.type !== f.type) return false;
-  if (f.rarity && a.rarity !== f.rarity) return false;
-  if (f.status && a.status !== f.status) return false;
-  if (f.visibility && a.visibility !== f.visibility) return false;
-  if (f.department && a.department !== f.department) return false;
-  if (f.module && !a.supportedModules.includes(f.module)) return false;
-
-  if (f.role && !a.supportedRoles.includes(f.role)) return false;
-  if (f.minXp && a.rewards.xp < f.minXp) return false;
-  if (f.from && a.createdAt < f.from) return false;
-  if (f.to && a.createdAt > f.to) return false;
-  return true;
-}
-
-function audit(a: Award, action: string, actor = "admin"): Award {
+function mapAward(r: AwardRow): Award {
   return {
-    ...a,
-    updatedAt: now(),
-    audit: [{ id: uid(), at: now(), actor, action }, ...a.audit],
+    id: r.id,
+    slug: r.slug,
+    name: r.name,
+    description: r.description ?? "",
+    type: r.type,
+    category: r.category ?? "global",
+    rarity: r.rarity ?? "common",
+    department: r.department ?? undefined,
+    priority: r.priority ?? 0,
+    status: r.status ?? "draft",
+    visibility: r.visibility ?? "public",
+    media: r.media ?? {},
+    unlockConditions: r.unlock_conditions ?? [],
+    eligibilityRules: r.eligibility_rules ?? [],
+    supportedModules: r.supported_modules ?? [],
+    supportedRoles: r.supported_roles ?? [],
+    rewards: {
+      xp: 0,
+      coins: 0,
+      rankImpact: 0,
+      levelImpact: 0,
+      monetaryValue: 0,
+      ...(r.rewards ?? {}),
+    },
+    versions: r.versions ?? [],
+    audit: r.audit ?? [],
+    usage: { earnedCount: Number(r.user_awards?.[0]?.count ?? 0) },
+    createdAt: r.created_at,
+    updatedAt: r.updated_at,
   };
 }
 
-export async function listAwards(filters: AwardFilters = {}): Promise<PageResult<Award>> {
-  const rows = STORE.filter((a) => matches(a, filters));
-  return { rows, total: rows.length };
+async function actorName() {
+  const { user } = await amsUserClient();
+  return user.email ?? user.id;
 }
 
-export async function getAward(id: string): Promise<Award | null> {
-  return STORE.find((a) => a.id === id) ?? null;
-}
+const listAwardsFn = createServerFn({ method: "GET" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb } = await amsUserClient();
+    const f = (data ?? {}) as AwardFilters;
+    let q: any = sb
+      .from("awards")
+      .select("*, user_awards(count)", { count: "exact" })
+      .order("priority", { ascending: false })
+      .order("created_at", { ascending: false });
+    if (f.search)
+      q = q.or(
+        `name.ilike.%${f.search.replace(/[%_,]/g, "")}%,description.ilike.%${f.search.replace(/[%_,]/g, "")}%`,
+      );
+    for (const key of ["category", "type", "rarity", "status", "visibility", "department"] as const)
+      if (f[key]) q = q.eq(key, f[key]);
+    if (f.module) q = q.contains("supported_modules", [f.module]);
+    if (f.role) q = q.contains("supported_roles", [f.role]);
+    if (f.from) q = q.gte("created_at", f.from);
+    if (f.to) q = q.lte("created_at", f.to);
+    const { data: rows, error, count } = await q;
+    throwDb(error);
+    const mapped = (rows ?? [])
+      .map(mapAward)
+      .filter((a: Award) => !f.minXp || a.rewards.xp >= f.minXp);
+    return {
+      rows: mapped,
+      total: f.minXp ? mapped.length : (count ?? mapped.length),
+    } as PageResult<Award>;
+  });
+
+const getAwardFn = createServerFn({ method: "GET" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb } = await amsUserClient();
+    const { data: row, error } = await sb
+      .from("awards")
+      .select("*, user_awards(count)")
+      .eq("id", String(data))
+      .maybeSingle();
+    throwDb(error);
+    return row ? mapAward(row) : null;
+  });
 
 export interface AwardDraft {
   name: string;
@@ -85,54 +119,161 @@ export interface AwardDraft {
   media?: Award["media"];
   supportedModules?: string[];
   supportedRoles?: string[];
+  unlockConditions?: Award["unlockConditions"];
 }
 
-export async function createAward(draft: AwardDraft): Promise<Award> {
-  const a: Award = {
-    id: uid(),
-    slug: slugify(draft.name) || uid(),
-    name: draft.name,
-    description: draft.description ?? "",
-    type: draft.type,
-    category: draft.category,
-    rarity: draft.rarity,
-    department: draft.department,
-    priority: draft.priority ?? 0,
-
-    status: "draft",
-    visibility: draft.visibility ?? "public",
-    media: draft.media ?? {},
-    unlockConditions: [],
-    eligibilityRules: [],
-    supportedModules: draft.supportedModules ?? [],
-    supportedRoles: draft.supportedRoles ?? [],
-    rewards: { xp: 0, coins: 0, rankImpact: 0, levelImpact: 0, monetaryValue: 0, ...draft.rewards },
-    versions: [{ version: 1, createdAt: now(), createdBy: "admin" }],
-    audit: [{ id: uid(), at: now(), actor: "admin", action: "created" }],
-    usage: { earnedCount: 0 },
-    createdAt: now(),
-    updatedAt: now(),
+function toRow(d: Partial<Award> & AwardDraft) {
+  return {
+    name: d.name.trim(),
+    description: d.description ?? "",
+    type: d.type,
+    category: d.category,
+    rarity: d.rarity,
+    department: d.department ?? null,
+    priority: d.priority ?? 0,
+    visibility: d.visibility ?? "public",
+    media: d.media ?? {},
+    unlock_conditions: d.unlockConditions ?? [],
+    eligibility_rules: d.eligibilityRules ?? [],
+    supported_modules: d.supportedModules ?? [],
+    supported_roles: d.supportedRoles ?? [],
+    rewards: { xp: 0, coins: 0, rankImpact: 0, levelImpact: 0, monetaryValue: 0, ...d.rewards },
   };
-  STORE = [a, ...STORE];
-  return a;
 }
 
-export async function updateAward(id: string, patch: Partial<Award>): Promise<Award> {
-  const idx = STORE.findIndex((a) => a.id === id);
-  if (idx < 0) throw new Error("Award not found");
-  const next = audit({ ...STORE[idx], ...patch }, "updated");
-  STORE[idx] = next;
-  return next;
-}
-
-async function setStatus(id: string, status: AwardStatus, action: string): Promise<Award> {
-  return updateAward(id, { status, audit: undefined as never }).then(async () => {
-    const idx = STORE.findIndex((a) => a.id === id);
-    STORE[idx] = audit({ ...STORE[idx], status }, action);
-    return STORE[idx];
+const createAwardFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const d = data as AwardDraft;
+    if (!d.name?.trim()) throw new Error("Award name is required");
+    const { sb, user } = await amsUserClient();
+    const stamp = now();
+    const slug = `${slugify(d.name) || "award"}-${crypto.randomUUID().slice(0, 8)}`;
+    const payload = {
+      ...toRow(d),
+      slug,
+      status: "draft",
+      created_by: user.id,
+      versions: [{ version: 1, createdAt: stamp, createdBy: user.email ?? user.id }],
+      audit: [
+        { id: crypto.randomUUID(), at: stamp, actor: user.email ?? user.id, action: "created" },
+      ],
+    };
+    const { data: row, error } = await sb.from("awards").insert(payload).select().single();
+    throwDb(error);
+    return mapAward(row);
   });
-}
 
+const updateAwardFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const {
+      id,
+      patch,
+      action = "updated",
+    } = data as { id: string; patch: Partial<Award>; action?: string };
+    const { sb } = await amsUserClient();
+    const { data: existing, error: readError } = await sb
+      .from("awards")
+      .select("*")
+      .eq("id", id)
+      .single();
+    throwDb(readError);
+    const actor = await actorName();
+    const stamp = now();
+    const row: any = {
+      updated_at: stamp,
+      audit: [{ id: crypto.randomUUID(), at: stamp, actor, action }, ...(existing.audit ?? [])],
+    };
+    if (patch.name !== undefined) row.name = patch.name.trim();
+    for (const key of [
+      "description",
+      "type",
+      "category",
+      "rarity",
+      "department",
+      "priority",
+      "status",
+      "visibility",
+      "media",
+      "rewards",
+    ] as const)
+      if (patch[key] !== undefined) row[key] = patch[key];
+    if (patch.unlockConditions !== undefined) row.unlock_conditions = patch.unlockConditions;
+    if (patch.eligibilityRules !== undefined) row.eligibility_rules = patch.eligibilityRules;
+    if (patch.supportedModules !== undefined) row.supported_modules = patch.supportedModules;
+    if (patch.supportedRoles !== undefined) row.supported_roles = patch.supportedRoles;
+    const { data: saved, error } = await sb
+      .from("awards")
+      .update(row)
+      .eq("id", id)
+      .select()
+      .single();
+    throwDb(error);
+    return mapAward(saved);
+  });
+
+const deleteAwardFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb } = await amsUserClient();
+    const { error, count } = await sb
+      .from("awards")
+      .delete({ count: "exact" })
+      .eq("id", String(data));
+    throwDb(error);
+    return count ?? 0;
+  });
+
+const bulkFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { ids, status, remove } = data as {
+      ids: string[];
+      status?: AwardStatus;
+      remove?: boolean;
+    };
+    const { sb, user } = await amsUserClient();
+    if (!ids.length) return 0;
+    if (remove) {
+      const { error, count } = await sb.from("awards").delete({ count: "exact" }).in("id", ids);
+      throwDb(error);
+      return count ?? 0;
+    }
+    const { data: rows, error: re } = await sb.from("awards").select("id,audit").in("id", ids);
+    throwDb(re);
+    let n = 0;
+    for (const r of rows ?? []) {
+      const stamp = now();
+      const audit = [
+        {
+          id: crypto.randomUUID(),
+          at: stamp,
+          actor: user.email ?? user.id,
+          action: `bulk:${status}`,
+        },
+        ...(r.audit ?? []),
+      ];
+      const { error } = await sb
+        .from("awards")
+        .update({ status, audit, updated_at: stamp })
+        .eq("id", r.id);
+      throwDb(error);
+      n++;
+    }
+    return n;
+  });
+
+export const listAwards = (filters: AwardFilters = {}): Promise<PageResult<Award>> =>
+  listAwardsFn({ data: filters }) as Promise<PageResult<Award>>;
+export const getAward = (id: string): Promise<Award | null> =>
+  getAwardFn({ data: id }) as Promise<Award | null>;
+export const createAward = (draft: AwardDraft): Promise<Award> =>
+  createAwardFn({ data: draft }) as Promise<Award>;
+export const updateAward = (id: string, patch: Partial<Award>): Promise<Award> =>
+  updateAwardFn({ data: { id, patch } }) as Promise<Award>;
+const setStatus = (id: string, status: AwardStatus, action: string) =>
+  updateAwardFn({ data: { id, patch: { status }, action } });
 export const archiveAward = (id: string) => setStatus(id, "archived", "archived");
 export const restoreAward = (id: string) => setStatus(id, "draft", "restored");
 export const approveAward = (id: string) => setStatus(id, "approved", "approved");
@@ -141,58 +282,20 @@ export const publishAward = (id: string) => setStatus(id, "published", "publishe
 export const unpublishAward = (id: string) => setStatus(id, "unpublished", "unpublished");
 export const disableAward = (id: string) => setStatus(id, "disabled", "disabled");
 export const enableAward = (id: string) => setStatus(id, "draft", "enabled");
-
-export async function deleteAward(id: string): Promise<void> {
-  STORE = STORE.filter((a) => a.id !== id);
-}
-
+export const deleteAward = (id: string) => deleteAwardFn({ data: id }).then(() => undefined);
 export async function cloneAward(id: string): Promise<Award> {
-  const src = STORE.find((a) => a.id === id);
+  const src = await getAward(id);
   if (!src) throw new Error("Award not found");
-  const copy = await createAward({
-    name: `${src.name} (Copy)`,
-    description: src.description,
-    type: src.type,
-    category: src.category,
-    rarity: src.rarity,
-    priority: src.priority,
-    visibility: src.visibility,
-    rewards: src.rewards,
-    media: src.media,
-    supportedModules: src.supportedModules,
-    supportedRoles: src.supportedRoles,
-  });
-  return copy;
+  return createAward({ ...src, name: `${src.name} (Copy)` });
 }
-
-export async function bulkUpdate(ids: string[], patch: Partial<Award>): Promise<number> {
+export async function bulkUpdate(ids: string[], patch: Partial<Award>) {
   let n = 0;
   for (const id of ids) {
-    try {
-      await updateAward(id, patch);
-      n++;
-    } catch {
-      /* skip */
-    }
+    await updateAward(id, patch);
+    n++;
   }
   return n;
 }
-
-export async function bulkDelete(ids: string[]): Promise<number> {
-  const before = STORE.length;
-  STORE = STORE.filter((a) => !ids.includes(a.id));
-  return before - STORE.length;
-}
-
-export async function bulkSetStatus(ids: string[], status: AwardStatus): Promise<number> {
-  let n = 0;
-  for (const id of ids) {
-    try {
-      await setStatus(id, status, `bulk:${status}`);
-      n++;
-    } catch {
-      /* skip */
-    }
-  }
-  return n;
-}
+export const bulkDelete = (ids: string[]) => bulkFn({ data: { ids, remove: true } });
+export const bulkSetStatus = (ids: string[], status: AwardStatus) =>
+  bulkFn({ data: { ids, status } });

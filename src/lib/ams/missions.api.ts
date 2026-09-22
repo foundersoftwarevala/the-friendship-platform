@@ -1,7 +1,5 @@
-// AMS Missions + Quests — in-memory API.
-// Mirrors awards.api.ts. Completion flows through rewards.engine.grant().
-
-import { grant } from "./rewards.engine";
+import { createServerFn } from "@tanstack/react-start";
+import { amsUserClient, throwDb } from "./server-client";
 import type {
   Mission,
   MissionRule,
@@ -12,52 +10,6 @@ import type {
   QuestStage,
 } from "./missions.types";
 
-const uid = () =>
-  typeof crypto !== "undefined" && "randomUUID" in crypto
-    ? crypto.randomUUID()
-    : Math.random().toString(36).slice(2);
-const now = () => new Date().toISOString();
-const slugify = (s: string) =>
-  s
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-let MISSIONS: Mission[] = [];
-let QUESTS: QuestChain[] = [];
-
-type Listener = () => void;
-const listeners = new Set<Listener>();
-export function subscribeMissions(fn: Listener) {
-  listeners.add(fn);
-  return () => {
-    listeners.delete(fn);
-  };
-}
-const emit = () => {
-  missionsVersion++;
-  for (const fn of listeners) fn();
-};
-
-// Stable snapshot for useSyncExternalStore — a fresh array on every read
-// causes an infinite render loop.
-let missionsVersion = 0;
-let snapshotVersion = -1;
-let snapshotValue: Mission[] = [];
-export function missionsSnapshot(): Mission[] {
-  if (snapshotVersion !== missionsVersion) {
-    snapshotVersion = missionsVersion;
-    snapshotValue = MISSIONS.slice();
-  }
-  return snapshotValue;
-}
-const EMPTY_MISSIONS: Mission[] = [];
-export function missionsServerSnapshot(): Mission[] {
-  return EMPTY_MISSIONS;
-}
-
-/* ============ Missions ============ */
 export interface MissionDraft {
   name: string;
   description?: string;
@@ -69,99 +21,6 @@ export interface MissionDraft {
   activation?: Partial<Mission["activation"]>;
   status?: MissionStatus;
 }
-
-export function listMissions(
-  filters: { type?: MissionType; status?: MissionStatus; search?: string } = {},
-): Mission[] {
-  return MISSIONS.filter((m) => {
-    if (filters.type && m.type !== filters.type) return false;
-    if (filters.status && m.status !== filters.status) return false;
-    if (filters.search) {
-      const q = filters.search.toLowerCase();
-      if (!m.name.toLowerCase().includes(q) && !m.description.toLowerCase().includes(q))
-        return false;
-    }
-    return true;
-  });
-}
-
-export function getMission(id: string): Mission | undefined {
-  return MISSIONS.find((m) => m.id === id);
-}
-
-export function createMission(d: MissionDraft): Mission {
-  const target = d.rules?.[0]?.target ?? 1;
-  const m: Mission = {
-    id: uid(),
-    slug: slugify(d.name) || uid(),
-    name: d.name,
-    description: d.description ?? "",
-    type: d.type,
-    status: d.status ?? "draft",
-    department: d.department,
-    hidden: d.hidden ?? d.type === "hidden",
-    rules: d.rules ?? [],
-    rewards: { xp: 0, coins: 0, tokens: 0, awardIds: [], ...d.rewards },
-    activation: {
-      repeatable: d.type === "daily" || d.type === "weekly" || d.type === "monthly",
-      ...d.activation,
-    },
-    progress: { current: 0, target },
-    createdAt: now(),
-    updatedAt: now(),
-  };
-  MISSIONS = [m, ...MISSIONS];
-  emit();
-  return m;
-}
-
-export function updateMission(id: string, patch: Partial<Mission>): Mission {
-  const idx = MISSIONS.findIndex((m) => m.id === id);
-  if (idx < 0) throw new Error("Mission not found");
-  MISSIONS[idx] = { ...MISSIONS[idx], ...patch, updatedAt: now() };
-  emit();
-  return MISSIONS[idx];
-}
-
-export function deleteMission(id: string): void {
-  MISSIONS = MISSIONS.filter((m) => m.id !== id);
-  emit();
-}
-
-export function setMissionStatus(id: string, status: MissionStatus): Mission {
-  return updateMission(id, { status });
-}
-
-/** Increment progress; auto-complete + grant when target reached. */
-export function progressMission(id: string, delta = 1): Mission {
-  const m = getMission(id);
-  if (!m) throw new Error("Mission not found");
-  const next = Math.min(m.progress.target, m.progress.current + delta);
-  const updated = updateMission(id, { progress: { ...m.progress, current: next } });
-  if (next >= m.progress.target && updated.status !== "completed") {
-    return completeMission(id);
-  }
-  return updated;
-}
-
-export function completeMission(id: string): Mission {
-  const m = getMission(id);
-  if (!m) throw new Error("Mission not found");
-  grant({
-    xp: m.rewards.xp,
-    coins: m.rewards.coins,
-    tokens: m.rewards.tokens,
-    awardIds: m.rewards.awardIds,
-    reason: `mission:${m.slug}`,
-  });
-  return updateMission(id, {
-    status: "completed",
-    completedAt: now(),
-    progress: { ...m.progress, current: m.progress.target },
-  });
-}
-
-/* ============ Quest Chains ============ */
 export interface QuestDraft {
   name: string;
   description?: string;
@@ -171,120 +30,341 @@ export interface QuestDraft {
   stages?: Omit<QuestStage, "id" | "status">[];
   finaleRewards?: Partial<QuestChain["finaleRewards"]>;
 }
+const input = (d: unknown) => d as any;
+const dbStatus = (s: MissionStatus) =>
+  s === "draft" || s === "archived" ? s : s === "active" ? "active" : "inactive";
+const uiStatus = (s: string, meta: any): MissionStatus =>
+  meta?.amsStatus ??
+  (s === "active" ? "active" : s === "draft" ? "draft" : s === "archived" ? "archived" : "paused");
+const cadence = (t: MissionType) =>
+  t === "yearly" || t === "department" || t === "hidden" || t === "community" ? "seasonal" : t;
+const rewards = (r: any) => ({
+  xp: Number(r?.xp ?? 0),
+  coins: Number(r?.coins ?? 0),
+  tokens: Number(r?.tokens ?? 0),
+  awardIds: r?.awardIds ?? [],
+});
 
-export function listQuests(): QuestChain[] {
-  return QUESTS;
-}
-export function getQuest(id: string): QuestChain | undefined {
-  return QUESTS.find((q) => q.id === id);
-}
-
-export function createQuest(d: QuestDraft): QuestChain {
-  const stages: QuestStage[] = (d.stages ?? []).map((s, i) => ({
-    ...s,
-    id: uid(),
-    order: s.order ?? i + 1,
-    status: i === 0 && s.dependsOn.length === 0 ? "available" : "locked",
-  }));
-  const q: QuestChain = {
-    id: uid(),
-    slug: slugify(d.name) || uid(),
-    name: d.name,
-    description: d.description ?? "",
-    mode: d.mode,
-    season: d.season,
-    department: d.department,
-    stages,
-    finaleRewards: { xp: 0, coins: 0, tokens: 0, awardIds: [], ...d.finaleRewards },
-    status: "draft",
-    createdAt: now(),
-    updatedAt: now(),
+function mapMission(r: any): Mission {
+  const c = r.conditions ?? {};
+  const p = r.user_mission_progress?.[0];
+  const target = Number(c.rules?.[0]?.target ?? 1);
+  return {
+    id: r.id,
+    slug: c.slug ?? r.id,
+    name: r.name,
+    description: r.description ?? "",
+    type: c.type ?? r.cadence,
+    status: uiStatus(r.status, c),
+    department: c.department,
+    hidden: !!c.hidden,
+    rules: c.rules ?? [],
+    rewards: rewards({ ...r.rewards, xp: r.xp_reward }),
+    activation: {
+      repeatable: !!c.repeatable,
+      startsAt: r.starts_at ?? undefined,
+      endsAt: r.ends_at ?? undefined,
+      cooldownHours: c.cooldownHours,
+    },
+    progress: { current: Number(p?.progress ?? 0), target },
+    createdAt: r.created_at,
+    updatedAt: r.updated_at,
+    completedAt: p?.completed_at ?? undefined,
   };
-  QUESTS = [q, ...QUESTS];
-  emit();
-  return q;
+}
+function mapQuest(r: any): QuestChain {
+  const meta = r.stepsMeta ?? r.steps_meta ?? {};
+  return {
+    id: r.id,
+    slug: meta.slug ?? r.id,
+    name: r.name,
+    description: r.description ?? "",
+    mode: meta.mode ?? "story",
+    season: meta.season,
+    department: meta.department,
+    stages: Array.isArray(r.steps) ? r.steps : [],
+    finaleRewards: rewards({ ...r.rewards, xp: r.xp_reward }),
+    status: uiStatus(r.status, meta),
+    createdAt: r.created_at,
+    updatedAt: r.updated_at,
+  };
 }
 
-export function updateQuest(id: string, patch: Partial<QuestChain>): QuestChain {
-  const idx = QUESTS.findIndex((q) => q.id === id);
-  if (idx < 0) throw new Error("Quest not found");
-  QUESTS[idx] = { ...QUESTS[idx], ...patch, updatedAt: now() };
-  emit();
-  return QUESTS[idx];
-}
+const listMissionsFn = createServerFn({ method: "GET" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb, user } = await amsUserClient();
+    let q: any = sb
+      .from("missions")
+      .select("*,user_mission_progress!left(progress,completed_at,period_key)")
+      .order("created_at", { ascending: false });
+    const { data: rows, error } = await q;
+    throwDb(error);
+    let out = (rows ?? []).map(mapMission);
+    const f = data ?? {};
+    if (f.type) out = out.filter((m: Mission) => m.type === f.type);
+    if (f.status) out = out.filter((m: Mission) => m.status === f.status);
+    if (f.search) {
+      const s = f.search.toLowerCase();
+      out = out.filter((m: Mission) => `${m.name} ${m.description}`.toLowerCase().includes(s));
+    }
+    return out;
+  });
+const createMissionFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data: d }) => {
+    const { sb, user } = await amsUserClient();
+    const rr = rewards(d.rewards);
+    const conditions = {
+      slug: d.name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-"),
+      type: d.type,
+      department: d.department,
+      hidden: d.hidden,
+      rules: d.rules ?? [],
+      repeatable: d.activation?.repeatable,
+      cooldownHours: d.activation?.cooldownHours,
+      amsStatus: d.status ?? "draft",
+    };
+    const { data: r, error } = await sb
+      .from("missions")
+      .insert({
+        name: d.name.trim(),
+        description: d.description ?? null,
+        cadence: cadence(d.type),
+        conditions,
+        rewards: rr,
+        xp_reward: rr.xp,
+        starts_at: d.activation?.startsAt ?? null,
+        ends_at: d.activation?.endsAt ?? null,
+        status: dbStatus(d.status ?? "draft"),
+        created_by: user.id,
+      })
+      .select()
+      .single();
+    throwDb(error);
+    return mapMission(r);
+  });
+const missionActionFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb, user } = await amsUserClient();
+    const { data: m, error } = await sb.from("missions").select("*").eq("id", data.id).single();
+    throwDb(error);
+    if (data.remove) {
+      const x = await sb.from("missions").delete().eq("id", data.id);
+      throwDb(x.error);
+      return null;
+    }
+    if (data.status) {
+      const conditions = { ...(m.conditions ?? {}), amsStatus: data.status };
+      const x = await sb
+        .from("missions")
+        .update({ status: dbStatus(data.status), conditions })
+        .eq("id", data.id)
+        .select()
+        .single();
+      throwDb(x.error);
+      return mapMission(x.data);
+    }
+    const target = Number(m.conditions?.rules?.[0]?.target ?? 1);
+    const { data: p } = await sb
+      .from("user_mission_progress")
+      .select("*")
+      .eq("user_id", user.id)
+      .eq("mission_id", m.id)
+      .eq("period_key", "current")
+      .maybeSingle();
+    const current = data.complete
+      ? target
+      : Math.min(target, Number(p?.progress ?? 0) + (data.delta ?? 1));
+    const completed = current >= target ? new Date().toISOString() : null;
+    const x = await sb.from("user_mission_progress").upsert(
+      {
+        user_id: user.id,
+        mission_id: m.id,
+        period_key: "current",
+        progress: current,
+        completed_at: completed,
+      },
+      { onConflict: "user_id,mission_id,period_key" },
+    );
+    throwDb(x.error);
+    if (completed && !p?.completed_at) {
+      const rr = rewards({ ...m.rewards, xp: m.xp_reward });
+      const g = await sb.rpc("ams_grant_reward", {
+        p_xp: rr.xp,
+        p_coins: rr.coins,
+        p_tokens: rr.tokens,
+        p_award_ids: rr.awardIds,
+        p_reason: `mission:${m.id}:current`,
+      });
+      throwDb(g.error);
+    }
+    return mapMission({
+      ...m,
+      user_mission_progress: [{ progress: current, completed_at: completed }],
+    });
+  });
 
-export function deleteQuest(id: string) {
-  QUESTS = QUESTS.filter((q) => q.id !== id);
-  emit();
-}
+const listQuestsFn = createServerFn({ method: "GET" }).handler(async () => {
+  const { sb } = await amsUserClient();
+  const { data, error } = await sb
+    .from("quests")
+    .select("*")
+    .order("created_at", { ascending: false });
+  throwDb(error);
+  return (data ?? []).map(mapQuest);
+});
+const createQuestFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data: d }) => {
+    const { sb, user } = await amsUserClient();
+    const rr = rewards(d.finaleRewards);
+    const meta = {
+      slug: d.name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-"),
+      mode: d.mode,
+      season: d.season,
+      department: d.department,
+      amsStatus: "draft",
+    };
+    const stages = (d.stages ?? []).map((s: any, i: number) => ({
+      ...s,
+      id: crypto.randomUUID(),
+      order: s.order ?? i + 1,
+      status: i === 0 ? "available" : "locked",
+    }));
+    const { data: r, error } = await sb
+      .from("quests")
+      .insert({
+        name: d.name.trim(),
+        description: d.description ?? null,
+        steps: stages,
+        rewards: rr,
+        xp_reward: rr.xp,
+        status: "draft",
+        created_by: user.id,
+        steps_meta: meta,
+      })
+      .select()
+      .single();
+    throwDb(error);
+    return mapQuest(r);
+  });
+const questActionFn = createServerFn({ method: "POST" })
+  .inputValidator(input)
+  .handler(async ({ data }) => {
+    const { sb } = await amsUserClient();
+    const { data: q, error } = await sb.from("quests").select("*").eq("id", data.questId).single();
+    throwDb(error);
+    if (data.removeQuest) {
+      const x = await sb.from("quests").delete().eq("id", data.questId);
+      throwDb(x.error);
+      return null;
+    }
+    let stages = [...(q.steps ?? [])];
+    if (data.removeStage) stages = stages.filter((s: any) => s.id !== data.stageId);
+    if (data.stage) {
+      const i = stages.findIndex((s: any) => s.id === data.stage.id);
+      const stage = {
+        id: data.stage.id ?? crypto.randomUUID(),
+        order: data.stage.order ?? stages.length + 1,
+        title: data.stage.title,
+        description: data.stage.description ?? "",
+        missionIds: data.stage.missionIds ?? [],
+        dependsOn: data.stage.dependsOn ?? [],
+        rewards: rewards(data.stage.rewards),
+        status: data.stage.status ?? (stages.length ? "locked" : "available"),
+      };
+      if (i >= 0) stages[i] = { ...stages[i], ...stage };
+      else stages.push(stage);
+      stages.sort((a: any, b: any) => a.order - b.order);
+    }
+    if (data.completeStage) {
+      stages = stages.map((s: any) => (s.id === data.stageId ? { ...s, status: "completed" } : s));
+      const done = stages.find((s: any) => s.id === data.stageId);
+      const complete = new Set(
+        stages.filter((s: any) => s.status === "completed").map((s: any) => s.id),
+      );
+      stages = stages.map((s: any) =>
+        s.status === "locked" && s.dependsOn.every((id: string) => complete.has(id))
+          ? { ...s, status: "available" }
+          : s,
+      );
+      if (done) {
+        const rr = rewards(done.rewards);
+        const g = await sb.rpc("ams_grant_reward", {
+          p_xp: rr.xp,
+          p_coins: rr.coins,
+          p_tokens: rr.tokens,
+          p_award_ids: rr.awardIds,
+          p_reason: `quest:${q.id}:stage:${done.id}`,
+        });
+        throwDb(g.error);
+      }
+      if (stages.length && stages.every((s: any) => s.status === "completed")) {
+        const rr = rewards({ ...q.rewards, xp: q.xp_reward });
+        const g = await sb.rpc("ams_grant_reward", {
+          p_xp: rr.xp,
+          p_coins: rr.coins,
+          p_tokens: rr.tokens,
+          p_award_ids: rr.awardIds,
+          p_reason: `quest:${q.id}:finale`,
+        });
+        throwDb(g.error);
+      }
+    }
+    const allDone = stages.length > 0 && stages.every((s: any) => s.status === "completed");
+    const x = await sb
+      .from("quests")
+      .update({
+        steps: stages,
+        status: allDone ? "inactive" : q.status,
+        steps_meta: {
+          ...(q.steps_meta ?? {}),
+          amsStatus: allDone ? "completed" : (q.steps_meta?.amsStatus ?? "draft"),
+        },
+      })
+      .eq("id", q.id)
+      .select()
+      .single();
+    throwDb(x.error);
+    return mapQuest(x.data);
+  });
 
-/** Add / reorder / remove a stage. */
-export function upsertStage(
+export const listMissions = (filters: any = {}) => listMissionsFn({ data: filters });
+export const getMission = async (id: string) => (await listMissions()).find((m) => m.id === id);
+export const createMission = (d: MissionDraft) => createMissionFn({ data: d });
+export const updateMission = (id: string, patch: Partial<Mission>) =>
+  missionActionFn({ data: { id, status: patch.status } });
+export const deleteMission = (id: string) =>
+  missionActionFn({ data: { id, remove: true } }).then(() => undefined);
+export const setMissionStatus = (id: string, status: MissionStatus) =>
+  missionActionFn({ data: { id, status } });
+export const progressMission = (id: string, delta = 1) => missionActionFn({ data: { id, delta } });
+export const completeMission = (id: string) => missionActionFn({ data: { id, complete: true } });
+export const listQuests = () => listQuestsFn();
+export const getQuest = async (id: string) => (await listQuests()).find((q) => q.id === id);
+export const createQuest = (d: QuestDraft) => createQuestFn({ data: d });
+export const updateQuest = (id: string, patch: Partial<QuestChain>) =>
+  questActionFn({ data: { questId: id, patch } });
+export const deleteQuest = (id: string) =>
+  questActionFn({ data: { questId: id, removeQuest: true } }).then(() => undefined);
+export const upsertStage = (
   questId: string,
   stage: Partial<QuestStage> & { id?: string; title: string },
-): QuestChain {
-  const q = getQuest(questId);
-  if (!q) throw new Error("Quest not found");
-  const stages = [...q.stages];
-  if (stage.id) {
-    const i = stages.findIndex((s) => s.id === stage.id);
-    if (i < 0) throw new Error("Stage not found");
-    stages[i] = { ...stages[i], ...stage } as QuestStage;
-  } else {
-    stages.push({
-      id: uid(),
-      order: stage.order ?? stages.length + 1,
-      title: stage.title,
-      description: stage.description ?? "",
-      missionIds: stage.missionIds ?? [],
-      dependsOn: stage.dependsOn ?? [],
-      rewards: { xp: 0, coins: 0, tokens: 0, awardIds: [], ...stage.rewards },
-      status: (stage.order ?? stages.length + 1) === 1 ? "available" : "locked",
-    });
-  }
-  stages.sort((a, b) => a.order - b.order);
-  return updateQuest(questId, { stages });
+) => questActionFn({ data: { questId, stage } });
+export const removeStage = (questId: string, stageId: string) =>
+  questActionFn({ data: { questId, stageId, removeStage: true } });
+export const completeStage = (questId: string, stageId: string) =>
+  questActionFn({ data: { questId, stageId, completeStage: true } });
+export function subscribeMissions() {
+  return () => {};
 }
-
-export function removeStage(questId: string, stageId: string): QuestChain {
-  const q = getQuest(questId);
-  if (!q) throw new Error("Quest not found");
-  return updateQuest(questId, { stages: q.stages.filter((s) => s.id !== stageId) });
-}
-
-/** Mark a stage complete; unlock dependents; grant rewards; finale if all done. */
-export function completeStage(questId: string, stageId: string): QuestChain {
-  const q = getQuest(questId);
-  if (!q) throw new Error("Quest not found");
-  const stages = q.stages.map((s) =>
-    s.id === stageId ? { ...s, status: "completed" as const } : s,
-  );
-  const completedIds = new Set(stages.filter((s) => s.status === "completed").map((s) => s.id));
-  for (let i = 0; i < stages.length; i++) {
-    const s = stages[i];
-    if (s.status === "locked" && s.dependsOn.every((d) => completedIds.has(d))) {
-      stages[i] = { ...s, status: "available" };
-    }
-  }
-  const done = stages.find((s) => s.id === stageId);
-  if (done) {
-    grant({
-      xp: done.rewards.xp,
-      coins: done.rewards.coins,
-      tokens: done.rewards.tokens,
-      awardIds: done.rewards.awardIds,
-      reason: `quest:${q.slug}:stage:${done.order}`,
-    });
-  }
-  const allDone = stages.every((s) => s.status === "completed");
-  if (allDone) {
-    grant({
-      xp: q.finaleRewards.xp,
-      coins: q.finaleRewards.coins,
-      tokens: q.finaleRewards.tokens,
-      awardIds: q.finaleRewards.awardIds,
-      reason: `quest:${q.slug}:finale`,
-    });
-  }
-  return updateQuest(questId, { stages, status: allDone ? "completed" : q.status });
-}
+export const missionsSnapshot = () => [] as Mission[];
+export const missionsServerSnapshot = () => [] as Mission[];

@@ -1,4 +1,5 @@
-import { useSyncExternalStore, useState, useMemo } from "react";
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Plus,
@@ -46,7 +47,6 @@ import {
   listQuests,
   createQuest,
   deleteQuest,
-  subscribeMissions,
   upsertStage,
   removeStage,
   completeStage,
@@ -84,11 +84,7 @@ const MODE_ICON: Record<QuestMode, React.ReactNode> = {
 };
 
 function useQuests() {
-  return useSyncExternalStore(
-    (cb) => subscribeMissions(cb),
-    () => listQuests(),
-    () => [] as QuestChain[],
-  );
+  return useQuery({ queryKey: ["ams-quests"], queryFn: listQuests }).data ?? [];
 }
 
 function QuestsPage() {
@@ -166,6 +162,7 @@ function QuestsPage() {
 }
 
 function QuestEditor({ quest }: { quest: QuestChain }) {
+  const qc = useQueryClient();
   const [stageOpen, setStageOpen] = useState(false);
   const mode = QUEST_MODES.find((m) => m.value === quest.mode)!;
 
@@ -197,9 +194,14 @@ function QuestEditor({ quest }: { quest: QuestChain }) {
             variant="ghost"
             size="sm"
             className="text-rose-400 gap-1"
-            onClick={() => {
-              deleteQuest(quest.id);
-              toast("Quest deleted");
+            onClick={async () => {
+              try {
+                await deleteQuest(quest.id);
+                await qc.invalidateQueries({ queryKey: ["ams-quests"] });
+                toast("Quest deleted");
+              } catch (e) {
+                toast.error((e as Error).message);
+              }
             }}
           >
             <Trash2 className="h-3.5 w-3.5" /> Delete chain
@@ -239,13 +241,23 @@ function QuestEditor({ quest }: { quest: QuestChain }) {
               quest={quest}
               stage={s}
               prevStage={quest.stages[i - 1]}
-              onComplete={() => {
-                completeStage(quest.id, s.id);
-                toast.success(`Stage "${s.title}" completed — rewards granted`);
+              onComplete={async () => {
+                try {
+                  await completeStage(quest.id, s.id);
+                  await qc.invalidateQueries({ queryKey: ["ams-quests"] });
+                  toast.success(`Stage "${s.title}" completed — rewards granted`);
+                } catch (e) {
+                  toast.error((e as Error).message);
+                }
               }}
-              onDelete={() => {
-                removeStage(quest.id, s.id);
-                toast("Stage removed");
+              onDelete={async () => {
+                try {
+                  await removeStage(quest.id, s.id);
+                  await qc.invalidateQueries({ queryKey: ["ams-quests"] });
+                  toast("Stage removed");
+                } catch (e) {
+                  toast.error((e as Error).message);
+                }
               }}
             />
           ))}
@@ -265,8 +277,8 @@ function StageRow({
   quest: QuestChain;
   stage: QuestStage;
   prevStage?: QuestStage;
-  onComplete: () => void;
-  onDelete: () => void;
+  onComplete: () => Promise<void>;
+  onDelete: () => Promise<void>;
 }) {
   const locked = stage.status === "locked";
   const done = stage.status === "completed";
@@ -362,6 +374,7 @@ function RewardPill({ label, value }: { label: string; value: number }) {
 }
 
 function NewQuestDialog({ onClose }: { onClose: () => void }) {
+  const qc = useQueryClient();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [mode, setMode] = useState<QuestMode>("story");
@@ -371,21 +384,26 @@ function NewQuestDialog({ onClose }: { onClose: () => void }) {
   const [coins, setCoins] = useState(100);
   const [tokens, setTokens] = useState(1);
 
-  function submit() {
+  async function submit() {
     if (!name.trim()) {
       toast.error("Name required");
       return;
     }
-    createQuest({
-      name,
-      description,
-      mode,
-      season: season || undefined,
-      department: department ? (department as QuestChain["department"]) : undefined,
-      finaleRewards: { xp, coins, tokens, awardIds: [] },
-    });
-    toast.success(`Quest chain "${name}" created`);
-    onClose();
+    try {
+      await createQuest({
+        name,
+        description,
+        mode,
+        season: season || undefined,
+        department: department ? (department as QuestChain["department"]) : undefined,
+        finaleRewards: { xp, coins, tokens, awardIds: [] },
+      });
+      await qc.invalidateQueries({ queryKey: ["ams-quests"] });
+      toast.success(`Quest chain "${name}" created`);
+      onClose();
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
   }
 
   return (
@@ -482,6 +500,7 @@ function NewQuestDialog({ onClose }: { onClose: () => void }) {
 }
 
 function StageDialog({ quest, onClose }: { quest: QuestChain; onClose: () => void }) {
+  const qc = useQueryClient();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [order, setOrder] = useState(quest.stages.length + 1);
@@ -490,23 +509,29 @@ function StageDialog({ quest, onClose }: { quest: QuestChain; onClose: () => voi
   const [xp, setXp] = useState(100);
   const [coins, setCoins] = useState(25);
   const [tokens, setTokens] = useState(0);
-  const missions = useMemo(() => listMissions(), []);
+  const missions =
+    useQuery({ queryKey: ["ams-missions"], queryFn: () => listMissions() }).data ?? [];
 
-  function submit() {
+  async function submit() {
     if (!title.trim()) {
       toast.error("Title required");
       return;
     }
-    upsertStage(quest.id, {
-      title,
-      description,
-      order,
-      dependsOn,
-      missionIds,
-      rewards: { xp, coins, tokens, awardIds: [] },
-    });
-    toast.success(`Stage "${title}" added`);
-    onClose();
+    try {
+      await upsertStage(quest.id, {
+        title,
+        description,
+        order,
+        dependsOn,
+        missionIds,
+        rewards: { xp, coins, tokens, awardIds: [] },
+      });
+      await qc.invalidateQueries({ queryKey: ["ams-quests"] });
+      toast.success(`Stage "${title}" added`);
+      onClose();
+    } catch (e) {
+      toast.error((e as Error).message);
+    }
   }
 
   function toggle<T>(arr: T[], v: T, setter: (a: T[]) => void) {
