@@ -21,7 +21,7 @@ import {
 import { RoleAchievementShowcase } from "@/components/ams/shared/RoleAchievementShowcase";
 import { Button } from "@/components/ui/button";
 
-const dashOpts = (fn: () => Promise<any>) =>
+const dashOpts = <T,>(fn: () => Promise<T>) =>
   queryOptions({
     queryKey: ["command-center", "live"],
     queryFn: fn,
