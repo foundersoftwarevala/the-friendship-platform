@@ -19,6 +19,7 @@ import {
   SectionTitle,
 } from "@/components/dashboard/Widgets";
 import { RoleAchievementShowcase } from "@/components/ams/shared/RoleAchievementShowcase";
+import { Button } from "@/components/ui/button";
 
 const dashOpts = (fn: () => Promise<any>) =>
   queryOptions({
@@ -66,13 +67,9 @@ function CommandCenter() {
         <p className="text-xs text-muted-foreground">
           Your session is safe. Try loading the live data again.
         </p>
-        <button
-          type="button"
-          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition hover:opacity-90 active:translate-y-px"
-          onClick={() => void refetch()}
-        >
+        <Button type="button" onClick={() => void refetch()}>
           Try again
-        </button>
+        </Button>
       </div>
     );
   }
