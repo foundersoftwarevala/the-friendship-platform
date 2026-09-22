@@ -66,8 +66,6 @@ from (values
   -- Delivery
   ('Developer task completed', 'Developer completed a task.',               'task.completed',    'developer',    60, 0, 25),
   ('Developer task approved',  'Developer task approved by review.',        'task.approved',     'developer',   100, 0, 25),
-  ('Manager task approved',    'Manager approved delivered work.',          'task.approved',     'manager',      70, 0, 30),
-  ('Operator task completed',  'Operator completed an operational task.',   'task.completed',    'operator',     60, 0, 25),
   -- Content and search
   ('SEO issue resolved',       'SEO specialist resolved an issue.',         'seo.issue_resolved','seo',          50, 0, 40),
   ('SEO content published',    'SEO content published live.',               'seo.published',     'seo',          70, 0, 30),
@@ -75,8 +73,7 @@ from (values
   ('Creator content published','Creator published a produced asset.',       'seo.published',     'creator',      70, 0, 20),
   -- Service and reach
   ('Support resolution',       'Support resolved a ticket.',                'support.resolved',  'support',      55, 0, 40),
-  ('Influencer campaign',      'Influencer campaign delivered.',            'campaign.delivered','influencer',  120, 0, 10),
-  ('Manager campaign',         'Campaign delivered under a manager.',       'campaign.delivered','manager',      90, 0, 10)
+  ('Influencer campaign',      'Influencer campaign delivered.',            'campaign.delivered','influencer',  120, 0, 10)
 ) as v(name, description, source_slug, role, xp, cooldown, per_day)
 join public.xp_sources s on s.slug = v.source_slug
 where not exists (

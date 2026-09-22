@@ -9,7 +9,7 @@
 -- changing its presentation layer.
 --
 -- Awards were also the one missing link in the per-stage chain. Trophies,
--- badges and achievements already exist at 180 each (18 roles x 10 stages);
+-- badges and achievements already exist at 180 each (11 roles x 10 stages);
 -- awards did not exist at all.
 
 create table if not exists public.awards (
@@ -99,7 +99,7 @@ select
   'Awarded on reaching stage ' || st.stage || ' of the ' || initcap(st.role) || ' progression.',
   'achievement',
   case when st.role in ('developer','reseller','franchise','author','vendor','affiliate',
-                        'influencer','support','manager')
+                        'influencer','creator','seo','support','user')
        then st.role else 'global' end,
   case
     when st.stage <= 2 then 'common'
@@ -148,7 +148,7 @@ begin
   get diagnostics n = row_count;
 
   insert into public.ams_award_ledger (user_id, role, asset_kind, asset_slug, reason)
-  select p_user_id, p_role, 'certificate', a.slug, 'stage ' || (a.conditions->>'stage')
+  select p_user_id, p_role, 'award', a.slug, 'stage ' || (a.conditions->>'stage')
   from public.awards a
   join public.user_awards ua on ua.award_id = a.id and ua.user_id = p_user_id
   where a.conditions->>'role' = p_role

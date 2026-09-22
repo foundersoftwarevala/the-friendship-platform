@@ -144,38 +144,6 @@ export const ROLE_ENVIRONMENT: Record<RoleSlug, MuseumEnvironment> = {
     "glass",
     "Clean neutral gallery, personal pride.",
   ),
-  manager: ENV(
-    "ops-gallery",
-    "Operations Gallery",
-    "#818cf8",
-    "#3730a3",
-    "brushed-steel",
-    "Structured bays, disciplined alignment.",
-  ),
-  administrator: ENV(
-    "governance-hall",
-    "Governance Hall",
-    "#f87171",
-    "#991b1b",
-    "obsidian",
-    "Sealed vault doors, authority in stone.",
-  ),
-  founder: ENV(
-    "founder-hall",
-    "Executive Founder Hall",
-    "#e8d29a",
-    "#a16207",
-    "marble",
-    "Gold leaf, cathedral height, origin story.",
-  ),
-  operator: ENV(
-    "control-deck",
-    "Control Deck Observatory",
-    "#10b981",
-    "#065f46",
-    "obsidian",
-    "Graphite panels, emerald telemetry, live watch.",
-  ),
 };
 
 /* ------------------------------------------------------------------ */

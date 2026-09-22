@@ -23,7 +23,14 @@ import { z } from "zod";
  * catalogue is public, the achievement is not.
  */
 
-const AssetState = z.enum(["locked", "in_progress", "eligible", "earned", "claimed"]);
+const AssetState = z.enum([
+  "locked",
+  "in_progress",
+  "available",
+  "earned",
+  "verified",
+  "revoked",
+]);
 export type AssetState = z.infer<typeof AssetState>;
 
 export type ChainAsset = {
@@ -54,7 +61,12 @@ export type RoleChain = {
   user_id: string | null;
   total_xp: number;
   current_stage: number;
-  passport: { passport_no: string; verification: string; issued_at: string } | null;
+  passport: {
+    passport_no: string;
+    verification_code?: string | null;
+    verification: string;
+    issued_at: string;
+  } | null;
   stages: ChainStage[];
 };
 

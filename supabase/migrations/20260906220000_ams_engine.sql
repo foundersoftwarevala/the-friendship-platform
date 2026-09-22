@@ -182,7 +182,7 @@ returns boolean language sql stable security definer set search_path = public as
   select exists (
     select 1 from public.user_roles r
     where r.user_id = auth.uid()
-      and r.role::text in ('admin','boss','manager','operator')
+      and r.role::text in ('admin','boss','boss_owner','super_admin')
   );
 $$;
 
